@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PipelineMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Pipeline" >
+    <id column="pipe_id" property="pipeId" jdbcType="VARCHAR" />
+    <result column="pl_name" property="plName" jdbcType="VARCHAR" />
+    <result column="pl_line" property="plLine" jdbcType="VARCHAR" />
+    <result column="pl_out_diameter" property="plOutDiameter" jdbcType="VARCHAR" />
+    <result column="pl_in_diameter" property="plInDiameter" jdbcType="VARCHAR" />
+    <result column="pl_deep" property="plDeep" jdbcType="VARCHAR" />
+    <result column="pl_material" property="plMaterial" jdbcType="VARCHAR" />
+    <result column="pl_type" property="plType" jdbcType="VARCHAR" />
+    <result column="pl_slope" property="plSlope" jdbcType="VARCHAR" />
+    <result column="pl_roughness" property="plRoughness" jdbcType="VARCHAR" />
+    <result column="pl_direction" property="plDirection" jdbcType="VARCHAR" />
+    <result column="pl_pos" property="plPos" jdbcType="VARCHAR" />
+    <result column="pl_sort" property="plSort" jdbcType="VARCHAR" />
+    <result column="pl_deep_stop" property="plDeepStop" jdbcType="VARCHAR" />
+    <result column="pl_building_type" property="plBuildingType" jdbcType="VARCHAR" />
+    <result column="pl_carry" property="plCarry" jdbcType="VARCHAR" />
+    <result column="pl_state" property="plState" jdbcType="VARCHAR" />
+    <result column="pl_area" property="plArea" jdbcType="VARCHAR" />
+    <result column="pl_ditch_dep" property="plDitchDep" jdbcType="VARCHAR" />
+    <result column="pl_line_dep" property="plLineDep" jdbcType="VARCHAR" />
+    <result column="pl_survey_dep" property="plSurveyDep" jdbcType="VARCHAR" />
+    <result column="pl_survey_time" property="plSurveyTime" jdbcType="VARCHAR" />
+    <result column="pl_people_1" property="plPeople1" jdbcType="VARCHAR" />
+    <result column="pl_people_2" property="plPeople2" jdbcType="VARCHAR" />
+    <result column="pl_people_3" property="plPeople3" jdbcType="VARCHAR" />
+    <result column="pl_pid" jdbcType="VARCHAR" property="plPid" />
+    <result column="pl_well_type" jdbcType="VARCHAR" property="plWellType" />
+    <result column="pl_cover_type" jdbcType="VARCHAR" property="plCoverType" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <delete id="batchDelete" parameterType="java.util.List" >
+    delete from pipeline where pipe_id in
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+    	#{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+  <insert id="insertBatch">
+    INSERT INTO pipeline
+    (pipe_id, pl_name, pl_line, pl_out_diameter, pl_in_diameter, pl_deep, pl_material, 
+    pl_type, pl_slope, pl_roughness, pl_direction, pl_pos, pl_sort, pl_deep_stop, pl_building_type, 
+    pl_carry, pl_state, pl_area, pl_ditch_dep, pl_line_dep, pl_survey_dep, pl_survey_time, 
+    pl_people_1, pl_people_2, pl_people_3)
+    VALUES
+    <foreach collection="pipelineList" item="pipeline" separator=",">
+        (
+        #{pipeline.pipeId}, #{pipeline.plName}, #{pipeline.plLine},
+        #{pipeline.plOutDiameter}, #{pipeline.plInDiameter}, #{pipeline.plDeep},
+        #{pipeline.plMaterial}, #{pipeline.plType}, #{pipeline.plSlope},
+        #{pipeline.plRoughness}, #{pipeline.plDirection}, #{pipeline.plPos},
+        #{pipeline.plSort}, #{pipeline.plDeepStop}, #{pipeline.plBuildingType},
+        #{pipeline.plCarry}, #{pipeline.plState}, #{pipeline.plArea},
+        #{pipeline.plDitchDep}, #{pipeline.plLineDep}, #{pipeline.plSurveyDep},
+        #{pipeline.plSurveyTime}, #{pipeline.plPeople1}, #{pipeline.plPeople2},
+        #{pipeline.plPeople3}
+        )
+    </foreach >
+  </insert>
+</mapper>

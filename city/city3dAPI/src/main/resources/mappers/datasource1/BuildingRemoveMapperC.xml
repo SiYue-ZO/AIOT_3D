@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.BuildingRemoveMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.BuildingRemove" >
+    <id column="remove_id" property="removeId" jdbcType="VARCHAR" />
+    <result column="remove_name" property="removeName" jdbcType="VARCHAR" />
+    <result column="remove_site" property="removeSite" jdbcType="VARCHAR" />
+    <result column="remove_tel" property="removeTel" jdbcType="VARCHAR" />
+    <result column="remove_card" property="removeCard" jdbcType="VARCHAR" />
+    <result column="remove_land_num" property="removeLandNum" jdbcType="VARCHAR" />
+    <result column="remove_pro_type" property="removeProType" jdbcType="VARCHAR" />
+    <result column="remove_land_area" property="removeLandArea" jdbcType="VARCHAR" />
+    <result column="remove_house_num" property="removeHouseNum" jdbcType="VARCHAR" />
+    <result column="remove_house_area" property="removeHouseArea" jdbcType="VARCHAR" />
+    <result column="remove_state" property="removeState" jdbcType="VARCHAR" />
+    <result column="remove_use" property="removeUse" jdbcType="VARCHAR" />
+    <result column="remove_house_area_check" property="removeHouseAreaCheck" jdbcType="VARCHAR" />
+    <result column="remove_building_area_check" property="removeBuildingAreaCheck" jdbcType="VARCHAR" />
+    <result column="remove_area_no_cer" property="removeAreaNoCer" jdbcType="VARCHAR" />
+    <result column="remove_land_area_check" property="removeLandAreaCheck" jdbcType="VARCHAR" />
+    <result column="remove_land_area_ok" property="removeLandAreaOk" jdbcType="VARCHAR" />
+    <result column="remove_land_area_no_cer" property="removeLandAreaNoCer" jdbcType="VARCHAR" />
+    <result column="remove_note" property="removeNote" jdbcType="VARCHAR" />
+    <result column="remove_date" property="removeDate" jdbcType="VARCHAR" />
+    <result column="remove_corner" property="removeCorner" jdbcType="VARCHAR" />
+    <result column="remove_pic1" property="removePic1" jdbcType="VARCHAR" />
+    <result column="remove_pic_pos1" property="removePicPos1" jdbcType="VARCHAR" />
+    <result column="remove_pic2" property="removePic2" jdbcType="VARCHAR" />
+    <result column="remove_pic_pos2" property="removePicPos2" jdbcType="VARCHAR" />
+    <result column="remove_pic3" property="removePic3" jdbcType="VARCHAR" />
+    <result column="remove_pic_pos3" property="removePicPos3" jdbcType="VARCHAR" />
+    <result column="remove_pic4" property="removePic4" jdbcType="VARCHAR" />
+    <result column="remove_pic_pos4" property="removePicPos4" jdbcType="VARCHAR" />
+    <result column="remove_pdf" property="removePdf" jdbcType="VARCHAR" />
+    <result column="remove_sign" property="removeSign" jdbcType="VARCHAR" />
+    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+    <result column="remove_top" property="removeTop" jdbcType="VARCHAR" />
+    <result column="remove_pid" property="removePid" jdbcType="VARCHAR" />
+    <result column="remove_pdf1" property="removePdf1" jdbcType="VARCHAR" />
+    <result column="remove_pdf2" property="removePdf2" jdbcType="VARCHAR" />
+    <result column="remove_pdf3" property="removePdf3" jdbcType="VARCHAR" />
+    <result column="remove_pdf4" property="removePdf4" jdbcType="VARCHAR" />
+    <result column="remove_pdf5" property="removePdf5" jdbcType="VARCHAR" />
+    <result column="remove_pdf6" property="removePdf6" jdbcType="VARCHAR" />
+    <result column="remove_pdf7" property="removePdf7" jdbcType="VARCHAR" />
+    <result column="remove_pdf8" property="removePdf8" jdbcType="VARCHAR" />
+    <result column="remove_pdf9" property="removePdf9" jdbcType="VARCHAR" />
+    <association property="address" javaType="com.city3d.dao.entry.Address">  
+	    <id column="add_id" property="addId" jdbcType="VARCHAR" />
+	    <result column="add_name" property="addName" jdbcType="VARCHAR" />
+	    <result column="province" property="province" jdbcType="VARCHAR" />
+	    <result column="subdistrict" property="subdistrict" jdbcType="VARCHAR" />
+	    <result column="communities" property="communities" jdbcType="VARCHAR" />
+	    <result column="street" property="street" jdbcType="VARCHAR" />
+	    <result column="house_num_prefix" property="houseNumPrefix" jdbcType="VARCHAR" />
+	    <result column="house_num" property="houseNum" jdbcType="VARCHAR" />
+	    <result column="house_num_postfix" property="houseNumPostfix" jdbcType="VARCHAR" />
+	    <result column="auxiliary_num" property="auxiliaryNum" jdbcType="VARCHAR" />
+	    <result column="auxiliary_num_postfix" property="auxiliaryNumPostfix" jdbcType="VARCHAR" />
+	    <result column="community_name" property="communityName" jdbcType="VARCHAR" />
+	    <result column="building_num_prefix" property="buildingNumPrefix" jdbcType="VARCHAR" />
+	    <result column="building_num" property="buildingNum" jdbcType="VARCHAR" />
+	    <result column="building_num_postfix" property="buildingNumPostfix" jdbcType="VARCHAR" />
+	    <result column="unit_num" property="unitNum" jdbcType="VARCHAR" />
+	    <result column="room_num" property="roomNum" jdbcType="VARCHAR" />
+	    <result column="room_num_postfix" property="roomNumPostfix" jdbcType="VARCHAR" />
+	    <result column="subsidiary_add" property="subsidiaryAdd" jdbcType="VARCHAR" />
+	    <result column="remark" property="remark" jdbcType="VARCHAR" />
+	    <result column="poi" property="poi" jdbcType="VARCHAR" />
+	    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+	    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+	    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+	    <result column="add_type" property="addType" jdbcType="VARCHAR" />
+	    <result column="floor_height" property="floorHeight" jdbcType="VARCHAR" />
+	    <result column="floor_poi" property="floorPoi" jdbcType="VARCHAR" />
+	    <result column="miniheading" property="miniheading" jdbcType="VARCHAR" />
+	    <result column="floor_heading" property="floorHeading" jdbcType="VARCHAR" />
+	    <result column="pid" property="pid" jdbcType="VARCHAR" />
+	    <result column="add_date" property="addDate" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    remove_id, remove_name, remove_site, remove_tel, remove_card, remove_land_num, remove_pro_type, 
+    remove_land_area, remove_house_num, remove_house_area, remove_state, remove_use, 
+    remove_house_area_check, remove_building_area_check, remove_area_no_cer, remove_land_area_check, 
+    remove_land_area_ok, remove_land_area_no_cer, remove_note, remove_date, remove_corner, 
+    remove_pic1, remove_pic_pos1, remove_pic2, remove_pic_pos2, remove_pic3, remove_pic_pos3, 
+    remove_pic4, remove_pic_pos4, remove_pdf, remove_sign, add_id, remove_top, remove_pid
+  </sql>
+  <delete id="batchDelete" parameterType="java.util.List" >
+    delete from building_remove where remove_id in
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+    	#{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+  <insert id="batchInsert">
+  	INSERT INTO building_remove
+  	(remove_id, remove_name, remove_site, remove_tel, remove_card, remove_land_num, remove_pro_type, 
+    remove_land_area, remove_house_num, remove_house_area, remove_state, remove_use, 
+    remove_house_area_check, remove_building_area_check, remove_area_no_cer, remove_land_area_check, 
+    remove_land_area_ok, remove_land_area_no_cer, remove_note, remove_date, remove_corner, 
+    remove_pic1, remove_pic_pos1, remove_pic2, remove_pic_pos2, remove_pic3, remove_pic_pos3, 
+    remove_pic4, remove_pic_pos4, remove_pdf, remove_sign, add_id, remove_top, remove_pid,
+    remove_pdf1, remove_pdf2, remove_pdf3, remove_pdf4, remove_pdf5, remove_pdf6, remove_pdf7,
+    remove_pdf8, remove_pdf9)
+    VALUES
+    <foreach collection="buildingRemoveList" item="buildingRemove" separator=",">
+    	(
+        #{buildingRemove.removeId}, #{buildingRemove.removeName}, #{buildingRemove.removeSite},
+        #{buildingRemove.removeTel}, #{buildingRemove.removeCard}, #{buildingRemove.removeLandNum},
+        #{buildingRemove.removeProType}, #{buildingRemove.removeLandArea}, #{buildingRemove.removeHouseNum},
+        #{buildingRemove.removeHouseArea}, #{buildingRemove.removeState}, #{buildingRemove.removeUse},
+        #{buildingRemove.removeHouseAreaCheck}, #{buildingRemove.removeBuildingAreaCheck}, #{buildingRemove.removeAreaNoCer},
+        #{buildingRemove.removeLandAreaCheck}, #{buildingRemove.removeLandAreaOk}, #{buildingRemove.removeLandAreaNoCer},
+        #{buildingRemove.removeNote}, #{buildingRemove.removeDate}, #{buildingRemove.removeCorner},
+        #{buildingRemove.removePic1}, #{buildingRemove.removePicPos1}, #{buildingRemove.removePic2},
+        #{buildingRemove.removePicPos2}, #{buildingRemove.removePic3}, #{buildingRemove.removePicPos3},
+        #{buildingRemove.removePic4}, #{buildingRemove.removePicPos4}, #{buildingRemove.removePdf},
+        #{buildingRemove.removeSign}, #{buildingRemove.addId}, #{buildingRemove.removeTop},
+        #{buildingRemove.removePid}, #{buildingRemove.removePdf1}, #{buildingRemove.removePdf2},
+        #{buildingRemove.removePdf3}, #{buildingRemove.removePdf4}, #{buildingRemove.removePdf5},
+        #{buildingRemove.removePdf6}, #{buildingRemove.removePdf7}, #{buildingRemove.removePdf8},
+        #{buildingRemove.removePdf9}
+        )
+    </foreach>
+  </insert>
+  <select id="selectBuildingRemoveAndAddress" resultMap="BaseResultMap">
+  	SELECT b.*, a.* FROM building_remove b left join address a on b.add_id = a.add_id
+  </select>
+  <select id="selectBuildingRemoveAndAddressByAddId" resultMap="BaseResultMap">
+  	SELECT b.*, a.* FROM building_remove b left join address a on b.add_id = a.add_id where a.add_id = #{addId}
+  </select>
+  <select id="selectByExampleR" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.BuildingRemove">
+     SELECT b.*, a.* 
+	 FROM building_remove b left join address a on b.add_id = a.add_id 
+	 where COALESCE(b.remove_name,'') like concat('%',#{removeName},'%') 
+	 and COALESCE(b.remove_site,'') like concat('%',#{removeSite},'%') 
+	 and COALESCE(b.remove_house_num,'') like concat('%',#{removeHouseNum},'%') 
+	 and COALESCE(b.remove_land_num,'') like concat('%',#{removeLandNum},'%') 
+	 and COALESCE(b.remove_sign,'') like concat('%',#{removeSign},'%') 
+  </select>
+  <select id="selectByRemovePid" resultMap="BaseResultMap" parameterType="java.lang.String">
+     SELECT b.*, a.* 
+	 FROM building_remove b left join address a on b.add_id = a.add_id 
+	 where b.remove_pid = #{removePid}
+  </select>
+</mapper>

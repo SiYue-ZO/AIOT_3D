@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PeopleVehicleMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PeopleVehicle" >
+    <id column="vehicle_id" property="vehicleId" jdbcType="VARCHAR" />
+    <result column="car_brand" property="carBrand" jdbcType="VARCHAR" />
+    <result column="car_code" property="carCode" jdbcType="VARCHAR" />
+    <result column="car_no" property="carNo" jdbcType="VARCHAR" />
+    <result column="car_type" property="carType" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+    <result column="engine_no" property="engineNo" jdbcType="VARCHAR" />
+    <result column="car_img_url" property="carImgUrl" jdbcType="VARCHAR" />
+    <result column="pp_id" property="ppId" jdbcType="VARCHAR" />
+    <result column="register_data" property="registerData" jdbcType="VARCHAR" />
+    <result column="car_remark" property="carRemark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    vehicle_id, car_brand, car_code, car_no, car_type, color, engine_no, car_img_url,
+    pp_id, register_data, car_remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.PeopleVehicleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from people_vehicle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from people_vehicle
+    where vehicle_id = #{vehicleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from people_vehicle
+    where vehicle_id = #{vehicleId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.PeopleVehicleExample" >
+    delete from people_vehicle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.PeopleVehicle" >
+    insert into people_vehicle (vehicle_id, car_brand, car_code,
+                                car_no, car_type, color,
+                                engine_no, car_img_url, pp_id,
+                                register_data, car_remark)
+    values (#{vehicleId,jdbcType=VARCHAR}, #{carBrand,jdbcType=VARCHAR}, #{carCode,jdbcType=VARCHAR},
+            #{carNo,jdbcType=VARCHAR}, #{carType,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR},
+            #{engineNo,jdbcType=VARCHAR}, #{carImgUrl,jdbcType=VARCHAR}, #{ppId,jdbcType=VARCHAR},
+            #{registerData,jdbcType=VARCHAR}, #{carRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.PeopleVehicle" >
+    insert into people_vehicle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="vehicleId != null" >
+        vehicle_id,
+      </if>
+      <if test="carBrand != null" >
+        car_brand,
+      </if>
+      <if test="carCode != null" >
+        car_code,
+      </if>
+      <if test="carNo != null" >
+        car_no,
+      </if>
+      <if test="carType != null" >
+        car_type,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+      <if test="engineNo != null" >
+        engine_no,
+      </if>
+      <if test="carImgUrl != null" >
+        car_img_url,
+      </if>
+      <if test="ppId != null" >
+        pp_id,
+      </if>
+      <if test="registerData != null" >
+        register_data,
+      </if>
+      <if test="carRemark != null" >
+        car_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="vehicleId != null" >
+        #{vehicleId,jdbcType=VARCHAR},
+      </if>
+      <if test="carBrand != null" >
+        #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carCode != null" >
+        #{carCode,jdbcType=VARCHAR},
+      </if>
+      <if test="carNo != null" >
+        #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="carType != null" >
+        #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="engineNo != null" >
+        #{engineNo,jdbcType=VARCHAR},
+      </if>
+      <if test="carImgUrl != null" >
+        #{carImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ppId != null" >
+        #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="registerData != null" >
+        #{registerData,jdbcType=VARCHAR},
+      </if>
+      <if test="carRemark != null" >
+        #{carRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.PeopleVehicleExample" resultType="java.lang.Integer" >
+    select count(*) from people_vehicle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update people_vehicle
+    <set >
+      <if test="record.vehicleId != null" >
+        vehicle_id = #{record.vehicleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carBrand != null" >
+        car_brand = #{record.carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carCode != null" >
+        car_code = #{record.carCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carNo != null" >
+        car_no = #{record.carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carType != null" >
+        car_type = #{record.carType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.color != null" >
+        color = #{record.color,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engineNo != null" >
+        engine_no = #{record.engineNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carImgUrl != null" >
+        car_img_url = #{record.carImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ppId != null" >
+        pp_id = #{record.ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerData != null" >
+        register_data = #{record.registerData,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carRemark != null" >
+        car_remark = #{record.carRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update people_vehicle
+    set vehicle_id = #{record.vehicleId,jdbcType=VARCHAR},
+    car_brand = #{record.carBrand,jdbcType=VARCHAR},
+    car_code = #{record.carCode,jdbcType=VARCHAR},
+    car_no = #{record.carNo,jdbcType=VARCHAR},
+    car_type = #{record.carType,jdbcType=VARCHAR},
+    color = #{record.color,jdbcType=VARCHAR},
+    engine_no = #{record.engineNo,jdbcType=VARCHAR},
+    car_img_url = #{record.carImgUrl,jdbcType=VARCHAR},
+    pp_id = #{record.ppId,jdbcType=VARCHAR},
+    register_data = #{record.registerData,jdbcType=VARCHAR},
+    car_remark = #{record.carRemark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.PeopleVehicle" >
+    update people_vehicle
+    <set >
+      <if test="carBrand != null" >
+        car_brand = #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carCode != null" >
+        car_code = #{carCode,jdbcType=VARCHAR},
+      </if>
+      <if test="carNo != null" >
+        car_no = #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="carType != null" >
+        car_type = #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="engineNo != null" >
+        engine_no = #{engineNo,jdbcType=VARCHAR},
+      </if>
+      <if test="carImgUrl != null" >
+        car_img_url = #{carImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ppId != null" >
+        pp_id = #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="registerData != null" >
+        register_data = #{registerData,jdbcType=VARCHAR},
+      </if>
+      <if test="carRemark != null" >
+        car_remark = #{carRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vehicle_id = #{vehicleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.PeopleVehicle" >
+    update people_vehicle
+    set car_brand = #{carBrand,jdbcType=VARCHAR},
+        car_code = #{carCode,jdbcType=VARCHAR},
+        car_no = #{carNo,jdbcType=VARCHAR},
+        car_type = #{carType,jdbcType=VARCHAR},
+        color = #{color,jdbcType=VARCHAR},
+        engine_no = #{engineNo,jdbcType=VARCHAR},
+        car_img_url = #{carImgUrl,jdbcType=VARCHAR},
+        pp_id = #{ppId,jdbcType=VARCHAR},
+        register_data = #{registerData,jdbcType=VARCHAR},
+        car_remark = #{carRemark,jdbcType=VARCHAR}
+    where vehicle_id = #{vehicleId,jdbcType=VARCHAR}
+  </update>
+</mapper>

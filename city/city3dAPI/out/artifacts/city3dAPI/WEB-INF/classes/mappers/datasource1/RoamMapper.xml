@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.RoamMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Roam" >
+    <id column="roam_id" property="roamId" jdbcType="VARCHAR" />
+    <result column="roam_name" property="roamName" jdbcType="VARCHAR" />
+    <result column="roam_model" property="roamModel" jdbcType="VARCHAR" />
+    <result column="roam_line" property="roamLine" jdbcType="VARCHAR" />
+    <result column="roam_isshow" property="roamIsshow" jdbcType="VARCHAR" />
+    <result column="roam_isre" property="roamIsre" jdbcType="VARCHAR" />
+    <result column="roam_note" property="roamNote" jdbcType="VARCHAR" />
+    <result column="roam_speed" property="roamSpeed" jdbcType="VARCHAR" />
+    <result column="roam_type" property="roamType" jdbcType="VARCHAR" />
+    <result column="roam_ismodelshow" property="roamIsmodelshow" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    roam_id, roam_name, roam_model, roam_line, roam_isshow, roam_isre, roam_note, roam_speed, 
+    roam_type, roam_ismodelshow
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.RoamExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from roam
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from roam
+    where roam_id = #{roamId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from roam
+    where roam_id = #{roamId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.RoamExample" >
+    delete from roam
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.Roam" >
+    insert into roam (roam_id, roam_name, roam_model, 
+      roam_line, roam_isshow, roam_isre, 
+      roam_note, roam_speed, roam_type, 
+      roam_ismodelshow)
+    values (#{roamId,jdbcType=VARCHAR}, #{roamName,jdbcType=VARCHAR}, #{roamModel,jdbcType=VARCHAR}, 
+      #{roamLine,jdbcType=VARCHAR}, #{roamIsshow,jdbcType=VARCHAR}, #{roamIsre,jdbcType=VARCHAR}, 
+      #{roamNote,jdbcType=VARCHAR}, #{roamSpeed,jdbcType=VARCHAR}, #{roamType,jdbcType=VARCHAR}, 
+      #{roamIsmodelshow,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.Roam" >
+    insert into roam
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roamId != null" >
+        roam_id,
+      </if>
+      <if test="roamName != null" >
+        roam_name,
+      </if>
+      <if test="roamModel != null" >
+        roam_model,
+      </if>
+      <if test="roamLine != null" >
+        roam_line,
+      </if>
+      <if test="roamIsshow != null" >
+        roam_isshow,
+      </if>
+      <if test="roamIsre != null" >
+        roam_isre,
+      </if>
+      <if test="roamNote != null" >
+        roam_note,
+      </if>
+      <if test="roamSpeed != null" >
+        roam_speed,
+      </if>
+      <if test="roamType != null" >
+        roam_type,
+      </if>
+      <if test="roamIsmodelshow != null" >
+        roam_ismodelshow,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roamId != null" >
+        #{roamId,jdbcType=VARCHAR},
+      </if>
+      <if test="roamName != null" >
+        #{roamName,jdbcType=VARCHAR},
+      </if>
+      <if test="roamModel != null" >
+        #{roamModel,jdbcType=VARCHAR},
+      </if>
+      <if test="roamLine != null" >
+        #{roamLine,jdbcType=VARCHAR},
+      </if>
+      <if test="roamIsshow != null" >
+        #{roamIsshow,jdbcType=VARCHAR},
+      </if>
+      <if test="roamIsre != null" >
+        #{roamIsre,jdbcType=VARCHAR},
+      </if>
+      <if test="roamNote != null" >
+        #{roamNote,jdbcType=VARCHAR},
+      </if>
+      <if test="roamSpeed != null" >
+        #{roamSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="roamType != null" >
+        #{roamType,jdbcType=VARCHAR},
+      </if>
+      <if test="roamIsmodelshow != null" >
+        #{roamIsmodelshow,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.RoamExample" resultType="java.lang.Integer" >
+    select count(*) from roam
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update roam
+    <set >
+      <if test="record.roamId != null" >
+        roam_id = #{record.roamId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roamName != null" >
+        roam_name = #{record.roamName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roamModel != null" >
+        roam_model = #{record.roamModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roamLine != null" >
+        roam_line = #{record.roamLine,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roamIsshow != null" >
+        roam_isshow = #{record.roamIsshow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roamIsre != null" >
+        roam_isre = #{record.roamIsre,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roamNote != null" >
+        roam_note = #{record.roamNote,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roamSpeed != null" >
+        roam_speed = #{record.roamSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roamType != null" >
+        roam_type = #{record.roamType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roamIsmodelshow != null" >
+        roam_ismodelshow = #{record.roamIsmodelshow,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update roam
+    set roam_id = #{record.roamId,jdbcType=VARCHAR},
+      roam_name = #{record.roamName,jdbcType=VARCHAR},
+      roam_model = #{record.roamModel,jdbcType=VARCHAR},
+      roam_line = #{record.roamLine,jdbcType=VARCHAR},
+      roam_isshow = #{record.roamIsshow,jdbcType=VARCHAR},
+      roam_isre = #{record.roamIsre,jdbcType=VARCHAR},
+      roam_note = #{record.roamNote,jdbcType=VARCHAR},
+      roam_speed = #{record.roamSpeed,jdbcType=VARCHAR},
+      roam_type = #{record.roamType,jdbcType=VARCHAR},
+      roam_ismodelshow = #{record.roamIsmodelshow,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.Roam" >
+    update roam
+    <set >
+      <if test="roamName != null" >
+        roam_name = #{roamName,jdbcType=VARCHAR},
+      </if>
+      <if test="roamModel != null" >
+        roam_model = #{roamModel,jdbcType=VARCHAR},
+      </if>
+      <if test="roamLine != null" >
+        roam_line = #{roamLine,jdbcType=VARCHAR},
+      </if>
+      <if test="roamIsshow != null" >
+        roam_isshow = #{roamIsshow,jdbcType=VARCHAR},
+      </if>
+      <if test="roamIsre != null" >
+        roam_isre = #{roamIsre,jdbcType=VARCHAR},
+      </if>
+      <if test="roamNote != null" >
+        roam_note = #{roamNote,jdbcType=VARCHAR},
+      </if>
+      <if test="roamSpeed != null" >
+        roam_speed = #{roamSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="roamType != null" >
+        roam_type = #{roamType,jdbcType=VARCHAR},
+      </if>
+      <if test="roamIsmodelshow != null" >
+        roam_ismodelshow = #{roamIsmodelshow,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where roam_id = #{roamId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.Roam" >
+    update roam
+    set roam_name = #{roamName,jdbcType=VARCHAR},
+      roam_model = #{roamModel,jdbcType=VARCHAR},
+      roam_line = #{roamLine,jdbcType=VARCHAR},
+      roam_isshow = #{roamIsshow,jdbcType=VARCHAR},
+      roam_isre = #{roamIsre,jdbcType=VARCHAR},
+      roam_note = #{roamNote,jdbcType=VARCHAR},
+      roam_speed = #{roamSpeed,jdbcType=VARCHAR},
+      roam_type = #{roamType,jdbcType=VARCHAR},
+      roam_ismodelshow = #{roamIsmodelshow,jdbcType=VARCHAR}
+    where roam_id = #{roamId,jdbcType=VARCHAR}
+  </update>
+</mapper>

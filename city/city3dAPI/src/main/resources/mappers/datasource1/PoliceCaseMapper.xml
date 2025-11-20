@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PoliceCaseMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PoliceCase" >
+    <id column="case_id" property="caseId" jdbcType="VARCHAR" />
+    <result column="net_id" property="netId" jdbcType="VARCHAR" />
+    <result column="case_name" property="caseName" jdbcType="VARCHAR" />
+    <result column="case_type" property="caseType" jdbcType="VARCHAR" />
+    <result column="case_addr" property="caseAddr" jdbcType="VARCHAR" />
+    <result column="case_position" property="casePosition" jdbcType="VARCHAR" />
+    <result column="case_date" property="caseDate" jdbcType="VARCHAR" />
+    <result column="case_source" property="caseSource" jdbcType="VARCHAR" />
+    <result column="victim" property="victim" jdbcType="VARCHAR" />
+    <result column="suspect" property="suspect" jdbcType="VARCHAR" />
+    <result column="case_describe" property="caseDescribe" jdbcType="VARCHAR" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="audio_url" property="audioUrl" jdbcType="VARCHAR" />
+    <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+    <result column="case_result" property="caseResult" jdbcType="VARCHAR" />
+    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    case_id, net_id, case_name, case_type, case_addr, case_position, case_date, case_source, 
+    victim, suspect, case_describe, img_url, audio_url, video_url, case_result, cam_poi, 
+    cam_heading, cam_pitch
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.PoliceCaseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from police_case
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from police_case
+    where case_id = #{caseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from police_case
+    where case_id = #{caseId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.PoliceCaseExample" >
+    delete from police_case
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.PoliceCase" >
+    insert into police_case (case_id, net_id, case_name, 
+      case_type, case_addr, case_position, 
+      case_date, case_source, victim, 
+      suspect, case_describe, img_url, 
+      audio_url, video_url, case_result, 
+      cam_poi, cam_heading, cam_pitch
+      )
+    values (#{caseId,jdbcType=VARCHAR}, #{netId,jdbcType=VARCHAR}, #{caseName,jdbcType=VARCHAR}, 
+      #{caseType,jdbcType=VARCHAR}, #{caseAddr,jdbcType=VARCHAR}, #{casePosition,jdbcType=VARCHAR}, 
+      #{caseDate,jdbcType=VARCHAR}, #{caseSource,jdbcType=VARCHAR}, #{victim,jdbcType=VARCHAR}, 
+      #{suspect,jdbcType=VARCHAR}, #{caseDescribe,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
+      #{audioUrl,jdbcType=VARCHAR}, #{videoUrl,jdbcType=VARCHAR}, #{caseResult,jdbcType=VARCHAR}, 
+      #{camPoi,jdbcType=VARCHAR}, #{camHeading,jdbcType=VARCHAR}, #{camPitch,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.PoliceCase" >
+    insert into police_case
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="caseId != null" >
+        case_id,
+      </if>
+      <if test="netId != null" >
+        net_id,
+      </if>
+      <if test="caseName != null" >
+        case_name,
+      </if>
+      <if test="caseType != null" >
+        case_type,
+      </if>
+      <if test="caseAddr != null" >
+        case_addr,
+      </if>
+      <if test="casePosition != null" >
+        case_position,
+      </if>
+      <if test="caseDate != null" >
+        case_date,
+      </if>
+      <if test="caseSource != null" >
+        case_source,
+      </if>
+      <if test="victim != null" >
+        victim,
+      </if>
+      <if test="suspect != null" >
+        suspect,
+      </if>
+      <if test="caseDescribe != null" >
+        case_describe,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="audioUrl != null" >
+        audio_url,
+      </if>
+      <if test="videoUrl != null" >
+        video_url,
+      </if>
+      <if test="caseResult != null" >
+        case_result,
+      </if>
+      <if test="camPoi != null" >
+        cam_poi,
+      </if>
+      <if test="camHeading != null" >
+        cam_heading,
+      </if>
+      <if test="camPitch != null" >
+        cam_pitch,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="caseId != null" >
+        #{caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="netId != null" >
+        #{netId,jdbcType=VARCHAR},
+      </if>
+      <if test="caseName != null" >
+        #{caseName,jdbcType=VARCHAR},
+      </if>
+      <if test="caseType != null" >
+        #{caseType,jdbcType=VARCHAR},
+      </if>
+      <if test="caseAddr != null" >
+        #{caseAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="casePosition != null" >
+        #{casePosition,jdbcType=VARCHAR},
+      </if>
+      <if test="caseDate != null" >
+        #{caseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="caseSource != null" >
+        #{caseSource,jdbcType=VARCHAR},
+      </if>
+      <if test="victim != null" >
+        #{victim,jdbcType=VARCHAR},
+      </if>
+      <if test="suspect != null" >
+        #{suspect,jdbcType=VARCHAR},
+      </if>
+      <if test="caseDescribe != null" >
+        #{caseDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="audioUrl != null" >
+        #{audioUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null" >
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="caseResult != null" >
+        #{caseResult,jdbcType=VARCHAR},
+      </if>
+      <if test="camPoi != null" >
+        #{camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="camHeading != null" >
+        #{camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="camPitch != null" >
+        #{camPitch,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.PoliceCaseExample" resultType="java.lang.Integer" >
+    select count(*) from police_case
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update police_case
+    <set >
+      <if test="record.caseId != null" >
+        case_id = #{record.caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netId != null" >
+        net_id = #{record.netId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caseName != null" >
+        case_name = #{record.caseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caseType != null" >
+        case_type = #{record.caseType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caseAddr != null" >
+        case_addr = #{record.caseAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.casePosition != null" >
+        case_position = #{record.casePosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caseDate != null" >
+        case_date = #{record.caseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caseSource != null" >
+        case_source = #{record.caseSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.victim != null" >
+        victim = #{record.victim,jdbcType=VARCHAR},
+      </if>
+      <if test="record.suspect != null" >
+        suspect = #{record.suspect,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caseDescribe != null" >
+        case_describe = #{record.caseDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgUrl != null" >
+        img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.audioUrl != null" >
+        audio_url = #{record.audioUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoUrl != null" >
+        video_url = #{record.videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caseResult != null" >
+        case_result = #{record.caseResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPoi != null" >
+        cam_poi = #{record.camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camHeading != null" >
+        cam_heading = #{record.camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPitch != null" >
+        cam_pitch = #{record.camPitch,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update police_case
+    set case_id = #{record.caseId,jdbcType=VARCHAR},
+      net_id = #{record.netId,jdbcType=VARCHAR},
+      case_name = #{record.caseName,jdbcType=VARCHAR},
+      case_type = #{record.caseType,jdbcType=VARCHAR},
+      case_addr = #{record.caseAddr,jdbcType=VARCHAR},
+      case_position = #{record.casePosition,jdbcType=VARCHAR},
+      case_date = #{record.caseDate,jdbcType=VARCHAR},
+      case_source = #{record.caseSource,jdbcType=VARCHAR},
+      victim = #{record.victim,jdbcType=VARCHAR},
+      suspect = #{record.suspect,jdbcType=VARCHAR},
+      case_describe = #{record.caseDescribe,jdbcType=VARCHAR},
+      img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      audio_url = #{record.audioUrl,jdbcType=VARCHAR},
+      video_url = #{record.videoUrl,jdbcType=VARCHAR},
+      case_result = #{record.caseResult,jdbcType=VARCHAR},
+      cam_poi = #{record.camPoi,jdbcType=VARCHAR},
+      cam_heading = #{record.camHeading,jdbcType=VARCHAR},
+      cam_pitch = #{record.camPitch,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.PoliceCase" >
+    update police_case
+    <set >
+      <if test="netId != null" >
+        net_id = #{netId,jdbcType=VARCHAR},
+      </if>
+      <if test="caseName != null" >
+        case_name = #{caseName,jdbcType=VARCHAR},
+      </if>
+      <if test="caseType != null" >
+        case_type = #{caseType,jdbcType=VARCHAR},
+      </if>
+      <if test="caseAddr != null" >
+        case_addr = #{caseAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="casePosition != null" >
+        case_position = #{casePosition,jdbcType=VARCHAR},
+      </if>
+      <if test="caseDate != null" >
+        case_date = #{caseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="caseSource != null" >
+        case_source = #{caseSource,jdbcType=VARCHAR},
+      </if>
+      <if test="victim != null" >
+        victim = #{victim,jdbcType=VARCHAR},
+      </if>
+      <if test="suspect != null" >
+        suspect = #{suspect,jdbcType=VARCHAR},
+      </if>
+      <if test="caseDescribe != null" >
+        case_describe = #{caseDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="audioUrl != null" >
+        audio_url = #{audioUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null" >
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="caseResult != null" >
+        case_result = #{caseResult,jdbcType=VARCHAR},
+      </if>
+      <if test="camPoi != null" >
+        cam_poi = #{camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="camHeading != null" >
+        cam_heading = #{camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="camPitch != null" >
+        cam_pitch = #{camPitch,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where case_id = #{caseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.PoliceCase" >
+    update police_case
+    set net_id = #{netId,jdbcType=VARCHAR},
+      case_name = #{caseName,jdbcType=VARCHAR},
+      case_type = #{caseType,jdbcType=VARCHAR},
+      case_addr = #{caseAddr,jdbcType=VARCHAR},
+      case_position = #{casePosition,jdbcType=VARCHAR},
+      case_date = #{caseDate,jdbcType=VARCHAR},
+      case_source = #{caseSource,jdbcType=VARCHAR},
+      victim = #{victim,jdbcType=VARCHAR},
+      suspect = #{suspect,jdbcType=VARCHAR},
+      case_describe = #{caseDescribe,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      audio_url = #{audioUrl,jdbcType=VARCHAR},
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      case_result = #{caseResult,jdbcType=VARCHAR},
+      cam_poi = #{camPoi,jdbcType=VARCHAR},
+      cam_heading = #{camHeading,jdbcType=VARCHAR},
+      cam_pitch = #{camPitch,jdbcType=VARCHAR}
+    where case_id = #{caseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

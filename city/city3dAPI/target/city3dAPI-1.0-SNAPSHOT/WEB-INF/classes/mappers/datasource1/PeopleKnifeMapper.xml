@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PeopleKnifeMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PeopleKnife" >
+    <id column="knife_id" property="knifeId" jdbcType="VARCHAR" />
+    <result column="pp_id" property="ppId" jdbcType="VARCHAR" />
+    <result column="knife_lenth" property="knifeLenth" jdbcType="VARCHAR" />
+    <result column="qr_code" property="qrCode" jdbcType="VARCHAR" />
+    <result column="fixed_situation" property="fixedSituation" jdbcType="VARCHAR" />
+    <result column="knife_img_url" property="knifeImgUrl" jdbcType="VARCHAR" />
+    <result column="knife_remark" property="knifeRemark" jdbcType="VARCHAR" />
+    <result column="knife_type" property="knifeType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    knife_id, pp_id, knife_lenth, qr_code, fixed_situation, knife_img_url, knife_remark, 
+    knife_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.PeopleKnifeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from people_knife
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from people_knife
+    where knife_id = #{knifeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from people_knife
+    where knife_id = #{knifeId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.PeopleKnifeExample" >
+    delete from people_knife
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.PeopleKnife" >
+    insert into people_knife (knife_id, pp_id, knife_lenth, 
+      qr_code, fixed_situation, knife_img_url, 
+      knife_remark, knife_type)
+    values (#{knifeId,jdbcType=VARCHAR}, #{ppId,jdbcType=VARCHAR}, #{knifeLenth,jdbcType=VARCHAR}, 
+      #{qrCode,jdbcType=VARCHAR}, #{fixedSituation,jdbcType=VARCHAR}, #{knifeImgUrl,jdbcType=VARCHAR}, 
+      #{knifeRemark,jdbcType=VARCHAR}, #{knifeType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.PeopleKnife" >
+    insert into people_knife
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="knifeId != null" >
+        knife_id,
+      </if>
+      <if test="ppId != null" >
+        pp_id,
+      </if>
+      <if test="knifeLenth != null" >
+        knife_lenth,
+      </if>
+      <if test="qrCode != null" >
+        qr_code,
+      </if>
+      <if test="fixedSituation != null" >
+        fixed_situation,
+      </if>
+      <if test="knifeImgUrl != null" >
+        knife_img_url,
+      </if>
+      <if test="knifeRemark != null" >
+        knife_remark,
+      </if>
+      <if test="knifeType != null" >
+        knife_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="knifeId != null" >
+        #{knifeId,jdbcType=VARCHAR},
+      </if>
+      <if test="ppId != null" >
+        #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="knifeLenth != null" >
+        #{knifeLenth,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null" >
+        #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedSituation != null" >
+        #{fixedSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="knifeImgUrl != null" >
+        #{knifeImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="knifeRemark != null" >
+        #{knifeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="knifeType != null" >
+        #{knifeType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.PeopleKnifeExample" resultType="java.lang.Integer" >
+    select count(*) from people_knife
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update people_knife
+    <set >
+      <if test="record.knifeId != null" >
+        knife_id = #{record.knifeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ppId != null" >
+        pp_id = #{record.ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.knifeLenth != null" >
+        knife_lenth = #{record.knifeLenth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qrCode != null" >
+        qr_code = #{record.qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fixedSituation != null" >
+        fixed_situation = #{record.fixedSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.knifeImgUrl != null" >
+        knife_img_url = #{record.knifeImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.knifeRemark != null" >
+        knife_remark = #{record.knifeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.knifeType != null" >
+        knife_type = #{record.knifeType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update people_knife
+    set knife_id = #{record.knifeId,jdbcType=VARCHAR},
+      pp_id = #{record.ppId,jdbcType=VARCHAR},
+      knife_lenth = #{record.knifeLenth,jdbcType=VARCHAR},
+      qr_code = #{record.qrCode,jdbcType=VARCHAR},
+      fixed_situation = #{record.fixedSituation,jdbcType=VARCHAR},
+      knife_img_url = #{record.knifeImgUrl,jdbcType=VARCHAR},
+      knife_remark = #{record.knifeRemark,jdbcType=VARCHAR},
+      knife_type = #{record.knifeType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.PeopleKnife" >
+    update people_knife
+    <set >
+      <if test="ppId != null" >
+        pp_id = #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="knifeLenth != null" >
+        knife_lenth = #{knifeLenth,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null" >
+        qr_code = #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedSituation != null" >
+        fixed_situation = #{fixedSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="knifeImgUrl != null" >
+        knife_img_url = #{knifeImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="knifeRemark != null" >
+        knife_remark = #{knifeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="knifeType != null" >
+        knife_type = #{knifeType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where knife_id = #{knifeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.PeopleKnife" >
+    update people_knife
+    set pp_id = #{ppId,jdbcType=VARCHAR},
+      knife_lenth = #{knifeLenth,jdbcType=VARCHAR},
+      qr_code = #{qrCode,jdbcType=VARCHAR},
+      fixed_situation = #{fixedSituation,jdbcType=VARCHAR},
+      knife_img_url = #{knifeImgUrl,jdbcType=VARCHAR},
+      knife_remark = #{knifeRemark,jdbcType=VARCHAR},
+      knife_type = #{knifeType,jdbcType=VARCHAR}
+    where knife_id = #{knifeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

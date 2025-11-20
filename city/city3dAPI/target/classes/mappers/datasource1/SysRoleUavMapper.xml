@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.city3d.dao.mapper.datasource1.SysRoleUavMapper">
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.SysRoleUav">
+    <id column="role_uav_id" jdbcType="VARCHAR" property="roleUavId" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="uav_id" jdbcType="VARCHAR" property="uavId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    role_uav_id, role_id, uav_id
+  </sql>
+  <select id="selectByExample" parameterType="com.city3d.dao.entry.SysRoleUavExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_role_uav
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role_uav
+    where role_uav_id = #{roleUavId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_role_uav
+    where role_uav_id = #{roleUavId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.SysRoleUavExample">
+    delete from sys_role_uav
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.SysRoleUav">
+    insert into sys_role_uav (role_uav_id, role_id, uav_id
+      )
+    values (#{roleUavId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{uavId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.SysRoleUav">
+    insert into sys_role_uav
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleUavId != null">
+        role_uav_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="uavId != null">
+        uav_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleUavId != null">
+        #{roleUavId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="uavId != null">
+        #{uavId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.SysRoleUavExample" resultType="java.lang.Long">
+    select count(*) from sys_role_uav
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sys_role_uav
+    <set>
+      <if test="record.roleUavId != null">
+        role_uav_id = #{record.roleUavId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleId != null">
+        role_id = #{record.roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uavId != null">
+        uav_id = #{record.uavId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_role_uav
+    set role_uav_id = #{record.roleUavId,jdbcType=VARCHAR},
+      role_id = #{record.roleId,jdbcType=VARCHAR},
+      uav_id = #{record.uavId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.SysRoleUav">
+    update sys_role_uav
+    <set>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="uavId != null">
+        uav_id = #{uavId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where role_uav_id = #{roleUavId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.SysRoleUav">
+    update sys_role_uav
+    set role_id = #{roleId,jdbcType=VARCHAR},
+      uav_id = #{uavId,jdbcType=VARCHAR}
+    where role_uav_id = #{roleUavId,jdbcType=VARCHAR}
+  </update>
+</mapper>

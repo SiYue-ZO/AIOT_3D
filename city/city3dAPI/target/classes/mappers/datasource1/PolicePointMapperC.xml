@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PolicePointMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PolicePoint" >
+    <id column="p_id" property="pId" jdbcType="VARCHAR" />
+    <result column="p_name" property="pName" jdbcType="VARCHAR" />
+    <result column="p_type" property="pType" jdbcType="VARCHAR" />
+    <result column="p_poi" property="pPoi" jdbcType="VARCHAR" />
+    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+    <result column="p_color" property="pColor" jdbcType="VARCHAR" />
+    <result column="name_checked" property="nameChecked" jdbcType="VARCHAR" />
+    <result column="name_close" property="nameClose" jdbcType="VARCHAR" />
+    <result column="name_sub_close" property="nameSubClose" jdbcType="VARCHAR" />
+    <result column="id_checked" property="idChecked" jdbcType="VARCHAR" />
+    <result column="id_close" property="idClose" jdbcType="VARCHAR" />
+    <result column="id_sub_close" property="idSubClose" jdbcType="VARCHAR" />
+    <result column="p_time" property="pTime" jdbcType="VARCHAR" />
+    <result column="p_living" property="pLiving" jdbcType="VARCHAR" />
+    <result column="p_flow" property="pFlow" jdbcType="VARCHAR" />
+    <result column="p_note" property="pNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    p_id, p_name, p_type, p_poi, cam_poi, cam_heading, cam_pitch, p_color, name_checked, 
+    name_close, name_sub_close, id_checked, id_close, id_sub_close, p_time, p_living, 
+    p_flow, p_note
+  </sql>
+  <delete id="batchDelete" parameterType="java.util.List" >
+    delete from police_point where p_id in
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+    	#{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+</mapper>

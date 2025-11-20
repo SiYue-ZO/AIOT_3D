@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PeopleIllegalMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PeopleIllegal" >
+    <id column="illegal_id" property="illegalId" jdbcType="VARCHAR" />
+    <result column="handle_company" property="handleCompany" jdbcType="VARCHAR" />
+    <result column="handle_date" property="handleDate" jdbcType="VARCHAR" />
+    <result column="handle_mode" property="handleMode" jdbcType="VARCHAR" />
+    <result column="handle_result" property="handleResult" jdbcType="VARCHAR" />
+    <result column="handle_term" property="handleTerm" jdbcType="VARCHAR" />
+    <result column="illegal_date" property="illegalDate" jdbcType="VARCHAR" />
+    <result column="illegal_place" property="illegalPlace" jdbcType="VARCHAR" />
+    <result column="pp_id" property="ppId" jdbcType="VARCHAR" />
+    <result column="case_type" property="caseType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    illegal_id, handle_company, handle_date, handle_mode, handle_result, handle_term, 
+    illegal_date, illegal_place, pp_id, case_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.PeopleIllegalExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from people_illegal
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from people_illegal
+    where illegal_id = #{illegalId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from people_illegal
+    where illegal_id = #{illegalId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.PeopleIllegalExample" >
+    delete from people_illegal
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.PeopleIllegal" >
+    insert into people_illegal (illegal_id, handle_company, handle_date, 
+      handle_mode, handle_result, handle_term, 
+      illegal_date, illegal_place, pp_id, 
+      case_type)
+    values (#{illegalId,jdbcType=VARCHAR}, #{handleCompany,jdbcType=VARCHAR}, #{handleDate,jdbcType=VARCHAR}, 
+      #{handleMode,jdbcType=VARCHAR}, #{handleResult,jdbcType=VARCHAR}, #{handleTerm,jdbcType=VARCHAR}, 
+      #{illegalDate,jdbcType=VARCHAR}, #{illegalPlace,jdbcType=VARCHAR}, #{ppId,jdbcType=VARCHAR}, 
+      #{caseType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.PeopleIllegal" >
+    insert into people_illegal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="illegalId != null" >
+        illegal_id,
+      </if>
+      <if test="handleCompany != null" >
+        handle_company,
+      </if>
+      <if test="handleDate != null" >
+        handle_date,
+      </if>
+      <if test="handleMode != null" >
+        handle_mode,
+      </if>
+      <if test="handleResult != null" >
+        handle_result,
+      </if>
+      <if test="handleTerm != null" >
+        handle_term,
+      </if>
+      <if test="illegalDate != null" >
+        illegal_date,
+      </if>
+      <if test="illegalPlace != null" >
+        illegal_place,
+      </if>
+      <if test="ppId != null" >
+        pp_id,
+      </if>
+      <if test="caseType != null" >
+        case_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="illegalId != null" >
+        #{illegalId,jdbcType=VARCHAR},
+      </if>
+      <if test="handleCompany != null" >
+        #{handleCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="handleDate != null" >
+        #{handleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="handleMode != null" >
+        #{handleMode,jdbcType=VARCHAR},
+      </if>
+      <if test="handleResult != null" >
+        #{handleResult,jdbcType=VARCHAR},
+      </if>
+      <if test="handleTerm != null" >
+        #{handleTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="illegalDate != null" >
+        #{illegalDate,jdbcType=VARCHAR},
+      </if>
+      <if test="illegalPlace != null" >
+        #{illegalPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="ppId != null" >
+        #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="caseType != null" >
+        #{caseType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.PeopleIllegalExample" resultType="java.lang.Integer" >
+    select count(*) from people_illegal
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update people_illegal
+    <set >
+      <if test="record.illegalId != null" >
+        illegal_id = #{record.illegalId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.handleCompany != null" >
+        handle_company = #{record.handleCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.handleDate != null" >
+        handle_date = #{record.handleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.handleMode != null" >
+        handle_mode = #{record.handleMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.handleResult != null" >
+        handle_result = #{record.handleResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.handleTerm != null" >
+        handle_term = #{record.handleTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.illegalDate != null" >
+        illegal_date = #{record.illegalDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.illegalPlace != null" >
+        illegal_place = #{record.illegalPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ppId != null" >
+        pp_id = #{record.ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caseType != null" >
+        case_type = #{record.caseType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update people_illegal
+    set illegal_id = #{record.illegalId,jdbcType=VARCHAR},
+      handle_company = #{record.handleCompany,jdbcType=VARCHAR},
+      handle_date = #{record.handleDate,jdbcType=VARCHAR},
+      handle_mode = #{record.handleMode,jdbcType=VARCHAR},
+      handle_result = #{record.handleResult,jdbcType=VARCHAR},
+      handle_term = #{record.handleTerm,jdbcType=VARCHAR},
+      illegal_date = #{record.illegalDate,jdbcType=VARCHAR},
+      illegal_place = #{record.illegalPlace,jdbcType=VARCHAR},
+      pp_id = #{record.ppId,jdbcType=VARCHAR},
+      case_type = #{record.caseType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.PeopleIllegal" >
+    update people_illegal
+    <set >
+      <if test="handleCompany != null" >
+        handle_company = #{handleCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="handleDate != null" >
+        handle_date = #{handleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="handleMode != null" >
+        handle_mode = #{handleMode,jdbcType=VARCHAR},
+      </if>
+      <if test="handleResult != null" >
+        handle_result = #{handleResult,jdbcType=VARCHAR},
+      </if>
+      <if test="handleTerm != null" >
+        handle_term = #{handleTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="illegalDate != null" >
+        illegal_date = #{illegalDate,jdbcType=VARCHAR},
+      </if>
+      <if test="illegalPlace != null" >
+        illegal_place = #{illegalPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="ppId != null" >
+        pp_id = #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="caseType != null" >
+        case_type = #{caseType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where illegal_id = #{illegalId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.PeopleIllegal" >
+    update people_illegal
+    set handle_company = #{handleCompany,jdbcType=VARCHAR},
+      handle_date = #{handleDate,jdbcType=VARCHAR},
+      handle_mode = #{handleMode,jdbcType=VARCHAR},
+      handle_result = #{handleResult,jdbcType=VARCHAR},
+      handle_term = #{handleTerm,jdbcType=VARCHAR},
+      illegal_date = #{illegalDate,jdbcType=VARCHAR},
+      illegal_place = #{illegalPlace,jdbcType=VARCHAR},
+      pp_id = #{ppId,jdbcType=VARCHAR},
+      case_type = #{caseType,jdbcType=VARCHAR}
+    where illegal_id = #{illegalId,jdbcType=VARCHAR}
+  </update>
+</mapper>

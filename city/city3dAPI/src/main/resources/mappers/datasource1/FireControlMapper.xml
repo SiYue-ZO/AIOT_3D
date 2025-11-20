@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.FireControlMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.FireControl" >
+    <id column="fire_ctl_id" property="fireCtlId" jdbcType="VARCHAR" />
+    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+    <result column="fire_ctl_name" property="fireCtlName" jdbcType="VARCHAR" />
+    <result column="fire_ctl_type" property="fireCtlType" jdbcType="VARCHAR" />
+    <result column="fire_ctl_person" property="fireCtlPerson" jdbcType="VARCHAR" />
+    <result column="fire_ctl_tel" property="fireCtlTel" jdbcType="VARCHAR" />
+    <result column="fire_ctl_describe" property="fireCtlDescribe" jdbcType="VARCHAR" />
+    <result column="fire_ctl_url" property="fireCtlUrl" jdbcType="VARCHAR" />
+    <result column="fire_ctl_level" property="fireCtlLevel" jdbcType="VARCHAR" />
+    <result column="fire_ctl_scale" property="fireCtlScale" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    fire_ctl_id, add_id, fire_ctl_name, fire_ctl_type, fire_ctl_person, fire_ctl_tel, 
+    fire_ctl_describe, fire_ctl_url, fire_ctl_level, fire_ctl_scale
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.FireControlExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from fire_control
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fire_control
+    where fire_ctl_id = #{fireCtlId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from fire_control
+    where fire_ctl_id = #{fireCtlId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.FireControlExample" >
+    delete from fire_control
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.FireControl" >
+    insert into fire_control (fire_ctl_id, add_id, fire_ctl_name, 
+      fire_ctl_type, fire_ctl_person, fire_ctl_tel, 
+      fire_ctl_describe, fire_ctl_url, fire_ctl_level, 
+      fire_ctl_scale)
+    values (#{fireCtlId,jdbcType=VARCHAR}, #{addId,jdbcType=VARCHAR}, #{fireCtlName,jdbcType=VARCHAR}, 
+      #{fireCtlType,jdbcType=VARCHAR}, #{fireCtlPerson,jdbcType=VARCHAR}, #{fireCtlTel,jdbcType=VARCHAR}, 
+      #{fireCtlDescribe,jdbcType=VARCHAR}, #{fireCtlUrl,jdbcType=VARCHAR}, #{fireCtlLevel,jdbcType=VARCHAR}, 
+      #{fireCtlScale,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.FireControl" >
+    insert into fire_control
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fireCtlId != null" >
+        fire_ctl_id,
+      </if>
+      <if test="addId != null" >
+        add_id,
+      </if>
+      <if test="fireCtlName != null" >
+        fire_ctl_name,
+      </if>
+      <if test="fireCtlType != null" >
+        fire_ctl_type,
+      </if>
+      <if test="fireCtlPerson != null" >
+        fire_ctl_person,
+      </if>
+      <if test="fireCtlTel != null" >
+        fire_ctl_tel,
+      </if>
+      <if test="fireCtlDescribe != null" >
+        fire_ctl_describe,
+      </if>
+      <if test="fireCtlUrl != null" >
+        fire_ctl_url,
+      </if>
+      <if test="fireCtlLevel != null" >
+        fire_ctl_level,
+      </if>
+      <if test="fireCtlScale != null" >
+        fire_ctl_scale,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fireCtlId != null" >
+        #{fireCtlId,jdbcType=VARCHAR},
+      </if>
+      <if test="addId != null" >
+        #{addId,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlName != null" >
+        #{fireCtlName,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlType != null" >
+        #{fireCtlType,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlPerson != null" >
+        #{fireCtlPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlTel != null" >
+        #{fireCtlTel,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlDescribe != null" >
+        #{fireCtlDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlUrl != null" >
+        #{fireCtlUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlLevel != null" >
+        #{fireCtlLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlScale != null" >
+        #{fireCtlScale,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.FireControlExample" resultType="java.lang.Integer" >
+    select count(*) from fire_control
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update fire_control
+    <set >
+      <if test="record.fireCtlId != null" >
+        fire_ctl_id = #{record.fireCtlId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addId != null" >
+        add_id = #{record.addId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireCtlName != null" >
+        fire_ctl_name = #{record.fireCtlName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireCtlType != null" >
+        fire_ctl_type = #{record.fireCtlType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireCtlPerson != null" >
+        fire_ctl_person = #{record.fireCtlPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireCtlTel != null" >
+        fire_ctl_tel = #{record.fireCtlTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireCtlDescribe != null" >
+        fire_ctl_describe = #{record.fireCtlDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireCtlUrl != null" >
+        fire_ctl_url = #{record.fireCtlUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireCtlLevel != null" >
+        fire_ctl_level = #{record.fireCtlLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireCtlScale != null" >
+        fire_ctl_scale = #{record.fireCtlScale,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update fire_control
+    set fire_ctl_id = #{record.fireCtlId,jdbcType=VARCHAR},
+      add_id = #{record.addId,jdbcType=VARCHAR},
+      fire_ctl_name = #{record.fireCtlName,jdbcType=VARCHAR},
+      fire_ctl_type = #{record.fireCtlType,jdbcType=VARCHAR},
+      fire_ctl_person = #{record.fireCtlPerson,jdbcType=VARCHAR},
+      fire_ctl_tel = #{record.fireCtlTel,jdbcType=VARCHAR},
+      fire_ctl_describe = #{record.fireCtlDescribe,jdbcType=VARCHAR},
+      fire_ctl_url = #{record.fireCtlUrl,jdbcType=VARCHAR},
+      fire_ctl_level = #{record.fireCtlLevel,jdbcType=VARCHAR},
+      fire_ctl_scale = #{record.fireCtlScale,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.FireControl" >
+    update fire_control
+    <set >
+      <if test="addId != null" >
+        add_id = #{addId,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlName != null" >
+        fire_ctl_name = #{fireCtlName,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlType != null" >
+        fire_ctl_type = #{fireCtlType,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlPerson != null" >
+        fire_ctl_person = #{fireCtlPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlTel != null" >
+        fire_ctl_tel = #{fireCtlTel,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlDescribe != null" >
+        fire_ctl_describe = #{fireCtlDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlUrl != null" >
+        fire_ctl_url = #{fireCtlUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlLevel != null" >
+        fire_ctl_level = #{fireCtlLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCtlScale != null" >
+        fire_ctl_scale = #{fireCtlScale,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fire_ctl_id = #{fireCtlId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.FireControl" >
+    update fire_control
+    set add_id = #{addId,jdbcType=VARCHAR},
+      fire_ctl_name = #{fireCtlName,jdbcType=VARCHAR},
+      fire_ctl_type = #{fireCtlType,jdbcType=VARCHAR},
+      fire_ctl_person = #{fireCtlPerson,jdbcType=VARCHAR},
+      fire_ctl_tel = #{fireCtlTel,jdbcType=VARCHAR},
+      fire_ctl_describe = #{fireCtlDescribe,jdbcType=VARCHAR},
+      fire_ctl_url = #{fireCtlUrl,jdbcType=VARCHAR},
+      fire_ctl_level = #{fireCtlLevel,jdbcType=VARCHAR},
+      fire_ctl_scale = #{fireCtlScale,jdbcType=VARCHAR}
+    where fire_ctl_id = #{fireCtlId,jdbcType=VARCHAR}
+  </update>
+</mapper>

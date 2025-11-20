@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.SysFuncMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.SysFunc" >
+    <id column="func_id" property="funcId" jdbcType="VARCHAR" />
+    <result column="func_url" property="funcUrl" jdbcType="VARCHAR" />
+    <result column="func_iot_name" property="funcIotName" jdbcType="VARCHAR" />
+    <result column="func_iot_img" property="funcIotImg" jdbcType="VARCHAR" />
+    <result column="func_type" property="funcType" jdbcType="VARCHAR" />
+    <result column="func_src" property="funcSrc" jdbcType="VARCHAR" />
+    <result column="func_default_name" property="funcDefaultName" jdbcType="VARCHAR" />
+    <result column="func_pid" property="funcPid" jdbcType="VARCHAR" />
+    <result column="func_level" property="funcLevel" jdbcType="VARCHAR" />
+    <result column="func_icon" property="funcIcon" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    func_id, func_url, func_iot_name, func_iot_img, func_type, func_src, func_default_name, 
+    func_pid, func_level, func_icon
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.SysFuncExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_func
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_func
+    where func_id = #{funcId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_func
+    where func_id = #{funcId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.SysFuncExample" >
+    delete from sys_func
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.SysFunc" >
+    insert into sys_func (func_id, func_url, func_iot_name, 
+      func_iot_img, func_type, func_src, 
+      func_default_name, func_pid, func_level, 
+      func_icon)
+    values (#{funcId,jdbcType=VARCHAR}, #{funcUrl,jdbcType=VARCHAR}, #{funcIotName,jdbcType=VARCHAR}, 
+      #{funcIotImg,jdbcType=VARCHAR}, #{funcType,jdbcType=VARCHAR}, #{funcSrc,jdbcType=VARCHAR}, 
+      #{funcDefaultName,jdbcType=VARCHAR}, #{funcPid,jdbcType=VARCHAR}, #{funcLevel,jdbcType=VARCHAR}, 
+      #{funcIcon,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.SysFunc" >
+    insert into sys_func
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="funcId != null" >
+        func_id,
+      </if>
+      <if test="funcUrl != null" >
+        func_url,
+      </if>
+      <if test="funcIotName != null" >
+        func_iot_name,
+      </if>
+      <if test="funcIotImg != null" >
+        func_iot_img,
+      </if>
+      <if test="funcType != null" >
+        func_type,
+      </if>
+      <if test="funcSrc != null" >
+        func_src,
+      </if>
+      <if test="funcDefaultName != null" >
+        func_default_name,
+      </if>
+      <if test="funcPid != null" >
+        func_pid,
+      </if>
+      <if test="funcLevel != null" >
+        func_level,
+      </if>
+      <if test="funcIcon != null" >
+        func_icon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="funcId != null" >
+        #{funcId,jdbcType=VARCHAR},
+      </if>
+      <if test="funcUrl != null" >
+        #{funcUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="funcIotName != null" >
+        #{funcIotName,jdbcType=VARCHAR},
+      </if>
+      <if test="funcIotImg != null" >
+        #{funcIotImg,jdbcType=VARCHAR},
+      </if>
+      <if test="funcType != null" >
+        #{funcType,jdbcType=VARCHAR},
+      </if>
+      <if test="funcSrc != null" >
+        #{funcSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="funcDefaultName != null" >
+        #{funcDefaultName,jdbcType=VARCHAR},
+      </if>
+      <if test="funcPid != null" >
+        #{funcPid,jdbcType=VARCHAR},
+      </if>
+      <if test="funcLevel != null" >
+        #{funcLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="funcIcon != null" >
+        #{funcIcon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.SysFuncExample" resultType="java.lang.Integer" >
+    select count(*) from sys_func
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_func
+    <set >
+      <if test="record.funcId != null" >
+        func_id = #{record.funcId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.funcUrl != null" >
+        func_url = #{record.funcUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.funcIotName != null" >
+        func_iot_name = #{record.funcIotName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.funcIotImg != null" >
+        func_iot_img = #{record.funcIotImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.funcType != null" >
+        func_type = #{record.funcType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.funcSrc != null" >
+        func_src = #{record.funcSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.funcDefaultName != null" >
+        func_default_name = #{record.funcDefaultName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.funcPid != null" >
+        func_pid = #{record.funcPid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.funcLevel != null" >
+        func_level = #{record.funcLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.funcIcon != null" >
+        func_icon = #{record.funcIcon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_func
+    set func_id = #{record.funcId,jdbcType=VARCHAR},
+      func_url = #{record.funcUrl,jdbcType=VARCHAR},
+      func_iot_name = #{record.funcIotName,jdbcType=VARCHAR},
+      func_iot_img = #{record.funcIotImg,jdbcType=VARCHAR},
+      func_type = #{record.funcType,jdbcType=VARCHAR},
+      func_src = #{record.funcSrc,jdbcType=VARCHAR},
+      func_default_name = #{record.funcDefaultName,jdbcType=VARCHAR},
+      func_pid = #{record.funcPid,jdbcType=VARCHAR},
+      func_level = #{record.funcLevel,jdbcType=VARCHAR},
+      func_icon = #{record.funcIcon,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.SysFunc" >
+    update sys_func
+    <set >
+      <if test="funcUrl != null" >
+        func_url = #{funcUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="funcIotName != null" >
+        func_iot_name = #{funcIotName,jdbcType=VARCHAR},
+      </if>
+      <if test="funcIotImg != null" >
+        func_iot_img = #{funcIotImg,jdbcType=VARCHAR},
+      </if>
+      <if test="funcType != null" >
+        func_type = #{funcType,jdbcType=VARCHAR},
+      </if>
+      <if test="funcSrc != null" >
+        func_src = #{funcSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="funcDefaultName != null" >
+        func_default_name = #{funcDefaultName,jdbcType=VARCHAR},
+      </if>
+      <if test="funcPid != null" >
+        func_pid = #{funcPid,jdbcType=VARCHAR},
+      </if>
+      <if test="funcLevel != null" >
+        func_level = #{funcLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="funcIcon != null" >
+        func_icon = #{funcIcon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where func_id = #{funcId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.SysFunc" >
+    update sys_func
+    set func_url = #{funcUrl,jdbcType=VARCHAR},
+      func_iot_name = #{funcIotName,jdbcType=VARCHAR},
+      func_iot_img = #{funcIotImg,jdbcType=VARCHAR},
+      func_type = #{funcType,jdbcType=VARCHAR},
+      func_src = #{funcSrc,jdbcType=VARCHAR},
+      func_default_name = #{funcDefaultName,jdbcType=VARCHAR},
+      func_pid = #{funcPid,jdbcType=VARCHAR},
+      func_level = #{funcLevel,jdbcType=VARCHAR},
+      func_icon = #{funcIcon,jdbcType=VARCHAR}
+    where func_id = #{funcId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.UavMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Uav" >
+    <id column="uav_id" property="uavId" jdbcType="VARCHAR" />
+    <result column="uav_name" property="uavName" jdbcType="VARCHAR" />
+    <result column="uav_type" property="uavType" jdbcType="VARCHAR" />
+    <result column="uav_model" property="uavModel" jdbcType="VARCHAR" />
+    <result column="uav_property" property="uavProperty" jdbcType="VARCHAR" />
+    <result column="uav_date" property="uavDate" jdbcType="VARCHAR" />
+    <result column="uav_elec" property="uavElec" jdbcType="VARCHAR" />
+    <result column="uav_cam_type" property="uavCamType" jdbcType="VARCHAR" />
+    <result column="uav_url" property="uavUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uav_id, uav_name, uav_type, uav_model, uav_property, uav_date, uav_elec, uav_cam_type, 
+    uav_url
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.UavExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from uav
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from uav
+    where uav_id = #{uavId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from uav
+    where uav_id = #{uavId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.UavExample" >
+    delete from uav
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.Uav" >
+    insert into uav (uav_id, uav_name, uav_type, 
+      uav_model, uav_property, uav_date, 
+      uav_elec, uav_cam_type, uav_url
+      )
+    values (#{uavId,jdbcType=VARCHAR}, #{uavName,jdbcType=VARCHAR}, #{uavType,jdbcType=VARCHAR}, 
+      #{uavModel,jdbcType=VARCHAR}, #{uavProperty,jdbcType=VARCHAR}, #{uavDate,jdbcType=VARCHAR}, 
+      #{uavElec,jdbcType=VARCHAR}, #{uavCamType,jdbcType=VARCHAR}, #{uavUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.Uav" >
+    insert into uav
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uavId != null" >
+        uav_id,
+      </if>
+      <if test="uavName != null" >
+        uav_name,
+      </if>
+      <if test="uavType != null" >
+        uav_type,
+      </if>
+      <if test="uavModel != null" >
+        uav_model,
+      </if>
+      <if test="uavProperty != null" >
+        uav_property,
+      </if>
+      <if test="uavDate != null" >
+        uav_date,
+      </if>
+      <if test="uavElec != null" >
+        uav_elec,
+      </if>
+      <if test="uavCamType != null" >
+        uav_cam_type,
+      </if>
+      <if test="uavUrl != null" >
+        uav_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uavId != null" >
+        #{uavId,jdbcType=VARCHAR},
+      </if>
+      <if test="uavName != null" >
+        #{uavName,jdbcType=VARCHAR},
+      </if>
+      <if test="uavType != null" >
+        #{uavType,jdbcType=VARCHAR},
+      </if>
+      <if test="uavModel != null" >
+        #{uavModel,jdbcType=VARCHAR},
+      </if>
+      <if test="uavProperty != null" >
+        #{uavProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="uavDate != null" >
+        #{uavDate,jdbcType=VARCHAR},
+      </if>
+      <if test="uavElec != null" >
+        #{uavElec,jdbcType=VARCHAR},
+      </if>
+      <if test="uavCamType != null" >
+        #{uavCamType,jdbcType=VARCHAR},
+      </if>
+      <if test="uavUrl != null" >
+        #{uavUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.UavExample" resultType="java.lang.Integer" >
+    select count(*) from uav
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update uav
+    <set >
+      <if test="record.uavId != null" >
+        uav_id = #{record.uavId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uavName != null" >
+        uav_name = #{record.uavName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uavType != null" >
+        uav_type = #{record.uavType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uavModel != null" >
+        uav_model = #{record.uavModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uavProperty != null" >
+        uav_property = #{record.uavProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uavDate != null" >
+        uav_date = #{record.uavDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uavElec != null" >
+        uav_elec = #{record.uavElec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uavCamType != null" >
+        uav_cam_type = #{record.uavCamType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uavUrl != null" >
+        uav_url = #{record.uavUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update uav
+    set uav_id = #{record.uavId,jdbcType=VARCHAR},
+      uav_name = #{record.uavName,jdbcType=VARCHAR},
+      uav_type = #{record.uavType,jdbcType=VARCHAR},
+      uav_model = #{record.uavModel,jdbcType=VARCHAR},
+      uav_property = #{record.uavProperty,jdbcType=VARCHAR},
+      uav_date = #{record.uavDate,jdbcType=VARCHAR},
+      uav_elec = #{record.uavElec,jdbcType=VARCHAR},
+      uav_cam_type = #{record.uavCamType,jdbcType=VARCHAR},
+      uav_url = #{record.uavUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.Uav" >
+    update uav
+    <set >
+      <if test="uavName != null" >
+        uav_name = #{uavName,jdbcType=VARCHAR},
+      </if>
+      <if test="uavType != null" >
+        uav_type = #{uavType,jdbcType=VARCHAR},
+      </if>
+      <if test="uavModel != null" >
+        uav_model = #{uavModel,jdbcType=VARCHAR},
+      </if>
+      <if test="uavProperty != null" >
+        uav_property = #{uavProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="uavDate != null" >
+        uav_date = #{uavDate,jdbcType=VARCHAR},
+      </if>
+      <if test="uavElec != null" >
+        uav_elec = #{uavElec,jdbcType=VARCHAR},
+      </if>
+      <if test="uavCamType != null" >
+        uav_cam_type = #{uavCamType,jdbcType=VARCHAR},
+      </if>
+      <if test="uavUrl != null" >
+        uav_url = #{uavUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uav_id = #{uavId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.Uav" >
+    update uav
+    set uav_name = #{uavName,jdbcType=VARCHAR},
+      uav_type = #{uavType,jdbcType=VARCHAR},
+      uav_model = #{uavModel,jdbcType=VARCHAR},
+      uav_property = #{uavProperty,jdbcType=VARCHAR},
+      uav_date = #{uavDate,jdbcType=VARCHAR},
+      uav_elec = #{uavElec,jdbcType=VARCHAR},
+      uav_cam_type = #{uavCamType,jdbcType=VARCHAR},
+      uav_url = #{uavUrl,jdbcType=VARCHAR}
+    where uav_id = #{uavId,jdbcType=VARCHAR}
+  </update>
+</mapper>

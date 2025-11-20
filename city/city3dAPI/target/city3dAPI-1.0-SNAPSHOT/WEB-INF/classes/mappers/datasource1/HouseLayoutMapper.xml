@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.HouseLayoutMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.HouseLayout" >
+    <id column="layout_id" property="layoutId" jdbcType="VARCHAR" />
+    <result column="layout_pos" property="layoutPos" jdbcType="VARCHAR" />
+    <result column="layout_floor" property="layoutFloor" jdbcType="VARCHAR" />
+    <result column="layout_name" property="layoutName" jdbcType="VARCHAR" />
+    <result column="layout_height" property="layoutHeight" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    layout_id, layout_pos, layout_floor, layout_name, layout_height, pid, add_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.HouseLayoutExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from house_layout
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from house_layout
+    where layout_id = #{layoutId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from house_layout
+    where layout_id = #{layoutId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.HouseLayoutExample" >
+    delete from house_layout
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.HouseLayout" >
+    insert into house_layout (layout_id, layout_pos, layout_floor, 
+      layout_name, layout_height, pid, 
+      add_id)
+    values (#{layoutId,jdbcType=VARCHAR}, #{layoutPos,jdbcType=VARCHAR}, #{layoutFloor,jdbcType=VARCHAR}, 
+      #{layoutName,jdbcType=VARCHAR}, #{layoutHeight,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
+      #{addId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.HouseLayout" >
+    insert into house_layout
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="layoutId != null" >
+        layout_id,
+      </if>
+      <if test="layoutPos != null" >
+        layout_pos,
+      </if>
+      <if test="layoutFloor != null" >
+        layout_floor,
+      </if>
+      <if test="layoutName != null" >
+        layout_name,
+      </if>
+      <if test="layoutHeight != null" >
+        layout_height,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="addId != null" >
+        add_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="layoutId != null" >
+        #{layoutId,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutPos != null" >
+        #{layoutPos,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutFloor != null" >
+        #{layoutFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutName != null" >
+        #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutHeight != null" >
+        #{layoutHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="addId != null" >
+        #{addId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.HouseLayoutExample" resultType="java.lang.Integer" >
+    select count(*) from house_layout
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update house_layout
+    <set >
+      <if test="record.layoutId != null" >
+        layout_id = #{record.layoutId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.layoutPos != null" >
+        layout_pos = #{record.layoutPos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.layoutFloor != null" >
+        layout_floor = #{record.layoutFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.layoutName != null" >
+        layout_name = #{record.layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.layoutHeight != null" >
+        layout_height = #{record.layoutHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pid != null" >
+        pid = #{record.pid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addId != null" >
+        add_id = #{record.addId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update house_layout
+    set layout_id = #{record.layoutId,jdbcType=VARCHAR},
+      layout_pos = #{record.layoutPos,jdbcType=VARCHAR},
+      layout_floor = #{record.layoutFloor,jdbcType=VARCHAR},
+      layout_name = #{record.layoutName,jdbcType=VARCHAR},
+      layout_height = #{record.layoutHeight,jdbcType=VARCHAR},
+      pid = #{record.pid,jdbcType=VARCHAR},
+      add_id = #{record.addId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.HouseLayout" >
+    update house_layout
+    <set >
+      <if test="layoutPos != null" >
+        layout_pos = #{layoutPos,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutFloor != null" >
+        layout_floor = #{layoutFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutName != null" >
+        layout_name = #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutHeight != null" >
+        layout_height = #{layoutHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="addId != null" >
+        add_id = #{addId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where layout_id = #{layoutId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.HouseLayout" >
+    update house_layout
+    set layout_pos = #{layoutPos,jdbcType=VARCHAR},
+      layout_floor = #{layoutFloor,jdbcType=VARCHAR},
+      layout_name = #{layoutName,jdbcType=VARCHAR},
+      layout_height = #{layoutHeight,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      add_id = #{addId,jdbcType=VARCHAR}
+    where layout_id = #{layoutId,jdbcType=VARCHAR}
+  </update>
+</mapper>

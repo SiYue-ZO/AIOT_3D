@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.BimCaseMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.BimCase" >
+    <id column="bim_case_id" property="bimCaseId" jdbcType="VARCHAR" />
+    <result column="bim_case_name" property="bimCaseName" jdbcType="VARCHAR" />
+    <result column="model_id" property="modelId" jdbcType="VARCHAR" />
+    <result column="model_pos" property="modelPos" jdbcType="VARCHAR" />
+    <result column="model_heading" property="modelHeading" jdbcType="VARCHAR" />
+    <result column="model_scale" property="modelScale" jdbcType="VARCHAR" />
+    <result column="flatten_pos" property="flattenPos" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    bim_case_id, bim_case_name, model_id, model_pos, model_heading, model_scale, flatten_pos
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.BimCaseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bim_case
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bim_case
+    where bim_case_id = #{bimCaseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from bim_case
+    where bim_case_id = #{bimCaseId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.BimCaseExample" >
+    delete from bim_case
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.BimCase" >
+    insert into bim_case (bim_case_id, bim_case_name, model_id, 
+      model_pos, model_heading, model_scale, 
+      flatten_pos)
+    values (#{bimCaseId,jdbcType=VARCHAR}, #{bimCaseName,jdbcType=VARCHAR}, #{modelId,jdbcType=VARCHAR}, 
+      #{modelPos,jdbcType=VARCHAR}, #{modelHeading,jdbcType=VARCHAR}, #{modelScale,jdbcType=VARCHAR}, 
+      #{flattenPos,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.BimCase" >
+    insert into bim_case
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bimCaseId != null" >
+        bim_case_id,
+      </if>
+      <if test="bimCaseName != null" >
+        bim_case_name,
+      </if>
+      <if test="modelId != null" >
+        model_id,
+      </if>
+      <if test="modelPos != null" >
+        model_pos,
+      </if>
+      <if test="modelHeading != null" >
+        model_heading,
+      </if>
+      <if test="modelScale != null" >
+        model_scale,
+      </if>
+      <if test="flattenPos != null" >
+        flatten_pos,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bimCaseId != null" >
+        #{bimCaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="bimCaseName != null" >
+        #{bimCaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="modelId != null" >
+        #{modelId,jdbcType=VARCHAR},
+      </if>
+      <if test="modelPos != null" >
+        #{modelPos,jdbcType=VARCHAR},
+      </if>
+      <if test="modelHeading != null" >
+        #{modelHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="modelScale != null" >
+        #{modelScale,jdbcType=VARCHAR},
+      </if>
+      <if test="flattenPos != null" >
+        #{flattenPos,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.BimCaseExample" resultType="java.lang.Integer" >
+    select count(*) from bim_case
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bim_case
+    <set >
+      <if test="record.bimCaseId != null" >
+        bim_case_id = #{record.bimCaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bimCaseName != null" >
+        bim_case_name = #{record.bimCaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modelId != null" >
+        model_id = #{record.modelId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modelPos != null" >
+        model_pos = #{record.modelPos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modelHeading != null" >
+        model_heading = #{record.modelHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modelScale != null" >
+        model_scale = #{record.modelScale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flattenPos != null" >
+        flatten_pos = #{record.flattenPos,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bim_case
+    set bim_case_id = #{record.bimCaseId,jdbcType=VARCHAR},
+      bim_case_name = #{record.bimCaseName,jdbcType=VARCHAR},
+      model_id = #{record.modelId,jdbcType=VARCHAR},
+      model_pos = #{record.modelPos,jdbcType=VARCHAR},
+      model_heading = #{record.modelHeading,jdbcType=VARCHAR},
+      model_scale = #{record.modelScale,jdbcType=VARCHAR},
+      flatten_pos = #{record.flattenPos,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.BimCase" >
+    update bim_case
+    <set >
+      <if test="bimCaseName != null" >
+        bim_case_name = #{bimCaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="modelId != null" >
+        model_id = #{modelId,jdbcType=VARCHAR},
+      </if>
+      <if test="modelPos != null" >
+        model_pos = #{modelPos,jdbcType=VARCHAR},
+      </if>
+      <if test="modelHeading != null" >
+        model_heading = #{modelHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="modelScale != null" >
+        model_scale = #{modelScale,jdbcType=VARCHAR},
+      </if>
+      <if test="flattenPos != null" >
+        flatten_pos = #{flattenPos,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bim_case_id = #{bimCaseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.BimCase" >
+    update bim_case
+    set bim_case_name = #{bimCaseName,jdbcType=VARCHAR},
+      model_id = #{modelId,jdbcType=VARCHAR},
+      model_pos = #{modelPos,jdbcType=VARCHAR},
+      model_heading = #{modelHeading,jdbcType=VARCHAR},
+      model_scale = #{modelScale,jdbcType=VARCHAR},
+      flatten_pos = #{flattenPos,jdbcType=VARCHAR}
+    where bim_case_id = #{bimCaseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

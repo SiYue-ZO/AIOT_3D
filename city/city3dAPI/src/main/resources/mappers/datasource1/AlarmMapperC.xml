@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.AlarmMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Alarm" >
+    <id column="alarm_id" property="alarmId" jdbcType="VARCHAR" />
+    <result column="wall_id" property="wallId" jdbcType="VARCHAR" />
+    <result column="alarm_type" property="alarmType" jdbcType="VARCHAR" />
+    <result column="alarm_time" property="alarmTime" jdbcType="VARCHAR" />
+    <result column="alarm_people_id" property="alarmPeopleId" jdbcType="VARCHAR" />
+    <result column="alarm_poi" property="alarmPoi" jdbcType="VARCHAR" />
+    <association property="wall" javaType="com.city3d.dao.entry.Wall">
+	    <id column="wall_id" property="wallId" jdbcType="VARCHAR" />
+	    <result column="wall_poi" property="wallPoi" jdbcType="VARCHAR" />
+	    <result column="wall_in" property="wallIn" jdbcType="VARCHAR" />
+	    <result column="wall_out" property="wallOut" jdbcType="VARCHAR" />
+	    <result column="wall_name" property="wallName" jdbcType="VARCHAR" />
+  	</association>
+  	<association property="keyPeople" javaType="com.city3d.dao.entry.KeyPeople">
+	    <id column="key_id" property="keyId" jdbcType="VARCHAR" />
+	    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="identity" property="identity" jdbcType="VARCHAR" />
+	    <result column="gender" property="gender" jdbcType="VARCHAR" />
+	    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+	    <result column="blood" property="blood" jdbcType="VARCHAR" />
+	    <result column="nation" property="nation" jdbcType="VARCHAR" />
+	    <result column="origin" property="origin" jdbcType="VARCHAR" />
+	    <result column="height" property="height" jdbcType="VARCHAR" />
+	    <result column="type" property="type" jdbcType="VARCHAR" />
+	    <result column="describe" property="describe" jdbcType="VARCHAR" />
+	    <result column="job" property="job" jdbcType="VARCHAR" />
+	    <result column="tel" property="tel" jdbcType="VARCHAR" />
+	    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+  	</association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    alarm_id, wall_id, alarm_type, alarm_time, alarm_people_id, alarm_poi
+  </sql>
+  <select id="selectAllByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.AlarmExample" >
+    select a.*, k.*, w.* from alarm a, key_people k, wall w where a.alarm_people_id = k.key_id and a.wall_id = w.wall_id
+  </select>
+  <delete id="batchDelete" parameterType="java.util.List" >
+    delete from alarm where alarm_id in
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+    	#{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+</mapper>

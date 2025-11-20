@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PoliceMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Police" >
+    <id column="police_id" property="policeId" jdbcType="VARCHAR" />
+    <result column="net_id" property="netId" jdbcType="VARCHAR" />
+    <result column="dep_id" property="depId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="birth" property="birth" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="origin" property="origin" jdbcType="VARCHAR" />
+    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="job_date" property="jobDate" jdbcType="VARCHAR" />
+    <result column="police_rank" property="policeRank" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="device_num" property="deviceNum" jdbcType="VARCHAR" />
+    <result column="device_type" property="deviceType" jdbcType="VARCHAR" />
+    <result column="device_date" property="deviceDate" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    police_id, net_id, dep_id, name, identity, gender, birth, nation, origin, post, job_date, 
+    police_rank, education, device_num, device_type, device_date, image
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.PoliceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from police
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from police
+    where police_id = #{policeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from police
+    where police_id = #{policeId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.PoliceExample" >
+    delete from police
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.Police" >
+    insert into police (police_id, net_id, dep_id, 
+      name, identity, gender, 
+      birth, nation, origin, 
+      post, job_date, police_rank, 
+      education, device_num, device_type, 
+      device_date, image)
+    values (#{policeId,jdbcType=VARCHAR}, #{netId,jdbcType=VARCHAR}, #{depId,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{birth,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}, 
+      #{post,jdbcType=VARCHAR}, #{jobDate,jdbcType=VARCHAR}, #{policeRank,jdbcType=VARCHAR}, 
+      #{education,jdbcType=VARCHAR}, #{deviceNum,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR}, 
+      #{deviceDate,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.Police" >
+    insert into police
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="policeId != null" >
+        police_id,
+      </if>
+      <if test="netId != null" >
+        net_id,
+      </if>
+      <if test="depId != null" >
+        dep_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="birth != null" >
+        birth,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="origin != null" >
+        origin,
+      </if>
+      <if test="post != null" >
+        post,
+      </if>
+      <if test="jobDate != null" >
+        job_date,
+      </if>
+      <if test="policeRank != null" >
+        police_rank,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="deviceNum != null" >
+        device_num,
+      </if>
+      <if test="deviceType != null" >
+        device_type,
+      </if>
+      <if test="deviceDate != null" >
+        device_date,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="policeId != null" >
+        #{policeId,jdbcType=VARCHAR},
+      </if>
+      <if test="netId != null" >
+        #{netId,jdbcType=VARCHAR},
+      </if>
+      <if test="depId != null" >
+        #{depId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null" >
+        #{birth,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDate != null" >
+        #{jobDate,jdbcType=VARCHAR},
+      </if>
+      <if test="policeRank != null" >
+        #{policeRank,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceNum != null" >
+        #{deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceDate != null" >
+        #{deviceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.PoliceExample" resultType="java.lang.Integer" >
+    select count(*) from police
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update police
+    <set >
+      <if test="record.policeId != null" >
+        police_id = #{record.policeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netId != null" >
+        net_id = #{record.netId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depId != null" >
+        dep_id = #{record.depId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identity != null" >
+        identity = #{record.identity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birth != null" >
+        birth = #{record.birth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nation != null" >
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.origin != null" >
+        origin = #{record.origin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.post != null" >
+        post = #{record.post,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobDate != null" >
+        job_date = #{record.jobDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.policeRank != null" >
+        police_rank = #{record.policeRank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null" >
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceNum != null" >
+        device_num = #{record.deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceType != null" >
+        device_type = #{record.deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceDate != null" >
+        device_date = #{record.deviceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update police
+    set police_id = #{record.policeId,jdbcType=VARCHAR},
+      net_id = #{record.netId,jdbcType=VARCHAR},
+      dep_id = #{record.depId,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      identity = #{record.identity,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=VARCHAR},
+      birth = #{record.birth,jdbcType=VARCHAR},
+      nation = #{record.nation,jdbcType=VARCHAR},
+      origin = #{record.origin,jdbcType=VARCHAR},
+      post = #{record.post,jdbcType=VARCHAR},
+      job_date = #{record.jobDate,jdbcType=VARCHAR},
+      police_rank = #{record.policeRank,jdbcType=VARCHAR},
+      education = #{record.education,jdbcType=VARCHAR},
+      device_num = #{record.deviceNum,jdbcType=VARCHAR},
+      device_type = #{record.deviceType,jdbcType=VARCHAR},
+      device_date = #{record.deviceDate,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.Police" >
+    update police
+    <set >
+      <if test="netId != null" >
+        net_id = #{netId,jdbcType=VARCHAR},
+      </if>
+      <if test="depId != null" >
+        dep_id = #{depId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null" >
+        birth = #{birth,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        origin = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDate != null" >
+        job_date = #{jobDate,jdbcType=VARCHAR},
+      </if>
+      <if test="policeRank != null" >
+        police_rank = #{policeRank,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceNum != null" >
+        device_num = #{deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        device_type = #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceDate != null" >
+        device_date = #{deviceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where police_id = #{policeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.Police" >
+    update police
+    set net_id = #{netId,jdbcType=VARCHAR},
+      dep_id = #{depId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      origin = #{origin,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      job_date = #{jobDate,jdbcType=VARCHAR},
+      police_rank = #{policeRank,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      device_num = #{deviceNum,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=VARCHAR},
+      device_date = #{deviceDate,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR}
+    where police_id = #{policeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

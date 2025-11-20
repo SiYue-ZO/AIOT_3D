@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.FaceIdentityMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.FaceIdentity" >
+    <id column="face_id" property="faceId" jdbcType="VARCHAR" />
+    <result column="serial_number" property="serialNumber" jdbcType="VARCHAR" />
+    <result column="camera_id" property="cameraId" jdbcType="VARCHAR" />
+    <result column="img_id" property="imgId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="card_id" property="cardId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="repo_type" property="repoType" jdbcType="VARCHAR" />
+    <result column="capture_time" property="captureTime" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="id_card_name" property="idCardName" jdbcType="VARCHAR" />
+    <result column="id_card_gender" property="idCardGender" jdbcType="VARCHAR" />
+    <result column="id_card_national" property="idCardNational" jdbcType="VARCHAR" />
+    <result column="id_card_birthday" property="idCardBirthday" jdbcType="VARCHAR" />
+    <result column="id_card_address" property="idCardAddress" jdbcType="VARCHAR" />
+    <result column="id_card_id" property="idCardId" jdbcType="VARCHAR" />
+    <result column="id_card_maker" property="idCardMaker" jdbcType="VARCHAR" />
+    <result column="id_card_start_date" property="idCardStartDate" jdbcType="VARCHAR" />
+    <result column="id_card_end_date" property="idCardEndDate" jdbcType="VARCHAR" />
+    <result column="id_card_img" property="idCardImg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    face_id, serial_number, camera_id, img_id, user_id, card_id, name, repo_type, capture_time, 
+    image, description, id_card_name, id_card_gender, id_card_national, id_card_birthday, 
+    id_card_address, id_card_id, id_card_maker, id_card_start_date, id_card_end_date, 
+    id_card_img
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.FaceIdentityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from face_identity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from face_identity
+    where face_id = #{faceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from face_identity
+    where face_id = #{faceId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.FaceIdentityExample" >
+    delete from face_identity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.FaceIdentity" >
+    insert into face_identity (face_id, serial_number, camera_id, 
+      img_id, user_id, card_id, 
+      name, repo_type, capture_time, 
+      image, description, id_card_name, 
+      id_card_gender, id_card_national, id_card_birthday, 
+      id_card_address, id_card_id, id_card_maker, 
+      id_card_start_date, id_card_end_date, id_card_img
+      )
+    values (#{faceId,jdbcType=VARCHAR}, #{serialNumber,jdbcType=VARCHAR}, #{cameraId,jdbcType=VARCHAR}, 
+      #{imgId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{cardId,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{repoType,jdbcType=VARCHAR}, #{captureTime,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{idCardName,jdbcType=VARCHAR}, 
+      #{idCardGender,jdbcType=VARCHAR}, #{idCardNational,jdbcType=VARCHAR}, #{idCardBirthday,jdbcType=VARCHAR}, 
+      #{idCardAddress,jdbcType=VARCHAR}, #{idCardId,jdbcType=VARCHAR}, #{idCardMaker,jdbcType=VARCHAR}, 
+      #{idCardStartDate,jdbcType=VARCHAR}, #{idCardEndDate,jdbcType=VARCHAR}, #{idCardImg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.FaceIdentity" >
+    insert into face_identity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="faceId != null" >
+        face_id,
+      </if>
+      <if test="serialNumber != null" >
+        serial_number,
+      </if>
+      <if test="cameraId != null" >
+        camera_id,
+      </if>
+      <if test="imgId != null" >
+        img_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="cardId != null" >
+        card_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="repoType != null" >
+        repo_type,
+      </if>
+      <if test="captureTime != null" >
+        capture_time,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="idCardName != null" >
+        id_card_name,
+      </if>
+      <if test="idCardGender != null" >
+        id_card_gender,
+      </if>
+      <if test="idCardNational != null" >
+        id_card_national,
+      </if>
+      <if test="idCardBirthday != null" >
+        id_card_birthday,
+      </if>
+      <if test="idCardAddress != null" >
+        id_card_address,
+      </if>
+      <if test="idCardId != null" >
+        id_card_id,
+      </if>
+      <if test="idCardMaker != null" >
+        id_card_maker,
+      </if>
+      <if test="idCardStartDate != null" >
+        id_card_start_date,
+      </if>
+      <if test="idCardEndDate != null" >
+        id_card_end_date,
+      </if>
+      <if test="idCardImg != null" >
+        id_card_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="faceId != null" >
+        #{faceId,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNumber != null" >
+        #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cameraId != null" >
+        #{cameraId,jdbcType=VARCHAR},
+      </if>
+      <if test="imgId != null" >
+        #{imgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="repoType != null" >
+        #{repoType,jdbcType=VARCHAR},
+      </if>
+      <if test="captureTime != null" >
+        #{captureTime,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardName != null" >
+        #{idCardName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardGender != null" >
+        #{idCardGender,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNational != null" >
+        #{idCardNational,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardBirthday != null" >
+        #{idCardBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardAddress != null" >
+        #{idCardAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardId != null" >
+        #{idCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardMaker != null" >
+        #{idCardMaker,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardStartDate != null" >
+        #{idCardStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardEndDate != null" >
+        #{idCardEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImg != null" >
+        #{idCardImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.FaceIdentityExample" resultType="java.lang.Integer" >
+    select count(*) from face_identity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update face_identity
+    <set >
+      <if test="record.faceId != null" >
+        face_id = #{record.faceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serialNumber != null" >
+        serial_number = #{record.serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cameraId != null" >
+        camera_id = #{record.cameraId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgId != null" >
+        img_id = #{record.imgId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardId != null" >
+        card_id = #{record.cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repoType != null" >
+        repo_type = #{record.repoType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.captureTime != null" >
+        capture_time = #{record.captureTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCardName != null" >
+        id_card_name = #{record.idCardName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCardGender != null" >
+        id_card_gender = #{record.idCardGender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCardNational != null" >
+        id_card_national = #{record.idCardNational,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCardBirthday != null" >
+        id_card_birthday = #{record.idCardBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCardAddress != null" >
+        id_card_address = #{record.idCardAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCardId != null" >
+        id_card_id = #{record.idCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCardMaker != null" >
+        id_card_maker = #{record.idCardMaker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCardStartDate != null" >
+        id_card_start_date = #{record.idCardStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCardEndDate != null" >
+        id_card_end_date = #{record.idCardEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCardImg != null" >
+        id_card_img = #{record.idCardImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update face_identity
+    set face_id = #{record.faceId,jdbcType=VARCHAR},
+      serial_number = #{record.serialNumber,jdbcType=VARCHAR},
+      camera_id = #{record.cameraId,jdbcType=VARCHAR},
+      img_id = #{record.imgId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      card_id = #{record.cardId,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      repo_type = #{record.repoType,jdbcType=VARCHAR},
+      capture_time = #{record.captureTime,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      id_card_name = #{record.idCardName,jdbcType=VARCHAR},
+      id_card_gender = #{record.idCardGender,jdbcType=VARCHAR},
+      id_card_national = #{record.idCardNational,jdbcType=VARCHAR},
+      id_card_birthday = #{record.idCardBirthday,jdbcType=VARCHAR},
+      id_card_address = #{record.idCardAddress,jdbcType=VARCHAR},
+      id_card_id = #{record.idCardId,jdbcType=VARCHAR},
+      id_card_maker = #{record.idCardMaker,jdbcType=VARCHAR},
+      id_card_start_date = #{record.idCardStartDate,jdbcType=VARCHAR},
+      id_card_end_date = #{record.idCardEndDate,jdbcType=VARCHAR},
+      id_card_img = #{record.idCardImg,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.FaceIdentity" >
+    update face_identity
+    <set >
+      <if test="serialNumber != null" >
+        serial_number = #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cameraId != null" >
+        camera_id = #{cameraId,jdbcType=VARCHAR},
+      </if>
+      <if test="imgId != null" >
+        img_id = #{imgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        card_id = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="repoType != null" >
+        repo_type = #{repoType,jdbcType=VARCHAR},
+      </if>
+      <if test="captureTime != null" >
+        capture_time = #{captureTime,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardName != null" >
+        id_card_name = #{idCardName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardGender != null" >
+        id_card_gender = #{idCardGender,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNational != null" >
+        id_card_national = #{idCardNational,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardBirthday != null" >
+        id_card_birthday = #{idCardBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardAddress != null" >
+        id_card_address = #{idCardAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardId != null" >
+        id_card_id = #{idCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardMaker != null" >
+        id_card_maker = #{idCardMaker,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardStartDate != null" >
+        id_card_start_date = #{idCardStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardEndDate != null" >
+        id_card_end_date = #{idCardEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImg != null" >
+        id_card_img = #{idCardImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where face_id = #{faceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.FaceIdentity" >
+    update face_identity
+    set serial_number = #{serialNumber,jdbcType=VARCHAR},
+      camera_id = #{cameraId,jdbcType=VARCHAR},
+      img_id = #{imgId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      card_id = #{cardId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      repo_type = #{repoType,jdbcType=VARCHAR},
+      capture_time = #{captureTime,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      id_card_name = #{idCardName,jdbcType=VARCHAR},
+      id_card_gender = #{idCardGender,jdbcType=VARCHAR},
+      id_card_national = #{idCardNational,jdbcType=VARCHAR},
+      id_card_birthday = #{idCardBirthday,jdbcType=VARCHAR},
+      id_card_address = #{idCardAddress,jdbcType=VARCHAR},
+      id_card_id = #{idCardId,jdbcType=VARCHAR},
+      id_card_maker = #{idCardMaker,jdbcType=VARCHAR},
+      id_card_start_date = #{idCardStartDate,jdbcType=VARCHAR},
+      id_card_end_date = #{idCardEndDate,jdbcType=VARCHAR},
+      id_card_img = #{idCardImg,jdbcType=VARCHAR}
+    where face_id = #{faceId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PoliceLineMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PoliceLine" >
+    <id column="l_id" property="lId" jdbcType="VARCHAR" />
+    <result column="l_name" property="lName" jdbcType="VARCHAR" />
+    <result column="l_type" property="lType" jdbcType="VARCHAR" />
+    <result column="l_poyline" property="lPoyline" jdbcType="VARCHAR" />
+    <result column="l_color" property="lColor" jdbcType="VARCHAR" />
+    <result column="l_time" property="lTime" jdbcType="VARCHAR" />
+    <result column="l_p_name" property="lPName" jdbcType="VARCHAR" />
+    <result column="l_stop" property="lStop" jdbcType="VARCHAR" />
+    <result column="l_living" property="lLiving" jdbcType="VARCHAR" />
+    <result column="l_note" property="lNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    l_id, l_name, l_type, l_poyline, l_color, l_time, l_p_name, l_stop, l_living, l_note
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.PoliceLineExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from police_line
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from police_line
+    where l_id = #{lId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from police_line
+    where l_id = #{lId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.PoliceLineExample" >
+    delete from police_line
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.PoliceLine" >
+    insert into police_line (l_id, l_name, l_type, 
+      l_poyline, l_color, l_time, 
+      l_p_name, l_stop, l_living, 
+      l_note)
+    values (#{lId,jdbcType=VARCHAR}, #{lName,jdbcType=VARCHAR}, #{lType,jdbcType=VARCHAR}, 
+      #{lPoyline,jdbcType=VARCHAR}, #{lColor,jdbcType=VARCHAR}, #{lTime,jdbcType=VARCHAR}, 
+      #{lPName,jdbcType=VARCHAR}, #{lStop,jdbcType=VARCHAR}, #{lLiving,jdbcType=VARCHAR}, 
+      #{lNote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.PoliceLine" >
+    insert into police_line
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lId != null" >
+        l_id,
+      </if>
+      <if test="lName != null" >
+        l_name,
+      </if>
+      <if test="lType != null" >
+        l_type,
+      </if>
+      <if test="lPoyline != null" >
+        l_poyline,
+      </if>
+      <if test="lColor != null" >
+        l_color,
+      </if>
+      <if test="lTime != null" >
+        l_time,
+      </if>
+      <if test="lPName != null" >
+        l_p_name,
+      </if>
+      <if test="lStop != null" >
+        l_stop,
+      </if>
+      <if test="lLiving != null" >
+        l_living,
+      </if>
+      <if test="lNote != null" >
+        l_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lId != null" >
+        #{lId,jdbcType=VARCHAR},
+      </if>
+      <if test="lName != null" >
+        #{lName,jdbcType=VARCHAR},
+      </if>
+      <if test="lType != null" >
+        #{lType,jdbcType=VARCHAR},
+      </if>
+      <if test="lPoyline != null" >
+        #{lPoyline,jdbcType=VARCHAR},
+      </if>
+      <if test="lColor != null" >
+        #{lColor,jdbcType=VARCHAR},
+      </if>
+      <if test="lTime != null" >
+        #{lTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lPName != null" >
+        #{lPName,jdbcType=VARCHAR},
+      </if>
+      <if test="lStop != null" >
+        #{lStop,jdbcType=VARCHAR},
+      </if>
+      <if test="lLiving != null" >
+        #{lLiving,jdbcType=VARCHAR},
+      </if>
+      <if test="lNote != null" >
+        #{lNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.PoliceLineExample" resultType="java.lang.Integer" >
+    select count(*) from police_line
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update police_line
+    <set >
+      <if test="record.lId != null" >
+        l_id = #{record.lId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lName != null" >
+        l_name = #{record.lName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lType != null" >
+        l_type = #{record.lType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lPoyline != null" >
+        l_poyline = #{record.lPoyline,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lColor != null" >
+        l_color = #{record.lColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lTime != null" >
+        l_time = #{record.lTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lPName != null" >
+        l_p_name = #{record.lPName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lStop != null" >
+        l_stop = #{record.lStop,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lLiving != null" >
+        l_living = #{record.lLiving,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lNote != null" >
+        l_note = #{record.lNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update police_line
+    set l_id = #{record.lId,jdbcType=VARCHAR},
+      l_name = #{record.lName,jdbcType=VARCHAR},
+      l_type = #{record.lType,jdbcType=VARCHAR},
+      l_poyline = #{record.lPoyline,jdbcType=VARCHAR},
+      l_color = #{record.lColor,jdbcType=VARCHAR},
+      l_time = #{record.lTime,jdbcType=VARCHAR},
+      l_p_name = #{record.lPName,jdbcType=VARCHAR},
+      l_stop = #{record.lStop,jdbcType=VARCHAR},
+      l_living = #{record.lLiving,jdbcType=VARCHAR},
+      l_note = #{record.lNote,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.PoliceLine" >
+    update police_line
+    <set >
+      <if test="lName != null" >
+        l_name = #{lName,jdbcType=VARCHAR},
+      </if>
+      <if test="lType != null" >
+        l_type = #{lType,jdbcType=VARCHAR},
+      </if>
+      <if test="lPoyline != null" >
+        l_poyline = #{lPoyline,jdbcType=VARCHAR},
+      </if>
+      <if test="lColor != null" >
+        l_color = #{lColor,jdbcType=VARCHAR},
+      </if>
+      <if test="lTime != null" >
+        l_time = #{lTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lPName != null" >
+        l_p_name = #{lPName,jdbcType=VARCHAR},
+      </if>
+      <if test="lStop != null" >
+        l_stop = #{lStop,jdbcType=VARCHAR},
+      </if>
+      <if test="lLiving != null" >
+        l_living = #{lLiving,jdbcType=VARCHAR},
+      </if>
+      <if test="lNote != null" >
+        l_note = #{lNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where l_id = #{lId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.PoliceLine" >
+    update police_line
+    set l_name = #{lName,jdbcType=VARCHAR},
+      l_type = #{lType,jdbcType=VARCHAR},
+      l_poyline = #{lPoyline,jdbcType=VARCHAR},
+      l_color = #{lColor,jdbcType=VARCHAR},
+      l_time = #{lTime,jdbcType=VARCHAR},
+      l_p_name = #{lPName,jdbcType=VARCHAR},
+      l_stop = #{lStop,jdbcType=VARCHAR},
+      l_living = #{lLiving,jdbcType=VARCHAR},
+      l_note = #{lNote,jdbcType=VARCHAR}
+    where l_id = #{lId,jdbcType=VARCHAR}
+  </update>
+</mapper>

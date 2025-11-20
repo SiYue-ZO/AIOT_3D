@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.SecurityMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Security" >
+    <id column="security_id" property="securityId" jdbcType="VARCHAR" />
+    <result column="security_name" property="securityName" jdbcType="VARCHAR" />
+    <result column="security_type" property="securityType" jdbcType="VARCHAR" />
+    <result column="security_police_id" property="securityPoliceId" jdbcType="VARCHAR" />
+    <result column="security_tel" property="securityTel" jdbcType="VARCHAR" />
+    <result column="security_describe" property="securityDescribe" jdbcType="VARCHAR" />
+    <result column="security_poi" property="securityPoi" jdbcType="VARCHAR" />
+    <result column="security_center" property="securityCenter" jdbcType="VARCHAR" />
+    <result column="security_video_id" property="securityVideoId" jdbcType="VARCHAR" />
+    <result column="equipment_id" property="equipmentId" jdbcType="VARCHAR" />
+    <result column="security_community" property="securityCommunity" jdbcType="VARCHAR" />
+    <result column="net_master" property="netMaster" jdbcType="VARCHAR" />
+    <result column="net_listener" property="netListener" jdbcType="VARCHAR" />
+    <result column="net_base_people" property="netBasePeople" jdbcType="VARCHAR" />
+    <result column="net_hold_people" property="netHoldPeople" jdbcType="VARCHAR" />
+    <result column="net_flow_people" property="netFlowPeople" jdbcType="VARCHAR" />
+    <result column="net_group" property="netGroup" jdbcType="VARCHAR" />
+    <result column="net_note" property="netNote" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <association property="police" javaType="com.city3d.dao.entry.Police">
+	    <id column="police_id" property="policeId" jdbcType="VARCHAR" />
+	    <result column="net_id" property="netId" jdbcType="VARCHAR" />
+	    <result column="dep_id" property="depId" jdbcType="VARCHAR" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="identity" property="identity" jdbcType="VARCHAR" />
+	    <result column="gender" property="gender" jdbcType="VARCHAR" />
+	    <result column="birth" property="birth" jdbcType="VARCHAR" />
+	    <result column="nation" property="nation" jdbcType="VARCHAR" />
+	    <result column="origin" property="origin" jdbcType="VARCHAR" />
+	    <result column="post" property="post" jdbcType="VARCHAR" />
+	    <result column="job_date" property="jobDate" jdbcType="VARCHAR" />
+	    <result column="police_rank" property="policeRank" jdbcType="VARCHAR" />
+	    <result column="education" property="education" jdbcType="VARCHAR" />
+	    <result column="device_num" property="deviceNum" jdbcType="VARCHAR" />
+	    <result column="device_type" property="deviceType" jdbcType="VARCHAR" />
+	    <result column="device_date" property="deviceDate" jdbcType="VARCHAR" />
+	    <result column="image" property="image" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    security_id, security_name, security_type, security_police_id, security_tel, security_describe, 
+    security_poi, security_center, security_video_id, equipment_id, security_community, 
+    net_master, net_listener, net_base_people, net_hold_people, net_flow_people, net_group, 
+    net_note, pid, level
+  </sql>
+  <select id="selectSecurityById" resultMap="BaseResultMap">
+  	SELECT s.*, a.* FROM security s, address a WHERE s.add_id = a.add_id and s.security_id = #{sId}
+  </select>
+  <select id="getSecurityById" resultMap="BaseResultMap">
+  	SELECT s.*, p.name FROM security s, police p WHERE s.security_police_id = p.police_id and s.security_id = #{sId}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select p.name, s.* from security s left join police p
+    on s.security_police_id = p.police_id
+  </select>
+  <delete id="batchDelete" parameterType="java.util.List" >
+    delete from security where security_id in
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+    	#{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+</mapper>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.ManPosMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.ManPos" >
+    <id column="real_id" property="realId" jdbcType="VARCHAR" />
+    <result column="real_pos" property="realPos" jdbcType="VARCHAR" />
+    <result column="real_time" property="realTime" jdbcType="VARCHAR" />
+    <result column="device_num" property="deviceNum" jdbcType="VARCHAR" />
+    <result column="real_type" property="realType" jdbcType="VARCHAR" />
+    <association property="police" javaType="com.city3d.dao.entry.Police">
+    	<id column="police_id" property="policeId" jdbcType="VARCHAR" />
+    	<result column="net_id" property="netId" jdbcType="VARCHAR" />
+   		<result column="dep_id" property="depId" jdbcType="VARCHAR" />
+   		<result column="name" property="name" jdbcType="VARCHAR" />
+   		<result column="identity" property="identity" jdbcType="VARCHAR" />
+   		<result column="gender" property="gender" jdbcType="VARCHAR" />
+   		<result column="birth" property="birth" jdbcType="VARCHAR" />
+   		<result column="nation" property="nation" jdbcType="VARCHAR" />
+   		<result column="origin" property="origin" jdbcType="VARCHAR" />
+   		<result column="post" property="post" jdbcType="VARCHAR" />
+   		<result column="job_date" property="jobDate" jdbcType="VARCHAR" />
+   		<result column="police_rank" property="policeRank" jdbcType="VARCHAR" />
+   		<result column="education" property="education" jdbcType="VARCHAR" />
+   		<result column="device_num" property="deviceNum" jdbcType="VARCHAR" />
+   		<result column="device_type" property="deviceType" jdbcType="VARCHAR" />
+   		<result column="device_date" property="deviceDate" jdbcType="VARCHAR" />
+   		<result column="image" property="image" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <resultMap id="ManPosMap" type="com.city3d.dao.entry.ManPos" >
+    <id column="real_id" property="realId" jdbcType="VARCHAR" />
+    <result column="real_pos" property="realPos" jdbcType="VARCHAR" />
+    <result column="real_time" property="realTime" jdbcType="VARCHAR" />
+    <result column="device_num" property="deviceNum" jdbcType="VARCHAR" />
+    <result column="real_type" property="realType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    real_id, real_pos, real_time, device_num, real_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.ManPosExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from man_pos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from man_pos
+    where real_id = #{realId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from man_pos
+    where real_id = #{realId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.ManPosExample" >
+    delete from man_pos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.ManPos" >
+    insert into man_pos (real_id, real_pos, real_time, 
+      device_num, real_type)
+    values (#{realId,jdbcType=VARCHAR}, #{realPos,jdbcType=VARCHAR}, #{realTime,jdbcType=VARCHAR}, 
+      #{deviceNum,jdbcType=VARCHAR}, #{realType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.ManPos" >
+    insert into man_pos
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="realId != null" >
+        real_id,
+      </if>
+      <if test="realPos != null" >
+        real_pos,
+      </if>
+      <if test="realTime != null" >
+        real_time,
+      </if>
+      <if test="deviceNum != null" >
+        device_num,
+      </if>
+      <if test="realType != null" >
+        real_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="realId != null" >
+        #{realId,jdbcType=VARCHAR},
+      </if>
+      <if test="realPos != null" >
+        #{realPos,jdbcType=VARCHAR},
+      </if>
+      <if test="realTime != null" >
+        #{realTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceNum != null" >
+        #{deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="realType != null" >
+        #{realType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.ManPosExample" resultType="java.lang.Integer" >
+    select count(*) from man_pos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update man_pos
+    <set >
+      <if test="record.realId != null" >
+        real_id = #{record.realId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realPos != null" >
+        real_pos = #{record.realPos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realTime != null" >
+        real_time = #{record.realTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceNum != null" >
+        device_num = #{record.deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realType != null" >
+        real_type = #{record.realType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update man_pos
+    set real_id = #{record.realId,jdbcType=VARCHAR},
+      real_pos = #{record.realPos,jdbcType=VARCHAR},
+      real_time = #{record.realTime,jdbcType=VARCHAR},
+      device_num = #{record.deviceNum,jdbcType=VARCHAR},
+      real_type = #{record.realType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.ManPos" >
+    update man_pos
+    <set >
+      <if test="realPos != null" >
+        real_pos = #{realPos,jdbcType=VARCHAR},
+      </if>
+      <if test="realTime != null" >
+        real_time = #{realTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceNum != null" >
+        device_num = #{deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="realType != null" >
+        real_type = #{realType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where real_id = #{realId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.ManPos" >
+    update man_pos
+    set real_pos = #{realPos,jdbcType=VARCHAR},
+      real_time = #{realTime,jdbcType=VARCHAR},
+      device_num = #{deviceNum,jdbcType=VARCHAR},
+      real_type = #{realType,jdbcType=VARCHAR}
+    where real_id = #{realId,jdbcType=VARCHAR}
+  </update>
+  <select id="getManPosWithNameAndOrigin" resultMap="BaseResultMap" >
+    select name,origin,m.* from 
+    man_pos m inner join police p 
+    on p.device_num = m.device_num 
+    where m.device_num in 
+    <foreach collection="array" item="deviceNum" index="index" open="(" close=")" separator=",">
+    #{deviceNum}
+    </foreach>
+  </select>
+  <!--用于历史轨迹回放  查一个表 -->
+  <select id="getTraceManPosInOneDay" parameterType="java.util.HashMap" resultMap="ManPosMap">
+	select * from ${tableName1} a  
+		<where>	
+			<if test="deviceNum!=null">
+            	a.device_num = #{deviceNum, jdbcType=VARCHAR} 
+            </if>
+			<if test="startTime!=null">
+				<![CDATA[and a.real_time >= #{startTime,jdbcType=VARCHAR}]]>
+			</if>
+			<if test="endTime!=null">
+			  	<![CDATA[and a.real_time <= #{endTime,jdbcType=VARCHAR}]]>
+			</if>
+		</where>order by a.real_time
+  </select>
+  <!--用于历史轨迹回放 跨两个表 -->
+  <select id="getTraceManPos2Days" parameterType="java.util.HashMap" resultMap="ManPosMap">
+	select d.* from (select * from ${tableName1} a  
+		<where>	
+			<if test="deviceNum!=null">
+            	a.device_num = #{deviceNum, jdbcType=VARCHAR} 
+            </if>
+			<if test="startTime!=null">
+				<![CDATA[and a.real_time >= #{startTime,jdbcType=VARCHAR]]>
+			<!-- and a.updatedate>=#{startTime,jdbcType=VARCHAR} -->
+			</if>
+			<if test="endTime!=null">
+			  <![CDATA[and a.real_time <= #{endTime,jdbcType=VARCHAR}]]>
+			</if>
+		</where>
+		 union all  select * from ${tableName2} as b 
+		 <where>
+		 	<if test="deviceNum!=null">
+            	b.device_num = #{deviceNum, jdbcType=VARCHAR} 
+            </if>
+            <if test="startTime!=null">
+				and b.real_time>=#{startTime,jdbcType=VARCHAR}
+			<!-- <![CDATA[and a.updatedate >=  ${startTime}]]> -->
+			</if>
+			<if test="endTime!=null">
+			  <![CDATA[and b.real_time <= #{endTime,jdbcType=VARCHAR}]]>
+			</if>
+		 </where>) d order by d.real_time
+  </select>
+</mapper>

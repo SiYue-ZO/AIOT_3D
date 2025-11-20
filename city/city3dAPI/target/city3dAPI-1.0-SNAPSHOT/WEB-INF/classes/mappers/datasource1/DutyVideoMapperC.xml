@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.DutyVideoMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.DutyVideo" >
+    <id column="duty_video_id" property="dutyVideoId" jdbcType="VARCHAR" />
+    <result column="duty_name" property="dutyName" jdbcType="VARCHAR" />
+    <result column="duty_time" property="dutyTime" jdbcType="VARCHAR" />
+    <result column="duty_type" property="dutyType" jdbcType="VARCHAR" />
+    <collection property="dutyVideoVideo" ofType="com.city3d.dao.entry.DutyVideoVideo">
+	    <id column="duty_video_video_id" property="dutyVideoVideoId" jdbcType="VARCHAR" />
+	    <result column="duty_video_id" property="dutyVideoId" jdbcType="VARCHAR" />
+	    <result column="id" property="id" jdbcType="VARCHAR" />
+	    <result column="duty_order" property="dutyOrder" jdbcType="INTEGER" />
+    	<association property="video" javaType="com.city3d.dao.entry.Video">
+		    <id column="id" property="id" jdbcType="VARCHAR" />
+		    <result column="cam_add" property="camAdd" jdbcType="VARCHAR" />
+		    <result column="cam_url" property="camUrl" jdbcType="VARCHAR" />
+		    <result column="cam_type" property="camType" jdbcType="VARCHAR" />
+		    <result column="cam_position" property="camPosition" jdbcType="VARCHAR" />
+		    <result column="cam_pid" property="camPid" jdbcType="VARCHAR" />
+		    <result column="cam_isnode" property="camIsnode" jdbcType="BIT" />
+		    <result column="cam_holes" property="camHoles" jdbcType="VARCHAR" />
+		    <result column="cam_fov" property="camFov" jdbcType="VARCHAR" />
+		    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+		    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+		    <result column="cam_roll" property="camRoll" jdbcType="VARCHAR" />
+		    <result column="cam_near" property="camNear" jdbcType="VARCHAR" />
+		    <result column="cam_far" property="camFar" jdbcType="VARCHAR" />
+		    <result column="cam_aspectratio" property="camAspectratio" jdbcType="VARCHAR" />
+		    <result column="cam_rtsp" property="camRtsp" jdbcType="VARCHAR" />
+		    <result column="cam_port" property="camPort" jdbcType="VARCHAR" />
+		    <result column="mac_url" property="macUrl" jdbcType="VARCHAR" />
+		    <result column="is_indoor" property="isIndoor" jdbcType="VARCHAR" />
+	    </association>
+    </collection>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    duty_video_id, duty_name, duty_time, duty_type
+  </sql>
+  <select id="getDutyVideoAll" resultMap="BaseResultMap" >
+    select d.*, dd.*, v.* from duty_video d, duty_video_video dd, video v
+    where d.duty_video_id = dd.duty_video_id and dd.id = v.id order by duty_order
+  </select>
+</mapper>

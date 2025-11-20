@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.BuildingMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Building" >
+    <id column="building_id" property="buildingId" jdbcType="VARCHAR" />
+    <result column="zdh" property="zdh" jdbcType="VARCHAR" />
+    <result column="tdxz" property="tdxz" jdbcType="VARCHAR" />
+    <result column="yxgs" property="yxgs" jdbcType="VARCHAR" />
+    <result column="jzzdmj" property="jzzdmj" jdbcType="VARCHAR" />
+    <result column="sjjzmj" property="sjjzmj" jdbcType="VARCHAR" />
+    <result column="fwjg" property="fwjg" jdbcType="VARCHAR" />
+    <result column="type_real" property="typeReal" jdbcType="VARCHAR" />
+    <result column="area_accept" property="areaAccept" jdbcType="VARCHAR" />
+    <result column="type_accept" property="typeAccept" jdbcType="VARCHAR" />
+    <result column="accept_num" property="acceptNum" jdbcType="VARCHAR" />
+    <result column="fczh" property="fczh" jdbcType="VARCHAR" />
+    <result column="area_record" property="areaRecord" jdbcType="VARCHAR" />
+    <result column="area_building" property="areaBuilding" jdbcType="VARCHAR" />
+    <result column="plan_type" property="planType" jdbcType="VARCHAR" />
+    <result column="dbnum" property="dbnum" jdbcType="VARCHAR" />
+    <result column="coordinates" property="coordinates" jdbcType="VARCHAR" />
+    <result column="fwcs" property="fwcs" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="building_img" property="buildingImg" jdbcType="VARCHAR" />
+    <result column="building_pdf1" property="buildingPdf1" jdbcType="VARCHAR" />
+    <result column="building_pdf2" property="buildingPdf2" jdbcType="VARCHAR" />
+    <result column="building_pdf3" property="buildingPdf3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    building_id, zdh, tdxz, yxgs, jzzdmj, sjjzmj, fwjg, type_real, area_accept, type_accept, 
+    accept_num, fczh, area_record, area_building, plan_type, dbnum, coordinates, fwcs, 
+    note, building_img, building_pdf1, building_pdf2, building_pdf3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.BuildingExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from building
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from building
+    where building_id = #{buildingId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from building
+    where building_id = #{buildingId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.BuildingExample" >
+    delete from building
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.Building" >
+    insert into building (building_id, zdh, tdxz, 
+      yxgs, jzzdmj, sjjzmj, 
+      fwjg, type_real, area_accept, 
+      type_accept, accept_num, fczh, 
+      area_record, area_building, plan_type, 
+      dbnum, coordinates, fwcs, 
+      note, building_img, building_pdf1, 
+      building_pdf2, building_pdf3)
+    values (#{buildingId,jdbcType=VARCHAR}, #{zdh,jdbcType=VARCHAR}, #{tdxz,jdbcType=VARCHAR}, 
+      #{yxgs,jdbcType=VARCHAR}, #{jzzdmj,jdbcType=VARCHAR}, #{sjjzmj,jdbcType=VARCHAR}, 
+      #{fwjg,jdbcType=VARCHAR}, #{typeReal,jdbcType=VARCHAR}, #{areaAccept,jdbcType=VARCHAR}, 
+      #{typeAccept,jdbcType=VARCHAR}, #{acceptNum,jdbcType=VARCHAR}, #{fczh,jdbcType=VARCHAR}, 
+      #{areaRecord,jdbcType=VARCHAR}, #{areaBuilding,jdbcType=VARCHAR}, #{planType,jdbcType=VARCHAR}, 
+      #{dbnum,jdbcType=VARCHAR}, #{coordinates,jdbcType=VARCHAR}, #{fwcs,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{buildingImg,jdbcType=VARCHAR}, #{buildingPdf1,jdbcType=VARCHAR}, 
+      #{buildingPdf2,jdbcType=VARCHAR}, #{buildingPdf3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.Building" >
+    insert into building
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="buildingId != null" >
+        building_id,
+      </if>
+      <if test="zdh != null" >
+        zdh,
+      </if>
+      <if test="tdxz != null" >
+        tdxz,
+      </if>
+      <if test="yxgs != null" >
+        yxgs,
+      </if>
+      <if test="jzzdmj != null" >
+        jzzdmj,
+      </if>
+      <if test="sjjzmj != null" >
+        sjjzmj,
+      </if>
+      <if test="fwjg != null" >
+        fwjg,
+      </if>
+      <if test="typeReal != null" >
+        type_real,
+      </if>
+      <if test="areaAccept != null" >
+        area_accept,
+      </if>
+      <if test="typeAccept != null" >
+        type_accept,
+      </if>
+      <if test="acceptNum != null" >
+        accept_num,
+      </if>
+      <if test="fczh != null" >
+        fczh,
+      </if>
+      <if test="areaRecord != null" >
+        area_record,
+      </if>
+      <if test="areaBuilding != null" >
+        area_building,
+      </if>
+      <if test="planType != null" >
+        plan_type,
+      </if>
+      <if test="dbnum != null" >
+        dbnum,
+      </if>
+      <if test="coordinates != null" >
+        coordinates,
+      </if>
+      <if test="fwcs != null" >
+        fwcs,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="buildingImg != null" >
+        building_img,
+      </if>
+      <if test="buildingPdf1 != null" >
+        building_pdf1,
+      </if>
+      <if test="buildingPdf2 != null" >
+        building_pdf2,
+      </if>
+      <if test="buildingPdf3 != null" >
+        building_pdf3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="buildingId != null" >
+        #{buildingId,jdbcType=VARCHAR},
+      </if>
+      <if test="zdh != null" >
+        #{zdh,jdbcType=VARCHAR},
+      </if>
+      <if test="tdxz != null" >
+        #{tdxz,jdbcType=VARCHAR},
+      </if>
+      <if test="yxgs != null" >
+        #{yxgs,jdbcType=VARCHAR},
+      </if>
+      <if test="jzzdmj != null" >
+        #{jzzdmj,jdbcType=VARCHAR},
+      </if>
+      <if test="sjjzmj != null" >
+        #{sjjzmj,jdbcType=VARCHAR},
+      </if>
+      <if test="fwjg != null" >
+        #{fwjg,jdbcType=VARCHAR},
+      </if>
+      <if test="typeReal != null" >
+        #{typeReal,jdbcType=VARCHAR},
+      </if>
+      <if test="areaAccept != null" >
+        #{areaAccept,jdbcType=VARCHAR},
+      </if>
+      <if test="typeAccept != null" >
+        #{typeAccept,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptNum != null" >
+        #{acceptNum,jdbcType=VARCHAR},
+      </if>
+      <if test="fczh != null" >
+        #{fczh,jdbcType=VARCHAR},
+      </if>
+      <if test="areaRecord != null" >
+        #{areaRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="areaBuilding != null" >
+        #{areaBuilding,jdbcType=VARCHAR},
+      </if>
+      <if test="planType != null" >
+        #{planType,jdbcType=VARCHAR},
+      </if>
+      <if test="dbnum != null" >
+        #{dbnum,jdbcType=VARCHAR},
+      </if>
+      <if test="coordinates != null" >
+        #{coordinates,jdbcType=VARCHAR},
+      </if>
+      <if test="fwcs != null" >
+        #{fwcs,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingImg != null" >
+        #{buildingImg,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingPdf1 != null" >
+        #{buildingPdf1,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingPdf2 != null" >
+        #{buildingPdf2,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingPdf3 != null" >
+        #{buildingPdf3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.BuildingExample" resultType="java.lang.Integer" >
+    select count(*) from building
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update building
+    <set >
+      <if test="record.buildingId != null" >
+        building_id = #{record.buildingId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdh != null" >
+        zdh = #{record.zdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdxz != null" >
+        tdxz = #{record.tdxz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yxgs != null" >
+        yxgs = #{record.yxgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jzzdmj != null" >
+        jzzdmj = #{record.jzzdmj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sjjzmj != null" >
+        sjjzmj = #{record.sjjzmj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fwjg != null" >
+        fwjg = #{record.fwjg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeReal != null" >
+        type_real = #{record.typeReal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaAccept != null" >
+        area_accept = #{record.areaAccept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeAccept != null" >
+        type_accept = #{record.typeAccept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acceptNum != null" >
+        accept_num = #{record.acceptNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fczh != null" >
+        fczh = #{record.fczh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaRecord != null" >
+        area_record = #{record.areaRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaBuilding != null" >
+        area_building = #{record.areaBuilding,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planType != null" >
+        plan_type = #{record.planType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dbnum != null" >
+        dbnum = #{record.dbnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coordinates != null" >
+        coordinates = #{record.coordinates,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fwcs != null" >
+        fwcs = #{record.fwcs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.note != null" >
+        note = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingImg != null" >
+        building_img = #{record.buildingImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingPdf1 != null" >
+        building_pdf1 = #{record.buildingPdf1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingPdf2 != null" >
+        building_pdf2 = #{record.buildingPdf2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingPdf3 != null" >
+        building_pdf3 = #{record.buildingPdf3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update building
+    set building_id = #{record.buildingId,jdbcType=VARCHAR},
+      zdh = #{record.zdh,jdbcType=VARCHAR},
+      tdxz = #{record.tdxz,jdbcType=VARCHAR},
+      yxgs = #{record.yxgs,jdbcType=VARCHAR},
+      jzzdmj = #{record.jzzdmj,jdbcType=VARCHAR},
+      sjjzmj = #{record.sjjzmj,jdbcType=VARCHAR},
+      fwjg = #{record.fwjg,jdbcType=VARCHAR},
+      type_real = #{record.typeReal,jdbcType=VARCHAR},
+      area_accept = #{record.areaAccept,jdbcType=VARCHAR},
+      type_accept = #{record.typeAccept,jdbcType=VARCHAR},
+      accept_num = #{record.acceptNum,jdbcType=VARCHAR},
+      fczh = #{record.fczh,jdbcType=VARCHAR},
+      area_record = #{record.areaRecord,jdbcType=VARCHAR},
+      area_building = #{record.areaBuilding,jdbcType=VARCHAR},
+      plan_type = #{record.planType,jdbcType=VARCHAR},
+      dbnum = #{record.dbnum,jdbcType=VARCHAR},
+      coordinates = #{record.coordinates,jdbcType=VARCHAR},
+      fwcs = #{record.fwcs,jdbcType=VARCHAR},
+      note = #{record.note,jdbcType=VARCHAR},
+      building_img = #{record.buildingImg,jdbcType=VARCHAR},
+      building_pdf1 = #{record.buildingPdf1,jdbcType=VARCHAR},
+      building_pdf2 = #{record.buildingPdf2,jdbcType=VARCHAR},
+      building_pdf3 = #{record.buildingPdf3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.Building" >
+    update building
+    <set >
+      <if test="zdh != null" >
+        zdh = #{zdh,jdbcType=VARCHAR},
+      </if>
+      <if test="tdxz != null" >
+        tdxz = #{tdxz,jdbcType=VARCHAR},
+      </if>
+      <if test="yxgs != null" >
+        yxgs = #{yxgs,jdbcType=VARCHAR},
+      </if>
+      <if test="jzzdmj != null" >
+        jzzdmj = #{jzzdmj,jdbcType=VARCHAR},
+      </if>
+      <if test="sjjzmj != null" >
+        sjjzmj = #{sjjzmj,jdbcType=VARCHAR},
+      </if>
+      <if test="fwjg != null" >
+        fwjg = #{fwjg,jdbcType=VARCHAR},
+      </if>
+      <if test="typeReal != null" >
+        type_real = #{typeReal,jdbcType=VARCHAR},
+      </if>
+      <if test="areaAccept != null" >
+        area_accept = #{areaAccept,jdbcType=VARCHAR},
+      </if>
+      <if test="typeAccept != null" >
+        type_accept = #{typeAccept,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptNum != null" >
+        accept_num = #{acceptNum,jdbcType=VARCHAR},
+      </if>
+      <if test="fczh != null" >
+        fczh = #{fczh,jdbcType=VARCHAR},
+      </if>
+      <if test="areaRecord != null" >
+        area_record = #{areaRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="areaBuilding != null" >
+        area_building = #{areaBuilding,jdbcType=VARCHAR},
+      </if>
+      <if test="planType != null" >
+        plan_type = #{planType,jdbcType=VARCHAR},
+      </if>
+      <if test="dbnum != null" >
+        dbnum = #{dbnum,jdbcType=VARCHAR},
+      </if>
+      <if test="coordinates != null" >
+        coordinates = #{coordinates,jdbcType=VARCHAR},
+      </if>
+      <if test="fwcs != null" >
+        fwcs = #{fwcs,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingImg != null" >
+        building_img = #{buildingImg,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingPdf1 != null" >
+        building_pdf1 = #{buildingPdf1,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingPdf2 != null" >
+        building_pdf2 = #{buildingPdf2,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingPdf3 != null" >
+        building_pdf3 = #{buildingPdf3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where building_id = #{buildingId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.Building" >
+    update building
+    set zdh = #{zdh,jdbcType=VARCHAR},
+      tdxz = #{tdxz,jdbcType=VARCHAR},
+      yxgs = #{yxgs,jdbcType=VARCHAR},
+      jzzdmj = #{jzzdmj,jdbcType=VARCHAR},
+      sjjzmj = #{sjjzmj,jdbcType=VARCHAR},
+      fwjg = #{fwjg,jdbcType=VARCHAR},
+      type_real = #{typeReal,jdbcType=VARCHAR},
+      area_accept = #{areaAccept,jdbcType=VARCHAR},
+      type_accept = #{typeAccept,jdbcType=VARCHAR},
+      accept_num = #{acceptNum,jdbcType=VARCHAR},
+      fczh = #{fczh,jdbcType=VARCHAR},
+      area_record = #{areaRecord,jdbcType=VARCHAR},
+      area_building = #{areaBuilding,jdbcType=VARCHAR},
+      plan_type = #{planType,jdbcType=VARCHAR},
+      dbnum = #{dbnum,jdbcType=VARCHAR},
+      coordinates = #{coordinates,jdbcType=VARCHAR},
+      fwcs = #{fwcs,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      building_img = #{buildingImg,jdbcType=VARCHAR},
+      building_pdf1 = #{buildingPdf1,jdbcType=VARCHAR},
+      building_pdf2 = #{buildingPdf2,jdbcType=VARCHAR},
+      building_pdf3 = #{buildingPdf3,jdbcType=VARCHAR}
+    where building_id = #{buildingId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.SysRoleMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.SysRole" >
+    <id column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <collection property="sysRoleFunc" ofType="com.city3d.dao.entry.SysRoleFunc">
+    	 <id column="role_func_id" property="roleFuncId" jdbcType="VARCHAR" />
+		 <result column="func_id" property="funcId" jdbcType="VARCHAR" />
+		 <result column="func_name" property="funcName" jdbcType="VARCHAR" />
+		 <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+		 <result column="role_func_pid" property="roleFuncPid" jdbcType="VARCHAR" />
+		 <result column="role_func_order" property="roleFuncOrder" jdbcType="INTEGER" />
+		 <association property="sysFunc" javaType="com.city3d.dao.entry.SysFunc">
+		 	<id column="func_id" property="funcId" jdbcType="VARCHAR" />
+		    <result column="func_url" property="funcUrl" jdbcType="VARCHAR" />
+		    <result column="func_iot_name" property="funcIotName" jdbcType="VARCHAR" />
+		    <result column="func_iot_img" property="funcIotImg" jdbcType="VARCHAR" />
+		    <result column="func_type" property="funcType" jdbcType="VARCHAR" />
+		    <result column="func_src" property="funcSrc" jdbcType="VARCHAR" />
+		    <result column="func_default_name" property="funcDefaultName" jdbcType="VARCHAR" />
+		    <result column="func_pid" property="funcPid" jdbcType="VARCHAR" />
+		    <result column="func_level" property="funcLevel" jdbcType="VARCHAR" />
+		    <result column="func_icon" property="funcIcon" jdbcType="VARCHAR" />
+		 </association>
+    </collection>
+    <collection property="sysRoleTiles3d" ofType="com.city3d.dao.entry.SysRoleTiles3d">
+    	 <id column="role_tiles_id" property="roleTilesId" jdbcType="VARCHAR" />
+		 <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+		 <result column="tiles_id" property="tilesId" jdbcType="VARCHAR" />
+		 <association property="tiles3d" javaType="com.city3d.dao.entry.Tiles3d">
+		 	<id column="tiles_id" property="tilesId" jdbcType="VARCHAR" />
+		    <result column="tiles_name" property="tilesName" jdbcType="VARCHAR" />
+		    <result column="tiles_url" property="tilesUrl" jdbcType="VARCHAR" />
+		    <result column="tiles_type" property="tilesType" jdbcType="VARCHAR" />
+             <result column="tiles_transparent" jdbcType="VARCHAR" property="tilesTransparent" />
+             <result column="max_num_loaded_tiles" jdbcType="VARCHAR" property="maxNumLoadedTiles" />
+             <result column="max_memory_usage" jdbcType="VARCHAR" property="maxMemoryUsage" />
+		    <result column="tiles_x" property="tilesX" jdbcType="VARCHAR" />
+		    <result column="tiles_y" property="tilesY" jdbcType="VARCHAR" />
+		    <result column="tiles_z" property="tilesZ" jdbcType="VARCHAR" />
+		    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+		    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+		    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+		 </association>
+    </collection>
+    <collection property="sysRoleBim" ofType="com.city3d.dao.entry.SysRoleBim">
+    	<id column="role_bim_id" property="roleBimId" jdbcType="VARCHAR" />
+	    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+	    <result column="tiles_id" property="tilesId" jdbcType="VARCHAR" />
+	    <association property="bim" javaType="com.city3d.dao.entry.Bim">
+		 	<id column="tiles_id" property="tilesId" jdbcType="VARCHAR" />
+		    <result column="tiles_name" property="tilesName" jdbcType="VARCHAR" />
+		    <result column="tiles_url" property="tilesUrl" jdbcType="VARCHAR" />
+		    <result column="tiles_type" property="tilesType" jdbcType="VARCHAR" />
+		    <result column="tiles_x" property="tilesX" jdbcType="VARCHAR" />
+		    <result column="tiles_y" property="tilesY" jdbcType="VARCHAR" />
+		    <result column="tiles_z" property="tilesZ" jdbcType="VARCHAR" />
+		    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+		    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+		    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+		 </association>
+    </collection>
+      <collection property="sysRoleCar" ofType="com.city3d.dao.entry.SysRoleCar" javaType="java.util.List">
+          <id column="role_car_id" jdbcType="VARCHAR" property="roleCarId" />
+          <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+          <result column="car_id" jdbcType="VARCHAR" property="carId" />
+          <association property="car" javaType="com.city3d.dao.entry.Car">
+              <id column="car_id" property="carId" jdbcType="VARCHAR" />
+              <result column="dep_id" property="depId" jdbcType="VARCHAR" />
+              <result column="car_license" property="carLicense" jdbcType="VARCHAR" />
+              <result column="car_style" property="carStyle" jdbcType="VARCHAR" />
+              <result column="car_date" property="carDate" jdbcType="VARCHAR" />
+              <result column="driver" property="driver" jdbcType="VARCHAR" />
+              <result column="police_type" property="policeType" jdbcType="VARCHAR" />
+              <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+              <result column="card_num" property="cardNum" jdbcType="VARCHAR" />
+              <result column="image" property="image" jdbcType="VARCHAR" />
+          </association>
+      </collection>
+      <collection property="sysRoleDevice" ofType="com.city3d.dao.entry.SysRoleDevice" javaType="java.util.List">
+          <id column="role_device_id" jdbcType="VARCHAR" property="roleDeviceId" />
+          <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+          <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+          <association property="bimDevice" javaType="com.city3d.dao.entry.BimDevice">
+              <id column="device_id" property="deviceId" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="status" property="status" jdbcType="VARCHAR" />
+              <result column="temp" property="temp" jdbcType="VARCHAR" />
+              <result column="voltage" property="voltage" jdbcType="VARCHAR" />
+              <result column="run_time" property="runTime" jdbcType="VARCHAR" />
+              <result column="devicepos" property="devicepos" jdbcType="VARCHAR" />
+              <result column="height" property="height" jdbcType="VARCHAR" />
+              <result column="type" property="type" jdbcType="VARCHAR" />
+              <result column="floor" property="floor" jdbcType="VARCHAR" />
+          </association>
+      </collection>
+      <collection property="sysRoleNet" ofType="com.city3d.dao.entry.SysRoleNet" javaType="java.util.List">
+          <id column="role_net_id" jdbcType="VARCHAR" property="roleNetId" />
+          <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+          <result column="net_id" jdbcType="VARCHAR" property="netId" />
+          <association property="net" javaType="com.city3d.dao.entry.Net">
+              <id column="net_id" property="netId" jdbcType="VARCHAR" />
+              <result column="net_pid" property="netPid" jdbcType="VARCHAR" />
+              <result column="net_poi" property="netPoi" jdbcType="VARCHAR" />
+              <result column="net_level" property="netLevel" jdbcType="VARCHAR" />
+              <result column="net_name" property="netName" jdbcType="VARCHAR" />
+              <result column="net_center" property="netCenter" jdbcType="VARCHAR" />
+              <result column="net_color" property="netColor" jdbcType="VARCHAR" />
+              <result column="net_master" property="netMaster" jdbcType="VARCHAR" />
+              <result column="net_listener" property="netListener" jdbcType="VARCHAR" />
+              <result column="net_base_people" property="netBasePeople" jdbcType="VARCHAR" />
+              <result column="net_hold_people" property="netHoldPeople" jdbcType="VARCHAR" />
+              <result column="net_flow_people" property="netFlowPeople" jdbcType="VARCHAR" />
+              <result column="net_group" property="netGroup" jdbcType="VARCHAR" />
+              <result column="net_note" property="netNote" jdbcType="VARCHAR" />
+              <result column="net_com" property="netCom" jdbcType="VARCHAR" />
+          </association>
+      </collection>
+      <collection property="sysRolePolice" ofType="com.city3d.dao.entry.SysRolePolice" javaType="java.util.List">
+          <id column="role_police_id" jdbcType="VARCHAR" property="rolePoliceId" />
+          <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+          <result column="police_id" jdbcType="VARCHAR" property="policeId" />
+          <association property="police" javaType="com.city3d.dao.entry.Police">
+              <id column="police_id" property="policeId" jdbcType="VARCHAR" />
+              <result column="net_id" property="netId" jdbcType="VARCHAR" />
+              <result column="dep_id" property="depId" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="identity" property="identity" jdbcType="VARCHAR" />
+              <result column="gender" property="gender" jdbcType="VARCHAR" />
+              <result column="birth" property="birth" jdbcType="VARCHAR" />
+              <result column="nation" property="nation" jdbcType="VARCHAR" />
+              <result column="origin" property="origin" jdbcType="VARCHAR" />
+              <result column="post" property="post" jdbcType="VARCHAR" />
+              <result column="job_date" property="jobDate" jdbcType="VARCHAR" />
+              <result column="police_rank" property="policeRank" jdbcType="VARCHAR" />
+              <result column="education" property="education" jdbcType="VARCHAR" />
+              <result column="device_num" property="deviceNum" jdbcType="VARCHAR" />
+              <result column="device_type" property="deviceType" jdbcType="VARCHAR" />
+              <result column="device_date" property="deviceDate" jdbcType="VARCHAR" />
+              <result column="image" property="image" jdbcType="VARCHAR" />
+          </association>
+      </collection>
+      <collection property="sysRoleSecurity" ofType="com.city3d.dao.entry.SysRoleSecurity" javaType="java.util.List">
+          <id column="role_security_id" jdbcType="VARCHAR" property="roleSecurityId" />
+          <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+          <result column="security_id" jdbcType="VARCHAR" property="securityId" />
+          <association property="security" javaType="com.city3d.dao.entry.Security">
+              <id column="security_id" property="securityId" jdbcType="VARCHAR" />
+              <result column="security_name" property="securityName" jdbcType="VARCHAR" />
+              <result column="security_type" property="securityType" jdbcType="VARCHAR" />
+              <result column="security_police_id" property="securityPoliceId" jdbcType="VARCHAR" />
+              <result column="security_tel" property="securityTel" jdbcType="VARCHAR" />
+              <result column="security_describe" property="securityDescribe" jdbcType="VARCHAR" />
+              <result column="security_poi" property="securityPoi" jdbcType="VARCHAR" />
+              <result column="security_center" property="securityCenter" jdbcType="VARCHAR" />
+              <result column="security_video_id" property="securityVideoId" jdbcType="VARCHAR" />
+              <result column="equipment_id" property="equipmentId" jdbcType="VARCHAR" />
+              <result column="security_community" property="securityCommunity" jdbcType="VARCHAR" />
+              <result column="net_master" property="netMaster" jdbcType="VARCHAR" />
+              <result column="net_listener" property="netListener" jdbcType="VARCHAR" />
+              <result column="net_base_people" property="netBasePeople" jdbcType="VARCHAR" />
+              <result column="net_hold_people" property="netHoldPeople" jdbcType="VARCHAR" />
+              <result column="net_flow_people" property="netFlowPeople" jdbcType="VARCHAR" />
+              <result column="net_group" property="netGroup" jdbcType="VARCHAR" />
+              <result column="net_note" property="netNote" jdbcType="VARCHAR" />
+              <result column="pid" property="pid" jdbcType="VARCHAR" />
+              <result column="level" property="level" jdbcType="VARCHAR" />
+          </association>
+      </collection>
+      <collection property="sysRoleUav" ofType="com.city3d.dao.entry.SysRoleUav" javaType="java.util.List">
+          <id column="role_uav_id" jdbcType="VARCHAR" property="roleUavId" />
+          <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+          <result column="uav_id" jdbcType="VARCHAR" property="uavId" />
+          <association property="uav" javaType="com.city3d.dao.entry.Uav">
+              <id column="uav_id" property="uavId" jdbcType="VARCHAR" />
+              <result column="uav_name" property="uavName" jdbcType="VARCHAR" />
+              <result column="uav_type" property="uavType" jdbcType="VARCHAR" />
+              <result column="uav_model" property="uavModel" jdbcType="VARCHAR" />
+              <result column="uav_property" property="uavProperty" jdbcType="VARCHAR" />
+              <result column="uav_date" property="uavDate" jdbcType="VARCHAR" />
+              <result column="uav_elec" property="uavElec" jdbcType="VARCHAR" />
+              <result column="uav_cam_type" property="uavCamType" jdbcType="VARCHAR" />
+              <result column="uav_url" property="uavUrl" jdbcType="VARCHAR" />
+          </association>
+      </collection>
+      <collection property="sysRoleVideo" ofType="com.city3d.dao.entry.SysRoleVideo" javaType="java.util.List">
+          <id column="role_video_id" jdbcType="VARCHAR" property="roleVideoId" />
+          <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+          <result column="video_id" jdbcType="VARCHAR" property="videoId" />
+          <association property="video" javaType="com.city3d.dao.entry.Video">
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="cam_add" property="camAdd" jdbcType="VARCHAR" />
+              <result column="cam_url" property="camUrl" jdbcType="VARCHAR" />
+              <result column="cam_type" property="camType" jdbcType="VARCHAR" />
+              <result column="cam_position" property="camPosition" jdbcType="VARCHAR" />
+              <result column="cam_pid" property="camPid" jdbcType="VARCHAR" />
+              <result column="cam_isnode" property="camIsnode" jdbcType="BIT" />
+              <result column="cam_holes" property="camHoles" jdbcType="VARCHAR" />
+              <result column="cam_fov" property="camFov" jdbcType="VARCHAR" />
+              <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+              <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+              <result column="cam_roll" property="camRoll" jdbcType="VARCHAR" />
+              <result column="cam_near" property="camNear" jdbcType="VARCHAR" />
+              <result column="cam_far" property="camFar" jdbcType="VARCHAR" />
+              <result column="cam_aspectratio" property="camAspectratio" jdbcType="VARCHAR" />
+              <result column="cam_rtsp" property="camRtsp" jdbcType="VARCHAR" />
+              <result column="cam_port" property="camPort" jdbcType="VARCHAR" />
+              <result column="mac_url" property="macUrl" jdbcType="VARCHAR" />
+              <result column="is_indoor" property="isIndoor" jdbcType="VARCHAR" />
+          </association>
+      </collection>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    role_id, role_name
+  </sql>
+  <select id="getAllandFunc" resultMap="BaseResultMap">
+  	select r.*, s.* from sys_role r, sys_role_func s
+  	where r.role_id = s.role_id
+  </select>
+  <select id="getAllandFuncById" resultMap="BaseResultMap">
+  	select r.*, s.*, f.* from sys_role r, sys_role_func s, sys_func f
+  	where r.role_id = s.role_id and s.func_id = f.func_id
+  	and r.role_id = #{roleId}
+  </select>
+  <select id="getAllandFuncByIdandSrc" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.SysRole">
+  	select r.*, s.*, f.* from sys_role r, sys_role_func s, sys_func f
+  	where r.role_id = s.role_id and s.func_id = f.func_id
+  	and r.role_id = #{roleId} and f.func_src = #{roleName}
+  	order by s.role_func_order
+  </select>
+  <select id="getAllandTiles3dById" resultMap="BaseResultMap">
+  	select r.*, s.*, t.* from sys_role r, sys_role_tiles3d s, tiles3d t
+  	where r.role_id = s.role_id and s.tiles_id = t.tiles_id
+  	and r.role_id = #{roleId}
+  </select>
+  <select id="getAllandBimById" resultMap="BaseResultMap">
+  	select r.*, s.*, b.* from sys_role r, sys_role_bim s, bim b
+  	where r.role_id = s.role_id and s.tiles_id = b.tiles_id
+  	and r.role_id = #{roleId}
+  </select>
+    <select id="getAllandCarById" resultMap="BaseResultMap">
+        select r.*, s.*, c.* from sys_role r, sys_role_car s, car c
+        where r.role_id = s.role_id and s.car_id = c.car_id
+          and r.role_id = #{roleId}
+    </select>
+    <select id="getAllandDeviceById" resultMap="BaseResultMap">
+        select r.*, s.*, c.* from sys_role r, sys_role_device s, bim_device c
+        where r.role_id = s.role_id and s.device_id = c.device_id
+          and r.role_id = #{roleId}
+    </select>
+    <select id="getAllandNetById" resultMap="BaseResultMap">
+        select r.*, s.*, c.* from sys_role r, sys_role_net s, net c
+        where r.role_id = s.role_id and s.net_id = c.net_id
+          and r.role_id = #{roleId}
+    </select>
+    <select id="getAllandPoliceById" resultMap="BaseResultMap">
+        select r.*, s.*, c.* from sys_role r, sys_role_police s, police c
+        where r.role_id = s.role_id and s.police_id = c.police_id
+          and r.role_id = #{roleId}
+    </select>
+    <select id="getAllandSecurityById" resultMap="BaseResultMap">
+        select r.*, s.*, c.* from sys_role r, sys_role_security s, security c
+        where r.role_id = s.role_id and s.security_id = c.security_id
+          and r.role_id = #{roleId}
+    </select>
+    <select id="getAllandUavById" resultMap="BaseResultMap">
+        select r.*, s.*, c.* from sys_role r, sys_role_uav s, uav c
+        where r.role_id = s.role_id and s.uav_id = c.uav_id
+          and r.role_id = #{roleId}
+    </select>
+    <select id="getAllandVideoById" resultMap="BaseResultMap">
+        select r.*, s.*, c.* from sys_role r, sys_role_video s, video c
+        where r.role_id = s.role_id and s.video_id = c.id
+          and r.role_id = #{roleId} and c.is_indoor = #{isIndoor}
+    </select>
+</mapper>

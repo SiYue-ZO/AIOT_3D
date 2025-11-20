@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.SecurityMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Security" >
+    <id column="security_id" property="securityId" jdbcType="VARCHAR" />
+    <result column="security_name" property="securityName" jdbcType="VARCHAR" />
+    <result column="security_type" property="securityType" jdbcType="VARCHAR" />
+    <result column="security_police_id" property="securityPoliceId" jdbcType="VARCHAR" />
+    <result column="security_tel" property="securityTel" jdbcType="VARCHAR" />
+    <result column="security_describe" property="securityDescribe" jdbcType="VARCHAR" />
+    <result column="security_poi" property="securityPoi" jdbcType="VARCHAR" />
+    <result column="security_center" property="securityCenter" jdbcType="VARCHAR" />
+    <result column="security_video_id" property="securityVideoId" jdbcType="VARCHAR" />
+    <result column="equipment_id" property="equipmentId" jdbcType="VARCHAR" />
+    <result column="security_community" property="securityCommunity" jdbcType="VARCHAR" />
+    <result column="net_master" property="netMaster" jdbcType="VARCHAR" />
+    <result column="net_listener" property="netListener" jdbcType="VARCHAR" />
+    <result column="net_base_people" property="netBasePeople" jdbcType="VARCHAR" />
+    <result column="net_hold_people" property="netHoldPeople" jdbcType="VARCHAR" />
+    <result column="net_flow_people" property="netFlowPeople" jdbcType="VARCHAR" />
+    <result column="net_group" property="netGroup" jdbcType="VARCHAR" />
+    <result column="net_note" property="netNote" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    security_id, security_name, security_type, security_police_id, security_tel, security_describe, 
+    security_poi, security_center, security_video_id, equipment_id, security_community, 
+    net_master, net_listener, net_base_people, net_hold_people, net_flow_people, net_group, 
+    net_note, pid, level
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.SecurityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from security
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from security
+    where security_id = #{securityId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from security
+    where security_id = #{securityId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.SecurityExample" >
+    delete from security
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.Security" >
+    insert into security (security_id, security_name, security_type, 
+      security_police_id, security_tel, security_describe, 
+      security_poi, security_center, security_video_id, 
+      equipment_id, security_community, net_master, 
+      net_listener, net_base_people, net_hold_people, 
+      net_flow_people, net_group, net_note, 
+      pid, level)
+    values (#{securityId,jdbcType=VARCHAR}, #{securityName,jdbcType=VARCHAR}, #{securityType,jdbcType=VARCHAR}, 
+      #{securityPoliceId,jdbcType=VARCHAR}, #{securityTel,jdbcType=VARCHAR}, #{securityDescribe,jdbcType=VARCHAR}, 
+      #{securityPoi,jdbcType=VARCHAR}, #{securityCenter,jdbcType=VARCHAR}, #{securityVideoId,jdbcType=VARCHAR}, 
+      #{equipmentId,jdbcType=VARCHAR}, #{securityCommunity,jdbcType=VARCHAR}, #{netMaster,jdbcType=VARCHAR}, 
+      #{netListener,jdbcType=VARCHAR}, #{netBasePeople,jdbcType=VARCHAR}, #{netHoldPeople,jdbcType=VARCHAR}, 
+      #{netFlowPeople,jdbcType=VARCHAR}, #{netGroup,jdbcType=VARCHAR}, #{netNote,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.Security" >
+    insert into security
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="securityId != null" >
+        security_id,
+      </if>
+      <if test="securityName != null" >
+        security_name,
+      </if>
+      <if test="securityType != null" >
+        security_type,
+      </if>
+      <if test="securityPoliceId != null" >
+        security_police_id,
+      </if>
+      <if test="securityTel != null" >
+        security_tel,
+      </if>
+      <if test="securityDescribe != null" >
+        security_describe,
+      </if>
+      <if test="securityPoi != null" >
+        security_poi,
+      </if>
+      <if test="securityCenter != null" >
+        security_center,
+      </if>
+      <if test="securityVideoId != null" >
+        security_video_id,
+      </if>
+      <if test="equipmentId != null" >
+        equipment_id,
+      </if>
+      <if test="securityCommunity != null" >
+        security_community,
+      </if>
+      <if test="netMaster != null" >
+        net_master,
+      </if>
+      <if test="netListener != null" >
+        net_listener,
+      </if>
+      <if test="netBasePeople != null" >
+        net_base_people,
+      </if>
+      <if test="netHoldPeople != null" >
+        net_hold_people,
+      </if>
+      <if test="netFlowPeople != null" >
+        net_flow_people,
+      </if>
+      <if test="netGroup != null" >
+        net_group,
+      </if>
+      <if test="netNote != null" >
+        net_note,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="securityId != null" >
+        #{securityId,jdbcType=VARCHAR},
+      </if>
+      <if test="securityName != null" >
+        #{securityName,jdbcType=VARCHAR},
+      </if>
+      <if test="securityType != null" >
+        #{securityType,jdbcType=VARCHAR},
+      </if>
+      <if test="securityPoliceId != null" >
+        #{securityPoliceId,jdbcType=VARCHAR},
+      </if>
+      <if test="securityTel != null" >
+        #{securityTel,jdbcType=VARCHAR},
+      </if>
+      <if test="securityDescribe != null" >
+        #{securityDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="securityPoi != null" >
+        #{securityPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="securityCenter != null" >
+        #{securityCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="securityVideoId != null" >
+        #{securityVideoId,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentId != null" >
+        #{equipmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="securityCommunity != null" >
+        #{securityCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="netMaster != null" >
+        #{netMaster,jdbcType=VARCHAR},
+      </if>
+      <if test="netListener != null" >
+        #{netListener,jdbcType=VARCHAR},
+      </if>
+      <if test="netBasePeople != null" >
+        #{netBasePeople,jdbcType=VARCHAR},
+      </if>
+      <if test="netHoldPeople != null" >
+        #{netHoldPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="netFlowPeople != null" >
+        #{netFlowPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="netGroup != null" >
+        #{netGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="netNote != null" >
+        #{netNote,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.SecurityExample" resultType="java.lang.Integer" >
+    select count(*) from security
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update security
+    <set >
+      <if test="record.securityId != null" >
+        security_id = #{record.securityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityName != null" >
+        security_name = #{record.securityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityType != null" >
+        security_type = #{record.securityType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityPoliceId != null" >
+        security_police_id = #{record.securityPoliceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityTel != null" >
+        security_tel = #{record.securityTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityDescribe != null" >
+        security_describe = #{record.securityDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityPoi != null" >
+        security_poi = #{record.securityPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityCenter != null" >
+        security_center = #{record.securityCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityVideoId != null" >
+        security_video_id = #{record.securityVideoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipmentId != null" >
+        equipment_id = #{record.equipmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityCommunity != null" >
+        security_community = #{record.securityCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netMaster != null" >
+        net_master = #{record.netMaster,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netListener != null" >
+        net_listener = #{record.netListener,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netBasePeople != null" >
+        net_base_people = #{record.netBasePeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netHoldPeople != null" >
+        net_hold_people = #{record.netHoldPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netFlowPeople != null" >
+        net_flow_people = #{record.netFlowPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netGroup != null" >
+        net_group = #{record.netGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netNote != null" >
+        net_note = #{record.netNote,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pid != null" >
+        pid = #{record.pid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update security
+    set security_id = #{record.securityId,jdbcType=VARCHAR},
+      security_name = #{record.securityName,jdbcType=VARCHAR},
+      security_type = #{record.securityType,jdbcType=VARCHAR},
+      security_police_id = #{record.securityPoliceId,jdbcType=VARCHAR},
+      security_tel = #{record.securityTel,jdbcType=VARCHAR},
+      security_describe = #{record.securityDescribe,jdbcType=VARCHAR},
+      security_poi = #{record.securityPoi,jdbcType=VARCHAR},
+      security_center = #{record.securityCenter,jdbcType=VARCHAR},
+      security_video_id = #{record.securityVideoId,jdbcType=VARCHAR},
+      equipment_id = #{record.equipmentId,jdbcType=VARCHAR},
+      security_community = #{record.securityCommunity,jdbcType=VARCHAR},
+      net_master = #{record.netMaster,jdbcType=VARCHAR},
+      net_listener = #{record.netListener,jdbcType=VARCHAR},
+      net_base_people = #{record.netBasePeople,jdbcType=VARCHAR},
+      net_hold_people = #{record.netHoldPeople,jdbcType=VARCHAR},
+      net_flow_people = #{record.netFlowPeople,jdbcType=VARCHAR},
+      net_group = #{record.netGroup,jdbcType=VARCHAR},
+      net_note = #{record.netNote,jdbcType=VARCHAR},
+      pid = #{record.pid,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.Security" >
+    update security
+    <set >
+      <if test="securityName != null" >
+        security_name = #{securityName,jdbcType=VARCHAR},
+      </if>
+      <if test="securityType != null" >
+        security_type = #{securityType,jdbcType=VARCHAR},
+      </if>
+      <if test="securityPoliceId != null" >
+        security_police_id = #{securityPoliceId,jdbcType=VARCHAR},
+      </if>
+      <if test="securityTel != null" >
+        security_tel = #{securityTel,jdbcType=VARCHAR},
+      </if>
+      <if test="securityDescribe != null" >
+        security_describe = #{securityDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="securityPoi != null" >
+        security_poi = #{securityPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="securityCenter != null" >
+        security_center = #{securityCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="securityVideoId != null" >
+        security_video_id = #{securityVideoId,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentId != null" >
+        equipment_id = #{equipmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="securityCommunity != null" >
+        security_community = #{securityCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="netMaster != null" >
+        net_master = #{netMaster,jdbcType=VARCHAR},
+      </if>
+      <if test="netListener != null" >
+        net_listener = #{netListener,jdbcType=VARCHAR},
+      </if>
+      <if test="netBasePeople != null" >
+        net_base_people = #{netBasePeople,jdbcType=VARCHAR},
+      </if>
+      <if test="netHoldPeople != null" >
+        net_hold_people = #{netHoldPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="netFlowPeople != null" >
+        net_flow_people = #{netFlowPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="netGroup != null" >
+        net_group = #{netGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="netNote != null" >
+        net_note = #{netNote,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where security_id = #{securityId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.Security" >
+    update security
+    set security_name = #{securityName,jdbcType=VARCHAR},
+      security_type = #{securityType,jdbcType=VARCHAR},
+      security_police_id = #{securityPoliceId,jdbcType=VARCHAR},
+      security_tel = #{securityTel,jdbcType=VARCHAR},
+      security_describe = #{securityDescribe,jdbcType=VARCHAR},
+      security_poi = #{securityPoi,jdbcType=VARCHAR},
+      security_center = #{securityCenter,jdbcType=VARCHAR},
+      security_video_id = #{securityVideoId,jdbcType=VARCHAR},
+      equipment_id = #{equipmentId,jdbcType=VARCHAR},
+      security_community = #{securityCommunity,jdbcType=VARCHAR},
+      net_master = #{netMaster,jdbcType=VARCHAR},
+      net_listener = #{netListener,jdbcType=VARCHAR},
+      net_base_people = #{netBasePeople,jdbcType=VARCHAR},
+      net_hold_people = #{netHoldPeople,jdbcType=VARCHAR},
+      net_flow_people = #{netFlowPeople,jdbcType=VARCHAR},
+      net_group = #{netGroup,jdbcType=VARCHAR},
+      net_note = #{netNote,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR}
+    where security_id = #{securityId,jdbcType=VARCHAR}
+  </update>
+</mapper>

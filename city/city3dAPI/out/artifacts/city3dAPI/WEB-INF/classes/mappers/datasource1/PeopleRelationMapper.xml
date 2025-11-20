@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PeopleRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PeopleRelation" >
+    <id column="relation_id" property="relationId" jdbcType="VARCHAR" />
+    <result column="pp_id" property="ppId" jdbcType="VARCHAR" />
+    <result column="pp_relation_id" property="ppRelationId" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="relation_type" property="relationType" jdbcType="VARCHAR" />
+    <result column="relation_ship" property="relationShip" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <!-- <association property="peopleBase" javaType="com.city3d.dao.entry.PeopleBase">
+	    <id column="pp_id" property="ppId" jdbcType="VARCHAR" />
+	    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+	    <result column="town" property="town" jdbcType="VARCHAR" />
+	    <result column="identity" property="identity" jdbcType="VARCHAR" />
+	    <result column="tel" property="tel" jdbcType="VARCHAR" />
+	    <result column="mother_identity" property="motherIdentity" jdbcType="VARCHAR" />
+	    <result column="mother_name" property="motherName" jdbcType="VARCHAR" />
+	    <result column="nation" property="nation" jdbcType="VARCHAR" />
+	    <result column="mate_identity" property="mateIdentity" jdbcType="VARCHAR" />
+	    <result column="mate_name" property="mateName" jdbcType="VARCHAR" />
+	    <result column="height" property="height" jdbcType="VARCHAR" />
+	    <result column="community_code" property="communityCode" jdbcType="VARCHAR" />
+	    <result column="gender" property="gender" jdbcType="VARCHAR" />
+	    <result column="calture" property="calture" jdbcType="VARCHAR" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="blood_type" property="bloodType" jdbcType="VARCHAR" />
+	    <result column="phone" property="phone" jdbcType="VARCHAR" />
+	    <result column="household_relation" property="householdRelation" jdbcType="VARCHAR" />
+	    <result column="region" property="region" jdbcType="VARCHAR" />
+	    <result column="political" property="political" jdbcType="VARCHAR" />
+	    <result column="once_name" property="onceName" jdbcType="VARCHAR" />
+	    <result column="unit_name" property="unitName" jdbcType="VARCHAR" />
+	    <result column="job" property="job" jdbcType="VARCHAR" />
+	    <result column="father_identity" property="fatherIdentity" jdbcType="VARCHAR" />
+	    <result column="father_name" property="fatherName" jdbcType="VARCHAR" />
+	    <result column="identity1" property="identity1" jdbcType="VARCHAR" />
+	    <result column="household_no" property="householdNo" jdbcType="VARCHAR" />
+	    <result column="household_address" property="householdAddress" jdbcType="VARCHAR" />
+	    <result column="household_porvince" property="householdPorvince" jdbcType="VARCHAR" />
+	    <result column="household_nature" property="householdNature" jdbcType="VARCHAR" />
+	    <result column="marriage" property="marriage" jdbcType="VARCHAR" />
+	    <result column="native_place_country" property="nativePlaceCountry" jdbcType="VARCHAR" />
+	    <result column="native_place_province" property="nativePlaceProvince" jdbcType="VARCHAR" />
+	    <result column="from_country" property="fromCountry" jdbcType="VARCHAR" />
+	    <result column="from_address" property="fromAddress" jdbcType="VARCHAR" />
+	    <result column="from_province" property="fromProvince" jdbcType="VARCHAR" />
+	    <result column="in_date" property="inDate" jdbcType="VARCHAR" />
+	    <result column="in_reason" property="inReason" jdbcType="VARCHAR" />
+	    <result column="serve_army" property="serveArmy" jdbcType="VARCHAR" />
+	    <result column="overseas_relation" property="overseasRelation" jdbcType="VARCHAR" />
+	    <result column="people_type" property="peopleType" jdbcType="VARCHAR" />
+	    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+	    <result column="img_other" property="imgOther" jdbcType="VARCHAR" />
+	    <result column="skill" property="skill" jdbcType="VARCHAR" />
+	    <result column="entry_type" property="entryType" jdbcType="VARCHAR" />
+    </association> -->
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    relation_id, pp_id, pp_relation_id, identity, relation_type, relation_ship, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.PeopleRelationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from people_relation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from people_relation
+    where pp_id = #{ppId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from people_relation
+    where relation_id = #{relationId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.PeopleRelationExample" >
+    delete from people_relation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.PeopleRelation" >
+    insert into people_relation (relation_id, pp_id, pp_relation_id, 
+      identity, relation_type, relation_ship, 
+      remark)
+    values (#{relationId,jdbcType=VARCHAR}, #{ppId,jdbcType=VARCHAR}, #{ppRelationId,jdbcType=VARCHAR}, 
+      #{identity,jdbcType=VARCHAR}, #{relationType,jdbcType=VARCHAR}, #{relationShip,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.PeopleRelation" >
+    insert into people_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="relationId != null" >
+        relation_id,
+      </if>
+      <if test="ppId != null" >
+        pp_id,
+      </if>
+      <if test="ppRelationId != null" >
+        pp_relation_id,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="relationType != null" >
+        relation_type,
+      </if>
+      <if test="relationShip != null" >
+        relation_ship,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="relationId != null" >
+        #{relationId,jdbcType=VARCHAR},
+      </if>
+      <if test="ppId != null" >
+        #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="ppRelationId != null" >
+        #{ppRelationId,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="relationType != null" >
+        #{relationType,jdbcType=VARCHAR},
+      </if>
+      <if test="relationShip != null" >
+        #{relationShip,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.PeopleRelationExample" resultType="java.lang.Integer" >
+    select count(*) from people_relation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update people_relation
+    <set >
+      <if test="record.relationId != null" >
+        relation_id = #{record.relationId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ppId != null" >
+        pp_id = #{record.ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ppRelationId != null" >
+        pp_relation_id = #{record.ppRelationId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identity != null" >
+        identity = #{record.identity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationType != null" >
+        relation_type = #{record.relationType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationShip != null" >
+        relation_ship = #{record.relationShip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update people_relation
+    set relation_id = #{record.relationId,jdbcType=VARCHAR},
+      pp_id = #{record.ppId,jdbcType=VARCHAR},
+      pp_relation_id = #{record.ppRelationId,jdbcType=VARCHAR},
+      identity = #{record.identity,jdbcType=VARCHAR},
+      relation_type = #{record.relationType,jdbcType=VARCHAR},
+      relation_ship = #{record.relationShip,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.PeopleRelation" >
+    update people_relation
+    <set >
+      <if test="ppId != null" >
+        pp_id = #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="ppRelationId != null" >
+        pp_relation_id = #{ppRelationId,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="relationType != null" >
+        relation_type = #{relationType,jdbcType=VARCHAR},
+      </if>
+      <if test="relationShip != null" >
+        relation_ship = #{relationShip,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where relation_id = #{relationId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.PeopleRelation" >
+    update people_relation
+    set pp_id = #{ppId,jdbcType=VARCHAR},
+      pp_relation_id = #{ppRelationId,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=VARCHAR},
+      relation_type = #{relationType,jdbcType=VARCHAR},
+      relation_ship = #{relationShip,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where relation_id = #{relationId,jdbcType=VARCHAR}
+  </update>
+</mapper>

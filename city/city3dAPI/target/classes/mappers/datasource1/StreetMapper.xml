@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.StreetMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Street" >
+    <id column="street_id" property="streetId" jdbcType="VARCHAR" />
+    <result column="street_name" property="streetName" jdbcType="VARCHAR" />
+    <result column="poi" property="poi" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+    <result column="group_id" property="groupId" jdbcType="VARCHAR" />
+    <result column="row_id" property="rowId" jdbcType="VARCHAR" />
+    <result column="street_check" property="streetCheck" jdbcType="VARCHAR" />
+    <result column="word_size" property="wordSize" jdbcType="VARCHAR" />
+    <result column="rotation_angle" property="rotationAngle" jdbcType="VARCHAR" />
+    <result column="show_height" property="showHeight" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    street_id, street_name, poi, color, group_id, row_id, street_check, word_size, rotation_angle, 
+    show_height
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.StreetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from street
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from street
+    where street_id = #{streetId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from street
+    where street_id = #{streetId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.StreetExample" >
+    delete from street
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.Street" >
+    insert into street (street_id, street_name, poi, 
+      color, group_id, row_id, 
+      street_check, word_size, rotation_angle, 
+      show_height)
+    values (#{streetId,jdbcType=VARCHAR}, #{streetName,jdbcType=VARCHAR}, #{poi,jdbcType=VARCHAR}, 
+      #{color,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, #{rowId,jdbcType=VARCHAR}, 
+      #{streetCheck,jdbcType=VARCHAR}, #{wordSize,jdbcType=VARCHAR}, #{rotationAngle,jdbcType=VARCHAR}, 
+      #{showHeight,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.Street" >
+    insert into street
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="streetId != null" >
+        street_id,
+      </if>
+      <if test="streetName != null" >
+        street_name,
+      </if>
+      <if test="poi != null" >
+        poi,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="rowId != null" >
+        row_id,
+      </if>
+      <if test="streetCheck != null" >
+        street_check,
+      </if>
+      <if test="wordSize != null" >
+        word_size,
+      </if>
+      <if test="rotationAngle != null" >
+        rotation_angle,
+      </if>
+      <if test="showHeight != null" >
+        show_height,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="streetId != null" >
+        #{streetId,jdbcType=VARCHAR},
+      </if>
+      <if test="streetName != null" >
+        #{streetName,jdbcType=VARCHAR},
+      </if>
+      <if test="poi != null" >
+        #{poi,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="rowId != null" >
+        #{rowId,jdbcType=VARCHAR},
+      </if>
+      <if test="streetCheck != null" >
+        #{streetCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="wordSize != null" >
+        #{wordSize,jdbcType=VARCHAR},
+      </if>
+      <if test="rotationAngle != null" >
+        #{rotationAngle,jdbcType=VARCHAR},
+      </if>
+      <if test="showHeight != null" >
+        #{showHeight,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.StreetExample" resultType="java.lang.Integer" >
+    select count(*) from street
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update street
+    <set >
+      <if test="record.streetId != null" >
+        street_id = #{record.streetId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.streetName != null" >
+        street_name = #{record.streetName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.poi != null" >
+        poi = #{record.poi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.color != null" >
+        color = #{record.color,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupId != null" >
+        group_id = #{record.groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rowId != null" >
+        row_id = #{record.rowId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.streetCheck != null" >
+        street_check = #{record.streetCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wordSize != null" >
+        word_size = #{record.wordSize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rotationAngle != null" >
+        rotation_angle = #{record.rotationAngle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showHeight != null" >
+        show_height = #{record.showHeight,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update street
+    set street_id = #{record.streetId,jdbcType=VARCHAR},
+      street_name = #{record.streetName,jdbcType=VARCHAR},
+      poi = #{record.poi,jdbcType=VARCHAR},
+      color = #{record.color,jdbcType=VARCHAR},
+      group_id = #{record.groupId,jdbcType=VARCHAR},
+      row_id = #{record.rowId,jdbcType=VARCHAR},
+      street_check = #{record.streetCheck,jdbcType=VARCHAR},
+      word_size = #{record.wordSize,jdbcType=VARCHAR},
+      rotation_angle = #{record.rotationAngle,jdbcType=VARCHAR},
+      show_height = #{record.showHeight,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.Street" >
+    update street
+    <set >
+      <if test="streetName != null" >
+        street_name = #{streetName,jdbcType=VARCHAR},
+      </if>
+      <if test="poi != null" >
+        poi = #{poi,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null" >
+        group_id = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="rowId != null" >
+        row_id = #{rowId,jdbcType=VARCHAR},
+      </if>
+      <if test="streetCheck != null" >
+        street_check = #{streetCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="wordSize != null" >
+        word_size = #{wordSize,jdbcType=VARCHAR},
+      </if>
+      <if test="rotationAngle != null" >
+        rotation_angle = #{rotationAngle,jdbcType=VARCHAR},
+      </if>
+      <if test="showHeight != null" >
+        show_height = #{showHeight,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where street_id = #{streetId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.Street" >
+    update street
+    set street_name = #{streetName,jdbcType=VARCHAR},
+      poi = #{poi,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      group_id = #{groupId,jdbcType=VARCHAR},
+      row_id = #{rowId,jdbcType=VARCHAR},
+      street_check = #{streetCheck,jdbcType=VARCHAR},
+      word_size = #{wordSize,jdbcType=VARCHAR},
+      rotation_angle = #{rotationAngle,jdbcType=VARCHAR},
+      show_height = #{showHeight,jdbcType=VARCHAR}
+    where street_id = #{streetId,jdbcType=VARCHAR}
+  </update>
+</mapper>

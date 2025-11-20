@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.HouseMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.House" >
+    <id column="house_id" property="houseId" jdbcType="VARCHAR" />
+    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+    <result column="paper_id" property="paperId" jdbcType="VARCHAR" />
+    <result column="owner" property="owner" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="build_date" property="buildDate" jdbcType="VARCHAR" />
+    <result column="house_url" property="houseUrl" jdbcType="VARCHAR" />
+    <result column="panorama_url" property="panoramaUrl" jdbcType="VARCHAR" />
+    <result column="begin_date" property="beginDate" jdbcType="VARCHAR" />
+    <result column="building_photos" property="buildingPhotos" jdbcType="VARCHAR" />
+    <result column="bulding_structure" property="buldingStructure" jdbcType="VARCHAR" />
+    <result column="cancelled" property="cancelled" jdbcType="VARCHAR" />
+    <result column="community_police" property="communityPolice" jdbcType="VARCHAR" />
+    <result column="end_date" property="endDate" jdbcType="VARCHAR" />
+    <result column="house_area" property="houseArea" jdbcType="VARCHAR" />
+    <result column="house_count" property="houseCount" jdbcType="VARCHAR" />
+    <result column="house_photos" property="housePhotos" jdbcType="VARCHAR" />
+    <result column="house_source" property="houseSource" jdbcType="VARCHAR" />
+    <result column="house_type" property="houseType" jdbcType="VARCHAR" />
+    <result column="house_use" property="houseUse" jdbcType="VARCHAR" />
+    <result column="pp_id" property="ppId" jdbcType="VARCHAR" />
+    <result column="property_no" property="propertyNo" jdbcType="VARCHAR" />
+    <result column="property_type" property="propertyType" jdbcType="VARCHAR" />
+    <result column="rate_time" property="rateTime" jdbcType="VARCHAR" />
+    <result column="rent_status" property="rentStatus" jdbcType="VARCHAR" />
+    <result column="response_leader" property="responseLeader" jdbcType="VARCHAR" />
+    <result column="sign_response_book" property="signResponseBook" jdbcType="VARCHAR" />
+    <result column="star" property="star" jdbcType="VARCHAR" />
+    <result column="stop_rent_reason" property="stopRentReason" jdbcType="VARCHAR" />
+    <result column="trust_by" property="trustBy" jdbcType="VARCHAR" />
+    <result column="trustee_household_address" property="trusteeHouseholdAddress" jdbcType="VARCHAR" />
+    <result column="trustee_name" property="trusteeName" jdbcType="VARCHAR" />
+    <result column="trustee_nation" property="trusteeNation" jdbcType="VARCHAR" />
+    <result column="trustee_pp_id" property="trusteePpId" jdbcType="VARCHAR" />
+    <result column="trustee_relation" property="trusteeRelation" jdbcType="VARCHAR" />
+    <result column="trustee_tel" property="trusteeTel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    house_id, add_id, paper_id, owner, area, build_date, house_url, panorama_url, begin_date, 
+    building_photos, bulding_structure, cancelled, community_police, end_date, house_area, 
+    house_count, house_photos, house_source, house_type, house_use, pp_id, property_no, 
+    property_type, rate_time, rent_status, response_leader, sign_response_book, star, 
+    stop_rent_reason, trust_by, trustee_household_address, trustee_name, trustee_nation, 
+    trustee_pp_id, trustee_relation, trustee_tel
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.HouseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from house
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from house
+    where house_id = #{houseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from house
+    where house_id = #{houseId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.HouseExample" >
+    delete from house
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.House" >
+    insert into house (house_id, add_id, paper_id, 
+      owner, area, build_date, 
+      house_url, panorama_url, begin_date, 
+      building_photos, bulding_structure, cancelled, 
+      community_police, end_date, house_area, 
+      house_count, house_photos, house_source, 
+      house_type, house_use, pp_id, 
+      property_no, property_type, rate_time, 
+      rent_status, response_leader, sign_response_book, 
+      star, stop_rent_reason, trust_by, 
+      trustee_household_address, trustee_name, trustee_nation, 
+      trustee_pp_id, trustee_relation, trustee_tel
+      )
+    values (#{houseId,jdbcType=VARCHAR}, #{addId,jdbcType=VARCHAR}, #{paperId,jdbcType=VARCHAR}, 
+      #{owner,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{buildDate,jdbcType=VARCHAR}, 
+      #{houseUrl,jdbcType=VARCHAR}, #{panoramaUrl,jdbcType=VARCHAR}, #{beginDate,jdbcType=VARCHAR}, 
+      #{buildingPhotos,jdbcType=VARCHAR}, #{buldingStructure,jdbcType=VARCHAR}, #{cancelled,jdbcType=VARCHAR}, 
+      #{communityPolice,jdbcType=VARCHAR}, #{endDate,jdbcType=VARCHAR}, #{houseArea,jdbcType=VARCHAR}, 
+      #{houseCount,jdbcType=VARCHAR}, #{housePhotos,jdbcType=VARCHAR}, #{houseSource,jdbcType=VARCHAR}, 
+      #{houseType,jdbcType=VARCHAR}, #{houseUse,jdbcType=VARCHAR}, #{ppId,jdbcType=VARCHAR}, 
+      #{propertyNo,jdbcType=VARCHAR}, #{propertyType,jdbcType=VARCHAR}, #{rateTime,jdbcType=VARCHAR}, 
+      #{rentStatus,jdbcType=VARCHAR}, #{responseLeader,jdbcType=VARCHAR}, #{signResponseBook,jdbcType=VARCHAR}, 
+      #{star,jdbcType=VARCHAR}, #{stopRentReason,jdbcType=VARCHAR}, #{trustBy,jdbcType=VARCHAR}, 
+      #{trusteeHouseholdAddress,jdbcType=VARCHAR}, #{trusteeName,jdbcType=VARCHAR}, #{trusteeNation,jdbcType=VARCHAR}, 
+      #{trusteePpId,jdbcType=VARCHAR}, #{trusteeRelation,jdbcType=VARCHAR}, #{trusteeTel,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.House" >
+    insert into house
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="houseId != null" >
+        house_id,
+      </if>
+      <if test="addId != null" >
+        add_id,
+      </if>
+      <if test="paperId != null" >
+        paper_id,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="buildDate != null" >
+        build_date,
+      </if>
+      <if test="houseUrl != null" >
+        house_url,
+      </if>
+      <if test="panoramaUrl != null" >
+        panorama_url,
+      </if>
+      <if test="beginDate != null" >
+        begin_date,
+      </if>
+      <if test="buildingPhotos != null" >
+        building_photos,
+      </if>
+      <if test="buldingStructure != null" >
+        bulding_structure,
+      </if>
+      <if test="cancelled != null" >
+        cancelled,
+      </if>
+      <if test="communityPolice != null" >
+        community_police,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="houseArea != null" >
+        house_area,
+      </if>
+      <if test="houseCount != null" >
+        house_count,
+      </if>
+      <if test="housePhotos != null" >
+        house_photos,
+      </if>
+      <if test="houseSource != null" >
+        house_source,
+      </if>
+      <if test="houseType != null" >
+        house_type,
+      </if>
+      <if test="houseUse != null" >
+        house_use,
+      </if>
+      <if test="ppId != null" >
+        pp_id,
+      </if>
+      <if test="propertyNo != null" >
+        property_no,
+      </if>
+      <if test="propertyType != null" >
+        property_type,
+      </if>
+      <if test="rateTime != null" >
+        rate_time,
+      </if>
+      <if test="rentStatus != null" >
+        rent_status,
+      </if>
+      <if test="responseLeader != null" >
+        response_leader,
+      </if>
+      <if test="signResponseBook != null" >
+        sign_response_book,
+      </if>
+      <if test="star != null" >
+        star,
+      </if>
+      <if test="stopRentReason != null" >
+        stop_rent_reason,
+      </if>
+      <if test="trustBy != null" >
+        trust_by,
+      </if>
+      <if test="trusteeHouseholdAddress != null" >
+        trustee_household_address,
+      </if>
+      <if test="trusteeName != null" >
+        trustee_name,
+      </if>
+      <if test="trusteeNation != null" >
+        trustee_nation,
+      </if>
+      <if test="trusteePpId != null" >
+        trustee_pp_id,
+      </if>
+      <if test="trusteeRelation != null" >
+        trustee_relation,
+      </if>
+      <if test="trusteeTel != null" >
+        trustee_tel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="houseId != null" >
+        #{houseId,jdbcType=VARCHAR},
+      </if>
+      <if test="addId != null" >
+        #{addId,jdbcType=VARCHAR},
+      </if>
+      <if test="paperId != null" >
+        #{paperId,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="buildDate != null" >
+        #{buildDate,jdbcType=VARCHAR},
+      </if>
+      <if test="houseUrl != null" >
+        #{houseUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="panoramaUrl != null" >
+        #{panoramaUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null" >
+        #{beginDate,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingPhotos != null" >
+        #{buildingPhotos,jdbcType=VARCHAR},
+      </if>
+      <if test="buldingStructure != null" >
+        #{buldingStructure,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelled != null" >
+        #{cancelled,jdbcType=VARCHAR},
+      </if>
+      <if test="communityPolice != null" >
+        #{communityPolice,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="houseArea != null" >
+        #{houseArea,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCount != null" >
+        #{houseCount,jdbcType=VARCHAR},
+      </if>
+      <if test="housePhotos != null" >
+        #{housePhotos,jdbcType=VARCHAR},
+      </if>
+      <if test="houseSource != null" >
+        #{houseSource,jdbcType=VARCHAR},
+      </if>
+      <if test="houseType != null" >
+        #{houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="houseUse != null" >
+        #{houseUse,jdbcType=VARCHAR},
+      </if>
+      <if test="ppId != null" >
+        #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyNo != null" >
+        #{propertyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyType != null" >
+        #{propertyType,jdbcType=VARCHAR},
+      </if>
+      <if test="rateTime != null" >
+        #{rateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="rentStatus != null" >
+        #{rentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="responseLeader != null" >
+        #{responseLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="signResponseBook != null" >
+        #{signResponseBook,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null" >
+        #{star,jdbcType=VARCHAR},
+      </if>
+      <if test="stopRentReason != null" >
+        #{stopRentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="trustBy != null" >
+        #{trustBy,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteeHouseholdAddress != null" >
+        #{trusteeHouseholdAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteeName != null" >
+        #{trusteeName,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteeNation != null" >
+        #{trusteeNation,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteePpId != null" >
+        #{trusteePpId,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteeRelation != null" >
+        #{trusteeRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteeTel != null" >
+        #{trusteeTel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.HouseExample" resultType="java.lang.Integer" >
+    select count(*) from house
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update house
+    <set >
+      <if test="record.houseId != null" >
+        house_id = #{record.houseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addId != null" >
+        add_id = #{record.addId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paperId != null" >
+        paper_id = #{record.paperId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.owner != null" >
+        owner = #{record.owner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null" >
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildDate != null" >
+        build_date = #{record.buildDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseUrl != null" >
+        house_url = #{record.houseUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.panoramaUrl != null" >
+        panorama_url = #{record.panoramaUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beginDate != null" >
+        begin_date = #{record.beginDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingPhotos != null" >
+        building_photos = #{record.buildingPhotos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buldingStructure != null" >
+        bulding_structure = #{record.buldingStructure,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cancelled != null" >
+        cancelled = #{record.cancelled,jdbcType=VARCHAR},
+      </if>
+      <if test="record.communityPolice != null" >
+        community_police = #{record.communityPolice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseArea != null" >
+        house_area = #{record.houseArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseCount != null" >
+        house_count = #{record.houseCount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.housePhotos != null" >
+        house_photos = #{record.housePhotos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseSource != null" >
+        house_source = #{record.houseSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseType != null" >
+        house_type = #{record.houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseUse != null" >
+        house_use = #{record.houseUse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ppId != null" >
+        pp_id = #{record.ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyNo != null" >
+        property_no = #{record.propertyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyType != null" >
+        property_type = #{record.propertyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rateTime != null" >
+        rate_time = #{record.rateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rentStatus != null" >
+        rent_status = #{record.rentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.responseLeader != null" >
+        response_leader = #{record.responseLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signResponseBook != null" >
+        sign_response_book = #{record.signResponseBook,jdbcType=VARCHAR},
+      </if>
+      <if test="record.star != null" >
+        star = #{record.star,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stopRentReason != null" >
+        stop_rent_reason = #{record.stopRentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trustBy != null" >
+        trust_by = #{record.trustBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trusteeHouseholdAddress != null" >
+        trustee_household_address = #{record.trusteeHouseholdAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trusteeName != null" >
+        trustee_name = #{record.trusteeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trusteeNation != null" >
+        trustee_nation = #{record.trusteeNation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trusteePpId != null" >
+        trustee_pp_id = #{record.trusteePpId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trusteeRelation != null" >
+        trustee_relation = #{record.trusteeRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trusteeTel != null" >
+        trustee_tel = #{record.trusteeTel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update house
+    set house_id = #{record.houseId,jdbcType=VARCHAR},
+      add_id = #{record.addId,jdbcType=VARCHAR},
+      paper_id = #{record.paperId,jdbcType=VARCHAR},
+      owner = #{record.owner,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      build_date = #{record.buildDate,jdbcType=VARCHAR},
+      house_url = #{record.houseUrl,jdbcType=VARCHAR},
+      panorama_url = #{record.panoramaUrl,jdbcType=VARCHAR},
+      begin_date = #{record.beginDate,jdbcType=VARCHAR},
+      building_photos = #{record.buildingPhotos,jdbcType=VARCHAR},
+      bulding_structure = #{record.buldingStructure,jdbcType=VARCHAR},
+      cancelled = #{record.cancelled,jdbcType=VARCHAR},
+      community_police = #{record.communityPolice,jdbcType=VARCHAR},
+      end_date = #{record.endDate,jdbcType=VARCHAR},
+      house_area = #{record.houseArea,jdbcType=VARCHAR},
+      house_count = #{record.houseCount,jdbcType=VARCHAR},
+      house_photos = #{record.housePhotos,jdbcType=VARCHAR},
+      house_source = #{record.houseSource,jdbcType=VARCHAR},
+      house_type = #{record.houseType,jdbcType=VARCHAR},
+      house_use = #{record.houseUse,jdbcType=VARCHAR},
+      pp_id = #{record.ppId,jdbcType=VARCHAR},
+      property_no = #{record.propertyNo,jdbcType=VARCHAR},
+      property_type = #{record.propertyType,jdbcType=VARCHAR},
+      rate_time = #{record.rateTime,jdbcType=VARCHAR},
+      rent_status = #{record.rentStatus,jdbcType=VARCHAR},
+      response_leader = #{record.responseLeader,jdbcType=VARCHAR},
+      sign_response_book = #{record.signResponseBook,jdbcType=VARCHAR},
+      star = #{record.star,jdbcType=VARCHAR},
+      stop_rent_reason = #{record.stopRentReason,jdbcType=VARCHAR},
+      trust_by = #{record.trustBy,jdbcType=VARCHAR},
+      trustee_household_address = #{record.trusteeHouseholdAddress,jdbcType=VARCHAR},
+      trustee_name = #{record.trusteeName,jdbcType=VARCHAR},
+      trustee_nation = #{record.trusteeNation,jdbcType=VARCHAR},
+      trustee_pp_id = #{record.trusteePpId,jdbcType=VARCHAR},
+      trustee_relation = #{record.trusteeRelation,jdbcType=VARCHAR},
+      trustee_tel = #{record.trusteeTel,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.House" >
+    update house
+    <set >
+      <if test="addId != null" >
+        add_id = #{addId,jdbcType=VARCHAR},
+      </if>
+      <if test="paperId != null" >
+        paper_id = #{paperId,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        owner = #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="buildDate != null" >
+        build_date = #{buildDate,jdbcType=VARCHAR},
+      </if>
+      <if test="houseUrl != null" >
+        house_url = #{houseUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="panoramaUrl != null" >
+        panorama_url = #{panoramaUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null" >
+        begin_date = #{beginDate,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingPhotos != null" >
+        building_photos = #{buildingPhotos,jdbcType=VARCHAR},
+      </if>
+      <if test="buldingStructure != null" >
+        bulding_structure = #{buldingStructure,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelled != null" >
+        cancelled = #{cancelled,jdbcType=VARCHAR},
+      </if>
+      <if test="communityPolice != null" >
+        community_police = #{communityPolice,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="houseArea != null" >
+        house_area = #{houseArea,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCount != null" >
+        house_count = #{houseCount,jdbcType=VARCHAR},
+      </if>
+      <if test="housePhotos != null" >
+        house_photos = #{housePhotos,jdbcType=VARCHAR},
+      </if>
+      <if test="houseSource != null" >
+        house_source = #{houseSource,jdbcType=VARCHAR},
+      </if>
+      <if test="houseType != null" >
+        house_type = #{houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="houseUse != null" >
+        house_use = #{houseUse,jdbcType=VARCHAR},
+      </if>
+      <if test="ppId != null" >
+        pp_id = #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyNo != null" >
+        property_no = #{propertyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyType != null" >
+        property_type = #{propertyType,jdbcType=VARCHAR},
+      </if>
+      <if test="rateTime != null" >
+        rate_time = #{rateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="rentStatus != null" >
+        rent_status = #{rentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="responseLeader != null" >
+        response_leader = #{responseLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="signResponseBook != null" >
+        sign_response_book = #{signResponseBook,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null" >
+        star = #{star,jdbcType=VARCHAR},
+      </if>
+      <if test="stopRentReason != null" >
+        stop_rent_reason = #{stopRentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="trustBy != null" >
+        trust_by = #{trustBy,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteeHouseholdAddress != null" >
+        trustee_household_address = #{trusteeHouseholdAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteeName != null" >
+        trustee_name = #{trusteeName,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteeNation != null" >
+        trustee_nation = #{trusteeNation,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteePpId != null" >
+        trustee_pp_id = #{trusteePpId,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteeRelation != null" >
+        trustee_relation = #{trusteeRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteeTel != null" >
+        trustee_tel = #{trusteeTel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where house_id = #{houseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.House" >
+    update house
+    set add_id = #{addId,jdbcType=VARCHAR},
+      paper_id = #{paperId,jdbcType=VARCHAR},
+      owner = #{owner,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      build_date = #{buildDate,jdbcType=VARCHAR},
+      house_url = #{houseUrl,jdbcType=VARCHAR},
+      panorama_url = #{panoramaUrl,jdbcType=VARCHAR},
+      begin_date = #{beginDate,jdbcType=VARCHAR},
+      building_photos = #{buildingPhotos,jdbcType=VARCHAR},
+      bulding_structure = #{buldingStructure,jdbcType=VARCHAR},
+      cancelled = #{cancelled,jdbcType=VARCHAR},
+      community_police = #{communityPolice,jdbcType=VARCHAR},
+      end_date = #{endDate,jdbcType=VARCHAR},
+      house_area = #{houseArea,jdbcType=VARCHAR},
+      house_count = #{houseCount,jdbcType=VARCHAR},
+      house_photos = #{housePhotos,jdbcType=VARCHAR},
+      house_source = #{houseSource,jdbcType=VARCHAR},
+      house_type = #{houseType,jdbcType=VARCHAR},
+      house_use = #{houseUse,jdbcType=VARCHAR},
+      pp_id = #{ppId,jdbcType=VARCHAR},
+      property_no = #{propertyNo,jdbcType=VARCHAR},
+      property_type = #{propertyType,jdbcType=VARCHAR},
+      rate_time = #{rateTime,jdbcType=VARCHAR},
+      rent_status = #{rentStatus,jdbcType=VARCHAR},
+      response_leader = #{responseLeader,jdbcType=VARCHAR},
+      sign_response_book = #{signResponseBook,jdbcType=VARCHAR},
+      star = #{star,jdbcType=VARCHAR},
+      stop_rent_reason = #{stopRentReason,jdbcType=VARCHAR},
+      trust_by = #{trustBy,jdbcType=VARCHAR},
+      trustee_household_address = #{trusteeHouseholdAddress,jdbcType=VARCHAR},
+      trustee_name = #{trusteeName,jdbcType=VARCHAR},
+      trustee_nation = #{trusteeNation,jdbcType=VARCHAR},
+      trustee_pp_id = #{trusteePpId,jdbcType=VARCHAR},
+      trustee_relation = #{trusteeRelation,jdbcType=VARCHAR},
+      trustee_tel = #{trusteeTel,jdbcType=VARCHAR}
+    where house_id = #{houseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

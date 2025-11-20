@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PeopleBaseMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PeopleBase" >
+    <id column="pp_id" property="ppId" jdbcType="VARCHAR" />
+    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="mother_identity" property="motherIdentity" jdbcType="VARCHAR" />
+    <result column="mother_name" property="motherName" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="mate_identity" property="mateIdentity" jdbcType="VARCHAR" />
+    <result column="mate_name" property="mateName" jdbcType="VARCHAR" />
+    <result column="height" property="height" jdbcType="VARCHAR" />
+    <result column="community_code" property="communityCode" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="calture" property="calture" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="blood_type" property="bloodType" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="household_relation" property="householdRelation" jdbcType="VARCHAR" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="political" property="political" jdbcType="VARCHAR" />
+    <result column="once_name" property="onceName" jdbcType="VARCHAR" />
+    <result column="unit_name" property="unitName" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="father_identity" property="fatherIdentity" jdbcType="VARCHAR" />
+    <result column="father_name" property="fatherName" jdbcType="VARCHAR" />
+    <result column="identity1" property="identity1" jdbcType="VARCHAR" />
+    <result column="household_no" property="householdNo" jdbcType="VARCHAR" />
+    <result column="household_address" property="householdAddress" jdbcType="VARCHAR" />
+    <result column="household_porvince" property="householdPorvince" jdbcType="VARCHAR" />
+    <result column="household_nature" property="householdNature" jdbcType="VARCHAR" />
+    <result column="marriage" property="marriage" jdbcType="VARCHAR" />
+    <result column="native_place_country" property="nativePlaceCountry" jdbcType="VARCHAR" />
+    <result column="native_place_province" property="nativePlaceProvince" jdbcType="VARCHAR" />
+    <result column="from_country" property="fromCountry" jdbcType="VARCHAR" />
+    <result column="from_address" property="fromAddress" jdbcType="VARCHAR" />
+    <result column="from_province" property="fromProvince" jdbcType="VARCHAR" />
+    <result column="in_date" property="inDate" jdbcType="VARCHAR" />
+    <result column="in_reason" property="inReason" jdbcType="VARCHAR" />
+    <result column="serve_army" property="serveArmy" jdbcType="VARCHAR" />
+    <result column="overseas_relation" property="overseasRelation" jdbcType="VARCHAR" />
+    <result column="people_type" property="peopleType" jdbcType="VARCHAR" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="img_other" property="imgOther" jdbcType="VARCHAR" />
+    <result column="skill" property="skill" jdbcType="VARCHAR" />
+    <result column="entry_type" property="entryType" jdbcType="VARCHAR" />
+    <result column="is_drug" property="isDrug" jdbcType="VARCHAR" />
+    <result column="is_flow" property="isFlow" jdbcType="VARCHAR" />
+    <result column="is_important" property="isImportant" jdbcType="VARCHAR" />
+    <result column="is_lost" property="isLost" jdbcType="VARCHAR" />
+    <result column="is_mental" property="isMental" jdbcType="VARCHAR" />
+    <result column="is_out" property="isOut" jdbcType="VARCHAR" />
+    <result column="is_supervise" property="isSupervise" jdbcType="VARCHAR" />
+    <result column="is_visit" property="isVisit" jdbcType="VARCHAR" />
+    <result column="is_xinjiang" property="isXinjiang" jdbcType="VARCHAR" />
+    <result column="is_key" property="isKey" jdbcType="VARCHAR" />
+    <association property="address" javaType="com.city3d.dao.entry.Address">
+	    <id column="add_id" property="addId" jdbcType="VARCHAR" />
+	    <result column="add_name" property="addName" jdbcType="VARCHAR" />
+	    <result column="province" property="province" jdbcType="VARCHAR" />
+	    <result column="subdistrict" property="subdistrict" jdbcType="VARCHAR" />
+	    <result column="communities" property="communities" jdbcType="VARCHAR" />
+	    <result column="street" property="street" jdbcType="VARCHAR" />
+	    <result column="houseNumPrefix" property="house_num_prefix" jdbcType="VARCHAR" />
+	    <result column="houseNum" property="house_num" jdbcType="VARCHAR" />
+	    <result column="houseNumPostfix" property="house_num_postfix" jdbcType="VARCHAR" />
+	    <result column="auxiliaryNum" property="auxiliary_num" jdbcType="VARCHAR" />
+	    <result column="auxiliaryNumPostfix" property="auxiliary_num_postfix" jdbcType="VARCHAR" />
+	    <result column="communityName" property="community_name" jdbcType="VARCHAR" />
+	    <result column="buildingNumPrefix" property="building_num_prefix" jdbcType="VARCHAR" />
+	    <result column="buildingNum" property="building_num" jdbcType="VARCHAR" />
+	    <result column="buildingNumPostfix" property="building_num_postfix" jdbcType="VARCHAR" />
+	    <result column="unitNum" property="unit_num" jdbcType="VARCHAR" />
+	    <result column="roomNum" property="room_num" jdbcType="VARCHAR" />
+	    <result column="roomNumPostfix" property="room_num_postfix" jdbcType="VARCHAR" />
+	    <result column="subsidiaryAdd" property="subsidiary_add" jdbcType="VARCHAR" />
+	    <result column="remark" property="remark" jdbcType="VARCHAR" />
+	    <result column="poi" property="poi" jdbcType="VARCHAR" />
+	    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+	    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+	    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+	    <result column="floor_height" property="floorHeight" jdbcType="VARCHAR" />
+	    <result column="floor_poi" property="floorPoi" jdbcType="VARCHAR" />
+	    <result column="miniheading" property="miniheading" jdbcType="VARCHAR" />
+	    <result column="floor_heading" property="floorHeading" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <resultMap id="PbAPkPmPvhHpMap" type="com.city3d.dao.entry.PeopleBase" >
+    <id column="pp_id" property="ppId" jdbcType="VARCHAR" />
+    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="mother_identity" property="motherIdentity" jdbcType="VARCHAR" />
+    <result column="mother_name" property="motherName" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="mate_identity" property="mateIdentity" jdbcType="VARCHAR" />
+    <result column="mate_name" property="mateName" jdbcType="VARCHAR" />
+    <result column="height" property="height" jdbcType="VARCHAR" />
+    <result column="community_code" property="communityCode" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="calture" property="calture" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="blood_type" property="bloodType" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="household_relation" property="householdRelation" jdbcType="VARCHAR" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="political" property="political" jdbcType="VARCHAR" />
+    <result column="once_name" property="onceName" jdbcType="VARCHAR" />
+    <result column="unit_name" property="unitName" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="father_identity" property="fatherIdentity" jdbcType="VARCHAR" />
+    <result column="father_name" property="fatherName" jdbcType="VARCHAR" />
+    <result column="identity1" property="identity1" jdbcType="VARCHAR" />
+    <result column="household_no" property="householdNo" jdbcType="VARCHAR" />
+    <result column="household_address" property="householdAddress" jdbcType="VARCHAR" />
+    <result column="household_porvince" property="householdPorvince" jdbcType="VARCHAR" />
+    <result column="household_nature" property="householdNature" jdbcType="VARCHAR" />
+    <result column="marriage" property="marriage" jdbcType="VARCHAR" />
+    <result column="native_place_country" property="nativePlaceCountry" jdbcType="VARCHAR" />
+    <result column="native_place_province" property="nativePlaceProvince" jdbcType="VARCHAR" />
+    <result column="from_country" property="fromCountry" jdbcType="VARCHAR" />
+    <result column="from_address" property="fromAddress" jdbcType="VARCHAR" />
+    <result column="from_province" property="fromProvince" jdbcType="VARCHAR" />
+    <result column="in_date" property="inDate" jdbcType="VARCHAR" />
+    <result column="in_reason" property="inReason" jdbcType="VARCHAR" />
+    <result column="serve_army" property="serveArmy" jdbcType="VARCHAR" />
+    <result column="overseas_relation" property="overseasRelation" jdbcType="VARCHAR" />
+    <result column="people_type" property="peopleType" jdbcType="VARCHAR" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="img_other" property="imgOther" jdbcType="VARCHAR" />
+    <result column="skill" property="skill" jdbcType="VARCHAR" />
+    <result column="entry_type" property="entryType" jdbcType="VARCHAR" />
+    <result column="is_drug" property="isDrug" jdbcType="VARCHAR" />
+    <result column="is_flow" property="isFlow" jdbcType="VARCHAR" />
+    <result column="is_important" property="isImportant" jdbcType="VARCHAR" />
+    <result column="is_lost" property="isLost" jdbcType="VARCHAR" />
+    <result column="is_mental" property="isMental" jdbcType="VARCHAR" />
+    <result column="is_out" property="isOut" jdbcType="VARCHAR" />
+    <result column="is_supervise" property="isSupervise" jdbcType="VARCHAR" />
+    <result column="is_visit" property="isVisit" jdbcType="VARCHAR" />
+    <result column="is_xinjiang" property="isXinjiang" jdbcType="VARCHAR" />
+    <result column="is_key" property="isKey" jdbcType="VARCHAR" />
+    <association property="address" javaType="com.city3d.dao.entry.Address">
+	    <id column="add_id" property="addId" jdbcType="VARCHAR" />
+	    <result column="add_name" property="addName" jdbcType="VARCHAR" />
+	    <result column="province" property="province" jdbcType="VARCHAR" />
+	    <result column="subdistrict" property="subdistrict" jdbcType="VARCHAR" />
+	    <result column="communities" property="communities" jdbcType="VARCHAR" />
+	    <result column="street" property="street" jdbcType="VARCHAR" />
+	    <result column="houseNumPrefix" property="house_num_prefix" jdbcType="VARCHAR" />
+	    <result column="houseNum" property="house_num" jdbcType="VARCHAR" />
+	    <result column="houseNumPostfix" property="house_num_postfix" jdbcType="VARCHAR" />
+	    <result column="auxiliaryNum" property="auxiliary_num" jdbcType="VARCHAR" />
+	    <result column="auxiliaryNumPostfix" property="auxiliary_num_postfix" jdbcType="VARCHAR" />
+	    <result column="communityName" property="community_name" jdbcType="VARCHAR" />
+	    <result column="buildingNumPrefix" property="building_num_prefix" jdbcType="VARCHAR" />
+	    <result column="buildingNum" property="building_num" jdbcType="VARCHAR" />
+	    <result column="buildingNumPostfix" property="building_num_postfix" jdbcType="VARCHAR" />
+	    <result column="unitNum" property="unit_num" jdbcType="VARCHAR" />
+	    <result column="roomNum" property="room_num" jdbcType="VARCHAR" />
+	    <result column="roomNumPostfix" property="room_num_postfix" jdbcType="VARCHAR" />
+	    <result column="subsidiaryAdd" property="subsidiary_add" jdbcType="VARCHAR" />
+	    <result column="remark" property="remark" jdbcType="VARCHAR" />
+	    <result column="poi" property="poi" jdbcType="VARCHAR" />
+	    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+	    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+	    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+	    <result column="floor_height" property="floorHeight" jdbcType="VARCHAR" />
+	    <result column="floor_poi" property="floorPoi" jdbcType="VARCHAR" />
+	    <result column="miniheading" property="miniheading" jdbcType="VARCHAR" />
+	    <result column="floor_heading" property="floorHeading" jdbcType="VARCHAR" />
+	    <result column="pid" property="pid" jdbcType="VARCHAR" />
+	    <association property="house" javaType="com.city3d.dao.entry.House" >
+    		<id column="house_id" property="houseId" jdbcType="VARCHAR" />
+    		<result column="add_id" property="addId" jdbcType="VARCHAR" />
+    		<result column="paper_id" property="paperId" jdbcType="VARCHAR" />
+    		<result column="owner" property="owner" jdbcType="VARCHAR" />
+    		<result column="area" property="area" jdbcType="VARCHAR" />
+    		<result column="build_date" property="buildDate" jdbcType="VARCHAR" />
+    		<result column="house_url" property="houseUrl" jdbcType="VARCHAR" />
+    		<result column="panorama_url" property="panoramaUrl" jdbcType="VARCHAR" />
+    		<result column="begin_date" property="beginDate" jdbcType="VARCHAR" />
+    		<result column="building_photos" property="buildingPhotos" jdbcType="VARCHAR" />
+    		<result column="bulding_structure" property="buldingStructure" jdbcType="VARCHAR" />
+    		<result column="cancelled" property="cancelled" jdbcType="VARCHAR" />
+    		<result column="community_police" property="communityPolice" jdbcType="VARCHAR" />
+    		<result column="end_date" property="endDate" jdbcType="VARCHAR" />
+    		<result column="house_area" property="houseArea" jdbcType="VARCHAR" />
+    		<result column="house_count" property="houseCount" jdbcType="VARCHAR" />
+    		<result column="house_photos" property="housePhotos" jdbcType="VARCHAR" />
+    		<result column="house_source" property="houseSource" jdbcType="VARCHAR" />
+    		<result column="house_type" property="houseType" jdbcType="VARCHAR" />
+    		<result column="house_use" property="houseUse" jdbcType="VARCHAR" />
+    		<result column="pp_id" property="ppId" jdbcType="VARCHAR" />
+    		<result column="property_no" property="propertyNo" jdbcType="VARCHAR" />
+    		<result column="property_type" property="propertyType" jdbcType="VARCHAR" />
+    		<result column="rate_time" property="rateTime" jdbcType="VARCHAR" />
+    		<result column="rent_status" property="rentStatus" jdbcType="VARCHAR" />
+    		<result column="response_leader" property="responseLeader" jdbcType="VARCHAR" />
+    		<result column="sign_response_book" property="signResponseBook" jdbcType="VARCHAR" />
+    		<result column="star" property="star" jdbcType="VARCHAR" />
+    		<result column="stop_rent_reason" property="stopRentReason" jdbcType="VARCHAR" />
+    		<result column="trust_by" property="trustBy" jdbcType="VARCHAR" />
+    		<result column="trustee_household_address" property="trusteeHouseholdAddress" jdbcType="VARCHAR" />
+    		<result column="trustee_name" property="trusteeName" jdbcType="VARCHAR" />
+    		<result column="trustee_nation" property="trusteeNation" jdbcType="VARCHAR" />
+    		<result column="trustee_pp_id" property="trusteePpId" jdbcType="VARCHAR" />
+    		<result column="trustee_relation" property="trusteeRelation" jdbcType="VARCHAR" />
+    		<result column="trustee_tel" property="trusteeTel" jdbcType="VARCHAR" />
+    		<collection property="housePanoramas" ofType="com.city3d.dao.entry.HousePanorama">
+    			 <id column="panorama_id" property="panoramaId" jdbcType="VARCHAR" />
+   				 <result column="house_id" property="houseId" jdbcType="VARCHAR" />
+   				 <result column="house_panorama" property="housePanorama" jdbcType="VARCHAR" />
+    			 <result column="house_pattern" property="housePattern" jdbcType="VARCHAR" />
+    		</collection>
+  		</association>
+    </association>
+    <collection property="peopleKnifes" ofType="com.city3d.dao.entry.PeopleKnife">
+    	<id column="knife_id" property="knifeId" jdbcType="VARCHAR" />
+        <result column="pp_id" property="ppId" jdbcType="VARCHAR" />
+        <result column="knife_lenth" property="knifeLenth" jdbcType="VARCHAR" />
+        <result column="qr_code" property="qrCode" jdbcType="VARCHAR" />
+        <result column="fixed_situation" property="fixedSituation" jdbcType="VARCHAR" />
+        <result column="knife_img_url" property="knifeImgUrl" jdbcType="VARCHAR" />
+        <result column="knife_remark" property="knifeRemark" jdbcType="VARCHAR" />
+        <result column="knife_type" property="knifeType" jdbcType="VARCHAR" />
+    </collection>
+    <collection property="peopleMachines" ofType="com.city3d.dao.entry.PeopleMachine" >
+    	<id column="machine_id" property="machineId" jdbcType="VARCHAR" />
+        <result column="pp_id" property="ppId" jdbcType="VARCHAR" />
+        <result column="qr_code" property="qrCode" jdbcType="VARCHAR" />
+        <result column="machine_img_url" property="machineImgUrl" jdbcType="VARCHAR" />
+        <result column="machine_remark" property="machineRemark" jdbcType="VARCHAR" />
+        <result column="machine_type" property="machineType" jdbcType="VARCHAR" />
+  	</collection>
+  	<collection property="peopleVehicles" ofType="com.city3d.dao.entry.PeopleVehicle" >
+    	<id column="vehicle_id" property="vehicleId" jdbcType="VARCHAR" />
+        <result column="car_brand" property="carBrand" jdbcType="VARCHAR" />
+        <result column="car_code" property="carCode" jdbcType="VARCHAR" />
+        <result column="car_no" property="carNo" jdbcType="VARCHAR" />
+        <result column="car_type" property="carType" jdbcType="VARCHAR" />
+        <result column="color" property="color" jdbcType="VARCHAR" />
+        <result column="engine_no" property="engineNo" jdbcType="VARCHAR" />
+        <result column="car_img_url" property="carImgUrl" jdbcType="VARCHAR" />
+        <result column="pp_id" property="ppId" jdbcType="VARCHAR" />
+        <result column="register_data" property="registerData" jdbcType="VARCHAR" />
+        <result column="car_remark" property="carRemark" jdbcType="VARCHAR" />
+  	</collection>
+  </resultMap>
+  <resultMap id="AddressResultMap" type="com.city3d.dao.entry.Address" >
+    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pp_id, add_id, town, identity, tel, mother_identity, mother_name, nation, mate_identity, 
+    mate_name, height, community_code, gender, calture, name, blood_type, phone, household_relation, 
+    region, political, once_name, unit_name, job, father_identity, father_name, identity1, 
+    household_no, household_address, household_porvince, household_nature, marriage, 
+    native_place_country, native_place_province, from_country, from_address, from_province, 
+    in_date, in_reason, serve_army, overseas_relation, people_type, imgurl, img_other, 
+    skill, entry_type,is_drug,is_flow,is_important,is_lost,is_mental,is_out,is_supervise,is_visit,is_xinjiang,is_key
+  </sql>
+  <select id="selectByExampleC" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.PeopleBase" >
+    select p.*,a.* from people_base p left join address a on p.add_id = a.add_id
+    where LENGTH(substr(p.identity, 7 ,8))=8 and COALESCE(p.identity,'') like concat('%',#{identity},'%') 
+    and  COALESCE(p.name,'') like concat('%',#{name},'%') and  COALESCE(p.once_name,'') like concat('%',#{onceName},'%')
+    and  COALESCE(p.gender,'') like concat('%',#{gender},'%') and  COALESCE(p.height,'') like concat('%',#{height},'%')
+    and  COALESCE(p.blood_type,'') like concat(#{bloodType},'%') and  COALESCE(p.nation,'') like concat('%',#{nation},'%')
+    and  concat(case is_important when '是' then '重点人口' end,';',case is_supervise when '是' then '监管对象' end
+		,';',case is_drug when '是' then '吸毒人员' end,';',case is_visit when '是' then '上访人员' end
+		,';',case is_mental when '是' then '精神病人员' end,';',case is_flow when '是' then '人口流动' end
+		,';',case is_xinjiang when '是' then '内地涉疆人员' end,';',case is_out when '是' then '出境未归人员' end
+		,';',case is_lost when '是' then '去向不明与无轨迹人员' end,';',case is_key when '是' then '重点人员' end
+		) like concat('%',#{isDrug},'%')
+	and  COALESCE(p.people_type,'') like concat('%',#{peopleType},'%')	
+	and  COALESCE(p.calture,'') like concat('%',#{calture},'%')
+    and  COALESCE(p.tel,'') like concat('%',#{tel},'%') and  COALESCE(p.region,'') like concat('%',#{region},'%')
+    and  COALESCE(p.political,'') like concat('%',#{political},'%') and  COALESCE(p.marriage,'') like concat('%',#{marriage},'%')
+    and  COALESCE(p.unit_name,'') like concat('%',#{unitName},'%') and  COALESCE(p.job,'') like concat('%',#{job},'%')
+    and  COALESCE(p.household_nature,'') like concat(#{householdNature},'%') and  COALESCE(p.household_address,'') like concat('%',#{householdAddress},'%')
+    and  COALESCE(p.father_name,'') like concat('%',#{fatherName},'%') and  COALESCE(p.father_identity,'') like concat('%',#{fatherIdentity},'%')
+    and  COALESCE(p.mother_name,'') like concat('%',#{motherName},'%') and  COALESCE(p.mother_identity,'') like concat('%',#{motherIdentity},'%')
+    and  COALESCE(p.mate_name,'') like concat('%',#{mateName},'%') and  COALESCE(p.mate_identity,'') like concat('%',#{mateIdentity},'%')
+    and  COALESCE(p.serve_army,'') like concat('%',#{serveArmy},'%') 
+    ORDER BY p.name
+  </select>
+  <select id="selectByExampleCPart" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.PeopleBase" >
+    select p.*,a.* from people_base p left join address a on p.add_id = a.add_id
+    where LENGTH(substr(p.identity, 7 ,8))=8 and COALESCE(p.identity,'') like concat('%',#{identity},'%') 
+    or  COALESCE(p.name,'') like concat('%',#{name},'%')
+    ORDER BY p.name
+  </select>
+  <select id="selectPeopleBaseById" resultMap="PbAPkPmPvhHpMap">
+    select *
+      FROM people_base p left join address a on p.add_id = a.add_id
+                         left join house h on h.add_id = a.add_id
+                         left join house_panorama hp on hp.house_id = h.house_id
+                         left join people_knife pk on pk.pp_id = p.pp_id
+                         left join people_machine pm on pm.pp_id = p.pp_id
+                         left join people_vehicle pv on pv.pp_id = p.pp_id
+      where p.pp_id = #{ppId}
+  </select>
+  <select id="selectPeopleBaseByAddId" resultMap="PbAPkPmPvhHpMap">
+    SELECT *
+      FROM people_base p left join address a on p.add_id = a.add_id
+                         left join house h on h.add_id = a.add_id
+                         left join house_panorama hp on hp.house_id = h.house_id
+                         left join people_knife pk on pk.pp_id = p.pp_id
+                         left join people_machine pm on pm.pp_id = p.pp_id
+                         left join people_vehicle pv on pv.pp_id = p.pp_id
+      where p.add_id = #{addId}
+  </select>
+  <select id="queryPeopleByPolygon" resultMap="AddressResultMap">
+    select * from (select *, regexp_split_to_array(t.poi,',') as AAA from address t ) B
+	where ST_Contains(ST_PolygonFromText('POLYGON((${polygon}))'),(ST_PointFromText('POINT('||AAA[1]||' '||AAA[2]||')')))
+  </select>
+  <delete id="batchDelete" parameterType="java.util.List" >
+    delete from people_base where pp_id in
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+    	#{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+</mapper>

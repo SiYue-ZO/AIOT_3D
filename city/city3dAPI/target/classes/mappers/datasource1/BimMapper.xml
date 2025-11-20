@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.BimMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Bim" >
+    <id column="tiles_id" property="tilesId" jdbcType="VARCHAR" />
+    <result column="tiles_name" property="tilesName" jdbcType="VARCHAR" />
+    <result column="tiles_url" property="tilesUrl" jdbcType="VARCHAR" />
+    <result column="tiles_type" property="tilesType" jdbcType="VARCHAR" />
+    <result column="tiles_x" property="tilesX" jdbcType="VARCHAR" />
+    <result column="tiles_y" property="tilesY" jdbcType="VARCHAR" />
+    <result column="tiles_z" property="tilesZ" jdbcType="VARCHAR" />
+    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    tiles_id, tiles_name, tiles_url, tiles_type, tiles_x, tiles_y, tiles_z, cam_poi, 
+    cam_heading, cam_pitch
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.BimExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bim
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bim
+    where tiles_id = #{tilesId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from bim
+    where tiles_id = #{tilesId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.BimExample" >
+    delete from bim
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.Bim" >
+    insert into bim (tiles_id, tiles_name, tiles_url, 
+      tiles_type, tiles_x, tiles_y, 
+      tiles_z, cam_poi, cam_heading, 
+      cam_pitch)
+    values (#{tilesId,jdbcType=VARCHAR}, #{tilesName,jdbcType=VARCHAR}, #{tilesUrl,jdbcType=VARCHAR}, 
+      #{tilesType,jdbcType=VARCHAR}, #{tilesX,jdbcType=VARCHAR}, #{tilesY,jdbcType=VARCHAR}, 
+      #{tilesZ,jdbcType=VARCHAR}, #{camPoi,jdbcType=VARCHAR}, #{camHeading,jdbcType=VARCHAR}, 
+      #{camPitch,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.Bim" >
+    insert into bim
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tilesId != null" >
+        tiles_id,
+      </if>
+      <if test="tilesName != null" >
+        tiles_name,
+      </if>
+      <if test="tilesUrl != null" >
+        tiles_url,
+      </if>
+      <if test="tilesType != null" >
+        tiles_type,
+      </if>
+      <if test="tilesX != null" >
+        tiles_x,
+      </if>
+      <if test="tilesY != null" >
+        tiles_y,
+      </if>
+      <if test="tilesZ != null" >
+        tiles_z,
+      </if>
+      <if test="camPoi != null" >
+        cam_poi,
+      </if>
+      <if test="camHeading != null" >
+        cam_heading,
+      </if>
+      <if test="camPitch != null" >
+        cam_pitch,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tilesId != null" >
+        #{tilesId,jdbcType=VARCHAR},
+      </if>
+      <if test="tilesName != null" >
+        #{tilesName,jdbcType=VARCHAR},
+      </if>
+      <if test="tilesUrl != null" >
+        #{tilesUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tilesType != null" >
+        #{tilesType,jdbcType=VARCHAR},
+      </if>
+      <if test="tilesX != null" >
+        #{tilesX,jdbcType=VARCHAR},
+      </if>
+      <if test="tilesY != null" >
+        #{tilesY,jdbcType=VARCHAR},
+      </if>
+      <if test="tilesZ != null" >
+        #{tilesZ,jdbcType=VARCHAR},
+      </if>
+      <if test="camPoi != null" >
+        #{camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="camHeading != null" >
+        #{camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="camPitch != null" >
+        #{camPitch,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.BimExample" resultType="java.lang.Integer" >
+    select count(*) from bim
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bim
+    <set >
+      <if test="record.tilesId != null" >
+        tiles_id = #{record.tilesId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tilesName != null" >
+        tiles_name = #{record.tilesName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tilesUrl != null" >
+        tiles_url = #{record.tilesUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tilesType != null" >
+        tiles_type = #{record.tilesType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tilesX != null" >
+        tiles_x = #{record.tilesX,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tilesY != null" >
+        tiles_y = #{record.tilesY,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tilesZ != null" >
+        tiles_z = #{record.tilesZ,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPoi != null" >
+        cam_poi = #{record.camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camHeading != null" >
+        cam_heading = #{record.camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPitch != null" >
+        cam_pitch = #{record.camPitch,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bim
+    set tiles_id = #{record.tilesId,jdbcType=VARCHAR},
+      tiles_name = #{record.tilesName,jdbcType=VARCHAR},
+      tiles_url = #{record.tilesUrl,jdbcType=VARCHAR},
+      tiles_type = #{record.tilesType,jdbcType=VARCHAR},
+      tiles_x = #{record.tilesX,jdbcType=VARCHAR},
+      tiles_y = #{record.tilesY,jdbcType=VARCHAR},
+      tiles_z = #{record.tilesZ,jdbcType=VARCHAR},
+      cam_poi = #{record.camPoi,jdbcType=VARCHAR},
+      cam_heading = #{record.camHeading,jdbcType=VARCHAR},
+      cam_pitch = #{record.camPitch,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.Bim" >
+    update bim
+    <set >
+      <if test="tilesName != null" >
+        tiles_name = #{tilesName,jdbcType=VARCHAR},
+      </if>
+      <if test="tilesUrl != null" >
+        tiles_url = #{tilesUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tilesType != null" >
+        tiles_type = #{tilesType,jdbcType=VARCHAR},
+      </if>
+      <if test="tilesX != null" >
+        tiles_x = #{tilesX,jdbcType=VARCHAR},
+      </if>
+      <if test="tilesY != null" >
+        tiles_y = #{tilesY,jdbcType=VARCHAR},
+      </if>
+      <if test="tilesZ != null" >
+        tiles_z = #{tilesZ,jdbcType=VARCHAR},
+      </if>
+      <if test="camPoi != null" >
+        cam_poi = #{camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="camHeading != null" >
+        cam_heading = #{camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="camPitch != null" >
+        cam_pitch = #{camPitch,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tiles_id = #{tilesId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.Bim" >
+    update bim
+    set tiles_name = #{tilesName,jdbcType=VARCHAR},
+      tiles_url = #{tilesUrl,jdbcType=VARCHAR},
+      tiles_type = #{tilesType,jdbcType=VARCHAR},
+      tiles_x = #{tilesX,jdbcType=VARCHAR},
+      tiles_y = #{tilesY,jdbcType=VARCHAR},
+      tiles_z = #{tilesZ,jdbcType=VARCHAR},
+      cam_poi = #{camPoi,jdbcType=VARCHAR},
+      cam_heading = #{camHeading,jdbcType=VARCHAR},
+      cam_pitch = #{camPitch,jdbcType=VARCHAR}
+    where tiles_id = #{tilesId,jdbcType=VARCHAR}
+  </update>
+</mapper>

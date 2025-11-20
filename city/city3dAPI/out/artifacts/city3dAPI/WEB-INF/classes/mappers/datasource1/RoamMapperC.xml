@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.RoamMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Roam" >
+    <id column="roam_id" property="roamId" jdbcType="VARCHAR" />
+    <result column="roam_name" property="roamName" jdbcType="VARCHAR" />
+    <result column="roam_model" property="roamModel" jdbcType="VARCHAR" />
+    <result column="roam_line" property="roamLine" jdbcType="VARCHAR" />
+    <result column="roam_isshow" property="roamIsshow" jdbcType="VARCHAR" />
+    <result column="roam_isre" property="roamIsre" jdbcType="VARCHAR" />
+    <result column="roam_note" property="roamNote" jdbcType="VARCHAR" />
+    <result column="roam_speed" property="roamSpeed" jdbcType="VARCHAR" />
+    <result column="roam_type" property="roamType" jdbcType="VARCHAR" />
+    <result column="roam_ismodelshow" property="roamIsmodelshow" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    roam_id, roam_name, roam_model, roam_line, roam_isshow, roam_isre, roam_note, roam_speed, 
+    roam_type, roam_ismodelshow
+  </sql>
+  <delete id="batchDelete" parameterType="java.util.List" >
+    delete from roam where roam_id in
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+    	#{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+</mapper>

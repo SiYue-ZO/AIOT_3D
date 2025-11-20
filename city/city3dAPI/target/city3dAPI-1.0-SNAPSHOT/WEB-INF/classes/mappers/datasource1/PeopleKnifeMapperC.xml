@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PeopleKnifeMapperC" >
+    <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PeopleKnife" >
+        <id column="knife_id" property="knifeId" jdbcType="VARCHAR" />
+        <result column="pp_id" property="ppId" jdbcType="VARCHAR" />
+        <result column="knife_lenth" property="knifeLenth" jdbcType="VARCHAR" />
+        <result column="qr_code" property="qrCode" jdbcType="VARCHAR" />
+        <result column="fixed_situation" property="fixedSituation" jdbcType="VARCHAR" />
+        <result column="knife_img_url" property="knifeImgUrl" jdbcType="VARCHAR" />
+        <result column="knife_remark" property="knifeRemark" jdbcType="VARCHAR" />
+        <result column="knife_type" property="knifeType" jdbcType="VARCHAR" />
+        <association property="peopleBase" javaType="com.city3d.dao.entry.PeopleBase">
+            <id column="pp_id" property="ppId" jdbcType="VARCHAR" />
+            <result column="add_id" property="addId" jdbcType="VARCHAR" />
+            <result column="town" property="town" jdbcType="VARCHAR" />
+            <result column="identity" property="identity" jdbcType="VARCHAR" />
+            <result column="tel" property="tel" jdbcType="VARCHAR" />
+            <result column="mother_identity" property="motherIdentity" jdbcType="VARCHAR" />
+            <result column="mother_name" property="motherName" jdbcType="VARCHAR" />
+            <result column="nation" property="nation" jdbcType="VARCHAR" />
+            <result column="mate_identity" property="mateIdentity" jdbcType="VARCHAR" />
+            <result column="mate_name" property="mateName" jdbcType="VARCHAR" />
+            <result column="height" property="height" jdbcType="VARCHAR" />
+            <result column="community_code" property="communityCode" jdbcType="VARCHAR" />
+            <result column="gender" property="gender" jdbcType="VARCHAR" />
+            <result column="calture" property="calture" jdbcType="VARCHAR" />
+            <result column="name" property="name" jdbcType="VARCHAR" />
+            <result column="blood_type" property="bloodType" jdbcType="VARCHAR" />
+            <result column="phone" property="phone" jdbcType="VARCHAR" />
+            <result column="household_relation" property="householdRelation" jdbcType="VARCHAR" />
+            <result column="region" property="region" jdbcType="VARCHAR" />
+            <result column="political" property="political" jdbcType="VARCHAR" />
+            <result column="once_name" property="onceName" jdbcType="VARCHAR" />
+            <result column="unit_name" property="unitName" jdbcType="VARCHAR" />
+            <result column="job" property="job" jdbcType="VARCHAR" />
+            <result column="father_identity" property="fatherIdentity" jdbcType="VARCHAR" />
+            <result column="father_name" property="fatherName" jdbcType="VARCHAR" />
+            <result column="identity1" property="identity1" jdbcType="VARCHAR" />
+            <result column="household_no" property="householdNo" jdbcType="VARCHAR" />
+            <result column="household_address" property="householdAddress" jdbcType="VARCHAR" />
+            <result column="household_porvince" property="householdPorvince" jdbcType="VARCHAR" />
+            <result column="household_nature" property="householdNature" jdbcType="VARCHAR" />
+            <result column="marriage" property="marriage" jdbcType="VARCHAR" />
+            <result column="native_place_country" property="nativePlaceCountry" jdbcType="VARCHAR" />
+            <result column="native_place_province" property="nativePlaceProvince" jdbcType="VARCHAR" />
+            <result column="from_country" property="fromCountry" jdbcType="VARCHAR" />
+            <result column="from_address" property="fromAddress" jdbcType="VARCHAR" />
+            <result column="from_province" property="fromProvince" jdbcType="VARCHAR" />
+            <result column="in_date" property="inDate" jdbcType="VARCHAR" />
+            <result column="in_reason" property="inReason" jdbcType="VARCHAR" />
+            <result column="serve_army" property="serveArmy" jdbcType="VARCHAR" />
+            <result column="overseas_relation" property="overseasRelation" jdbcType="VARCHAR" />
+            <result column="people_type" property="peopleType" jdbcType="VARCHAR" />
+            <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+            <result column="img_other" property="imgOther" jdbcType="VARCHAR" />
+            <result column="skill" property="skill" jdbcType="VARCHAR" />
+            <result column="entry_type" property="entryType" jdbcType="VARCHAR" />
+        </association>
+    </resultMap>
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <select id="selectPeopleKnifeAll" resultMap="BaseResultMap" >
+        select k.*, p.* from people_knife k left join people_base p on k.pp_id = p.pp_id
+    </select>
+    <delete id="batchDelete" parameterType="java.util.List" >
+        delete from people_knife where knife_id in
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </delete>
+</mapper>

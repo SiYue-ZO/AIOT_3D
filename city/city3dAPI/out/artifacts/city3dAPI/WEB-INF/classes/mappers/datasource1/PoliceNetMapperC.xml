@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PoliceNetMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PoliceNet" >
+    <id column="net_id" property="netId" jdbcType="VARCHAR" />
+    <result column="net_name" property="netName" jdbcType="VARCHAR" />
+    <result column="net_dep" property="netDep" jdbcType="VARCHAR" />
+    <result column="net_polygen" property="netPolygen" jdbcType="VARCHAR" />
+    <result column="net_color" property="netColor" jdbcType="VARCHAR" />
+    <result column="net_center" property="netCenter" jdbcType="VARCHAR" />
+    <result column="net_time" property="netTime" jdbcType="VARCHAR" />
+    <result column="net_level" property="netLevel" jdbcType="VARCHAR" />
+    <result column="net_area" property="netArea" jdbcType="VARCHAR" />
+    <result column="net_people" property="netPeople" jdbcType="VARCHAR" />
+    <result column="net_key_people" property="netKeyPeople" jdbcType="VARCHAR" />
+    <result column="net_note" property="netNote" jdbcType="VARCHAR" />
+    <result column="net_duty_care" property="netDutyCare" jdbcType="VARCHAR" />
+    <result column="net_care_note" property="netCareNote" jdbcType="VARCHAR" />
+    <result column="net_duty_goods" property="netDutyGoods" jdbcType="VARCHAR" />
+    <result column="net_goods_note" property="netGoodsNote" jdbcType="VARCHAR" />
+    <result column="other_note" property="otherNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    net_id, net_name, net_dep, net_polygen, net_color, net_center, net_time, net_level, 
+    net_area, net_people, net_key_people, net_note, net_duty_care, net_care_note, net_duty_goods, 
+    net_goods_note, other_note
+  </sql>
+  <delete id="batchDelete" parameterType="java.util.List" >
+    delete from police_net where net_id in
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+    	#{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+</mapper>

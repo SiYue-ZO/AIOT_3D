@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.SysFuncMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.SysFunc" >
+    <id column="func_id" property="funcId" jdbcType="VARCHAR" />
+    <result column="func_url" property="funcUrl" jdbcType="VARCHAR" />
+    <result column="func_iot_name" property="funcIotName" jdbcType="VARCHAR" />
+    <result column="func_iot_img" property="funcIotImg" jdbcType="VARCHAR" />
+    <result column="func_type" property="funcType" jdbcType="VARCHAR" />
+    <result column="func_src" property="funcSrc" jdbcType="VARCHAR" />
+    <result column="func_default_name" property="funcDefaultName" jdbcType="VARCHAR" />
+    <result column="func_pid" property="funcPid" jdbcType="VARCHAR" />
+    <result column="func_level" property="funcLevel" jdbcType="VARCHAR" />
+    <result column="func_icon" property="funcIcon" jdbcType="VARCHAR" />
+    <association property="sysRoleFunc" javaType="com.city3d.dao.entry.SysRoleFunc">
+		<id column="role_func_id" property="roleFuncId" jdbcType="VARCHAR" />
+		<result column="func_id" property="funcId" jdbcType="VARCHAR" />
+		<result column="func_name" property="funcName" jdbcType="VARCHAR" />
+		<result column="role_id" property="roleId" jdbcType="VARCHAR" />
+		<result column="role_func_pid" property="roleFuncPid" jdbcType="VARCHAR" />
+		<result column="role_func_order" property="roleFuncOrder" jdbcType="INTEGER" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    func_id, func_url, func_iot_name, func_iot_img, func_type, func_src, func_default_name, 
+    func_pid, func_level, func_icon
+  </sql>
+  <select id="getFuncAndRel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  	select f.*, r.* from sys_func f left join sys_role_func r on f.func_id = r.func_id and r.role_id = #{roleId} where f.func_type != '不可选'
+  </select>
+</mapper>

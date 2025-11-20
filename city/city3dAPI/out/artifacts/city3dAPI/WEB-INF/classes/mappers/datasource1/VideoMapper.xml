@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.VideoMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Video" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="cam_add" property="camAdd" jdbcType="VARCHAR" />
+    <result column="cam_url" property="camUrl" jdbcType="VARCHAR" />
+    <result column="cam_type" property="camType" jdbcType="VARCHAR" />
+    <result column="cam_position" property="camPosition" jdbcType="VARCHAR" />
+    <result column="cam_pid" property="camPid" jdbcType="VARCHAR" />
+    <result column="cam_isnode" property="camIsnode" jdbcType="BIT" />
+    <result column="cam_holes" property="camHoles" jdbcType="VARCHAR" />
+    <result column="cam_fov" property="camFov" jdbcType="VARCHAR" />
+    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+    <result column="cam_roll" property="camRoll" jdbcType="VARCHAR" />
+    <result column="cam_near" property="camNear" jdbcType="VARCHAR" />
+    <result column="cam_far" property="camFar" jdbcType="VARCHAR" />
+    <result column="cam_aspectratio" property="camAspectratio" jdbcType="VARCHAR" />
+    <result column="cam_rtsp" property="camRtsp" jdbcType="VARCHAR" />
+    <result column="cam_port" property="camPort" jdbcType="VARCHAR" />
+    <result column="mac_url" property="macUrl" jdbcType="VARCHAR" />
+    <result column="is_indoor" property="isIndoor" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cam_add, cam_url, cam_type, cam_position, cam_pid, cam_isnode, cam_holes, cam_fov, 
+    cam_heading, cam_pitch, cam_roll, cam_near, cam_far, cam_aspectratio, cam_rtsp, cam_port, 
+    mac_url, is_indoor
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.VideoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from video
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from video
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from video
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.VideoExample" >
+    delete from video
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.Video" >
+    insert into video (id, cam_add, cam_url, 
+      cam_type, cam_position, cam_pid, 
+      cam_isnode, cam_holes, cam_fov, 
+      cam_heading, cam_pitch, cam_roll, 
+      cam_near, cam_far, cam_aspectratio, 
+      cam_rtsp, cam_port, mac_url, 
+      is_indoor)
+    values (#{id,jdbcType=VARCHAR}, #{camAdd,jdbcType=VARCHAR}, #{camUrl,jdbcType=VARCHAR}, 
+      #{camType,jdbcType=VARCHAR}, #{camPosition,jdbcType=VARCHAR}, #{camPid,jdbcType=VARCHAR}, 
+      #{camIsnode,jdbcType=BIT}, #{camHoles,jdbcType=VARCHAR}, #{camFov,jdbcType=VARCHAR}, 
+      #{camHeading,jdbcType=VARCHAR}, #{camPitch,jdbcType=VARCHAR}, #{camRoll,jdbcType=VARCHAR}, 
+      #{camNear,jdbcType=VARCHAR}, #{camFar,jdbcType=VARCHAR}, #{camAspectratio,jdbcType=VARCHAR}, 
+      #{camRtsp,jdbcType=VARCHAR}, #{camPort,jdbcType=VARCHAR}, #{macUrl,jdbcType=VARCHAR}, 
+      #{isIndoor,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.Video" >
+    insert into video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="camAdd != null" >
+        cam_add,
+      </if>
+      <if test="camUrl != null" >
+        cam_url,
+      </if>
+      <if test="camType != null" >
+        cam_type,
+      </if>
+      <if test="camPosition != null" >
+        cam_position,
+      </if>
+      <if test="camPid != null" >
+        cam_pid,
+      </if>
+      <if test="camIsnode != null" >
+        cam_isnode,
+      </if>
+      <if test="camHoles != null" >
+        cam_holes,
+      </if>
+      <if test="camFov != null" >
+        cam_fov,
+      </if>
+      <if test="camHeading != null" >
+        cam_heading,
+      </if>
+      <if test="camPitch != null" >
+        cam_pitch,
+      </if>
+      <if test="camRoll != null" >
+        cam_roll,
+      </if>
+      <if test="camNear != null" >
+        cam_near,
+      </if>
+      <if test="camFar != null" >
+        cam_far,
+      </if>
+      <if test="camAspectratio != null" >
+        cam_aspectratio,
+      </if>
+      <if test="camRtsp != null" >
+        cam_rtsp,
+      </if>
+      <if test="camPort != null" >
+        cam_port,
+      </if>
+      <if test="macUrl != null" >
+        mac_url,
+      </if>
+      <if test="isIndoor != null" >
+        is_indoor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="camAdd != null" >
+        #{camAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="camUrl != null" >
+        #{camUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="camType != null" >
+        #{camType,jdbcType=VARCHAR},
+      </if>
+      <if test="camPosition != null" >
+        #{camPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="camPid != null" >
+        #{camPid,jdbcType=VARCHAR},
+      </if>
+      <if test="camIsnode != null" >
+        #{camIsnode,jdbcType=BIT},
+      </if>
+      <if test="camHoles != null" >
+        #{camHoles,jdbcType=VARCHAR},
+      </if>
+      <if test="camFov != null" >
+        #{camFov,jdbcType=VARCHAR},
+      </if>
+      <if test="camHeading != null" >
+        #{camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="camPitch != null" >
+        #{camPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="camRoll != null" >
+        #{camRoll,jdbcType=VARCHAR},
+      </if>
+      <if test="camNear != null" >
+        #{camNear,jdbcType=VARCHAR},
+      </if>
+      <if test="camFar != null" >
+        #{camFar,jdbcType=VARCHAR},
+      </if>
+      <if test="camAspectratio != null" >
+        #{camAspectratio,jdbcType=VARCHAR},
+      </if>
+      <if test="camRtsp != null" >
+        #{camRtsp,jdbcType=VARCHAR},
+      </if>
+      <if test="camPort != null" >
+        #{camPort,jdbcType=VARCHAR},
+      </if>
+      <if test="macUrl != null" >
+        #{macUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isIndoor != null" >
+        #{isIndoor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.VideoExample" resultType="java.lang.Integer" >
+    select count(*) from video
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update video
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camAdd != null" >
+        cam_add = #{record.camAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camUrl != null" >
+        cam_url = #{record.camUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camType != null" >
+        cam_type = #{record.camType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPosition != null" >
+        cam_position = #{record.camPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPid != null" >
+        cam_pid = #{record.camPid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camIsnode != null" >
+        cam_isnode = #{record.camIsnode,jdbcType=BIT},
+      </if>
+      <if test="record.camHoles != null" >
+        cam_holes = #{record.camHoles,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camFov != null" >
+        cam_fov = #{record.camFov,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camHeading != null" >
+        cam_heading = #{record.camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPitch != null" >
+        cam_pitch = #{record.camPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camRoll != null" >
+        cam_roll = #{record.camRoll,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camNear != null" >
+        cam_near = #{record.camNear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camFar != null" >
+        cam_far = #{record.camFar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camAspectratio != null" >
+        cam_aspectratio = #{record.camAspectratio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camRtsp != null" >
+        cam_rtsp = #{record.camRtsp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPort != null" >
+        cam_port = #{record.camPort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.macUrl != null" >
+        mac_url = #{record.macUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isIndoor != null" >
+        is_indoor = #{record.isIndoor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update video
+    set id = #{record.id,jdbcType=VARCHAR},
+      cam_add = #{record.camAdd,jdbcType=VARCHAR},
+      cam_url = #{record.camUrl,jdbcType=VARCHAR},
+      cam_type = #{record.camType,jdbcType=VARCHAR},
+      cam_position = #{record.camPosition,jdbcType=VARCHAR},
+      cam_pid = #{record.camPid,jdbcType=VARCHAR},
+      cam_isnode = #{record.camIsnode,jdbcType=BIT},
+      cam_holes = #{record.camHoles,jdbcType=VARCHAR},
+      cam_fov = #{record.camFov,jdbcType=VARCHAR},
+      cam_heading = #{record.camHeading,jdbcType=VARCHAR},
+      cam_pitch = #{record.camPitch,jdbcType=VARCHAR},
+      cam_roll = #{record.camRoll,jdbcType=VARCHAR},
+      cam_near = #{record.camNear,jdbcType=VARCHAR},
+      cam_far = #{record.camFar,jdbcType=VARCHAR},
+      cam_aspectratio = #{record.camAspectratio,jdbcType=VARCHAR},
+      cam_rtsp = #{record.camRtsp,jdbcType=VARCHAR},
+      cam_port = #{record.camPort,jdbcType=VARCHAR},
+      mac_url = #{record.macUrl,jdbcType=VARCHAR},
+      is_indoor = #{record.isIndoor,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.Video" >
+    update video
+    <set >
+      <if test="camAdd != null" >
+        cam_add = #{camAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="camUrl != null" >
+        cam_url = #{camUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="camType != null" >
+        cam_type = #{camType,jdbcType=VARCHAR},
+      </if>
+      <if test="camPosition != null" >
+        cam_position = #{camPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="camPid != null" >
+        cam_pid = #{camPid,jdbcType=VARCHAR},
+      </if>
+      <if test="camIsnode != null" >
+        cam_isnode = #{camIsnode,jdbcType=BIT},
+      </if>
+      <if test="camHoles != null" >
+        cam_holes = #{camHoles,jdbcType=VARCHAR},
+      </if>
+      <if test="camFov != null" >
+        cam_fov = #{camFov,jdbcType=VARCHAR},
+      </if>
+      <if test="camHeading != null" >
+        cam_heading = #{camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="camPitch != null" >
+        cam_pitch = #{camPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="camRoll != null" >
+        cam_roll = #{camRoll,jdbcType=VARCHAR},
+      </if>
+      <if test="camNear != null" >
+        cam_near = #{camNear,jdbcType=VARCHAR},
+      </if>
+      <if test="camFar != null" >
+        cam_far = #{camFar,jdbcType=VARCHAR},
+      </if>
+      <if test="camAspectratio != null" >
+        cam_aspectratio = #{camAspectratio,jdbcType=VARCHAR},
+      </if>
+      <if test="camRtsp != null" >
+        cam_rtsp = #{camRtsp,jdbcType=VARCHAR},
+      </if>
+      <if test="camPort != null" >
+        cam_port = #{camPort,jdbcType=VARCHAR},
+      </if>
+      <if test="macUrl != null" >
+        mac_url = #{macUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isIndoor != null" >
+        is_indoor = #{isIndoor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.Video" >
+    update video
+    set cam_add = #{camAdd,jdbcType=VARCHAR},
+      cam_url = #{camUrl,jdbcType=VARCHAR},
+      cam_type = #{camType,jdbcType=VARCHAR},
+      cam_position = #{camPosition,jdbcType=VARCHAR},
+      cam_pid = #{camPid,jdbcType=VARCHAR},
+      cam_isnode = #{camIsnode,jdbcType=BIT},
+      cam_holes = #{camHoles,jdbcType=VARCHAR},
+      cam_fov = #{camFov,jdbcType=VARCHAR},
+      cam_heading = #{camHeading,jdbcType=VARCHAR},
+      cam_pitch = #{camPitch,jdbcType=VARCHAR},
+      cam_roll = #{camRoll,jdbcType=VARCHAR},
+      cam_near = #{camNear,jdbcType=VARCHAR},
+      cam_far = #{camFar,jdbcType=VARCHAR},
+      cam_aspectratio = #{camAspectratio,jdbcType=VARCHAR},
+      cam_rtsp = #{camRtsp,jdbcType=VARCHAR},
+      cam_port = #{camPort,jdbcType=VARCHAR},
+      mac_url = #{macUrl,jdbcType=VARCHAR},
+      is_indoor = #{isIndoor,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

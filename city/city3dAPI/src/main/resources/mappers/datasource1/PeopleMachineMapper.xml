@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PeopleMachineMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PeopleMachine" >
+    <id column="machine_id" property="machineId" jdbcType="VARCHAR" />
+    <result column="pp_id" property="ppId" jdbcType="VARCHAR" />
+    <result column="qr_code" property="qrCode" jdbcType="VARCHAR" />
+    <result column="machine_img_url" property="machineImgUrl" jdbcType="VARCHAR" />
+    <result column="machine_remark" property="machineRemark" jdbcType="VARCHAR" />
+    <result column="machine_type" property="machineType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    machine_id, pp_id, qr_code, machine_img_url, machine_remark, machine_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.PeopleMachineExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from people_machine
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from people_machine
+    where machine_id = #{machineId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from people_machine
+    where machine_id = #{machineId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.PeopleMachineExample" >
+    delete from people_machine
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.PeopleMachine" >
+    insert into people_machine (machine_id, pp_id, qr_code,
+                                machine_img_url, machine_remark, machine_type
+    )
+    values (#{machineId,jdbcType=VARCHAR}, #{ppId,jdbcType=VARCHAR}, #{qrCode,jdbcType=VARCHAR},
+            #{machineImgUrl,jdbcType=VARCHAR}, #{machineRemark,jdbcType=VARCHAR}, #{machineType,jdbcType=VARCHAR}
+           )
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.PeopleMachine" >
+    insert into people_machine
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="machineId != null" >
+        machine_id,
+      </if>
+      <if test="ppId != null" >
+        pp_id,
+      </if>
+      <if test="qrCode != null" >
+        qr_code,
+      </if>
+      <if test="machineImgUrl != null" >
+        machine_img_url,
+      </if>
+      <if test="machineRemark != null" >
+        machine_remark,
+      </if>
+      <if test="machineType != null" >
+        machine_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="machineId != null" >
+        #{machineId,jdbcType=VARCHAR},
+      </if>
+      <if test="ppId != null" >
+        #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null" >
+        #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="machineImgUrl != null" >
+        #{machineImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="machineRemark != null" >
+        #{machineRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="machineType != null" >
+        #{machineType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.PeopleMachineExample" resultType="java.lang.Integer" >
+    select count(*) from people_machine
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update people_machine
+    <set >
+      <if test="record.machineId != null" >
+        machine_id = #{record.machineId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ppId != null" >
+        pp_id = #{record.ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qrCode != null" >
+        qr_code = #{record.qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.machineImgUrl != null" >
+        machine_img_url = #{record.machineImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.machineRemark != null" >
+        machine_remark = #{record.machineRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.machineType != null" >
+        machine_type = #{record.machineType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update people_machine
+    set machine_id = #{record.machineId,jdbcType=VARCHAR},
+    pp_id = #{record.ppId,jdbcType=VARCHAR},
+    qr_code = #{record.qrCode,jdbcType=VARCHAR},
+    machine_img_url = #{record.machineImgUrl,jdbcType=VARCHAR},
+    machine_remark = #{record.machineRemark,jdbcType=VARCHAR},
+    machine_type = #{record.machineType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.PeopleMachine" >
+    update people_machine
+    <set >
+      <if test="ppId != null" >
+        pp_id = #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null" >
+        qr_code = #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="machineImgUrl != null" >
+        machine_img_url = #{machineImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="machineRemark != null" >
+        machine_remark = #{machineRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="machineType != null" >
+        machine_type = #{machineType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where machine_id = #{machineId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.PeopleMachine" >
+    update people_machine
+    set pp_id = #{ppId,jdbcType=VARCHAR},
+        qr_code = #{qrCode,jdbcType=VARCHAR},
+        machine_img_url = #{machineImgUrl,jdbcType=VARCHAR},
+        machine_remark = #{machineRemark,jdbcType=VARCHAR},
+        machine_type = #{machineType,jdbcType=VARCHAR}
+    where machine_id = #{machineId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.AttributeDataMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.AttributeData" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="attr_id" property="attrId" jdbcType="VARCHAR" />
+    <result column="coverage_id" property="coverageId" jdbcType="VARCHAR" />
+    <result column="add_name" property="addName" jdbcType="VARCHAR" />
+    <result column="poi" property="poi" jdbcType="VARCHAR" />
+    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, value, attr_id, coverage_id, add_name, poi, cam_poi, cam_heading, cam_pitch, 
+    color
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.AttributeDataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from attribute_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from attribute_data
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from attribute_data
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.AttributeDataExample" >
+    delete from attribute_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.AttributeData" >
+    insert into attribute_data (id, value, attr_id, 
+      coverage_id, add_name, poi, 
+      cam_poi, cam_heading, cam_pitch, 
+      color)
+    values (#{id,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{attrId,jdbcType=VARCHAR}, 
+      #{coverageId,jdbcType=VARCHAR}, #{addName,jdbcType=VARCHAR}, #{poi,jdbcType=VARCHAR}, 
+      #{camPoi,jdbcType=VARCHAR}, #{camHeading,jdbcType=VARCHAR}, #{camPitch,jdbcType=VARCHAR}, 
+      #{color,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.AttributeData" >
+    insert into attribute_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="attrId != null" >
+        attr_id,
+      </if>
+      <if test="coverageId != null" >
+        coverage_id,
+      </if>
+      <if test="addName != null" >
+        add_name,
+      </if>
+      <if test="poi != null" >
+        poi,
+      </if>
+      <if test="camPoi != null" >
+        cam_poi,
+      </if>
+      <if test="camHeading != null" >
+        cam_heading,
+      </if>
+      <if test="camPitch != null" >
+        cam_pitch,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="attrId != null" >
+        #{attrId,jdbcType=VARCHAR},
+      </if>
+      <if test="coverageId != null" >
+        #{coverageId,jdbcType=VARCHAR},
+      </if>
+      <if test="addName != null" >
+        #{addName,jdbcType=VARCHAR},
+      </if>
+      <if test="poi != null" >
+        #{poi,jdbcType=VARCHAR},
+      </if>
+      <if test="camPoi != null" >
+        #{camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="camHeading != null" >
+        #{camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="camPitch != null" >
+        #{camPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.AttributeDataExample" resultType="java.lang.Integer" >
+    select count(*) from attribute_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update attribute_data
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.value != null" >
+        value = #{record.value,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attrId != null" >
+        attr_id = #{record.attrId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coverageId != null" >
+        coverage_id = #{record.coverageId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addName != null" >
+        add_name = #{record.addName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.poi != null" >
+        poi = #{record.poi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPoi != null" >
+        cam_poi = #{record.camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camHeading != null" >
+        cam_heading = #{record.camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPitch != null" >
+        cam_pitch = #{record.camPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.color != null" >
+        color = #{record.color,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update attribute_data
+    set id = #{record.id,jdbcType=VARCHAR},
+      value = #{record.value,jdbcType=VARCHAR},
+      attr_id = #{record.attrId,jdbcType=VARCHAR},
+      coverage_id = #{record.coverageId,jdbcType=VARCHAR},
+      add_name = #{record.addName,jdbcType=VARCHAR},
+      poi = #{record.poi,jdbcType=VARCHAR},
+      cam_poi = #{record.camPoi,jdbcType=VARCHAR},
+      cam_heading = #{record.camHeading,jdbcType=VARCHAR},
+      cam_pitch = #{record.camPitch,jdbcType=VARCHAR},
+      color = #{record.color,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.AttributeData" >
+    update attribute_data
+    <set >
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="attrId != null" >
+        attr_id = #{attrId,jdbcType=VARCHAR},
+      </if>
+      <if test="coverageId != null" >
+        coverage_id = #{coverageId,jdbcType=VARCHAR},
+      </if>
+      <if test="addName != null" >
+        add_name = #{addName,jdbcType=VARCHAR},
+      </if>
+      <if test="poi != null" >
+        poi = #{poi,jdbcType=VARCHAR},
+      </if>
+      <if test="camPoi != null" >
+        cam_poi = #{camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="camHeading != null" >
+        cam_heading = #{camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="camPitch != null" >
+        cam_pitch = #{camPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.AttributeData" >
+    update attribute_data
+    set value = #{value,jdbcType=VARCHAR},
+      attr_id = #{attrId,jdbcType=VARCHAR},
+      coverage_id = #{coverageId,jdbcType=VARCHAR},
+      add_name = #{addName,jdbcType=VARCHAR},
+      poi = #{poi,jdbcType=VARCHAR},
+      cam_poi = #{camPoi,jdbcType=VARCHAR},
+      cam_heading = #{camHeading,jdbcType=VARCHAR},
+      cam_pitch = #{camPitch,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

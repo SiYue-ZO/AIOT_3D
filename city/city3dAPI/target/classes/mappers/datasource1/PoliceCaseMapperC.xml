@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PoliceCaseMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PoliceCase" >
+    <id column="case_id" property="caseId" jdbcType="VARCHAR" />
+    <result column="net_id" property="netId" jdbcType="VARCHAR" />
+    <result column="case_name" property="caseName" jdbcType="VARCHAR" />
+    <result column="case_type" property="caseType" jdbcType="VARCHAR" />
+    <result column="case_addr" property="caseAddr" jdbcType="VARCHAR" />
+    <result column="case_position" property="casePosition" jdbcType="VARCHAR" />
+    <result column="case_date" property="caseDate" jdbcType="VARCHAR" />
+    <result column="case_source" property="caseSource" jdbcType="VARCHAR" />
+    <result column="victim" property="victim" jdbcType="VARCHAR" />
+    <result column="suspect" property="suspect" jdbcType="VARCHAR" />
+    <result column="case_describe" property="caseDescribe" jdbcType="VARCHAR" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="audio_url" property="audioUrl" jdbcType="VARCHAR" />
+    <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+    <result column="case_result" property="caseResult" jdbcType="VARCHAR" />
+    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+    <association property="policeNet" javaType="com.city3d.dao.entry.PoliceNet">
+	    <id column="net_id" property="netId" jdbcType="VARCHAR" />
+	    <result column="net_name" property="netName" jdbcType="VARCHAR" />
+	    <result column="net_dep" property="netDep" jdbcType="VARCHAR" />
+	    <result column="net_polygen" property="netPolygen" jdbcType="VARCHAR" />
+	    <result column="net_color" property="netColor" jdbcType="VARCHAR" />
+	    <result column="net_center" property="netCenter" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    case_id, net_id, case_name, case_type, case_addr, case_position, case_date, case_source, 
+    victim, suspect, case_describe, img_url, audio_url, video_url, case_result, cam_poi, 
+    cam_heading, cam_pitch
+  </sql>
+  <sql id="Base_Column_List_No_Pic" >
+    case_id, net_id, case_name, case_type, case_addr, case_position, case_date, case_source, 
+    victim, suspect, case_describe, case_result, cam_poi, cam_heading, cam_pitch
+  </sql>
+  <select id="getCase" resultMap="BaseResultMap">
+	select <include refid="Base_Column_List_No_Pic" /> from police_case WHERE case_source IS NOT NULL and case_type IS NOT NULL
+  </select>
+  <select id="selectCaseandNetById" resultMap="BaseResultMap">
+  	SELECT c.*, n.* FROM police_case c, police_net n WHERE c.net_id = n.net_id and c.case_id = #{caseId}
+  </select>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.GeneralMapper" >
+  <select id="countPeople" resultType="hashmap">
+  	select count(1) from key_people k
+	union all
+	select count(1) from flow_people f
+	union all
+	select count(1) from people p
+  </select>
+  <select id="countAdd" resultType="hashmap">
+  	select count(1) from address a
+	union all
+	select count(1) from house h
+  </select>
+  <select id="countDep" resultType="hashmap">
+  	select count(1) from key_department d
+	union all
+	select count(1) from fire_control c
+	union all
+	select count(1) from business b
+  </select>
+  <select id="countPatrol" resultType="hashmap">
+  	select count(1) from police_point p where p_type = '巡点'
+	union all
+	select count(1) from security s
+	union all
+	select count(1) from police_net n where net_dep = '巡区'
+	union all
+	select count(1) from police_line l where l_type = '步巡' or l_type = '车巡'
+  </select>
+  <select id="countCam" resultType="hashmap">
+  	select count(1) from video c where c.cam_isnode = false and c.cam_type = '1'
+	union all
+	select count(1) from video c where c.cam_isnode = false and c.cam_type = '2'
+	union all
+	select count(1) from video c where c.cam_isnode = false and c.cam_type = '3'
+	union all
+	select count(1) from video c where c.cam_isnode = false and c.cam_type = '4'
+	union all
+	select count(1) from video c where c.cam_isnode = false and c.cam_type = '5'
+  </select>
+  <select id="countMan" resultType="hashmap">
+  	select count(1) from police p
+	union all
+	select count(1) from car c
+	union all
+	select count(1) from car c
+	union all
+	select count(1) from police p
+	union all
+	select count(1) from police p
+  </select>
+</mapper>

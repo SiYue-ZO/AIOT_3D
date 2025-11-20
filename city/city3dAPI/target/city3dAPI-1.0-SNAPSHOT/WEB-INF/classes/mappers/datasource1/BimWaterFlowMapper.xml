@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.BimWaterFlowMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.BimWaterFlow" >
+    <id column="bim_flow_id" property="bimFlowId" jdbcType="VARCHAR" />
+    <result column="flow_pos" property="flowPos" jdbcType="VARCHAR" />
+    <result column="flow_name" property="flowName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    bim_flow_id, flow_pos, flow_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.BimWaterFlowExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bim_water_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bim_water_flow
+    where bim_flow_id = #{bimFlowId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from bim_water_flow
+    where bim_flow_id = #{bimFlowId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.BimWaterFlowExample" >
+    delete from bim_water_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.BimWaterFlow" >
+    insert into bim_water_flow (bim_flow_id, flow_pos, flow_name
+      )
+    values (#{bimFlowId,jdbcType=VARCHAR}, #{flowPos,jdbcType=VARCHAR}, #{flowName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.BimWaterFlow" >
+    insert into bim_water_flow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bimFlowId != null" >
+        bim_flow_id,
+      </if>
+      <if test="flowPos != null" >
+        flow_pos,
+      </if>
+      <if test="flowName != null" >
+        flow_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bimFlowId != null" >
+        #{bimFlowId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowPos != null" >
+        #{flowPos,jdbcType=VARCHAR},
+      </if>
+      <if test="flowName != null" >
+        #{flowName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.BimWaterFlowExample" resultType="java.lang.Integer" >
+    select count(*) from bim_water_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bim_water_flow
+    <set >
+      <if test="record.bimFlowId != null" >
+        bim_flow_id = #{record.bimFlowId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowPos != null" >
+        flow_pos = #{record.flowPos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowName != null" >
+        flow_name = #{record.flowName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bim_water_flow
+    set bim_flow_id = #{record.bimFlowId,jdbcType=VARCHAR},
+      flow_pos = #{record.flowPos,jdbcType=VARCHAR},
+      flow_name = #{record.flowName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.BimWaterFlow" >
+    update bim_water_flow
+    <set >
+      <if test="flowPos != null" >
+        flow_pos = #{flowPos,jdbcType=VARCHAR},
+      </if>
+      <if test="flowName != null" >
+        flow_name = #{flowName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bim_flow_id = #{bimFlowId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.BimWaterFlow" >
+    update bim_water_flow
+    set flow_pos = #{flowPos,jdbcType=VARCHAR},
+      flow_name = #{flowName,jdbcType=VARCHAR}
+    where bim_flow_id = #{bimFlowId,jdbcType=VARCHAR}
+  </update>
+</mapper>

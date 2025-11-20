@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.AddressMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Address" >
+    <id column="add_id" property="addId" jdbcType="VARCHAR" />
+    <result column="add_name" property="addName" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="subdistrict" property="subdistrict" jdbcType="VARCHAR" />
+    <result column="communities" property="communities" jdbcType="VARCHAR" />
+    <result column="street" property="street" jdbcType="VARCHAR" />
+    <result column="house_num_prefix" property="houseNumPrefix" jdbcType="VARCHAR" />
+    <result column="house_num" property="houseNum" jdbcType="VARCHAR" />
+    <result column="house_num_postfix" property="houseNumPostfix" jdbcType="VARCHAR" />
+    <result column="auxiliary_num" property="auxiliaryNum" jdbcType="VARCHAR" />
+    <result column="auxiliary_num_postfix" property="auxiliaryNumPostfix" jdbcType="VARCHAR" />
+    <result column="community_name" property="communityName" jdbcType="VARCHAR" />
+    <result column="building_num_prefix" property="buildingNumPrefix" jdbcType="VARCHAR" />
+    <result column="building_num" property="buildingNum" jdbcType="VARCHAR" />
+    <result column="building_num_postfix" property="buildingNumPostfix" jdbcType="VARCHAR" />
+    <result column="unit_num" property="unitNum" jdbcType="VARCHAR" />
+    <result column="room_num" property="roomNum" jdbcType="VARCHAR" />
+    <result column="room_num_postfix" property="roomNumPostfix" jdbcType="VARCHAR" />
+    <result column="subsidiary_add" property="subsidiaryAdd" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="poi" property="poi" jdbcType="VARCHAR" />
+    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+    <result column="add_type" property="addType" jdbcType="VARCHAR" />
+    <result column="floor_height" property="floorHeight" jdbcType="VARCHAR" />
+    <result column="floor_poi" property="floorPoi" jdbcType="VARCHAR" />
+    <result column="miniheading" property="miniheading" jdbcType="VARCHAR" />
+    <result column="floor_heading" property="floorHeading" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="add_date" property="addDate" jdbcType="VARCHAR" />
+    <association property="net" javaType="com.city3d.dao.entry.Net">
+	    <id column="net_id" property="netId" jdbcType="VARCHAR" />
+	    <result column="net_pid" property="netPid" jdbcType="VARCHAR" />
+	    <result column="net_poi" property="netPoi" jdbcType="VARCHAR" />
+	    <result column="net_level" property="netLevel" jdbcType="VARCHAR" />
+	    <result column="net_name" property="netName" jdbcType="VARCHAR" />
+	    <result column="net_center" property="netCenter" jdbcType="VARCHAR" />
+	    <result column="net_color" property="netColor" jdbcType="VARCHAR" />
+	    <result column="net_master" property="netMaster" jdbcType="VARCHAR" />
+	    <result column="net_listener" property="netListener" jdbcType="VARCHAR" />
+	    <result column="net_base_people" property="netBasePeople" jdbcType="VARCHAR" />
+	    <result column="net_hold_people" property="netHoldPeople" jdbcType="VARCHAR" />
+	    <result column="net_flow_people" property="netFlowPeople" jdbcType="VARCHAR" />
+	    <result column="net_group" property="netGroup" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    add_id, add_name, province, subdistrict, communities, street, house_num_prefix, house_num, 
+    house_num_postfix, auxiliary_num, auxiliary_num_postfix, community_name, building_num_prefix, 
+    building_num, building_num_postfix, unit_num, room_num, room_num_postfix, subsidiary_add, 
+    remark, poi, cam_poi, cam_heading, cam_pitch, add_type, floor_height, floor_poi, 
+    miniheading, floor_heading, pid, add_date
+  </sql>
+  <select id="getAddressAll" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select a.*, n.* from address a, net n where a.pid = n.net_id and a.add_type = #{addType} order by a.add_date desc
+  </select>
+  <select id="queryAddressByPolygon" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.Address">
+ 				select B.roomcode from (select *, regexp_split_to_array(t.poi,',') as AAA from address t ) B
+		where ST_Contains(ST_PolygonFromText('POLYGON((${poi}))'),(ST_PointFromText('POINT('||AAA[1]||' '||AAA[2]||')')))
+  </select>
+  <delete id="batchDelete" parameterType="java.util.List" >
+    delete from address where add_id in
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+    	#{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+</mapper>

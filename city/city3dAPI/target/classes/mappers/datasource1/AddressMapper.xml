@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.AddressMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Address" >
+    <id column="add_id" property="addId" jdbcType="VARCHAR" />
+    <result column="add_name" property="addName" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="subdistrict" property="subdistrict" jdbcType="VARCHAR" />
+    <result column="communities" property="communities" jdbcType="VARCHAR" />
+    <result column="street" property="street" jdbcType="VARCHAR" />
+    <result column="house_num_prefix" property="houseNumPrefix" jdbcType="VARCHAR" />
+    <result column="house_num" property="houseNum" jdbcType="VARCHAR" />
+    <result column="house_num_postfix" property="houseNumPostfix" jdbcType="VARCHAR" />
+    <result column="auxiliary_num" property="auxiliaryNum" jdbcType="VARCHAR" />
+    <result column="auxiliary_num_postfix" property="auxiliaryNumPostfix" jdbcType="VARCHAR" />
+    <result column="community_name" property="communityName" jdbcType="VARCHAR" />
+    <result column="building_num_prefix" property="buildingNumPrefix" jdbcType="VARCHAR" />
+    <result column="building_num" property="buildingNum" jdbcType="VARCHAR" />
+    <result column="building_num_postfix" property="buildingNumPostfix" jdbcType="VARCHAR" />
+    <result column="unit_num" property="unitNum" jdbcType="VARCHAR" />
+    <result column="room_num" property="roomNum" jdbcType="VARCHAR" />
+    <result column="room_num_postfix" property="roomNumPostfix" jdbcType="VARCHAR" />
+    <result column="subsidiary_add" property="subsidiaryAdd" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="poi" property="poi" jdbcType="VARCHAR" />
+    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+    <result column="add_type" property="addType" jdbcType="VARCHAR" />
+    <result column="floor_height" property="floorHeight" jdbcType="VARCHAR" />
+    <result column="floor_poi" property="floorPoi" jdbcType="VARCHAR" />
+    <result column="miniheading" property="miniheading" jdbcType="VARCHAR" />
+    <result column="floor_heading" property="floorHeading" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="add_date" property="addDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    add_id, add_name, province, subdistrict, communities, street, house_num_prefix, house_num, 
+    house_num_postfix, auxiliary_num, auxiliary_num_postfix, community_name, building_num_prefix, 
+    building_num, building_num_postfix, unit_num, room_num, room_num_postfix, subsidiary_add, 
+    remark, poi, cam_poi, cam_heading, cam_pitch, add_type, floor_height, floor_poi, 
+    miniheading, floor_heading, pid, add_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.AddressExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where add_id = #{addId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from address
+    where add_id = #{addId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.AddressExample" >
+    delete from address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.Address" >
+    insert into address (add_id, add_name, province, 
+      subdistrict, communities, street, 
+      house_num_prefix, house_num, house_num_postfix, 
+      auxiliary_num, auxiliary_num_postfix, community_name, 
+      building_num_prefix, building_num, building_num_postfix, 
+      unit_num, room_num, room_num_postfix, 
+      subsidiary_add, remark, poi, 
+      cam_poi, cam_heading, cam_pitch, 
+      add_type, floor_height, floor_poi, 
+      miniheading, floor_heading, pid, 
+      add_date)
+    values (#{addId,jdbcType=VARCHAR}, #{addName,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{subdistrict,jdbcType=VARCHAR}, #{communities,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, 
+      #{houseNumPrefix,jdbcType=VARCHAR}, #{houseNum,jdbcType=VARCHAR}, #{houseNumPostfix,jdbcType=VARCHAR}, 
+      #{auxiliaryNum,jdbcType=VARCHAR}, #{auxiliaryNumPostfix,jdbcType=VARCHAR}, #{communityName,jdbcType=VARCHAR}, 
+      #{buildingNumPrefix,jdbcType=VARCHAR}, #{buildingNum,jdbcType=VARCHAR}, #{buildingNumPostfix,jdbcType=VARCHAR}, 
+      #{unitNum,jdbcType=VARCHAR}, #{roomNum,jdbcType=VARCHAR}, #{roomNumPostfix,jdbcType=VARCHAR}, 
+      #{subsidiaryAdd,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{poi,jdbcType=VARCHAR}, 
+      #{camPoi,jdbcType=VARCHAR}, #{camHeading,jdbcType=VARCHAR}, #{camPitch,jdbcType=VARCHAR}, 
+      #{addType,jdbcType=VARCHAR}, #{floorHeight,jdbcType=VARCHAR}, #{floorPoi,jdbcType=VARCHAR}, 
+      #{miniheading,jdbcType=VARCHAR}, #{floorHeading,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
+      #{addDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.Address" >
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addId != null" >
+        add_id,
+      </if>
+      <if test="addName != null" >
+        add_name,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="subdistrict != null" >
+        subdistrict,
+      </if>
+      <if test="communities != null" >
+        communities,
+      </if>
+      <if test="street != null" >
+        street,
+      </if>
+      <if test="houseNumPrefix != null" >
+        house_num_prefix,
+      </if>
+      <if test="houseNum != null" >
+        house_num,
+      </if>
+      <if test="houseNumPostfix != null" >
+        house_num_postfix,
+      </if>
+      <if test="auxiliaryNum != null" >
+        auxiliary_num,
+      </if>
+      <if test="auxiliaryNumPostfix != null" >
+        auxiliary_num_postfix,
+      </if>
+      <if test="communityName != null" >
+        community_name,
+      </if>
+      <if test="buildingNumPrefix != null" >
+        building_num_prefix,
+      </if>
+      <if test="buildingNum != null" >
+        building_num,
+      </if>
+      <if test="buildingNumPostfix != null" >
+        building_num_postfix,
+      </if>
+      <if test="unitNum != null" >
+        unit_num,
+      </if>
+      <if test="roomNum != null" >
+        room_num,
+      </if>
+      <if test="roomNumPostfix != null" >
+        room_num_postfix,
+      </if>
+      <if test="subsidiaryAdd != null" >
+        subsidiary_add,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="poi != null" >
+        poi,
+      </if>
+      <if test="camPoi != null" >
+        cam_poi,
+      </if>
+      <if test="camHeading != null" >
+        cam_heading,
+      </if>
+      <if test="camPitch != null" >
+        cam_pitch,
+      </if>
+      <if test="addType != null" >
+        add_type,
+      </if>
+      <if test="floorHeight != null" >
+        floor_height,
+      </if>
+      <if test="floorPoi != null" >
+        floor_poi,
+      </if>
+      <if test="miniheading != null" >
+        miniheading,
+      </if>
+      <if test="floorHeading != null" >
+        floor_heading,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="addDate != null" >
+        add_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addId != null" >
+        #{addId,jdbcType=VARCHAR},
+      </if>
+      <if test="addName != null" >
+        #{addName,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="subdistrict != null" >
+        #{subdistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="communities != null" >
+        #{communities,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null" >
+        #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNumPrefix != null" >
+        #{houseNumPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNum != null" >
+        #{houseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNumPostfix != null" >
+        #{houseNumPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="auxiliaryNum != null" >
+        #{auxiliaryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="auxiliaryNumPostfix != null" >
+        #{auxiliaryNumPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="communityName != null" >
+        #{communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingNumPrefix != null" >
+        #{buildingNumPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingNum != null" >
+        #{buildingNum,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingNumPostfix != null" >
+        #{buildingNumPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="unitNum != null" >
+        #{unitNum,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNum != null" >
+        #{roomNum,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNumPostfix != null" >
+        #{roomNumPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="subsidiaryAdd != null" >
+        #{subsidiaryAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="poi != null" >
+        #{poi,jdbcType=VARCHAR},
+      </if>
+      <if test="camPoi != null" >
+        #{camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="camHeading != null" >
+        #{camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="camPitch != null" >
+        #{camPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="addType != null" >
+        #{addType,jdbcType=VARCHAR},
+      </if>
+      <if test="floorHeight != null" >
+        #{floorHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="floorPoi != null" >
+        #{floorPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="miniheading != null" >
+        #{miniheading,jdbcType=VARCHAR},
+      </if>
+      <if test="floorHeading != null" >
+        #{floorHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null" >
+        #{addDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.AddressExample" resultType="java.lang.Integer" >
+    select count(*) from address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update address
+    <set >
+      <if test="record.addId != null" >
+        add_id = #{record.addId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addName != null" >
+        add_name = #{record.addName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subdistrict != null" >
+        subdistrict = #{record.subdistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.communities != null" >
+        communities = #{record.communities,jdbcType=VARCHAR},
+      </if>
+      <if test="record.street != null" >
+        street = #{record.street,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseNumPrefix != null" >
+        house_num_prefix = #{record.houseNumPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseNum != null" >
+        house_num = #{record.houseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseNumPostfix != null" >
+        house_num_postfix = #{record.houseNumPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auxiliaryNum != null" >
+        auxiliary_num = #{record.auxiliaryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auxiliaryNumPostfix != null" >
+        auxiliary_num_postfix = #{record.auxiliaryNumPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.communityName != null" >
+        community_name = #{record.communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingNumPrefix != null" >
+        building_num_prefix = #{record.buildingNumPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingNum != null" >
+        building_num = #{record.buildingNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingNumPostfix != null" >
+        building_num_postfix = #{record.buildingNumPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitNum != null" >
+        unit_num = #{record.unitNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomNum != null" >
+        room_num = #{record.roomNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomNumPostfix != null" >
+        room_num_postfix = #{record.roomNumPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subsidiaryAdd != null" >
+        subsidiary_add = #{record.subsidiaryAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.poi != null" >
+        poi = #{record.poi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPoi != null" >
+        cam_poi = #{record.camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camHeading != null" >
+        cam_heading = #{record.camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPitch != null" >
+        cam_pitch = #{record.camPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addType != null" >
+        add_type = #{record.addType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.floorHeight != null" >
+        floor_height = #{record.floorHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.floorPoi != null" >
+        floor_poi = #{record.floorPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.miniheading != null" >
+        miniheading = #{record.miniheading,jdbcType=VARCHAR},
+      </if>
+      <if test="record.floorHeading != null" >
+        floor_heading = #{record.floorHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pid != null" >
+        pid = #{record.pid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addDate != null" >
+        add_date = #{record.addDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update address
+    set add_id = #{record.addId,jdbcType=VARCHAR},
+      add_name = #{record.addName,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      subdistrict = #{record.subdistrict,jdbcType=VARCHAR},
+      communities = #{record.communities,jdbcType=VARCHAR},
+      street = #{record.street,jdbcType=VARCHAR},
+      house_num_prefix = #{record.houseNumPrefix,jdbcType=VARCHAR},
+      house_num = #{record.houseNum,jdbcType=VARCHAR},
+      house_num_postfix = #{record.houseNumPostfix,jdbcType=VARCHAR},
+      auxiliary_num = #{record.auxiliaryNum,jdbcType=VARCHAR},
+      auxiliary_num_postfix = #{record.auxiliaryNumPostfix,jdbcType=VARCHAR},
+      community_name = #{record.communityName,jdbcType=VARCHAR},
+      building_num_prefix = #{record.buildingNumPrefix,jdbcType=VARCHAR},
+      building_num = #{record.buildingNum,jdbcType=VARCHAR},
+      building_num_postfix = #{record.buildingNumPostfix,jdbcType=VARCHAR},
+      unit_num = #{record.unitNum,jdbcType=VARCHAR},
+      room_num = #{record.roomNum,jdbcType=VARCHAR},
+      room_num_postfix = #{record.roomNumPostfix,jdbcType=VARCHAR},
+      subsidiary_add = #{record.subsidiaryAdd,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      poi = #{record.poi,jdbcType=VARCHAR},
+      cam_poi = #{record.camPoi,jdbcType=VARCHAR},
+      cam_heading = #{record.camHeading,jdbcType=VARCHAR},
+      cam_pitch = #{record.camPitch,jdbcType=VARCHAR},
+      add_type = #{record.addType,jdbcType=VARCHAR},
+      floor_height = #{record.floorHeight,jdbcType=VARCHAR},
+      floor_poi = #{record.floorPoi,jdbcType=VARCHAR},
+      miniheading = #{record.miniheading,jdbcType=VARCHAR},
+      floor_heading = #{record.floorHeading,jdbcType=VARCHAR},
+      pid = #{record.pid,jdbcType=VARCHAR},
+      add_date = #{record.addDate,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.Address" >
+    update address
+    <set >
+      <if test="addName != null" >
+        add_name = #{addName,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="subdistrict != null" >
+        subdistrict = #{subdistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="communities != null" >
+        communities = #{communities,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null" >
+        street = #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNumPrefix != null" >
+        house_num_prefix = #{houseNumPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNum != null" >
+        house_num = #{houseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNumPostfix != null" >
+        house_num_postfix = #{houseNumPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="auxiliaryNum != null" >
+        auxiliary_num = #{auxiliaryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="auxiliaryNumPostfix != null" >
+        auxiliary_num_postfix = #{auxiliaryNumPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="communityName != null" >
+        community_name = #{communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingNumPrefix != null" >
+        building_num_prefix = #{buildingNumPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingNum != null" >
+        building_num = #{buildingNum,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingNumPostfix != null" >
+        building_num_postfix = #{buildingNumPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="unitNum != null" >
+        unit_num = #{unitNum,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNum != null" >
+        room_num = #{roomNum,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNumPostfix != null" >
+        room_num_postfix = #{roomNumPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="subsidiaryAdd != null" >
+        subsidiary_add = #{subsidiaryAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="poi != null" >
+        poi = #{poi,jdbcType=VARCHAR},
+      </if>
+      <if test="camPoi != null" >
+        cam_poi = #{camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="camHeading != null" >
+        cam_heading = #{camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="camPitch != null" >
+        cam_pitch = #{camPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="addType != null" >
+        add_type = #{addType,jdbcType=VARCHAR},
+      </if>
+      <if test="floorHeight != null" >
+        floor_height = #{floorHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="floorPoi != null" >
+        floor_poi = #{floorPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="miniheading != null" >
+        miniheading = #{miniheading,jdbcType=VARCHAR},
+      </if>
+      <if test="floorHeading != null" >
+        floor_heading = #{floorHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null" >
+        add_date = #{addDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where add_id = #{addId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.Address" >
+    update address
+    set add_name = #{addName,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      subdistrict = #{subdistrict,jdbcType=VARCHAR},
+      communities = #{communities,jdbcType=VARCHAR},
+      street = #{street,jdbcType=VARCHAR},
+      house_num_prefix = #{houseNumPrefix,jdbcType=VARCHAR},
+      house_num = #{houseNum,jdbcType=VARCHAR},
+      house_num_postfix = #{houseNumPostfix,jdbcType=VARCHAR},
+      auxiliary_num = #{auxiliaryNum,jdbcType=VARCHAR},
+      auxiliary_num_postfix = #{auxiliaryNumPostfix,jdbcType=VARCHAR},
+      community_name = #{communityName,jdbcType=VARCHAR},
+      building_num_prefix = #{buildingNumPrefix,jdbcType=VARCHAR},
+      building_num = #{buildingNum,jdbcType=VARCHAR},
+      building_num_postfix = #{buildingNumPostfix,jdbcType=VARCHAR},
+      unit_num = #{unitNum,jdbcType=VARCHAR},
+      room_num = #{roomNum,jdbcType=VARCHAR},
+      room_num_postfix = #{roomNumPostfix,jdbcType=VARCHAR},
+      subsidiary_add = #{subsidiaryAdd,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      poi = #{poi,jdbcType=VARCHAR},
+      cam_poi = #{camPoi,jdbcType=VARCHAR},
+      cam_heading = #{camHeading,jdbcType=VARCHAR},
+      cam_pitch = #{camPitch,jdbcType=VARCHAR},
+      add_type = #{addType,jdbcType=VARCHAR},
+      floor_height = #{floorHeight,jdbcType=VARCHAR},
+      floor_poi = #{floorPoi,jdbcType=VARCHAR},
+      miniheading = #{miniheading,jdbcType=VARCHAR},
+      floor_heading = #{floorHeading,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      add_date = #{addDate,jdbcType=VARCHAR}
+    where add_id = #{addId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,1002 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PeopleBaseMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PeopleBase" >
+    <id column="pp_id" property="ppId" jdbcType="VARCHAR" />
+    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="mother_identity" property="motherIdentity" jdbcType="VARCHAR" />
+    <result column="mother_name" property="motherName" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="mate_identity" property="mateIdentity" jdbcType="VARCHAR" />
+    <result column="mate_name" property="mateName" jdbcType="VARCHAR" />
+    <result column="height" property="height" jdbcType="VARCHAR" />
+    <result column="community_code" property="communityCode" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="calture" property="calture" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="blood_type" property="bloodType" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="household_relation" property="householdRelation" jdbcType="VARCHAR" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="political" property="political" jdbcType="VARCHAR" />
+    <result column="once_name" property="onceName" jdbcType="VARCHAR" />
+    <result column="unit_name" property="unitName" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="father_identity" property="fatherIdentity" jdbcType="VARCHAR" />
+    <result column="father_name" property="fatherName" jdbcType="VARCHAR" />
+    <result column="identity1" property="identity1" jdbcType="VARCHAR" />
+    <result column="household_no" property="householdNo" jdbcType="VARCHAR" />
+    <result column="household_address" property="householdAddress" jdbcType="VARCHAR" />
+    <result column="household_porvince" property="householdPorvince" jdbcType="VARCHAR" />
+    <result column="household_nature" property="householdNature" jdbcType="VARCHAR" />
+    <result column="marriage" property="marriage" jdbcType="VARCHAR" />
+    <result column="native_place_country" property="nativePlaceCountry" jdbcType="VARCHAR" />
+    <result column="native_place_province" property="nativePlaceProvince" jdbcType="VARCHAR" />
+    <result column="from_country" property="fromCountry" jdbcType="VARCHAR" />
+    <result column="from_address" property="fromAddress" jdbcType="VARCHAR" />
+    <result column="from_province" property="fromProvince" jdbcType="VARCHAR" />
+    <result column="in_date" property="inDate" jdbcType="VARCHAR" />
+    <result column="in_reason" property="inReason" jdbcType="VARCHAR" />
+    <result column="serve_army" property="serveArmy" jdbcType="VARCHAR" />
+    <result column="overseas_relation" property="overseasRelation" jdbcType="VARCHAR" />
+    <result column="people_type" property="peopleType" jdbcType="VARCHAR" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="img_other" property="imgOther" jdbcType="VARCHAR" />
+    <result column="skill" property="skill" jdbcType="VARCHAR" />
+    <result column="entry_type" property="entryType" jdbcType="VARCHAR" />
+    <result column="is_drug" property="isDrug" jdbcType="VARCHAR" />
+    <result column="is_flow" property="isFlow" jdbcType="VARCHAR" />
+    <result column="is_important" property="isImportant" jdbcType="VARCHAR" />
+    <result column="is_lost" property="isLost" jdbcType="VARCHAR" />
+    <result column="is_mental" property="isMental" jdbcType="VARCHAR" />
+    <result column="is_out" property="isOut" jdbcType="VARCHAR" />
+    <result column="is_supervise" property="isSupervise" jdbcType="VARCHAR" />
+    <result column="is_visit" property="isVisit" jdbcType="VARCHAR" />
+    <result column="is_xinjiang" property="isXinjiang" jdbcType="VARCHAR" />
+    <result column="is_key" property="isKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pp_id, add_id, town, identity, tel, mother_identity, mother_name, nation, mate_identity, 
+    mate_name, height, community_code, gender, calture, name, blood_type, phone, household_relation, 
+    region, political, once_name, unit_name, job, father_identity, father_name, identity1, 
+    household_no, household_address, household_porvince, household_nature, marriage, 
+    native_place_country, native_place_province, from_country, from_address, from_province, 
+    in_date, in_reason, serve_army, overseas_relation, people_type, imgurl, img_other, 
+    skill, entry_type, is_drug, is_flow, is_important, is_lost, is_mental, is_out, is_supervise, 
+    is_visit, is_xinjiang, is_key
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.PeopleBaseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from people_base
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from people_base
+    where pp_id = #{ppId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from people_base
+    where pp_id = #{ppId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.PeopleBaseExample" >
+    delete from people_base
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.PeopleBase" >
+    insert into people_base (pp_id, add_id, town, 
+      identity, tel, mother_identity, 
+      mother_name, nation, mate_identity, 
+      mate_name, height, community_code, 
+      gender, calture, name, 
+      blood_type, phone, household_relation, 
+      region, political, once_name, 
+      unit_name, job, father_identity, 
+      father_name, identity1, household_no, 
+      household_address, household_porvince, household_nature, 
+      marriage, native_place_country, native_place_province, 
+      from_country, from_address, from_province, 
+      in_date, in_reason, serve_army, 
+      overseas_relation, people_type, imgurl, 
+      img_other, skill, entry_type, 
+      is_drug, is_flow, is_important, 
+      is_lost, is_mental, is_out, 
+      is_supervise, is_visit, is_xinjiang, 
+      is_key)
+    values (#{ppId,jdbcType=VARCHAR}, #{addId,jdbcType=VARCHAR}, #{town,jdbcType=VARCHAR}, 
+      #{identity,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{motherIdentity,jdbcType=VARCHAR}, 
+      #{motherName,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{mateIdentity,jdbcType=VARCHAR}, 
+      #{mateName,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, #{communityCode,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{calture,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{bloodType,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{householdRelation,jdbcType=VARCHAR}, 
+      #{region,jdbcType=VARCHAR}, #{political,jdbcType=VARCHAR}, #{onceName,jdbcType=VARCHAR}, 
+      #{unitName,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{fatherIdentity,jdbcType=VARCHAR}, 
+      #{fatherName,jdbcType=VARCHAR}, #{identity1,jdbcType=VARCHAR}, #{householdNo,jdbcType=VARCHAR}, 
+      #{householdAddress,jdbcType=VARCHAR}, #{householdPorvince,jdbcType=VARCHAR}, #{householdNature,jdbcType=VARCHAR}, 
+      #{marriage,jdbcType=VARCHAR}, #{nativePlaceCountry,jdbcType=VARCHAR}, #{nativePlaceProvince,jdbcType=VARCHAR}, 
+      #{fromCountry,jdbcType=VARCHAR}, #{fromAddress,jdbcType=VARCHAR}, #{fromProvince,jdbcType=VARCHAR}, 
+      #{inDate,jdbcType=VARCHAR}, #{inReason,jdbcType=VARCHAR}, #{serveArmy,jdbcType=VARCHAR}, 
+      #{overseasRelation,jdbcType=VARCHAR}, #{peopleType,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR}, 
+      #{imgOther,jdbcType=VARCHAR}, #{skill,jdbcType=VARCHAR}, #{entryType,jdbcType=VARCHAR}, 
+      #{isDrug,jdbcType=VARCHAR}, #{isFlow,jdbcType=VARCHAR}, #{isImportant,jdbcType=VARCHAR}, 
+      #{isLost,jdbcType=VARCHAR}, #{isMental,jdbcType=VARCHAR}, #{isOut,jdbcType=VARCHAR}, 
+      #{isSupervise,jdbcType=VARCHAR}, #{isVisit,jdbcType=VARCHAR}, #{isXinjiang,jdbcType=VARCHAR}, 
+      #{isKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.PeopleBase" >
+    insert into people_base
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ppId != null" >
+        pp_id,
+      </if>
+      <if test="addId != null" >
+        add_id,
+      </if>
+      <if test="town != null" >
+        town,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="motherIdentity != null" >
+        mother_identity,
+      </if>
+      <if test="motherName != null" >
+        mother_name,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="mateIdentity != null" >
+        mate_identity,
+      </if>
+      <if test="mateName != null" >
+        mate_name,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="communityCode != null" >
+        community_code,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="calture != null" >
+        calture,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="bloodType != null" >
+        blood_type,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="householdRelation != null" >
+        household_relation,
+      </if>
+      <if test="region != null" >
+        region,
+      </if>
+      <if test="political != null" >
+        political,
+      </if>
+      <if test="onceName != null" >
+        once_name,
+      </if>
+      <if test="unitName != null" >
+        unit_name,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="fatherIdentity != null" >
+        father_identity,
+      </if>
+      <if test="fatherName != null" >
+        father_name,
+      </if>
+      <if test="identity1 != null" >
+        identity1,
+      </if>
+      <if test="householdNo != null" >
+        household_no,
+      </if>
+      <if test="householdAddress != null" >
+        household_address,
+      </if>
+      <if test="householdPorvince != null" >
+        household_porvince,
+      </if>
+      <if test="householdNature != null" >
+        household_nature,
+      </if>
+      <if test="marriage != null" >
+        marriage,
+      </if>
+      <if test="nativePlaceCountry != null" >
+        native_place_country,
+      </if>
+      <if test="nativePlaceProvince != null" >
+        native_place_province,
+      </if>
+      <if test="fromCountry != null" >
+        from_country,
+      </if>
+      <if test="fromAddress != null" >
+        from_address,
+      </if>
+      <if test="fromProvince != null" >
+        from_province,
+      </if>
+      <if test="inDate != null" >
+        in_date,
+      </if>
+      <if test="inReason != null" >
+        in_reason,
+      </if>
+      <if test="serveArmy != null" >
+        serve_army,
+      </if>
+      <if test="overseasRelation != null" >
+        overseas_relation,
+      </if>
+      <if test="peopleType != null" >
+        people_type,
+      </if>
+      <if test="imgurl != null" >
+        imgurl,
+      </if>
+      <if test="imgOther != null" >
+        img_other,
+      </if>
+      <if test="skill != null" >
+        skill,
+      </if>
+      <if test="entryType != null" >
+        entry_type,
+      </if>
+      <if test="isDrug != null" >
+        is_drug,
+      </if>
+      <if test="isFlow != null" >
+        is_flow,
+      </if>
+      <if test="isImportant != null" >
+        is_important,
+      </if>
+      <if test="isLost != null" >
+        is_lost,
+      </if>
+      <if test="isMental != null" >
+        is_mental,
+      </if>
+      <if test="isOut != null" >
+        is_out,
+      </if>
+      <if test="isSupervise != null" >
+        is_supervise,
+      </if>
+      <if test="isVisit != null" >
+        is_visit,
+      </if>
+      <if test="isXinjiang != null" >
+        is_xinjiang,
+      </if>
+      <if test="isKey != null" >
+        is_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ppId != null" >
+        #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="addId != null" >
+        #{addId,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="motherIdentity != null" >
+        #{motherIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="motherName != null" >
+        #{motherName,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="mateIdentity != null" >
+        #{mateIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="mateName != null" >
+        #{mateName,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="communityCode != null" >
+        #{communityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="calture != null" >
+        #{calture,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodType != null" >
+        #{bloodType,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="householdRelation != null" >
+        #{householdRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="political != null" >
+        #{political,jdbcType=VARCHAR},
+      </if>
+      <if test="onceName != null" >
+        #{onceName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null" >
+        #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherIdentity != null" >
+        #{fatherIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherName != null" >
+        #{fatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="identity1 != null" >
+        #{identity1,jdbcType=VARCHAR},
+      </if>
+      <if test="householdNo != null" >
+        #{householdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="householdAddress != null" >
+        #{householdAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="householdPorvince != null" >
+        #{householdPorvince,jdbcType=VARCHAR},
+      </if>
+      <if test="householdNature != null" >
+        #{householdNature,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlaceCountry != null" >
+        #{nativePlaceCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlaceProvince != null" >
+        #{nativePlaceProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="fromCountry != null" >
+        #{fromCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="fromAddress != null" >
+        #{fromAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fromProvince != null" >
+        #{fromProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="inDate != null" >
+        #{inDate,jdbcType=VARCHAR},
+      </if>
+      <if test="inReason != null" >
+        #{inReason,jdbcType=VARCHAR},
+      </if>
+      <if test="serveArmy != null" >
+        #{serveArmy,jdbcType=VARCHAR},
+      </if>
+      <if test="overseasRelation != null" >
+        #{overseasRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleType != null" >
+        #{peopleType,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgOther != null" >
+        #{imgOther,jdbcType=VARCHAR},
+      </if>
+      <if test="skill != null" >
+        #{skill,jdbcType=VARCHAR},
+      </if>
+      <if test="entryType != null" >
+        #{entryType,jdbcType=VARCHAR},
+      </if>
+      <if test="isDrug != null" >
+        #{isDrug,jdbcType=VARCHAR},
+      </if>
+      <if test="isFlow != null" >
+        #{isFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="isImportant != null" >
+        #{isImportant,jdbcType=VARCHAR},
+      </if>
+      <if test="isLost != null" >
+        #{isLost,jdbcType=VARCHAR},
+      </if>
+      <if test="isMental != null" >
+        #{isMental,jdbcType=VARCHAR},
+      </if>
+      <if test="isOut != null" >
+        #{isOut,jdbcType=VARCHAR},
+      </if>
+      <if test="isSupervise != null" >
+        #{isSupervise,jdbcType=VARCHAR},
+      </if>
+      <if test="isVisit != null" >
+        #{isVisit,jdbcType=VARCHAR},
+      </if>
+      <if test="isXinjiang != null" >
+        #{isXinjiang,jdbcType=VARCHAR},
+      </if>
+      <if test="isKey != null" >
+        #{isKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.PeopleBaseExample" resultType="java.lang.Integer" >
+    select count(*) from people_base
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update people_base
+    <set >
+      <if test="record.ppId != null" >
+        pp_id = #{record.ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addId != null" >
+        add_id = #{record.addId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.town != null" >
+        town = #{record.town,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identity != null" >
+        identity = #{record.identity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null" >
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.motherIdentity != null" >
+        mother_identity = #{record.motherIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.motherName != null" >
+        mother_name = #{record.motherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nation != null" >
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mateIdentity != null" >
+        mate_identity = #{record.mateIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mateName != null" >
+        mate_name = #{record.mateName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.height != null" >
+        height = #{record.height,jdbcType=VARCHAR},
+      </if>
+      <if test="record.communityCode != null" >
+        community_code = #{record.communityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.calture != null" >
+        calture = #{record.calture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bloodType != null" >
+        blood_type = #{record.bloodType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdRelation != null" >
+        household_relation = #{record.householdRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.region != null" >
+        region = #{record.region,jdbcType=VARCHAR},
+      </if>
+      <if test="record.political != null" >
+        political = #{record.political,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onceName != null" >
+        once_name = #{record.onceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitName != null" >
+        unit_name = #{record.unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.job != null" >
+        job = #{record.job,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatherIdentity != null" >
+        father_identity = #{record.fatherIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatherName != null" >
+        father_name = #{record.fatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identity1 != null" >
+        identity1 = #{record.identity1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdNo != null" >
+        household_no = #{record.householdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdAddress != null" >
+        household_address = #{record.householdAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdPorvince != null" >
+        household_porvince = #{record.householdPorvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdNature != null" >
+        household_nature = #{record.householdNature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marriage != null" >
+        marriage = #{record.marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nativePlaceCountry != null" >
+        native_place_country = #{record.nativePlaceCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nativePlaceProvince != null" >
+        native_place_province = #{record.nativePlaceProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromCountry != null" >
+        from_country = #{record.fromCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromAddress != null" >
+        from_address = #{record.fromAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromProvince != null" >
+        from_province = #{record.fromProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inDate != null" >
+        in_date = #{record.inDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inReason != null" >
+        in_reason = #{record.inReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serveArmy != null" >
+        serve_army = #{record.serveArmy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.overseasRelation != null" >
+        overseas_relation = #{record.overseasRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.peopleType != null" >
+        people_type = #{record.peopleType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgurl != null" >
+        imgurl = #{record.imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgOther != null" >
+        img_other = #{record.imgOther,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skill != null" >
+        skill = #{record.skill,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entryType != null" >
+        entry_type = #{record.entryType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDrug != null" >
+        is_drug = #{record.isDrug,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isFlow != null" >
+        is_flow = #{record.isFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isImportant != null" >
+        is_important = #{record.isImportant,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isLost != null" >
+        is_lost = #{record.isLost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isMental != null" >
+        is_mental = #{record.isMental,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isOut != null" >
+        is_out = #{record.isOut,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSupervise != null" >
+        is_supervise = #{record.isSupervise,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isVisit != null" >
+        is_visit = #{record.isVisit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isXinjiang != null" >
+        is_xinjiang = #{record.isXinjiang,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isKey != null" >
+        is_key = #{record.isKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update people_base
+    set pp_id = #{record.ppId,jdbcType=VARCHAR},
+      add_id = #{record.addId,jdbcType=VARCHAR},
+      town = #{record.town,jdbcType=VARCHAR},
+      identity = #{record.identity,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      mother_identity = #{record.motherIdentity,jdbcType=VARCHAR},
+      mother_name = #{record.motherName,jdbcType=VARCHAR},
+      nation = #{record.nation,jdbcType=VARCHAR},
+      mate_identity = #{record.mateIdentity,jdbcType=VARCHAR},
+      mate_name = #{record.mateName,jdbcType=VARCHAR},
+      height = #{record.height,jdbcType=VARCHAR},
+      community_code = #{record.communityCode,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=VARCHAR},
+      calture = #{record.calture,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      blood_type = #{record.bloodType,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      household_relation = #{record.householdRelation,jdbcType=VARCHAR},
+      region = #{record.region,jdbcType=VARCHAR},
+      political = #{record.political,jdbcType=VARCHAR},
+      once_name = #{record.onceName,jdbcType=VARCHAR},
+      unit_name = #{record.unitName,jdbcType=VARCHAR},
+      job = #{record.job,jdbcType=VARCHAR},
+      father_identity = #{record.fatherIdentity,jdbcType=VARCHAR},
+      father_name = #{record.fatherName,jdbcType=VARCHAR},
+      identity1 = #{record.identity1,jdbcType=VARCHAR},
+      household_no = #{record.householdNo,jdbcType=VARCHAR},
+      household_address = #{record.householdAddress,jdbcType=VARCHAR},
+      household_porvince = #{record.householdPorvince,jdbcType=VARCHAR},
+      household_nature = #{record.householdNature,jdbcType=VARCHAR},
+      marriage = #{record.marriage,jdbcType=VARCHAR},
+      native_place_country = #{record.nativePlaceCountry,jdbcType=VARCHAR},
+      native_place_province = #{record.nativePlaceProvince,jdbcType=VARCHAR},
+      from_country = #{record.fromCountry,jdbcType=VARCHAR},
+      from_address = #{record.fromAddress,jdbcType=VARCHAR},
+      from_province = #{record.fromProvince,jdbcType=VARCHAR},
+      in_date = #{record.inDate,jdbcType=VARCHAR},
+      in_reason = #{record.inReason,jdbcType=VARCHAR},
+      serve_army = #{record.serveArmy,jdbcType=VARCHAR},
+      overseas_relation = #{record.overseasRelation,jdbcType=VARCHAR},
+      people_type = #{record.peopleType,jdbcType=VARCHAR},
+      imgurl = #{record.imgurl,jdbcType=VARCHAR},
+      img_other = #{record.imgOther,jdbcType=VARCHAR},
+      skill = #{record.skill,jdbcType=VARCHAR},
+      entry_type = #{record.entryType,jdbcType=VARCHAR},
+      is_drug = #{record.isDrug,jdbcType=VARCHAR},
+      is_flow = #{record.isFlow,jdbcType=VARCHAR},
+      is_important = #{record.isImportant,jdbcType=VARCHAR},
+      is_lost = #{record.isLost,jdbcType=VARCHAR},
+      is_mental = #{record.isMental,jdbcType=VARCHAR},
+      is_out = #{record.isOut,jdbcType=VARCHAR},
+      is_supervise = #{record.isSupervise,jdbcType=VARCHAR},
+      is_visit = #{record.isVisit,jdbcType=VARCHAR},
+      is_xinjiang = #{record.isXinjiang,jdbcType=VARCHAR},
+      is_key = #{record.isKey,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.PeopleBase" >
+    update people_base
+    <set >
+      <if test="addId != null" >
+        add_id = #{addId,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        town = #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="motherIdentity != null" >
+        mother_identity = #{motherIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="motherName != null" >
+        mother_name = #{motherName,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="mateIdentity != null" >
+        mate_identity = #{mateIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="mateName != null" >
+        mate_name = #{mateName,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="communityCode != null" >
+        community_code = #{communityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="calture != null" >
+        calture = #{calture,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodType != null" >
+        blood_type = #{bloodType,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="householdRelation != null" >
+        household_relation = #{householdRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="political != null" >
+        political = #{political,jdbcType=VARCHAR},
+      </if>
+      <if test="onceName != null" >
+        once_name = #{onceName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null" >
+        unit_name = #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherIdentity != null" >
+        father_identity = #{fatherIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherName != null" >
+        father_name = #{fatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="identity1 != null" >
+        identity1 = #{identity1,jdbcType=VARCHAR},
+      </if>
+      <if test="householdNo != null" >
+        household_no = #{householdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="householdAddress != null" >
+        household_address = #{householdAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="householdPorvince != null" >
+        household_porvince = #{householdPorvince,jdbcType=VARCHAR},
+      </if>
+      <if test="householdNature != null" >
+        household_nature = #{householdNature,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        marriage = #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlaceCountry != null" >
+        native_place_country = #{nativePlaceCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlaceProvince != null" >
+        native_place_province = #{nativePlaceProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="fromCountry != null" >
+        from_country = #{fromCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="fromAddress != null" >
+        from_address = #{fromAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fromProvince != null" >
+        from_province = #{fromProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="inDate != null" >
+        in_date = #{inDate,jdbcType=VARCHAR},
+      </if>
+      <if test="inReason != null" >
+        in_reason = #{inReason,jdbcType=VARCHAR},
+      </if>
+      <if test="serveArmy != null" >
+        serve_army = #{serveArmy,jdbcType=VARCHAR},
+      </if>
+      <if test="overseasRelation != null" >
+        overseas_relation = #{overseasRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleType != null" >
+        people_type = #{peopleType,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgOther != null" >
+        img_other = #{imgOther,jdbcType=VARCHAR},
+      </if>
+      <if test="skill != null" >
+        skill = #{skill,jdbcType=VARCHAR},
+      </if>
+      <if test="entryType != null" >
+        entry_type = #{entryType,jdbcType=VARCHAR},
+      </if>
+      <if test="isDrug != null" >
+        is_drug = #{isDrug,jdbcType=VARCHAR},
+      </if>
+      <if test="isFlow != null" >
+        is_flow = #{isFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="isImportant != null" >
+        is_important = #{isImportant,jdbcType=VARCHAR},
+      </if>
+      <if test="isLost != null" >
+        is_lost = #{isLost,jdbcType=VARCHAR},
+      </if>
+      <if test="isMental != null" >
+        is_mental = #{isMental,jdbcType=VARCHAR},
+      </if>
+      <if test="isOut != null" >
+        is_out = #{isOut,jdbcType=VARCHAR},
+      </if>
+      <if test="isSupervise != null" >
+        is_supervise = #{isSupervise,jdbcType=VARCHAR},
+      </if>
+      <if test="isVisit != null" >
+        is_visit = #{isVisit,jdbcType=VARCHAR},
+      </if>
+      <if test="isXinjiang != null" >
+        is_xinjiang = #{isXinjiang,jdbcType=VARCHAR},
+      </if>
+      <if test="isKey != null" >
+        is_key = #{isKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pp_id = #{ppId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.PeopleBase" >
+    update people_base
+    set add_id = #{addId,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      mother_identity = #{motherIdentity,jdbcType=VARCHAR},
+      mother_name = #{motherName,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      mate_identity = #{mateIdentity,jdbcType=VARCHAR},
+      mate_name = #{mateName,jdbcType=VARCHAR},
+      height = #{height,jdbcType=VARCHAR},
+      community_code = #{communityCode,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      calture = #{calture,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      blood_type = #{bloodType,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      household_relation = #{householdRelation,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR},
+      political = #{political,jdbcType=VARCHAR},
+      once_name = #{onceName,jdbcType=VARCHAR},
+      unit_name = #{unitName,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      father_identity = #{fatherIdentity,jdbcType=VARCHAR},
+      father_name = #{fatherName,jdbcType=VARCHAR},
+      identity1 = #{identity1,jdbcType=VARCHAR},
+      household_no = #{householdNo,jdbcType=VARCHAR},
+      household_address = #{householdAddress,jdbcType=VARCHAR},
+      household_porvince = #{householdPorvince,jdbcType=VARCHAR},
+      household_nature = #{householdNature,jdbcType=VARCHAR},
+      marriage = #{marriage,jdbcType=VARCHAR},
+      native_place_country = #{nativePlaceCountry,jdbcType=VARCHAR},
+      native_place_province = #{nativePlaceProvince,jdbcType=VARCHAR},
+      from_country = #{fromCountry,jdbcType=VARCHAR},
+      from_address = #{fromAddress,jdbcType=VARCHAR},
+      from_province = #{fromProvince,jdbcType=VARCHAR},
+      in_date = #{inDate,jdbcType=VARCHAR},
+      in_reason = #{inReason,jdbcType=VARCHAR},
+      serve_army = #{serveArmy,jdbcType=VARCHAR},
+      overseas_relation = #{overseasRelation,jdbcType=VARCHAR},
+      people_type = #{peopleType,jdbcType=VARCHAR},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      img_other = #{imgOther,jdbcType=VARCHAR},
+      skill = #{skill,jdbcType=VARCHAR},
+      entry_type = #{entryType,jdbcType=VARCHAR},
+      is_drug = #{isDrug,jdbcType=VARCHAR},
+      is_flow = #{isFlow,jdbcType=VARCHAR},
+      is_important = #{isImportant,jdbcType=VARCHAR},
+      is_lost = #{isLost,jdbcType=VARCHAR},
+      is_mental = #{isMental,jdbcType=VARCHAR},
+      is_out = #{isOut,jdbcType=VARCHAR},
+      is_supervise = #{isSupervise,jdbcType=VARCHAR},
+      is_visit = #{isVisit,jdbcType=VARCHAR},
+      is_xinjiang = #{isXinjiang,jdbcType=VARCHAR},
+      is_key = #{isKey,jdbcType=VARCHAR}
+    where pp_id = #{ppId,jdbcType=VARCHAR}
+  </update>
+</mapper>

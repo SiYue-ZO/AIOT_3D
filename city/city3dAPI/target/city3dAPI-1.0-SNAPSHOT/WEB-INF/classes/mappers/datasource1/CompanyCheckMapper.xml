@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.CompanyCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.CompanyCheck" >
+    <id column="company_check_id" property="companyCheckId" jdbcType="VARCHAR" />
+    <result column="business_type" property="businessType" jdbcType="VARCHAR" />
+    <result column="check_content" property="checkContent" jdbcType="VARCHAR" />
+    <result column="check_man" property="checkMan" jdbcType="VARCHAR" />
+    <result column="check_name" property="checkName" jdbcType="VARCHAR" />
+    <result column="check_number" property="checkNumber" jdbcType="VARCHAR" />
+    <result column="check_result" property="checkResult" jdbcType="VARCHAR" />
+    <result column="check_situation" property="checkSituation" jdbcType="VARCHAR" />
+    <result column="check_time" property="checkTime" jdbcType="VARCHAR" />
+    <result column="check_unit" property="checkUnit" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="implement_situation" property="implementSituation" jdbcType="VARCHAR" />
+    <result column="rectify_date" property="rectifyDate" jdbcType="VARCHAR" />
+    <result column="rectify_opinion" property="rectifyOpinion" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    company_check_id, business_type, check_content, check_man, check_name, check_number, 
+    check_result, check_situation, check_time, check_unit, company_id, implement_situation, 
+    rectify_date, rectify_opinion
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.CompanyCheckExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from company_check
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from company_check
+    where company_check_id = #{companyCheckId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from company_check
+    where company_check_id = #{companyCheckId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.CompanyCheckExample" >
+    delete from company_check
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.CompanyCheck" >
+    insert into company_check (company_check_id, business_type, check_content, 
+      check_man, check_name, check_number, 
+      check_result, check_situation, check_time, 
+      check_unit, company_id, implement_situation, 
+      rectify_date, rectify_opinion)
+    values (#{companyCheckId,jdbcType=VARCHAR}, #{businessType,jdbcType=VARCHAR}, #{checkContent,jdbcType=VARCHAR}, 
+      #{checkMan,jdbcType=VARCHAR}, #{checkName,jdbcType=VARCHAR}, #{checkNumber,jdbcType=VARCHAR}, 
+      #{checkResult,jdbcType=VARCHAR}, #{checkSituation,jdbcType=VARCHAR}, #{checkTime,jdbcType=VARCHAR}, 
+      #{checkUnit,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, #{implementSituation,jdbcType=VARCHAR}, 
+      #{rectifyDate,jdbcType=VARCHAR}, #{rectifyOpinion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.CompanyCheck" >
+    insert into company_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="companyCheckId != null" >
+        company_check_id,
+      </if>
+      <if test="businessType != null" >
+        business_type,
+      </if>
+      <if test="checkContent != null" >
+        check_content,
+      </if>
+      <if test="checkMan != null" >
+        check_man,
+      </if>
+      <if test="checkName != null" >
+        check_name,
+      </if>
+      <if test="checkNumber != null" >
+        check_number,
+      </if>
+      <if test="checkResult != null" >
+        check_result,
+      </if>
+      <if test="checkSituation != null" >
+        check_situation,
+      </if>
+      <if test="checkTime != null" >
+        check_time,
+      </if>
+      <if test="checkUnit != null" >
+        check_unit,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="implementSituation != null" >
+        implement_situation,
+      </if>
+      <if test="rectifyDate != null" >
+        rectify_date,
+      </if>
+      <if test="rectifyOpinion != null" >
+        rectify_opinion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="companyCheckId != null" >
+        #{companyCheckId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null" >
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="checkContent != null" >
+        #{checkContent,jdbcType=VARCHAR},
+      </if>
+      <if test="checkMan != null" >
+        #{checkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="checkName != null" >
+        #{checkName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkNumber != null" >
+        #{checkNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="checkResult != null" >
+        #{checkResult,jdbcType=VARCHAR},
+      </if>
+      <if test="checkSituation != null" >
+        #{checkSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="checkUnit != null" >
+        #{checkUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="implementSituation != null" >
+        #{implementSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="rectifyDate != null" >
+        #{rectifyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="rectifyOpinion != null" >
+        #{rectifyOpinion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.CompanyCheckExample" resultType="java.lang.Integer" >
+    select count(*) from company_check
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update company_check
+    <set >
+      <if test="record.companyCheckId != null" >
+        company_check_id = #{record.companyCheckId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessType != null" >
+        business_type = #{record.businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkContent != null" >
+        check_content = #{record.checkContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkMan != null" >
+        check_man = #{record.checkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkName != null" >
+        check_name = #{record.checkName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkNumber != null" >
+        check_number = #{record.checkNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkResult != null" >
+        check_result = #{record.checkResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkSituation != null" >
+        check_situation = #{record.checkSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkTime != null" >
+        check_time = #{record.checkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkUnit != null" >
+        check_unit = #{record.checkUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.implementSituation != null" >
+        implement_situation = #{record.implementSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rectifyDate != null" >
+        rectify_date = #{record.rectifyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rectifyOpinion != null" >
+        rectify_opinion = #{record.rectifyOpinion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update company_check
+    set company_check_id = #{record.companyCheckId,jdbcType=VARCHAR},
+      business_type = #{record.businessType,jdbcType=VARCHAR},
+      check_content = #{record.checkContent,jdbcType=VARCHAR},
+      check_man = #{record.checkMan,jdbcType=VARCHAR},
+      check_name = #{record.checkName,jdbcType=VARCHAR},
+      check_number = #{record.checkNumber,jdbcType=VARCHAR},
+      check_result = #{record.checkResult,jdbcType=VARCHAR},
+      check_situation = #{record.checkSituation,jdbcType=VARCHAR},
+      check_time = #{record.checkTime,jdbcType=VARCHAR},
+      check_unit = #{record.checkUnit,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=VARCHAR},
+      implement_situation = #{record.implementSituation,jdbcType=VARCHAR},
+      rectify_date = #{record.rectifyDate,jdbcType=VARCHAR},
+      rectify_opinion = #{record.rectifyOpinion,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.CompanyCheck" >
+    update company_check
+    <set >
+      <if test="businessType != null" >
+        business_type = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="checkContent != null" >
+        check_content = #{checkContent,jdbcType=VARCHAR},
+      </if>
+      <if test="checkMan != null" >
+        check_man = #{checkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="checkName != null" >
+        check_name = #{checkName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkNumber != null" >
+        check_number = #{checkNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="checkResult != null" >
+        check_result = #{checkResult,jdbcType=VARCHAR},
+      </if>
+      <if test="checkSituation != null" >
+        check_situation = #{checkSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        check_time = #{checkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="checkUnit != null" >
+        check_unit = #{checkUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="implementSituation != null" >
+        implement_situation = #{implementSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="rectifyDate != null" >
+        rectify_date = #{rectifyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="rectifyOpinion != null" >
+        rectify_opinion = #{rectifyOpinion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where company_check_id = #{companyCheckId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.CompanyCheck" >
+    update company_check
+    set business_type = #{businessType,jdbcType=VARCHAR},
+      check_content = #{checkContent,jdbcType=VARCHAR},
+      check_man = #{checkMan,jdbcType=VARCHAR},
+      check_name = #{checkName,jdbcType=VARCHAR},
+      check_number = #{checkNumber,jdbcType=VARCHAR},
+      check_result = #{checkResult,jdbcType=VARCHAR},
+      check_situation = #{checkSituation,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=VARCHAR},
+      check_unit = #{checkUnit,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      implement_situation = #{implementSituation,jdbcType=VARCHAR},
+      rectify_date = #{rectifyDate,jdbcType=VARCHAR},
+      rectify_opinion = #{rectifyOpinion,jdbcType=VARCHAR}
+    where company_check_id = #{companyCheckId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.KeyPeopleMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.KeyPeople" >
+    <id column="key_id" property="keyId" jdbcType="VARCHAR" />
+    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="blood" property="blood" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="origin" property="origin" jdbcType="VARCHAR" />
+    <result column="height" property="height" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+    <association property="address" javaType="com.city3d.dao.entry.Address">
+	    <id column="add_id" property="addId" jdbcType="VARCHAR" />
+	    <result column="add_name" property="addName" jdbcType="VARCHAR" />
+	    <result column="poi" property="poi" jdbcType="VARCHAR" />
+	    <result column="date" property="date" jdbcType="VARCHAR" />
+	    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+	    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+	    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    key_id, add_id, name, identity, gender, birthday, blood, nation, origin, height, 
+    type, describe, job, tel, imgurl
+  </sql>
+  <sql id="Base_Column_List_No_Pic" >
+    k.key_id, k.add_id, k.name, k.identity, k.gender, k.birthday, k.blood, k.nation, k.origin, k.height, 
+    k.type, k.describe, k.job, k.tel
+  </sql>
+  <select id="getIDandPOI" resultType="hashmap">
+  	SELECT k.key_id, a.poi FROM key_people k, address a WHERE k.add_id = a.add_id
+  </select>
+  <select id="getAllNoPic" resultMap="BaseResultMap">
+  	SELECT <include refid="Base_Column_List_No_Pic" /> FROM key_people k
+  </select>
+  <select id="selectKeypeopleById" resultMap="BaseResultMap">
+  	SELECT k.*, a.* FROM key_people k, address a WHERE k.add_id = a.add_id and k.key_id = #{kpId}
+  </select>
+  <select id="selectByExampleC" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.KeyPeopleExample" >
+    select a.*,<include refid="Base_Column_List_No_Pic" /> from key_people k, address a
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    and k.add_id = a.add_id
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="queryKeypeopleByIdentity" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  	select * from key_people kp left join address a on kp.add_id = a.add_id where kp.identity = #{identity}
+  </select>
+</mapper>

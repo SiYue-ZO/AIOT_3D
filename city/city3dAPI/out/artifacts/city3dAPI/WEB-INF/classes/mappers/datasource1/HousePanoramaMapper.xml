@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.HousePanoramaMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.HousePanorama" >
+    <id column="panorama_id" property="panoramaId" jdbcType="VARCHAR" />
+    <result column="house_id" property="houseId" jdbcType="VARCHAR" />
+    <result column="house_panorama" property="housePanorama" jdbcType="VARCHAR" />
+    <result column="house_pattern" property="housePattern" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    panorama_id, house_id, house_panorama, house_pattern
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.HousePanoramaExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from house_panorama
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from house_panorama
+    where panorama_id = #{panoramaId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from house_panorama
+    where panorama_id = #{panoramaId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.HousePanoramaExample" >
+    delete from house_panorama
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.HousePanorama" >
+    insert into house_panorama (panorama_id, house_id, house_panorama, 
+      house_pattern)
+    values (#{panoramaId,jdbcType=VARCHAR}, #{houseId,jdbcType=VARCHAR}, #{housePanorama,jdbcType=VARCHAR}, 
+      #{housePattern,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.HousePanorama" >
+    insert into house_panorama
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="panoramaId != null" >
+        panorama_id,
+      </if>
+      <if test="houseId != null" >
+        house_id,
+      </if>
+      <if test="housePanorama != null" >
+        house_panorama,
+      </if>
+      <if test="housePattern != null" >
+        house_pattern,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="panoramaId != null" >
+        #{panoramaId,jdbcType=VARCHAR},
+      </if>
+      <if test="houseId != null" >
+        #{houseId,jdbcType=VARCHAR},
+      </if>
+      <if test="housePanorama != null" >
+        #{housePanorama,jdbcType=VARCHAR},
+      </if>
+      <if test="housePattern != null" >
+        #{housePattern,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.HousePanoramaExample" resultType="java.lang.Integer" >
+    select count(*) from house_panorama
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update house_panorama
+    <set >
+      <if test="record.panoramaId != null" >
+        panorama_id = #{record.panoramaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseId != null" >
+        house_id = #{record.houseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.housePanorama != null" >
+        house_panorama = #{record.housePanorama,jdbcType=VARCHAR},
+      </if>
+      <if test="record.housePattern != null" >
+        house_pattern = #{record.housePattern,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update house_panorama
+    set panorama_id = #{record.panoramaId,jdbcType=VARCHAR},
+      house_id = #{record.houseId,jdbcType=VARCHAR},
+      house_panorama = #{record.housePanorama,jdbcType=VARCHAR},
+      house_pattern = #{record.housePattern,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.HousePanorama" >
+    update house_panorama
+    <set >
+      <if test="houseId != null" >
+        house_id = #{houseId,jdbcType=VARCHAR},
+      </if>
+      <if test="housePanorama != null" >
+        house_panorama = #{housePanorama,jdbcType=VARCHAR},
+      </if>
+      <if test="housePattern != null" >
+        house_pattern = #{housePattern,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where panorama_id = #{panoramaId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.HousePanorama" >
+    update house_panorama
+    set house_id = #{houseId,jdbcType=VARCHAR},
+      house_panorama = #{housePanorama,jdbcType=VARCHAR},
+      house_pattern = #{housePattern,jdbcType=VARCHAR}
+    where panorama_id = #{panoramaId,jdbcType=VARCHAR}
+  </update>
+</mapper>

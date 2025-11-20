@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.DutyVideoMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.DutyVideo" >
+    <id column="duty_video_id" property="dutyVideoId" jdbcType="VARCHAR" />
+    <result column="duty_name" property="dutyName" jdbcType="VARCHAR" />
+    <result column="duty_time" property="dutyTime" jdbcType="VARCHAR" />
+    <result column="duty_type" property="dutyType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    duty_video_id, duty_name, duty_time, duty_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.DutyVideoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from duty_video
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from duty_video
+    where duty_video_id = #{dutyVideoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from duty_video
+    where duty_video_id = #{dutyVideoId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.DutyVideoExample" >
+    delete from duty_video
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.DutyVideo" >
+    insert into duty_video (duty_video_id, duty_name, duty_time, 
+      duty_type)
+    values (#{dutyVideoId,jdbcType=VARCHAR}, #{dutyName,jdbcType=VARCHAR}, #{dutyTime,jdbcType=VARCHAR}, 
+      #{dutyType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.DutyVideo" >
+    insert into duty_video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dutyVideoId != null" >
+        duty_video_id,
+      </if>
+      <if test="dutyName != null" >
+        duty_name,
+      </if>
+      <if test="dutyTime != null" >
+        duty_time,
+      </if>
+      <if test="dutyType != null" >
+        duty_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dutyVideoId != null" >
+        #{dutyVideoId,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyName != null" >
+        #{dutyName,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyTime != null" >
+        #{dutyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyType != null" >
+        #{dutyType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.DutyVideoExample" resultType="java.lang.Integer" >
+    select count(*) from duty_video
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update duty_video
+    <set >
+      <if test="record.dutyVideoId != null" >
+        duty_video_id = #{record.dutyVideoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dutyName != null" >
+        duty_name = #{record.dutyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dutyTime != null" >
+        duty_time = #{record.dutyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dutyType != null" >
+        duty_type = #{record.dutyType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update duty_video
+    set duty_video_id = #{record.dutyVideoId,jdbcType=VARCHAR},
+      duty_name = #{record.dutyName,jdbcType=VARCHAR},
+      duty_time = #{record.dutyTime,jdbcType=VARCHAR},
+      duty_type = #{record.dutyType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.DutyVideo" >
+    update duty_video
+    <set >
+      <if test="dutyName != null" >
+        duty_name = #{dutyName,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyTime != null" >
+        duty_time = #{dutyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyType != null" >
+        duty_type = #{dutyType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where duty_video_id = #{dutyVideoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.DutyVideo" >
+    update duty_video
+    set duty_name = #{dutyName,jdbcType=VARCHAR},
+      duty_time = #{dutyTime,jdbcType=VARCHAR},
+      duty_type = #{dutyType,jdbcType=VARCHAR}
+    where duty_video_id = #{dutyVideoId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PolicePointMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PolicePoint" >
+    <id column="p_id" property="pId" jdbcType="VARCHAR" />
+    <result column="p_name" property="pName" jdbcType="VARCHAR" />
+    <result column="p_type" property="pType" jdbcType="VARCHAR" />
+    <result column="p_poi" property="pPoi" jdbcType="VARCHAR" />
+    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+    <result column="p_color" property="pColor" jdbcType="VARCHAR" />
+    <result column="name_checked" property="nameChecked" jdbcType="VARCHAR" />
+    <result column="name_close" property="nameClose" jdbcType="VARCHAR" />
+    <result column="name_sub_close" property="nameSubClose" jdbcType="VARCHAR" />
+    <result column="id_checked" property="idChecked" jdbcType="VARCHAR" />
+    <result column="id_close" property="idClose" jdbcType="VARCHAR" />
+    <result column="id_sub_close" property="idSubClose" jdbcType="VARCHAR" />
+    <result column="p_time" property="pTime" jdbcType="VARCHAR" />
+    <result column="p_living" property="pLiving" jdbcType="VARCHAR" />
+    <result column="p_flow" property="pFlow" jdbcType="VARCHAR" />
+    <result column="p_note" property="pNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    p_id, p_name, p_type, p_poi, cam_poi, cam_heading, cam_pitch, p_color, name_checked, 
+    name_close, name_sub_close, id_checked, id_close, id_sub_close, p_time, p_living, 
+    p_flow, p_note
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.PolicePointExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from police_point
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from police_point
+    where p_id = #{pId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from police_point
+    where p_id = #{pId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.PolicePointExample" >
+    delete from police_point
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.PolicePoint" >
+    insert into police_point (p_id, p_name, p_type, 
+      p_poi, cam_poi, cam_heading, 
+      cam_pitch, p_color, name_checked, 
+      name_close, name_sub_close, id_checked, 
+      id_close, id_sub_close, p_time, 
+      p_living, p_flow, p_note
+      )
+    values (#{pId,jdbcType=VARCHAR}, #{pName,jdbcType=VARCHAR}, #{pType,jdbcType=VARCHAR}, 
+      #{pPoi,jdbcType=VARCHAR}, #{camPoi,jdbcType=VARCHAR}, #{camHeading,jdbcType=VARCHAR}, 
+      #{camPitch,jdbcType=VARCHAR}, #{pColor,jdbcType=VARCHAR}, #{nameChecked,jdbcType=VARCHAR}, 
+      #{nameClose,jdbcType=VARCHAR}, #{nameSubClose,jdbcType=VARCHAR}, #{idChecked,jdbcType=VARCHAR}, 
+      #{idClose,jdbcType=VARCHAR}, #{idSubClose,jdbcType=VARCHAR}, #{pTime,jdbcType=VARCHAR}, 
+      #{pLiving,jdbcType=VARCHAR}, #{pFlow,jdbcType=VARCHAR}, #{pNote,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.PolicePoint" >
+    insert into police_point
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        p_id,
+      </if>
+      <if test="pName != null" >
+        p_name,
+      </if>
+      <if test="pType != null" >
+        p_type,
+      </if>
+      <if test="pPoi != null" >
+        p_poi,
+      </if>
+      <if test="camPoi != null" >
+        cam_poi,
+      </if>
+      <if test="camHeading != null" >
+        cam_heading,
+      </if>
+      <if test="camPitch != null" >
+        cam_pitch,
+      </if>
+      <if test="pColor != null" >
+        p_color,
+      </if>
+      <if test="nameChecked != null" >
+        name_checked,
+      </if>
+      <if test="nameClose != null" >
+        name_close,
+      </if>
+      <if test="nameSubClose != null" >
+        name_sub_close,
+      </if>
+      <if test="idChecked != null" >
+        id_checked,
+      </if>
+      <if test="idClose != null" >
+        id_close,
+      </if>
+      <if test="idSubClose != null" >
+        id_sub_close,
+      </if>
+      <if test="pTime != null" >
+        p_time,
+      </if>
+      <if test="pLiving != null" >
+        p_living,
+      </if>
+      <if test="pFlow != null" >
+        p_flow,
+      </if>
+      <if test="pNote != null" >
+        p_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="pName != null" >
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pType != null" >
+        #{pType,jdbcType=VARCHAR},
+      </if>
+      <if test="pPoi != null" >
+        #{pPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="camPoi != null" >
+        #{camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="camHeading != null" >
+        #{camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="camPitch != null" >
+        #{camPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="pColor != null" >
+        #{pColor,jdbcType=VARCHAR},
+      </if>
+      <if test="nameChecked != null" >
+        #{nameChecked,jdbcType=VARCHAR},
+      </if>
+      <if test="nameClose != null" >
+        #{nameClose,jdbcType=VARCHAR},
+      </if>
+      <if test="nameSubClose != null" >
+        #{nameSubClose,jdbcType=VARCHAR},
+      </if>
+      <if test="idChecked != null" >
+        #{idChecked,jdbcType=VARCHAR},
+      </if>
+      <if test="idClose != null" >
+        #{idClose,jdbcType=VARCHAR},
+      </if>
+      <if test="idSubClose != null" >
+        #{idSubClose,jdbcType=VARCHAR},
+      </if>
+      <if test="pTime != null" >
+        #{pTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pLiving != null" >
+        #{pLiving,jdbcType=VARCHAR},
+      </if>
+      <if test="pFlow != null" >
+        #{pFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="pNote != null" >
+        #{pNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.PolicePointExample" resultType="java.lang.Integer" >
+    select count(*) from police_point
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update police_point
+    <set >
+      <if test="record.pId != null" >
+        p_id = #{record.pId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pName != null" >
+        p_name = #{record.pName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pType != null" >
+        p_type = #{record.pType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pPoi != null" >
+        p_poi = #{record.pPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPoi != null" >
+        cam_poi = #{record.camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camHeading != null" >
+        cam_heading = #{record.camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camPitch != null" >
+        cam_pitch = #{record.camPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pColor != null" >
+        p_color = #{record.pColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nameChecked != null" >
+        name_checked = #{record.nameChecked,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nameClose != null" >
+        name_close = #{record.nameClose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nameSubClose != null" >
+        name_sub_close = #{record.nameSubClose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idChecked != null" >
+        id_checked = #{record.idChecked,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idClose != null" >
+        id_close = #{record.idClose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idSubClose != null" >
+        id_sub_close = #{record.idSubClose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pTime != null" >
+        p_time = #{record.pTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pLiving != null" >
+        p_living = #{record.pLiving,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pFlow != null" >
+        p_flow = #{record.pFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pNote != null" >
+        p_note = #{record.pNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update police_point
+    set p_id = #{record.pId,jdbcType=VARCHAR},
+      p_name = #{record.pName,jdbcType=VARCHAR},
+      p_type = #{record.pType,jdbcType=VARCHAR},
+      p_poi = #{record.pPoi,jdbcType=VARCHAR},
+      cam_poi = #{record.camPoi,jdbcType=VARCHAR},
+      cam_heading = #{record.camHeading,jdbcType=VARCHAR},
+      cam_pitch = #{record.camPitch,jdbcType=VARCHAR},
+      p_color = #{record.pColor,jdbcType=VARCHAR},
+      name_checked = #{record.nameChecked,jdbcType=VARCHAR},
+      name_close = #{record.nameClose,jdbcType=VARCHAR},
+      name_sub_close = #{record.nameSubClose,jdbcType=VARCHAR},
+      id_checked = #{record.idChecked,jdbcType=VARCHAR},
+      id_close = #{record.idClose,jdbcType=VARCHAR},
+      id_sub_close = #{record.idSubClose,jdbcType=VARCHAR},
+      p_time = #{record.pTime,jdbcType=VARCHAR},
+      p_living = #{record.pLiving,jdbcType=VARCHAR},
+      p_flow = #{record.pFlow,jdbcType=VARCHAR},
+      p_note = #{record.pNote,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.PolicePoint" >
+    update police_point
+    <set >
+      <if test="pName != null" >
+        p_name = #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pType != null" >
+        p_type = #{pType,jdbcType=VARCHAR},
+      </if>
+      <if test="pPoi != null" >
+        p_poi = #{pPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="camPoi != null" >
+        cam_poi = #{camPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="camHeading != null" >
+        cam_heading = #{camHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="camPitch != null" >
+        cam_pitch = #{camPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="pColor != null" >
+        p_color = #{pColor,jdbcType=VARCHAR},
+      </if>
+      <if test="nameChecked != null" >
+        name_checked = #{nameChecked,jdbcType=VARCHAR},
+      </if>
+      <if test="nameClose != null" >
+        name_close = #{nameClose,jdbcType=VARCHAR},
+      </if>
+      <if test="nameSubClose != null" >
+        name_sub_close = #{nameSubClose,jdbcType=VARCHAR},
+      </if>
+      <if test="idChecked != null" >
+        id_checked = #{idChecked,jdbcType=VARCHAR},
+      </if>
+      <if test="idClose != null" >
+        id_close = #{idClose,jdbcType=VARCHAR},
+      </if>
+      <if test="idSubClose != null" >
+        id_sub_close = #{idSubClose,jdbcType=VARCHAR},
+      </if>
+      <if test="pTime != null" >
+        p_time = #{pTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pLiving != null" >
+        p_living = #{pLiving,jdbcType=VARCHAR},
+      </if>
+      <if test="pFlow != null" >
+        p_flow = #{pFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="pNote != null" >
+        p_note = #{pNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where p_id = #{pId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.PolicePoint" >
+    update police_point
+    set p_name = #{pName,jdbcType=VARCHAR},
+      p_type = #{pType,jdbcType=VARCHAR},
+      p_poi = #{pPoi,jdbcType=VARCHAR},
+      cam_poi = #{camPoi,jdbcType=VARCHAR},
+      cam_heading = #{camHeading,jdbcType=VARCHAR},
+      cam_pitch = #{camPitch,jdbcType=VARCHAR},
+      p_color = #{pColor,jdbcType=VARCHAR},
+      name_checked = #{nameChecked,jdbcType=VARCHAR},
+      name_close = #{nameClose,jdbcType=VARCHAR},
+      name_sub_close = #{nameSubClose,jdbcType=VARCHAR},
+      id_checked = #{idChecked,jdbcType=VARCHAR},
+      id_close = #{idClose,jdbcType=VARCHAR},
+      id_sub_close = #{idSubClose,jdbcType=VARCHAR},
+      p_time = #{pTime,jdbcType=VARCHAR},
+      p_living = #{pLiving,jdbcType=VARCHAR},
+      p_flow = #{pFlow,jdbcType=VARCHAR},
+      p_note = #{pNote,jdbcType=VARCHAR}
+    where p_id = #{pId,jdbcType=VARCHAR}
+  </update>
+</mapper>

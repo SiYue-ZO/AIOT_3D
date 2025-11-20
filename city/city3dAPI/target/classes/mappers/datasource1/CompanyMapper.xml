@@ -1,0 +1,1156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.CompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Company" >
+    <id column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="approval_no" property="approvalNo" jdbcType="VARCHAR" />
+    <result column="auto_fire" property="autoFire" jdbcType="VARCHAR" />
+    <result column="building_height" property="buildingHeight" jdbcType="VARCHAR" />
+    <result column="building_storey" property="buildingStorey" jdbcType="VARCHAR" />
+    <result column="business_scope" property="businessScope" jdbcType="VARCHAR" />
+    <result column="cancel_company" property="cancelCompany" jdbcType="VARCHAR" />
+    <result column="cancel_date" property="cancelDate" jdbcType="VARCHAR" />
+    <result column="cancel_mark" property="cancelMark" jdbcType="VARCHAR" />
+    <result column="cancel_reason" property="cancelReason" jdbcType="VARCHAR" />
+    <result column="community" property="community" jdbcType="VARCHAR" />
+    <result column="company_type" property="companyType" jdbcType="VARCHAR" />
+    <result column="company_use" property="companyUse" jdbcType="VARCHAR" />
+    <result column="construction_area" property="constructionArea" jdbcType="VARCHAR" />
+    <result column="construction_manager_company" property="constructionManagerCompany" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="cover_area" property="coverArea" jdbcType="VARCHAR" />
+    <result column="economic_nature" property="economicNature" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="engage_count" property="engageCount" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="fire_level" property="fireLevel" jdbcType="VARCHAR" />
+    <result column="fire_manager" property="fireManager" jdbcType="VARCHAR" />
+    <result column="fire_mange" property="fireMange" jdbcType="VARCHAR" />
+    <result column="fixed_assets" property="fixedAssets" jdbcType="VARCHAR" />
+    <result column="geometry_info" property="geometryInfo" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="image_info" property="imageInfo" jdbcType="VARCHAR" />
+    <result column="industry_type" property="industryType" jdbcType="VARCHAR" />
+    <result column="is_save" property="isSave" jdbcType="VARCHAR" />
+    <result column="leader" property="leader" jdbcType="VARCHAR" />
+    <result column="legal_man" property="legalMan" jdbcType="VARCHAR" />
+    <result column="license_begin_date" property="licenseBeginDate" jdbcType="VARCHAR" />
+    <result column="license_no" property="licenseNo" jdbcType="VARCHAR" />
+    <result column="license_send_date" property="licenseSendDate" jdbcType="VARCHAR" />
+    <result column="main_business" property="mainBusiness" jdbcType="VARCHAR" />
+    <result column="main_manage_department" property="mainManageDepartment" jdbcType="VARCHAR" />
+    <result column="manage_department" property="manageDepartment" jdbcType="VARCHAR" />
+    <result column="manage_type" property="manageType" jdbcType="VARCHAR" />
+    <result column="manager_identity" property="managerIdentity" jdbcType="VARCHAR" />
+    <result column="manager_tel" property="managerTel" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="nine_small_type" property="nineSmallType" jdbcType="VARCHAR" />
+    <result column="open_date" property="openDate" jdbcType="VARCHAR" />
+    <result column="operate_mode" property="operateMode" jdbcType="VARCHAR" />
+    <result column="organization" property="organization" jdbcType="VARCHAR" />
+    <result column="post_no" property="postNo" jdbcType="VARCHAR" />
+    <result column="regist_address" property="registAddress" jdbcType="VARCHAR" />
+    <result column="regist_date" property="registDate" jdbcType="VARCHAR" />
+    <result column="regist_money" property="registMoney" jdbcType="VARCHAR" />
+    <result column="save_level" property="saveLevel" jdbcType="VARCHAR" />
+    <result column="save_man_identity" property="saveManIdentity" jdbcType="VARCHAR" />
+    <result column="save_man_name" property="saveManName" jdbcType="VARCHAR" />
+    <result column="save_man_tel" property="saveManTel" jdbcType="VARCHAR" />
+    <result column="save_type" property="saveType" jdbcType="VARCHAR" />
+    <result column="second_business" property="secondBusiness" jdbcType="VARCHAR" />
+    <result column="supervise_company_type" property="superviseCompanyType" jdbcType="VARCHAR" />
+    <result column="tax_no" property="taxNo" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="upper_company" property="upperCompany" jdbcType="VARCHAR" />
+    <result column="use_name" property="useName" jdbcType="VARCHAR" />
+    <result column="without_license" property="withoutLicense" jdbcType="VARCHAR" />
+    <association property="addressAddress" javaType="com.city3d.dao.entry.Address">
+	    <id column="add_id" property="addId" jdbcType="VARCHAR" />
+	    <result column="add_name" property="addName" jdbcType="VARCHAR" />
+	    <result column="poi" property="poi" jdbcType="VARCHAR" />
+	    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+	    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+	    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    company_id, add_id, address, approval_no, auto_fire, building_height, building_storey, 
+    business_scope, cancel_company, cancel_date, cancel_mark, cancel_reason, community, 
+    company_type, company_use, construction_area, construction_manager_company, contact, 
+    cover_area, economic_nature, email, engage_count, fax, fire_level, fire_manager, 
+    fire_mange, fixed_assets, geometry_info, identity, image_info, industry_type, is_save, 
+    leader, legal_man, license_begin_date, license_no, license_send_date, main_business, 
+    main_manage_department, manage_department, manage_type, manager_identity, manager_tel, 
+    name, nine_small_type, open_date, operate_mode, organization, post_no, regist_address, 
+    regist_date, regist_money, save_level, save_man_identity, save_man_name, save_man_tel, 
+    save_type, second_business, supervise_company_type, tax_no, tel, upper_company, use_name, 
+    without_license
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.CompanyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from company
+    where company_id = #{companyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from company
+    where company_id = #{companyId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.CompanyExample" >
+    delete from company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.Company" >
+    insert into company (company_id, add_id, address, 
+      approval_no, auto_fire, building_height, 
+      building_storey, business_scope, cancel_company, 
+      cancel_date, cancel_mark, cancel_reason, 
+      community, company_type, company_use, 
+      construction_area, construction_manager_company, 
+      contact, cover_area, economic_nature, 
+      email, engage_count, fax, 
+      fire_level, fire_manager, fire_mange, 
+      fixed_assets, geometry_info, identity, 
+      image_info, industry_type, is_save, 
+      leader, legal_man, license_begin_date, 
+      license_no, license_send_date, main_business, 
+      main_manage_department, manage_department, 
+      manage_type, manager_identity, manager_tel, 
+      name, nine_small_type, open_date, 
+      operate_mode, organization, post_no, 
+      regist_address, regist_date, regist_money, 
+      save_level, save_man_identity, save_man_name, 
+      save_man_tel, save_type, second_business, 
+      supervise_company_type, tax_no, tel, 
+      upper_company, use_name, without_license
+      )
+    values (#{companyId,jdbcType=VARCHAR}, #{addId,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{approvalNo,jdbcType=VARCHAR}, #{autoFire,jdbcType=VARCHAR}, #{buildingHeight,jdbcType=VARCHAR}, 
+      #{buildingStorey,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR}, #{cancelCompany,jdbcType=VARCHAR}, 
+      #{cancelDate,jdbcType=VARCHAR}, #{cancelMark,jdbcType=VARCHAR}, #{cancelReason,jdbcType=VARCHAR}, 
+      #{community,jdbcType=VARCHAR}, #{companyType,jdbcType=VARCHAR}, #{companyUse,jdbcType=VARCHAR}, 
+      #{constructionArea,jdbcType=VARCHAR}, #{constructionManagerCompany,jdbcType=VARCHAR}, 
+      #{contact,jdbcType=VARCHAR}, #{coverArea,jdbcType=VARCHAR}, #{economicNature,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{engageCount,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, 
+      #{fireLevel,jdbcType=VARCHAR}, #{fireManager,jdbcType=VARCHAR}, #{fireMange,jdbcType=VARCHAR}, 
+      #{fixedAssets,jdbcType=VARCHAR}, #{geometryInfo,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, 
+      #{imageInfo,jdbcType=VARCHAR}, #{industryType,jdbcType=VARCHAR}, #{isSave,jdbcType=VARCHAR}, 
+      #{leader,jdbcType=VARCHAR}, #{legalMan,jdbcType=VARCHAR}, #{licenseBeginDate,jdbcType=VARCHAR}, 
+      #{licenseNo,jdbcType=VARCHAR}, #{licenseSendDate,jdbcType=VARCHAR}, #{mainBusiness,jdbcType=VARCHAR}, 
+      #{mainManageDepartment,jdbcType=VARCHAR}, #{manageDepartment,jdbcType=VARCHAR}, 
+      #{manageType,jdbcType=VARCHAR}, #{managerIdentity,jdbcType=VARCHAR}, #{managerTel,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{nineSmallType,jdbcType=VARCHAR}, #{openDate,jdbcType=VARCHAR}, 
+      #{operateMode,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{postNo,jdbcType=VARCHAR}, 
+      #{registAddress,jdbcType=VARCHAR}, #{registDate,jdbcType=VARCHAR}, #{registMoney,jdbcType=VARCHAR}, 
+      #{saveLevel,jdbcType=VARCHAR}, #{saveManIdentity,jdbcType=VARCHAR}, #{saveManName,jdbcType=VARCHAR}, 
+      #{saveManTel,jdbcType=VARCHAR}, #{saveType,jdbcType=VARCHAR}, #{secondBusiness,jdbcType=VARCHAR}, 
+      #{superviseCompanyType,jdbcType=VARCHAR}, #{taxNo,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{upperCompany,jdbcType=VARCHAR}, #{useName,jdbcType=VARCHAR}, #{withoutLicense,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.Company" >
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="addId != null" >
+        add_id,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="approvalNo != null" >
+        approval_no,
+      </if>
+      <if test="autoFire != null" >
+        auto_fire,
+      </if>
+      <if test="buildingHeight != null" >
+        building_height,
+      </if>
+      <if test="buildingStorey != null" >
+        building_storey,
+      </if>
+      <if test="businessScope != null" >
+        business_scope,
+      </if>
+      <if test="cancelCompany != null" >
+        cancel_company,
+      </if>
+      <if test="cancelDate != null" >
+        cancel_date,
+      </if>
+      <if test="cancelMark != null" >
+        cancel_mark,
+      </if>
+      <if test="cancelReason != null" >
+        cancel_reason,
+      </if>
+      <if test="community != null" >
+        community,
+      </if>
+      <if test="companyType != null" >
+        company_type,
+      </if>
+      <if test="companyUse != null" >
+        company_use,
+      </if>
+      <if test="constructionArea != null" >
+        construction_area,
+      </if>
+      <if test="constructionManagerCompany != null" >
+        construction_manager_company,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="coverArea != null" >
+        cover_area,
+      </if>
+      <if test="economicNature != null" >
+        economic_nature,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="engageCount != null" >
+        engage_count,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="fireLevel != null" >
+        fire_level,
+      </if>
+      <if test="fireManager != null" >
+        fire_manager,
+      </if>
+      <if test="fireMange != null" >
+        fire_mange,
+      </if>
+      <if test="fixedAssets != null" >
+        fixed_assets,
+      </if>
+      <if test="geometryInfo != null" >
+        geometry_info,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="imageInfo != null" >
+        image_info,
+      </if>
+      <if test="industryType != null" >
+        industry_type,
+      </if>
+      <if test="isSave != null" >
+        is_save,
+      </if>
+      <if test="leader != null" >
+        leader,
+      </if>
+      <if test="legalMan != null" >
+        legal_man,
+      </if>
+      <if test="licenseBeginDate != null" >
+        license_begin_date,
+      </if>
+      <if test="licenseNo != null" >
+        license_no,
+      </if>
+      <if test="licenseSendDate != null" >
+        license_send_date,
+      </if>
+      <if test="mainBusiness != null" >
+        main_business,
+      </if>
+      <if test="mainManageDepartment != null" >
+        main_manage_department,
+      </if>
+      <if test="manageDepartment != null" >
+        manage_department,
+      </if>
+      <if test="manageType != null" >
+        manage_type,
+      </if>
+      <if test="managerIdentity != null" >
+        manager_identity,
+      </if>
+      <if test="managerTel != null" >
+        manager_tel,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="nineSmallType != null" >
+        nine_small_type,
+      </if>
+      <if test="openDate != null" >
+        open_date,
+      </if>
+      <if test="operateMode != null" >
+        operate_mode,
+      </if>
+      <if test="organization != null" >
+        organization,
+      </if>
+      <if test="postNo != null" >
+        post_no,
+      </if>
+      <if test="registAddress != null" >
+        regist_address,
+      </if>
+      <if test="registDate != null" >
+        regist_date,
+      </if>
+      <if test="registMoney != null" >
+        regist_money,
+      </if>
+      <if test="saveLevel != null" >
+        save_level,
+      </if>
+      <if test="saveManIdentity != null" >
+        save_man_identity,
+      </if>
+      <if test="saveManName != null" >
+        save_man_name,
+      </if>
+      <if test="saveManTel != null" >
+        save_man_tel,
+      </if>
+      <if test="saveType != null" >
+        save_type,
+      </if>
+      <if test="secondBusiness != null" >
+        second_business,
+      </if>
+      <if test="superviseCompanyType != null" >
+        supervise_company_type,
+      </if>
+      <if test="taxNo != null" >
+        tax_no,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="upperCompany != null" >
+        upper_company,
+      </if>
+      <if test="useName != null" >
+        use_name,
+      </if>
+      <if test="withoutLicense != null" >
+        without_license,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="addId != null" >
+        #{addId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalNo != null" >
+        #{approvalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="autoFire != null" >
+        #{autoFire,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingHeight != null" >
+        #{buildingHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingStorey != null" >
+        #{buildingStorey,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelCompany != null" >
+        #{cancelCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelDate != null" >
+        #{cancelDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelMark != null" >
+        #{cancelMark,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelReason != null" >
+        #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="community != null" >
+        #{community,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyUse != null" >
+        #{companyUse,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionArea != null" >
+        #{constructionArea,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionManagerCompany != null" >
+        #{constructionManagerCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="coverArea != null" >
+        #{coverArea,jdbcType=VARCHAR},
+      </if>
+      <if test="economicNature != null" >
+        #{economicNature,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="engageCount != null" >
+        #{engageCount,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="fireLevel != null" >
+        #{fireLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fireManager != null" >
+        #{fireManager,jdbcType=VARCHAR},
+      </if>
+      <if test="fireMange != null" >
+        #{fireMange,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedAssets != null" >
+        #{fixedAssets,jdbcType=VARCHAR},
+      </if>
+      <if test="geometryInfo != null" >
+        #{geometryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="imageInfo != null" >
+        #{imageInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="industryType != null" >
+        #{industryType,jdbcType=VARCHAR},
+      </if>
+      <if test="isSave != null" >
+        #{isSave,jdbcType=VARCHAR},
+      </if>
+      <if test="leader != null" >
+        #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="legalMan != null" >
+        #{legalMan,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseBeginDate != null" >
+        #{licenseBeginDate,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseNo != null" >
+        #{licenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseSendDate != null" >
+        #{licenseSendDate,jdbcType=VARCHAR},
+      </if>
+      <if test="mainBusiness != null" >
+        #{mainBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="mainManageDepartment != null" >
+        #{mainManageDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="manageDepartment != null" >
+        #{manageDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="manageType != null" >
+        #{manageType,jdbcType=VARCHAR},
+      </if>
+      <if test="managerIdentity != null" >
+        #{managerIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="managerTel != null" >
+        #{managerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nineSmallType != null" >
+        #{nineSmallType,jdbcType=VARCHAR},
+      </if>
+      <if test="openDate != null" >
+        #{openDate,jdbcType=VARCHAR},
+      </if>
+      <if test="operateMode != null" >
+        #{operateMode,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="postNo != null" >
+        #{postNo,jdbcType=VARCHAR},
+      </if>
+      <if test="registAddress != null" >
+        #{registAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="registDate != null" >
+        #{registDate,jdbcType=VARCHAR},
+      </if>
+      <if test="registMoney != null" >
+        #{registMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="saveLevel != null" >
+        #{saveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="saveManIdentity != null" >
+        #{saveManIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="saveManName != null" >
+        #{saveManName,jdbcType=VARCHAR},
+      </if>
+      <if test="saveManTel != null" >
+        #{saveManTel,jdbcType=VARCHAR},
+      </if>
+      <if test="saveType != null" >
+        #{saveType,jdbcType=VARCHAR},
+      </if>
+      <if test="secondBusiness != null" >
+        #{secondBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="superviseCompanyType != null" >
+        #{superviseCompanyType,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNo != null" >
+        #{taxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="upperCompany != null" >
+        #{upperCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="useName != null" >
+        #{useName,jdbcType=VARCHAR},
+      </if>
+      <if test="withoutLicense != null" >
+        #{withoutLicense,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.CompanyExample" resultType="java.lang.Integer" >
+    select count(*) from company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update company
+    <set >
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addId != null" >
+        add_id = #{record.addId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approvalNo != null" >
+        approval_no = #{record.approvalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.autoFire != null" >
+        auto_fire = #{record.autoFire,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingHeight != null" >
+        building_height = #{record.buildingHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingStorey != null" >
+        building_storey = #{record.buildingStorey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessScope != null" >
+        business_scope = #{record.businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cancelCompany != null" >
+        cancel_company = #{record.cancelCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cancelDate != null" >
+        cancel_date = #{record.cancelDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cancelMark != null" >
+        cancel_mark = #{record.cancelMark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cancelReason != null" >
+        cancel_reason = #{record.cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.community != null" >
+        community = #{record.community,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyType != null" >
+        company_type = #{record.companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyUse != null" >
+        company_use = #{record.companyUse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.constructionArea != null" >
+        construction_area = #{record.constructionArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.constructionManagerCompany != null" >
+        construction_manager_company = #{record.constructionManagerCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contact != null" >
+        contact = #{record.contact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coverArea != null" >
+        cover_area = #{record.coverArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.economicNature != null" >
+        economic_nature = #{record.economicNature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engageCount != null" >
+        engage_count = #{record.engageCount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fax != null" >
+        fax = #{record.fax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireLevel != null" >
+        fire_level = #{record.fireLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireManager != null" >
+        fire_manager = #{record.fireManager,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireMange != null" >
+        fire_mange = #{record.fireMange,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fixedAssets != null" >
+        fixed_assets = #{record.fixedAssets,jdbcType=VARCHAR},
+      </if>
+      <if test="record.geometryInfo != null" >
+        geometry_info = #{record.geometryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identity != null" >
+        identity = #{record.identity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageInfo != null" >
+        image_info = #{record.imageInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industryType != null" >
+        industry_type = #{record.industryType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSave != null" >
+        is_save = #{record.isSave,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leader != null" >
+        leader = #{record.leader,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalMan != null" >
+        legal_man = #{record.legalMan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.licenseBeginDate != null" >
+        license_begin_date = #{record.licenseBeginDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.licenseNo != null" >
+        license_no = #{record.licenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.licenseSendDate != null" >
+        license_send_date = #{record.licenseSendDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainBusiness != null" >
+        main_business = #{record.mainBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainManageDepartment != null" >
+        main_manage_department = #{record.mainManageDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manageDepartment != null" >
+        manage_department = #{record.manageDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manageType != null" >
+        manage_type = #{record.manageType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managerIdentity != null" >
+        manager_identity = #{record.managerIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managerTel != null" >
+        manager_tel = #{record.managerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nineSmallType != null" >
+        nine_small_type = #{record.nineSmallType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openDate != null" >
+        open_date = #{record.openDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateMode != null" >
+        operate_mode = #{record.operateMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organization != null" >
+        organization = #{record.organization,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postNo != null" >
+        post_no = #{record.postNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registAddress != null" >
+        regist_address = #{record.registAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registDate != null" >
+        regist_date = #{record.registDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registMoney != null" >
+        regist_money = #{record.registMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saveLevel != null" >
+        save_level = #{record.saveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saveManIdentity != null" >
+        save_man_identity = #{record.saveManIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saveManName != null" >
+        save_man_name = #{record.saveManName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saveManTel != null" >
+        save_man_tel = #{record.saveManTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saveType != null" >
+        save_type = #{record.saveType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secondBusiness != null" >
+        second_business = #{record.secondBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="record.superviseCompanyType != null" >
+        supervise_company_type = #{record.superviseCompanyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxNo != null" >
+        tax_no = #{record.taxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null" >
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upperCompany != null" >
+        upper_company = #{record.upperCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useName != null" >
+        use_name = #{record.useName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.withoutLicense != null" >
+        without_license = #{record.withoutLicense,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update company
+    set company_id = #{record.companyId,jdbcType=VARCHAR},
+      add_id = #{record.addId,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      approval_no = #{record.approvalNo,jdbcType=VARCHAR},
+      auto_fire = #{record.autoFire,jdbcType=VARCHAR},
+      building_height = #{record.buildingHeight,jdbcType=VARCHAR},
+      building_storey = #{record.buildingStorey,jdbcType=VARCHAR},
+      business_scope = #{record.businessScope,jdbcType=VARCHAR},
+      cancel_company = #{record.cancelCompany,jdbcType=VARCHAR},
+      cancel_date = #{record.cancelDate,jdbcType=VARCHAR},
+      cancel_mark = #{record.cancelMark,jdbcType=VARCHAR},
+      cancel_reason = #{record.cancelReason,jdbcType=VARCHAR},
+      community = #{record.community,jdbcType=VARCHAR},
+      company_type = #{record.companyType,jdbcType=VARCHAR},
+      company_use = #{record.companyUse,jdbcType=VARCHAR},
+      construction_area = #{record.constructionArea,jdbcType=VARCHAR},
+      construction_manager_company = #{record.constructionManagerCompany,jdbcType=VARCHAR},
+      contact = #{record.contact,jdbcType=VARCHAR},
+      cover_area = #{record.coverArea,jdbcType=VARCHAR},
+      economic_nature = #{record.economicNature,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      engage_count = #{record.engageCount,jdbcType=VARCHAR},
+      fax = #{record.fax,jdbcType=VARCHAR},
+      fire_level = #{record.fireLevel,jdbcType=VARCHAR},
+      fire_manager = #{record.fireManager,jdbcType=VARCHAR},
+      fire_mange = #{record.fireMange,jdbcType=VARCHAR},
+      fixed_assets = #{record.fixedAssets,jdbcType=VARCHAR},
+      geometry_info = #{record.geometryInfo,jdbcType=VARCHAR},
+      identity = #{record.identity,jdbcType=VARCHAR},
+      image_info = #{record.imageInfo,jdbcType=VARCHAR},
+      industry_type = #{record.industryType,jdbcType=VARCHAR},
+      is_save = #{record.isSave,jdbcType=VARCHAR},
+      leader = #{record.leader,jdbcType=VARCHAR},
+      legal_man = #{record.legalMan,jdbcType=VARCHAR},
+      license_begin_date = #{record.licenseBeginDate,jdbcType=VARCHAR},
+      license_no = #{record.licenseNo,jdbcType=VARCHAR},
+      license_send_date = #{record.licenseSendDate,jdbcType=VARCHAR},
+      main_business = #{record.mainBusiness,jdbcType=VARCHAR},
+      main_manage_department = #{record.mainManageDepartment,jdbcType=VARCHAR},
+      manage_department = #{record.manageDepartment,jdbcType=VARCHAR},
+      manage_type = #{record.manageType,jdbcType=VARCHAR},
+      manager_identity = #{record.managerIdentity,jdbcType=VARCHAR},
+      manager_tel = #{record.managerTel,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      nine_small_type = #{record.nineSmallType,jdbcType=VARCHAR},
+      open_date = #{record.openDate,jdbcType=VARCHAR},
+      operate_mode = #{record.operateMode,jdbcType=VARCHAR},
+      organization = #{record.organization,jdbcType=VARCHAR},
+      post_no = #{record.postNo,jdbcType=VARCHAR},
+      regist_address = #{record.registAddress,jdbcType=VARCHAR},
+      regist_date = #{record.registDate,jdbcType=VARCHAR},
+      regist_money = #{record.registMoney,jdbcType=VARCHAR},
+      save_level = #{record.saveLevel,jdbcType=VARCHAR},
+      save_man_identity = #{record.saveManIdentity,jdbcType=VARCHAR},
+      save_man_name = #{record.saveManName,jdbcType=VARCHAR},
+      save_man_tel = #{record.saveManTel,jdbcType=VARCHAR},
+      save_type = #{record.saveType,jdbcType=VARCHAR},
+      second_business = #{record.secondBusiness,jdbcType=VARCHAR},
+      supervise_company_type = #{record.superviseCompanyType,jdbcType=VARCHAR},
+      tax_no = #{record.taxNo,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      upper_company = #{record.upperCompany,jdbcType=VARCHAR},
+      use_name = #{record.useName,jdbcType=VARCHAR},
+      without_license = #{record.withoutLicense,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.Company" >
+    update company
+    <set >
+      <if test="addId != null" >
+        add_id = #{addId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalNo != null" >
+        approval_no = #{approvalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="autoFire != null" >
+        auto_fire = #{autoFire,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingHeight != null" >
+        building_height = #{buildingHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingStorey != null" >
+        building_storey = #{buildingStorey,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        business_scope = #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelCompany != null" >
+        cancel_company = #{cancelCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelDate != null" >
+        cancel_date = #{cancelDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelMark != null" >
+        cancel_mark = #{cancelMark,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelReason != null" >
+        cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="community != null" >
+        community = #{community,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        company_type = #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyUse != null" >
+        company_use = #{companyUse,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionArea != null" >
+        construction_area = #{constructionArea,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionManagerCompany != null" >
+        construction_manager_company = #{constructionManagerCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="coverArea != null" >
+        cover_area = #{coverArea,jdbcType=VARCHAR},
+      </if>
+      <if test="economicNature != null" >
+        economic_nature = #{economicNature,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="engageCount != null" >
+        engage_count = #{engageCount,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="fireLevel != null" >
+        fire_level = #{fireLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fireManager != null" >
+        fire_manager = #{fireManager,jdbcType=VARCHAR},
+      </if>
+      <if test="fireMange != null" >
+        fire_mange = #{fireMange,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedAssets != null" >
+        fixed_assets = #{fixedAssets,jdbcType=VARCHAR},
+      </if>
+      <if test="geometryInfo != null" >
+        geometry_info = #{geometryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="imageInfo != null" >
+        image_info = #{imageInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="industryType != null" >
+        industry_type = #{industryType,jdbcType=VARCHAR},
+      </if>
+      <if test="isSave != null" >
+        is_save = #{isSave,jdbcType=VARCHAR},
+      </if>
+      <if test="leader != null" >
+        leader = #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="legalMan != null" >
+        legal_man = #{legalMan,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseBeginDate != null" >
+        license_begin_date = #{licenseBeginDate,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseNo != null" >
+        license_no = #{licenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseSendDate != null" >
+        license_send_date = #{licenseSendDate,jdbcType=VARCHAR},
+      </if>
+      <if test="mainBusiness != null" >
+        main_business = #{mainBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="mainManageDepartment != null" >
+        main_manage_department = #{mainManageDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="manageDepartment != null" >
+        manage_department = #{manageDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="manageType != null" >
+        manage_type = #{manageType,jdbcType=VARCHAR},
+      </if>
+      <if test="managerIdentity != null" >
+        manager_identity = #{managerIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="managerTel != null" >
+        manager_tel = #{managerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nineSmallType != null" >
+        nine_small_type = #{nineSmallType,jdbcType=VARCHAR},
+      </if>
+      <if test="openDate != null" >
+        open_date = #{openDate,jdbcType=VARCHAR},
+      </if>
+      <if test="operateMode != null" >
+        operate_mode = #{operateMode,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="postNo != null" >
+        post_no = #{postNo,jdbcType=VARCHAR},
+      </if>
+      <if test="registAddress != null" >
+        regist_address = #{registAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="registDate != null" >
+        regist_date = #{registDate,jdbcType=VARCHAR},
+      </if>
+      <if test="registMoney != null" >
+        regist_money = #{registMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="saveLevel != null" >
+        save_level = #{saveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="saveManIdentity != null" >
+        save_man_identity = #{saveManIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="saveManName != null" >
+        save_man_name = #{saveManName,jdbcType=VARCHAR},
+      </if>
+      <if test="saveManTel != null" >
+        save_man_tel = #{saveManTel,jdbcType=VARCHAR},
+      </if>
+      <if test="saveType != null" >
+        save_type = #{saveType,jdbcType=VARCHAR},
+      </if>
+      <if test="secondBusiness != null" >
+        second_business = #{secondBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="superviseCompanyType != null" >
+        supervise_company_type = #{superviseCompanyType,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNo != null" >
+        tax_no = #{taxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="upperCompany != null" >
+        upper_company = #{upperCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="useName != null" >
+        use_name = #{useName,jdbcType=VARCHAR},
+      </if>
+      <if test="withoutLicense != null" >
+        without_license = #{withoutLicense,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.Company" >
+    update company
+    set add_id = #{addId,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      approval_no = #{approvalNo,jdbcType=VARCHAR},
+      auto_fire = #{autoFire,jdbcType=VARCHAR},
+      building_height = #{buildingHeight,jdbcType=VARCHAR},
+      building_storey = #{buildingStorey,jdbcType=VARCHAR},
+      business_scope = #{businessScope,jdbcType=VARCHAR},
+      cancel_company = #{cancelCompany,jdbcType=VARCHAR},
+      cancel_date = #{cancelDate,jdbcType=VARCHAR},
+      cancel_mark = #{cancelMark,jdbcType=VARCHAR},
+      cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      community = #{community,jdbcType=VARCHAR},
+      company_type = #{companyType,jdbcType=VARCHAR},
+      company_use = #{companyUse,jdbcType=VARCHAR},
+      construction_area = #{constructionArea,jdbcType=VARCHAR},
+      construction_manager_company = #{constructionManagerCompany,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      cover_area = #{coverArea,jdbcType=VARCHAR},
+      economic_nature = #{economicNature,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      engage_count = #{engageCount,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      fire_level = #{fireLevel,jdbcType=VARCHAR},
+      fire_manager = #{fireManager,jdbcType=VARCHAR},
+      fire_mange = #{fireMange,jdbcType=VARCHAR},
+      fixed_assets = #{fixedAssets,jdbcType=VARCHAR},
+      geometry_info = #{geometryInfo,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=VARCHAR},
+      image_info = #{imageInfo,jdbcType=VARCHAR},
+      industry_type = #{industryType,jdbcType=VARCHAR},
+      is_save = #{isSave,jdbcType=VARCHAR},
+      leader = #{leader,jdbcType=VARCHAR},
+      legal_man = #{legalMan,jdbcType=VARCHAR},
+      license_begin_date = #{licenseBeginDate,jdbcType=VARCHAR},
+      license_no = #{licenseNo,jdbcType=VARCHAR},
+      license_send_date = #{licenseSendDate,jdbcType=VARCHAR},
+      main_business = #{mainBusiness,jdbcType=VARCHAR},
+      main_manage_department = #{mainManageDepartment,jdbcType=VARCHAR},
+      manage_department = #{manageDepartment,jdbcType=VARCHAR},
+      manage_type = #{manageType,jdbcType=VARCHAR},
+      manager_identity = #{managerIdentity,jdbcType=VARCHAR},
+      manager_tel = #{managerTel,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      nine_small_type = #{nineSmallType,jdbcType=VARCHAR},
+      open_date = #{openDate,jdbcType=VARCHAR},
+      operate_mode = #{operateMode,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR},
+      post_no = #{postNo,jdbcType=VARCHAR},
+      regist_address = #{registAddress,jdbcType=VARCHAR},
+      regist_date = #{registDate,jdbcType=VARCHAR},
+      regist_money = #{registMoney,jdbcType=VARCHAR},
+      save_level = #{saveLevel,jdbcType=VARCHAR},
+      save_man_identity = #{saveManIdentity,jdbcType=VARCHAR},
+      save_man_name = #{saveManName,jdbcType=VARCHAR},
+      save_man_tel = #{saveManTel,jdbcType=VARCHAR},
+      save_type = #{saveType,jdbcType=VARCHAR},
+      second_business = #{secondBusiness,jdbcType=VARCHAR},
+      supervise_company_type = #{superviseCompanyType,jdbcType=VARCHAR},
+      tax_no = #{taxNo,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      upper_company = #{upperCompany,jdbcType=VARCHAR},
+      use_name = #{useName,jdbcType=VARCHAR},
+      without_license = #{withoutLicense,jdbcType=VARCHAR}
+    where company_id = #{companyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.FireControlMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.FireControl" >
+    <id column="fire_ctl_id" property="fireCtlId" jdbcType="VARCHAR" />
+    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+    <result column="fire_ctl_name" property="fireCtlName" jdbcType="VARCHAR" />
+    <result column="fire_ctl_type" property="fireCtlType" jdbcType="VARCHAR" />
+    <result column="fire_ctl_person" property="fireCtlPerson" jdbcType="VARCHAR" />
+    <result column="fire_ctl_tel" property="fireCtlTel" jdbcType="VARCHAR" />
+    <result column="fire_ctl_describe" property="fireCtlDescribe" jdbcType="VARCHAR" />
+    <result column="fire_ctl_url" property="fireCtlUrl" jdbcType="VARCHAR" />
+    <result column="fire_ctl_level" property="fireCtlLevel" jdbcType="VARCHAR" />
+    <result column="fire_ctl_scale" property="fireCtlScale" jdbcType="VARCHAR" />
+    <association property="address" javaType="com.city3d.dao.entry.Address">
+	    <id column="add_id" property="addId" jdbcType="VARCHAR" />
+	    <result column="add_name" property="addName" jdbcType="VARCHAR" />
+	    <result column="poi" property="poi" jdbcType="VARCHAR" />
+	    <result column="date" property="date" jdbcType="VARCHAR" />
+	    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+	    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+	    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    fire_ctl_id, add_id, fire_ctl_name, fire_ctl_type, fire_ctl_person, fire_ctl_tel, 
+    fire_ctl_describe, fire_ctl_url, fire_ctl_level, fire_ctl_scale
+  </sql>
+  <sql id="Base_Column_List_No_Pic" >
+    f.fire_ctl_id, f.add_id, f.fire_ctl_name, f.fire_ctl_type, f.fire_ctl_person, f.fire_ctl_tel, 
+    f.fire_ctl_describe, f.fire_ctl_level, f.fire_ctl_scale
+  </sql>
+  <select id="getIDandPOI" resultType="hashmap">
+  	SELECT f.fire_ctl_id, a.poi FROM fire_control f, address a WHERE f.add_id = a.add_id
+  </select>
+  <select id="getAllNoPic" resultMap="BaseResultMap">
+  	SELECT <include refid="Base_Column_List_No_Pic" /> FROM fire_control f
+  </select>
+  <select id="selectFireControlById" resultMap="BaseResultMap">
+  	SELECT f.*, a.* FROM fire_control f, address a WHERE f.add_id = a.add_id and f.fire_ctl_id = #{fcId}
+  </select>
+  <select id="selectByExampleC" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.FireControlExample" >
+    select a.*,<include refid="Base_Column_List_No_Pic" /> from fire_control f, address a
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    and f.add_id = a.add_id
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

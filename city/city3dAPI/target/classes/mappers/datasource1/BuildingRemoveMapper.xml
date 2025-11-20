@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.BuildingRemoveMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.BuildingRemove" >
+    <id column="remove_id" property="removeId" jdbcType="VARCHAR" />
+    <result column="remove_name" property="removeName" jdbcType="VARCHAR" />
+    <result column="remove_site" property="removeSite" jdbcType="VARCHAR" />
+    <result column="remove_tel" property="removeTel" jdbcType="VARCHAR" />
+    <result column="remove_card" property="removeCard" jdbcType="VARCHAR" />
+    <result column="remove_land_num" property="removeLandNum" jdbcType="VARCHAR" />
+    <result column="remove_pro_type" property="removeProType" jdbcType="VARCHAR" />
+    <result column="remove_land_area" property="removeLandArea" jdbcType="VARCHAR" />
+    <result column="remove_house_num" property="removeHouseNum" jdbcType="VARCHAR" />
+    <result column="remove_house_area" property="removeHouseArea" jdbcType="VARCHAR" />
+    <result column="remove_state" property="removeState" jdbcType="VARCHAR" />
+    <result column="remove_use" property="removeUse" jdbcType="VARCHAR" />
+    <result column="remove_house_area_check" property="removeHouseAreaCheck" jdbcType="VARCHAR" />
+    <result column="remove_building_area_check" property="removeBuildingAreaCheck" jdbcType="VARCHAR" />
+    <result column="remove_area_no_cer" property="removeAreaNoCer" jdbcType="VARCHAR" />
+    <result column="remove_land_area_check" property="removeLandAreaCheck" jdbcType="VARCHAR" />
+    <result column="remove_land_area_ok" property="removeLandAreaOk" jdbcType="VARCHAR" />
+    <result column="remove_land_area_no_cer" property="removeLandAreaNoCer" jdbcType="VARCHAR" />
+    <result column="remove_note" property="removeNote" jdbcType="VARCHAR" />
+    <result column="remove_date" property="removeDate" jdbcType="VARCHAR" />
+    <result column="remove_corner" property="removeCorner" jdbcType="VARCHAR" />
+    <result column="remove_pic1" property="removePic1" jdbcType="VARCHAR" />
+    <result column="remove_pic_pos1" property="removePicPos1" jdbcType="VARCHAR" />
+    <result column="remove_pic2" property="removePic2" jdbcType="VARCHAR" />
+    <result column="remove_pic_pos2" property="removePicPos2" jdbcType="VARCHAR" />
+    <result column="remove_pic3" property="removePic3" jdbcType="VARCHAR" />
+    <result column="remove_pic_pos3" property="removePicPos3" jdbcType="VARCHAR" />
+    <result column="remove_pic4" property="removePic4" jdbcType="VARCHAR" />
+    <result column="remove_pic_pos4" property="removePicPos4" jdbcType="VARCHAR" />
+    <result column="remove_pdf" property="removePdf" jdbcType="VARCHAR" />
+    <result column="remove_sign" property="removeSign" jdbcType="VARCHAR" />
+    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+    <result column="remove_top" property="removeTop" jdbcType="VARCHAR" />
+    <result column="remove_pid" property="removePid" jdbcType="VARCHAR" />
+    <result column="remove_pdf1" property="removePdf1" jdbcType="VARCHAR" />
+    <result column="remove_pdf2" property="removePdf2" jdbcType="VARCHAR" />
+    <result column="remove_pdf3" property="removePdf3" jdbcType="VARCHAR" />
+    <result column="remove_pdf4" property="removePdf4" jdbcType="VARCHAR" />
+    <result column="remove_pdf5" property="removePdf5" jdbcType="VARCHAR" />
+    <result column="remove_pdf6" property="removePdf6" jdbcType="VARCHAR" />
+    <result column="remove_pdf7" property="removePdf7" jdbcType="VARCHAR" />
+    <result column="remove_pdf8" property="removePdf8" jdbcType="VARCHAR" />
+    <result column="remove_pdf9" property="removePdf9" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    remove_id, remove_name, remove_site, remove_tel, remove_card, remove_land_num, remove_pro_type, 
+    remove_land_area, remove_house_num, remove_house_area, remove_state, remove_use, 
+    remove_house_area_check, remove_building_area_check, remove_area_no_cer, remove_land_area_check, 
+    remove_land_area_ok, remove_land_area_no_cer, remove_note, remove_date, remove_corner, 
+    remove_pic1, remove_pic_pos1, remove_pic2, remove_pic_pos2, remove_pic3, remove_pic_pos3, 
+    remove_pic4, remove_pic_pos4, remove_pdf, remove_sign, add_id, remove_top, remove_pid, 
+    remove_pdf1, remove_pdf2, remove_pdf3, remove_pdf4, remove_pdf5, remove_pdf6, remove_pdf7, 
+    remove_pdf8, remove_pdf9
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.BuildingRemoveExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from building_remove
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from building_remove
+    where remove_id = #{removeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from building_remove
+    where remove_id = #{removeId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.BuildingRemoveExample" >
+    delete from building_remove
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.BuildingRemove" >
+    insert into building_remove (remove_id, remove_name, remove_site, 
+      remove_tel, remove_card, remove_land_num, 
+      remove_pro_type, remove_land_area, remove_house_num, 
+      remove_house_area, remove_state, remove_use, 
+      remove_house_area_check, remove_building_area_check, 
+      remove_area_no_cer, remove_land_area_check, remove_land_area_ok, 
+      remove_land_area_no_cer, remove_note, remove_date, 
+      remove_corner, remove_pic1, remove_pic_pos1, 
+      remove_pic2, remove_pic_pos2, remove_pic3, 
+      remove_pic_pos3, remove_pic4, remove_pic_pos4, 
+      remove_pdf, remove_sign, add_id, 
+      remove_top, remove_pid, remove_pdf1, 
+      remove_pdf2, remove_pdf3, remove_pdf4, 
+      remove_pdf5, remove_pdf6, remove_pdf7, 
+      remove_pdf8, remove_pdf9)
+    values (#{removeId,jdbcType=VARCHAR}, #{removeName,jdbcType=VARCHAR}, #{removeSite,jdbcType=VARCHAR}, 
+      #{removeTel,jdbcType=VARCHAR}, #{removeCard,jdbcType=VARCHAR}, #{removeLandNum,jdbcType=VARCHAR}, 
+      #{removeProType,jdbcType=VARCHAR}, #{removeLandArea,jdbcType=VARCHAR}, #{removeHouseNum,jdbcType=VARCHAR}, 
+      #{removeHouseArea,jdbcType=VARCHAR}, #{removeState,jdbcType=VARCHAR}, #{removeUse,jdbcType=VARCHAR}, 
+      #{removeHouseAreaCheck,jdbcType=VARCHAR}, #{removeBuildingAreaCheck,jdbcType=VARCHAR}, 
+      #{removeAreaNoCer,jdbcType=VARCHAR}, #{removeLandAreaCheck,jdbcType=VARCHAR}, #{removeLandAreaOk,jdbcType=VARCHAR}, 
+      #{removeLandAreaNoCer,jdbcType=VARCHAR}, #{removeNote,jdbcType=VARCHAR}, #{removeDate,jdbcType=VARCHAR}, 
+      #{removeCorner,jdbcType=VARCHAR}, #{removePic1,jdbcType=VARCHAR}, #{removePicPos1,jdbcType=VARCHAR}, 
+      #{removePic2,jdbcType=VARCHAR}, #{removePicPos2,jdbcType=VARCHAR}, #{removePic3,jdbcType=VARCHAR}, 
+      #{removePicPos3,jdbcType=VARCHAR}, #{removePic4,jdbcType=VARCHAR}, #{removePicPos4,jdbcType=VARCHAR}, 
+      #{removePdf,jdbcType=VARCHAR}, #{removeSign,jdbcType=VARCHAR}, #{addId,jdbcType=VARCHAR}, 
+      #{removeTop,jdbcType=VARCHAR}, #{removePid,jdbcType=VARCHAR}, #{removePdf1,jdbcType=VARCHAR}, 
+      #{removePdf2,jdbcType=VARCHAR}, #{removePdf3,jdbcType=VARCHAR}, #{removePdf4,jdbcType=VARCHAR}, 
+      #{removePdf5,jdbcType=VARCHAR}, #{removePdf6,jdbcType=VARCHAR}, #{removePdf7,jdbcType=VARCHAR}, 
+      #{removePdf8,jdbcType=VARCHAR}, #{removePdf9,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.BuildingRemove" >
+    insert into building_remove
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="removeId != null" >
+        remove_id,
+      </if>
+      <if test="removeName != null" >
+        remove_name,
+      </if>
+      <if test="removeSite != null" >
+        remove_site,
+      </if>
+      <if test="removeTel != null" >
+        remove_tel,
+      </if>
+      <if test="removeCard != null" >
+        remove_card,
+      </if>
+      <if test="removeLandNum != null" >
+        remove_land_num,
+      </if>
+      <if test="removeProType != null" >
+        remove_pro_type,
+      </if>
+      <if test="removeLandArea != null" >
+        remove_land_area,
+      </if>
+      <if test="removeHouseNum != null" >
+        remove_house_num,
+      </if>
+      <if test="removeHouseArea != null" >
+        remove_house_area,
+      </if>
+      <if test="removeState != null" >
+        remove_state,
+      </if>
+      <if test="removeUse != null" >
+        remove_use,
+      </if>
+      <if test="removeHouseAreaCheck != null" >
+        remove_house_area_check,
+      </if>
+      <if test="removeBuildingAreaCheck != null" >
+        remove_building_area_check,
+      </if>
+      <if test="removeAreaNoCer != null" >
+        remove_area_no_cer,
+      </if>
+      <if test="removeLandAreaCheck != null" >
+        remove_land_area_check,
+      </if>
+      <if test="removeLandAreaOk != null" >
+        remove_land_area_ok,
+      </if>
+      <if test="removeLandAreaNoCer != null" >
+        remove_land_area_no_cer,
+      </if>
+      <if test="removeNote != null" >
+        remove_note,
+      </if>
+      <if test="removeDate != null" >
+        remove_date,
+      </if>
+      <if test="removeCorner != null" >
+        remove_corner,
+      </if>
+      <if test="removePic1 != null" >
+        remove_pic1,
+      </if>
+      <if test="removePicPos1 != null" >
+        remove_pic_pos1,
+      </if>
+      <if test="removePic2 != null" >
+        remove_pic2,
+      </if>
+      <if test="removePicPos2 != null" >
+        remove_pic_pos2,
+      </if>
+      <if test="removePic3 != null" >
+        remove_pic3,
+      </if>
+      <if test="removePicPos3 != null" >
+        remove_pic_pos3,
+      </if>
+      <if test="removePic4 != null" >
+        remove_pic4,
+      </if>
+      <if test="removePicPos4 != null" >
+        remove_pic_pos4,
+      </if>
+      <if test="removePdf != null" >
+        remove_pdf,
+      </if>
+      <if test="removeSign != null" >
+        remove_sign,
+      </if>
+      <if test="addId != null" >
+        add_id,
+      </if>
+      <if test="removeTop != null" >
+        remove_top,
+      </if>
+      <if test="removePid != null" >
+        remove_pid,
+      </if>
+      <if test="removePdf1 != null" >
+        remove_pdf1,
+      </if>
+      <if test="removePdf2 != null" >
+        remove_pdf2,
+      </if>
+      <if test="removePdf3 != null" >
+        remove_pdf3,
+      </if>
+      <if test="removePdf4 != null" >
+        remove_pdf4,
+      </if>
+      <if test="removePdf5 != null" >
+        remove_pdf5,
+      </if>
+      <if test="removePdf6 != null" >
+        remove_pdf6,
+      </if>
+      <if test="removePdf7 != null" >
+        remove_pdf7,
+      </if>
+      <if test="removePdf8 != null" >
+        remove_pdf8,
+      </if>
+      <if test="removePdf9 != null" >
+        remove_pdf9,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="removeId != null" >
+        #{removeId,jdbcType=VARCHAR},
+      </if>
+      <if test="removeName != null" >
+        #{removeName,jdbcType=VARCHAR},
+      </if>
+      <if test="removeSite != null" >
+        #{removeSite,jdbcType=VARCHAR},
+      </if>
+      <if test="removeTel != null" >
+        #{removeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="removeCard != null" >
+        #{removeCard,jdbcType=VARCHAR},
+      </if>
+      <if test="removeLandNum != null" >
+        #{removeLandNum,jdbcType=VARCHAR},
+      </if>
+      <if test="removeProType != null" >
+        #{removeProType,jdbcType=VARCHAR},
+      </if>
+      <if test="removeLandArea != null" >
+        #{removeLandArea,jdbcType=VARCHAR},
+      </if>
+      <if test="removeHouseNum != null" >
+        #{removeHouseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="removeHouseArea != null" >
+        #{removeHouseArea,jdbcType=VARCHAR},
+      </if>
+      <if test="removeState != null" >
+        #{removeState,jdbcType=VARCHAR},
+      </if>
+      <if test="removeUse != null" >
+        #{removeUse,jdbcType=VARCHAR},
+      </if>
+      <if test="removeHouseAreaCheck != null" >
+        #{removeHouseAreaCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="removeBuildingAreaCheck != null" >
+        #{removeBuildingAreaCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="removeAreaNoCer != null" >
+        #{removeAreaNoCer,jdbcType=VARCHAR},
+      </if>
+      <if test="removeLandAreaCheck != null" >
+        #{removeLandAreaCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="removeLandAreaOk != null" >
+        #{removeLandAreaOk,jdbcType=VARCHAR},
+      </if>
+      <if test="removeLandAreaNoCer != null" >
+        #{removeLandAreaNoCer,jdbcType=VARCHAR},
+      </if>
+      <if test="removeNote != null" >
+        #{removeNote,jdbcType=VARCHAR},
+      </if>
+      <if test="removeDate != null" >
+        #{removeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="removeCorner != null" >
+        #{removeCorner,jdbcType=VARCHAR},
+      </if>
+      <if test="removePic1 != null" >
+        #{removePic1,jdbcType=VARCHAR},
+      </if>
+      <if test="removePicPos1 != null" >
+        #{removePicPos1,jdbcType=VARCHAR},
+      </if>
+      <if test="removePic2 != null" >
+        #{removePic2,jdbcType=VARCHAR},
+      </if>
+      <if test="removePicPos2 != null" >
+        #{removePicPos2,jdbcType=VARCHAR},
+      </if>
+      <if test="removePic3 != null" >
+        #{removePic3,jdbcType=VARCHAR},
+      </if>
+      <if test="removePicPos3 != null" >
+        #{removePicPos3,jdbcType=VARCHAR},
+      </if>
+      <if test="removePic4 != null" >
+        #{removePic4,jdbcType=VARCHAR},
+      </if>
+      <if test="removePicPos4 != null" >
+        #{removePicPos4,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf != null" >
+        #{removePdf,jdbcType=VARCHAR},
+      </if>
+      <if test="removeSign != null" >
+        #{removeSign,jdbcType=VARCHAR},
+      </if>
+      <if test="addId != null" >
+        #{addId,jdbcType=VARCHAR},
+      </if>
+      <if test="removeTop != null" >
+        #{removeTop,jdbcType=VARCHAR},
+      </if>
+      <if test="removePid != null" >
+        #{removePid,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf1 != null" >
+        #{removePdf1,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf2 != null" >
+        #{removePdf2,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf3 != null" >
+        #{removePdf3,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf4 != null" >
+        #{removePdf4,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf5 != null" >
+        #{removePdf5,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf6 != null" >
+        #{removePdf6,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf7 != null" >
+        #{removePdf7,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf8 != null" >
+        #{removePdf8,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf9 != null" >
+        #{removePdf9,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.BuildingRemoveExample" resultType="java.lang.Integer" >
+    select count(*) from building_remove
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update building_remove
+    <set >
+      <if test="record.removeId != null" >
+        remove_id = #{record.removeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeName != null" >
+        remove_name = #{record.removeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeSite != null" >
+        remove_site = #{record.removeSite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeTel != null" >
+        remove_tel = #{record.removeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeCard != null" >
+        remove_card = #{record.removeCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeLandNum != null" >
+        remove_land_num = #{record.removeLandNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeProType != null" >
+        remove_pro_type = #{record.removeProType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeLandArea != null" >
+        remove_land_area = #{record.removeLandArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeHouseNum != null" >
+        remove_house_num = #{record.removeHouseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeHouseArea != null" >
+        remove_house_area = #{record.removeHouseArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeState != null" >
+        remove_state = #{record.removeState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeUse != null" >
+        remove_use = #{record.removeUse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeHouseAreaCheck != null" >
+        remove_house_area_check = #{record.removeHouseAreaCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeBuildingAreaCheck != null" >
+        remove_building_area_check = #{record.removeBuildingAreaCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeAreaNoCer != null" >
+        remove_area_no_cer = #{record.removeAreaNoCer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeLandAreaCheck != null" >
+        remove_land_area_check = #{record.removeLandAreaCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeLandAreaOk != null" >
+        remove_land_area_ok = #{record.removeLandAreaOk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeLandAreaNoCer != null" >
+        remove_land_area_no_cer = #{record.removeLandAreaNoCer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeNote != null" >
+        remove_note = #{record.removeNote,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeDate != null" >
+        remove_date = #{record.removeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeCorner != null" >
+        remove_corner = #{record.removeCorner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePic1 != null" >
+        remove_pic1 = #{record.removePic1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePicPos1 != null" >
+        remove_pic_pos1 = #{record.removePicPos1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePic2 != null" >
+        remove_pic2 = #{record.removePic2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePicPos2 != null" >
+        remove_pic_pos2 = #{record.removePicPos2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePic3 != null" >
+        remove_pic3 = #{record.removePic3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePicPos3 != null" >
+        remove_pic_pos3 = #{record.removePicPos3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePic4 != null" >
+        remove_pic4 = #{record.removePic4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePicPos4 != null" >
+        remove_pic_pos4 = #{record.removePicPos4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePdf != null" >
+        remove_pdf = #{record.removePdf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeSign != null" >
+        remove_sign = #{record.removeSign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addId != null" >
+        add_id = #{record.addId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeTop != null" >
+        remove_top = #{record.removeTop,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePid != null" >
+        remove_pid = #{record.removePid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePdf1 != null" >
+        remove_pdf1 = #{record.removePdf1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePdf2 != null" >
+        remove_pdf2 = #{record.removePdf2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePdf3 != null" >
+        remove_pdf3 = #{record.removePdf3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePdf4 != null" >
+        remove_pdf4 = #{record.removePdf4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePdf5 != null" >
+        remove_pdf5 = #{record.removePdf5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePdf6 != null" >
+        remove_pdf6 = #{record.removePdf6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePdf7 != null" >
+        remove_pdf7 = #{record.removePdf7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePdf8 != null" >
+        remove_pdf8 = #{record.removePdf8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removePdf9 != null" >
+        remove_pdf9 = #{record.removePdf9,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update building_remove
+    set remove_id = #{record.removeId,jdbcType=VARCHAR},
+      remove_name = #{record.removeName,jdbcType=VARCHAR},
+      remove_site = #{record.removeSite,jdbcType=VARCHAR},
+      remove_tel = #{record.removeTel,jdbcType=VARCHAR},
+      remove_card = #{record.removeCard,jdbcType=VARCHAR},
+      remove_land_num = #{record.removeLandNum,jdbcType=VARCHAR},
+      remove_pro_type = #{record.removeProType,jdbcType=VARCHAR},
+      remove_land_area = #{record.removeLandArea,jdbcType=VARCHAR},
+      remove_house_num = #{record.removeHouseNum,jdbcType=VARCHAR},
+      remove_house_area = #{record.removeHouseArea,jdbcType=VARCHAR},
+      remove_state = #{record.removeState,jdbcType=VARCHAR},
+      remove_use = #{record.removeUse,jdbcType=VARCHAR},
+      remove_house_area_check = #{record.removeHouseAreaCheck,jdbcType=VARCHAR},
+      remove_building_area_check = #{record.removeBuildingAreaCheck,jdbcType=VARCHAR},
+      remove_area_no_cer = #{record.removeAreaNoCer,jdbcType=VARCHAR},
+      remove_land_area_check = #{record.removeLandAreaCheck,jdbcType=VARCHAR},
+      remove_land_area_ok = #{record.removeLandAreaOk,jdbcType=VARCHAR},
+      remove_land_area_no_cer = #{record.removeLandAreaNoCer,jdbcType=VARCHAR},
+      remove_note = #{record.removeNote,jdbcType=VARCHAR},
+      remove_date = #{record.removeDate,jdbcType=VARCHAR},
+      remove_corner = #{record.removeCorner,jdbcType=VARCHAR},
+      remove_pic1 = #{record.removePic1,jdbcType=VARCHAR},
+      remove_pic_pos1 = #{record.removePicPos1,jdbcType=VARCHAR},
+      remove_pic2 = #{record.removePic2,jdbcType=VARCHAR},
+      remove_pic_pos2 = #{record.removePicPos2,jdbcType=VARCHAR},
+      remove_pic3 = #{record.removePic3,jdbcType=VARCHAR},
+      remove_pic_pos3 = #{record.removePicPos3,jdbcType=VARCHAR},
+      remove_pic4 = #{record.removePic4,jdbcType=VARCHAR},
+      remove_pic_pos4 = #{record.removePicPos4,jdbcType=VARCHAR},
+      remove_pdf = #{record.removePdf,jdbcType=VARCHAR},
+      remove_sign = #{record.removeSign,jdbcType=VARCHAR},
+      add_id = #{record.addId,jdbcType=VARCHAR},
+      remove_top = #{record.removeTop,jdbcType=VARCHAR},
+      remove_pid = #{record.removePid,jdbcType=VARCHAR},
+      remove_pdf1 = #{record.removePdf1,jdbcType=VARCHAR},
+      remove_pdf2 = #{record.removePdf2,jdbcType=VARCHAR},
+      remove_pdf3 = #{record.removePdf3,jdbcType=VARCHAR},
+      remove_pdf4 = #{record.removePdf4,jdbcType=VARCHAR},
+      remove_pdf5 = #{record.removePdf5,jdbcType=VARCHAR},
+      remove_pdf6 = #{record.removePdf6,jdbcType=VARCHAR},
+      remove_pdf7 = #{record.removePdf7,jdbcType=VARCHAR},
+      remove_pdf8 = #{record.removePdf8,jdbcType=VARCHAR},
+      remove_pdf9 = #{record.removePdf9,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.BuildingRemove" >
+    update building_remove
+    <set >
+      <if test="removeName != null" >
+        remove_name = #{removeName,jdbcType=VARCHAR},
+      </if>
+      <if test="removeSite != null" >
+        remove_site = #{removeSite,jdbcType=VARCHAR},
+      </if>
+      <if test="removeTel != null" >
+        remove_tel = #{removeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="removeCard != null" >
+        remove_card = #{removeCard,jdbcType=VARCHAR},
+      </if>
+      <if test="removeLandNum != null" >
+        remove_land_num = #{removeLandNum,jdbcType=VARCHAR},
+      </if>
+      <if test="removeProType != null" >
+        remove_pro_type = #{removeProType,jdbcType=VARCHAR},
+      </if>
+      <if test="removeLandArea != null" >
+        remove_land_area = #{removeLandArea,jdbcType=VARCHAR},
+      </if>
+      <if test="removeHouseNum != null" >
+        remove_house_num = #{removeHouseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="removeHouseArea != null" >
+        remove_house_area = #{removeHouseArea,jdbcType=VARCHAR},
+      </if>
+      <if test="removeState != null" >
+        remove_state = #{removeState,jdbcType=VARCHAR},
+      </if>
+      <if test="removeUse != null" >
+        remove_use = #{removeUse,jdbcType=VARCHAR},
+      </if>
+      <if test="removeHouseAreaCheck != null" >
+        remove_house_area_check = #{removeHouseAreaCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="removeBuildingAreaCheck != null" >
+        remove_building_area_check = #{removeBuildingAreaCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="removeAreaNoCer != null" >
+        remove_area_no_cer = #{removeAreaNoCer,jdbcType=VARCHAR},
+      </if>
+      <if test="removeLandAreaCheck != null" >
+        remove_land_area_check = #{removeLandAreaCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="removeLandAreaOk != null" >
+        remove_land_area_ok = #{removeLandAreaOk,jdbcType=VARCHAR},
+      </if>
+      <if test="removeLandAreaNoCer != null" >
+        remove_land_area_no_cer = #{removeLandAreaNoCer,jdbcType=VARCHAR},
+      </if>
+      <if test="removeNote != null" >
+        remove_note = #{removeNote,jdbcType=VARCHAR},
+      </if>
+      <if test="removeDate != null" >
+        remove_date = #{removeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="removeCorner != null" >
+        remove_corner = #{removeCorner,jdbcType=VARCHAR},
+      </if>
+      <if test="removePic1 != null" >
+        remove_pic1 = #{removePic1,jdbcType=VARCHAR},
+      </if>
+      <if test="removePicPos1 != null" >
+        remove_pic_pos1 = #{removePicPos1,jdbcType=VARCHAR},
+      </if>
+      <if test="removePic2 != null" >
+        remove_pic2 = #{removePic2,jdbcType=VARCHAR},
+      </if>
+      <if test="removePicPos2 != null" >
+        remove_pic_pos2 = #{removePicPos2,jdbcType=VARCHAR},
+      </if>
+      <if test="removePic3 != null" >
+        remove_pic3 = #{removePic3,jdbcType=VARCHAR},
+      </if>
+      <if test="removePicPos3 != null" >
+        remove_pic_pos3 = #{removePicPos3,jdbcType=VARCHAR},
+      </if>
+      <if test="removePic4 != null" >
+        remove_pic4 = #{removePic4,jdbcType=VARCHAR},
+      </if>
+      <if test="removePicPos4 != null" >
+        remove_pic_pos4 = #{removePicPos4,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf != null" >
+        remove_pdf = #{removePdf,jdbcType=VARCHAR},
+      </if>
+      <if test="removeSign != null" >
+        remove_sign = #{removeSign,jdbcType=VARCHAR},
+      </if>
+      <if test="addId != null" >
+        add_id = #{addId,jdbcType=VARCHAR},
+      </if>
+      <if test="removeTop != null" >
+        remove_top = #{removeTop,jdbcType=VARCHAR},
+      </if>
+      <if test="removePid != null" >
+        remove_pid = #{removePid,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf1 != null" >
+        remove_pdf1 = #{removePdf1,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf2 != null" >
+        remove_pdf2 = #{removePdf2,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf3 != null" >
+        remove_pdf3 = #{removePdf3,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf4 != null" >
+        remove_pdf4 = #{removePdf4,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf5 != null" >
+        remove_pdf5 = #{removePdf5,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf6 != null" >
+        remove_pdf6 = #{removePdf6,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf7 != null" >
+        remove_pdf7 = #{removePdf7,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf8 != null" >
+        remove_pdf8 = #{removePdf8,jdbcType=VARCHAR},
+      </if>
+      <if test="removePdf9 != null" >
+        remove_pdf9 = #{removePdf9,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where remove_id = #{removeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.BuildingRemove" >
+    update building_remove
+    set remove_name = #{removeName,jdbcType=VARCHAR},
+      remove_site = #{removeSite,jdbcType=VARCHAR},
+      remove_tel = #{removeTel,jdbcType=VARCHAR},
+      remove_card = #{removeCard,jdbcType=VARCHAR},
+      remove_land_num = #{removeLandNum,jdbcType=VARCHAR},
+      remove_pro_type = #{removeProType,jdbcType=VARCHAR},
+      remove_land_area = #{removeLandArea,jdbcType=VARCHAR},
+      remove_house_num = #{removeHouseNum,jdbcType=VARCHAR},
+      remove_house_area = #{removeHouseArea,jdbcType=VARCHAR},
+      remove_state = #{removeState,jdbcType=VARCHAR},
+      remove_use = #{removeUse,jdbcType=VARCHAR},
+      remove_house_area_check = #{removeHouseAreaCheck,jdbcType=VARCHAR},
+      remove_building_area_check = #{removeBuildingAreaCheck,jdbcType=VARCHAR},
+      remove_area_no_cer = #{removeAreaNoCer,jdbcType=VARCHAR},
+      remove_land_area_check = #{removeLandAreaCheck,jdbcType=VARCHAR},
+      remove_land_area_ok = #{removeLandAreaOk,jdbcType=VARCHAR},
+      remove_land_area_no_cer = #{removeLandAreaNoCer,jdbcType=VARCHAR},
+      remove_note = #{removeNote,jdbcType=VARCHAR},
+      remove_date = #{removeDate,jdbcType=VARCHAR},
+      remove_corner = #{removeCorner,jdbcType=VARCHAR},
+      remove_pic1 = #{removePic1,jdbcType=VARCHAR},
+      remove_pic_pos1 = #{removePicPos1,jdbcType=VARCHAR},
+      remove_pic2 = #{removePic2,jdbcType=VARCHAR},
+      remove_pic_pos2 = #{removePicPos2,jdbcType=VARCHAR},
+      remove_pic3 = #{removePic3,jdbcType=VARCHAR},
+      remove_pic_pos3 = #{removePicPos3,jdbcType=VARCHAR},
+      remove_pic4 = #{removePic4,jdbcType=VARCHAR},
+      remove_pic_pos4 = #{removePicPos4,jdbcType=VARCHAR},
+      remove_pdf = #{removePdf,jdbcType=VARCHAR},
+      remove_sign = #{removeSign,jdbcType=VARCHAR},
+      add_id = #{addId,jdbcType=VARCHAR},
+      remove_top = #{removeTop,jdbcType=VARCHAR},
+      remove_pid = #{removePid,jdbcType=VARCHAR},
+      remove_pdf1 = #{removePdf1,jdbcType=VARCHAR},
+      remove_pdf2 = #{removePdf2,jdbcType=VARCHAR},
+      remove_pdf3 = #{removePdf3,jdbcType=VARCHAR},
+      remove_pdf4 = #{removePdf4,jdbcType=VARCHAR},
+      remove_pdf5 = #{removePdf5,jdbcType=VARCHAR},
+      remove_pdf6 = #{removePdf6,jdbcType=VARCHAR},
+      remove_pdf7 = #{removePdf7,jdbcType=VARCHAR},
+      remove_pdf8 = #{removePdf8,jdbcType=VARCHAR},
+      remove_pdf9 = #{removePdf9,jdbcType=VARCHAR}
+    where remove_id = #{removeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

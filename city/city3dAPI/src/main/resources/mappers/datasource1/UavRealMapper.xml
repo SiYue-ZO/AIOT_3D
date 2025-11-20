@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.UavRealMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.UavReal" >
+    <id column="real_id" property="realId" jdbcType="VARCHAR" />
+    <result column="yaw_value" property="yawValue" jdbcType="VARCHAR" />
+    <result column="pitch_value" property="pitchValue" jdbcType="VARCHAR" />
+    <result column="roll_value" property="rollValue" jdbcType="VARCHAR" />
+    <result column="batter_value" property="batterValue" jdbcType="VARCHAR" />
+    <result column="fly_state" property="flyState" jdbcType="VARCHAR" />
+    <result column="is_video_on" property="isVideoOn" jdbcType="BIT" />
+    <result column="c_yam" property="cYam" jdbcType="VARCHAR" />
+    <result column="c_pitch" property="cPitch" jdbcType="VARCHAR" />
+    <result column="c_roll" property="cRoll" jdbcType="VARCHAR" />
+    <result column="cam_fov" property="camFov" jdbcType="VARCHAR" />
+    <result column="cam_near" property="camNear" jdbcType="VARCHAR" />
+    <result column="cam_far" property="camFar" jdbcType="VARCHAR" />
+    <result column="cam_aspectratio" property="camAspectratio" jdbcType="VARCHAR" />
+    <result column="uav_id" property="uavId" jdbcType="VARCHAR" />
+    <result column="real_date" property="realDate" jdbcType="VARCHAR" />
+    <result column="drone_location_lng" property="droneLocationLng" jdbcType="VARCHAR" />
+    <result column="drone_location_lat" property="droneLocationLat" jdbcType="VARCHAR" />
+    <result column="drone_location_art" property="droneLocationArt" jdbcType="VARCHAR" />
+    <result column="velocity_x" property="velocityX" jdbcType="VARCHAR" />
+    <result column="velocity_y" property="velocityY" jdbcType="VARCHAR" />
+    <result column="velocity_z" property="velocityZ" jdbcType="VARCHAR" />
+    <result column="satellite_count" property="satelliteCount" jdbcType="VARCHAR" />
+    <result column="flight_time_in_seconds" property="flightTimeInSeconds" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    real_id, yaw_value, pitch_value, roll_value, batter_value, fly_state, is_video_on, 
+    c_yam, c_pitch, c_roll, cam_fov, cam_near, cam_far, cam_aspectratio, uav_id, real_date, 
+    drone_location_lng, drone_location_lat, drone_location_art, velocity_x, velocity_y, 
+    velocity_z, satellite_count, flight_time_in_seconds
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.UavRealExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from uav_real
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from uav_real
+    where real_id = #{realId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from uav_real
+    where real_id = #{realId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.UavRealExample" >
+    delete from uav_real
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.UavReal" >
+    insert into uav_real (real_id, yaw_value, pitch_value, 
+      roll_value, batter_value, fly_state, 
+      is_video_on, c_yam, c_pitch, 
+      c_roll, cam_fov, cam_near, 
+      cam_far, cam_aspectratio, uav_id, 
+      real_date, drone_location_lng, drone_location_lat, 
+      drone_location_art, velocity_x, velocity_y, 
+      velocity_z, satellite_count, flight_time_in_seconds
+      )
+    values (#{realId,jdbcType=VARCHAR}, #{yawValue,jdbcType=VARCHAR}, #{pitchValue,jdbcType=VARCHAR}, 
+      #{rollValue,jdbcType=VARCHAR}, #{batterValue,jdbcType=VARCHAR}, #{flyState,jdbcType=VARCHAR}, 
+      #{isVideoOn,jdbcType=BIT}, #{cYam,jdbcType=VARCHAR}, #{cPitch,jdbcType=VARCHAR}, 
+      #{cRoll,jdbcType=VARCHAR}, #{camFov,jdbcType=VARCHAR}, #{camNear,jdbcType=VARCHAR}, 
+      #{camFar,jdbcType=VARCHAR}, #{camAspectratio,jdbcType=VARCHAR}, #{uavId,jdbcType=VARCHAR}, 
+      #{realDate,jdbcType=VARCHAR}, #{droneLocationLng,jdbcType=VARCHAR}, #{droneLocationLat,jdbcType=VARCHAR}, 
+      #{droneLocationArt,jdbcType=VARCHAR}, #{velocityX,jdbcType=VARCHAR}, #{velocityY,jdbcType=VARCHAR}, 
+      #{velocityZ,jdbcType=VARCHAR}, #{satelliteCount,jdbcType=VARCHAR}, #{flightTimeInSeconds,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.UavReal" >
+    insert into uav_real
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="realId != null" >
+        real_id,
+      </if>
+      <if test="yawValue != null" >
+        yaw_value,
+      </if>
+      <if test="pitchValue != null" >
+        pitch_value,
+      </if>
+      <if test="rollValue != null" >
+        roll_value,
+      </if>
+      <if test="batterValue != null" >
+        batter_value,
+      </if>
+      <if test="flyState != null" >
+        fly_state,
+      </if>
+      <if test="isVideoOn != null" >
+        is_video_on,
+      </if>
+      <if test="cYam != null" >
+        c_yam,
+      </if>
+      <if test="cPitch != null" >
+        c_pitch,
+      </if>
+      <if test="cRoll != null" >
+        c_roll,
+      </if>
+      <if test="camFov != null" >
+        cam_fov,
+      </if>
+      <if test="camNear != null" >
+        cam_near,
+      </if>
+      <if test="camFar != null" >
+        cam_far,
+      </if>
+      <if test="camAspectratio != null" >
+        cam_aspectratio,
+      </if>
+      <if test="uavId != null" >
+        uav_id,
+      </if>
+      <if test="realDate != null" >
+        real_date,
+      </if>
+      <if test="droneLocationLng != null" >
+        drone_location_lng,
+      </if>
+      <if test="droneLocationLat != null" >
+        drone_location_lat,
+      </if>
+      <if test="droneLocationArt != null" >
+        drone_location_art,
+      </if>
+      <if test="velocityX != null" >
+        velocity_x,
+      </if>
+      <if test="velocityY != null" >
+        velocity_y,
+      </if>
+      <if test="velocityZ != null" >
+        velocity_z,
+      </if>
+      <if test="satelliteCount != null" >
+        satellite_count,
+      </if>
+      <if test="flightTimeInSeconds != null" >
+        flight_time_in_seconds,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="realId != null" >
+        #{realId,jdbcType=VARCHAR},
+      </if>
+      <if test="yawValue != null" >
+        #{yawValue,jdbcType=VARCHAR},
+      </if>
+      <if test="pitchValue != null" >
+        #{pitchValue,jdbcType=VARCHAR},
+      </if>
+      <if test="rollValue != null" >
+        #{rollValue,jdbcType=VARCHAR},
+      </if>
+      <if test="batterValue != null" >
+        #{batterValue,jdbcType=VARCHAR},
+      </if>
+      <if test="flyState != null" >
+        #{flyState,jdbcType=VARCHAR},
+      </if>
+      <if test="isVideoOn != null" >
+        #{isVideoOn,jdbcType=BIT},
+      </if>
+      <if test="cYam != null" >
+        #{cYam,jdbcType=VARCHAR},
+      </if>
+      <if test="cPitch != null" >
+        #{cPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="cRoll != null" >
+        #{cRoll,jdbcType=VARCHAR},
+      </if>
+      <if test="camFov != null" >
+        #{camFov,jdbcType=VARCHAR},
+      </if>
+      <if test="camNear != null" >
+        #{camNear,jdbcType=VARCHAR},
+      </if>
+      <if test="camFar != null" >
+        #{camFar,jdbcType=VARCHAR},
+      </if>
+      <if test="camAspectratio != null" >
+        #{camAspectratio,jdbcType=VARCHAR},
+      </if>
+      <if test="uavId != null" >
+        #{uavId,jdbcType=VARCHAR},
+      </if>
+      <if test="realDate != null" >
+        #{realDate,jdbcType=VARCHAR},
+      </if>
+      <if test="droneLocationLng != null" >
+        #{droneLocationLng,jdbcType=VARCHAR},
+      </if>
+      <if test="droneLocationLat != null" >
+        #{droneLocationLat,jdbcType=VARCHAR},
+      </if>
+      <if test="droneLocationArt != null" >
+        #{droneLocationArt,jdbcType=VARCHAR},
+      </if>
+      <if test="velocityX != null" >
+        #{velocityX,jdbcType=VARCHAR},
+      </if>
+      <if test="velocityY != null" >
+        #{velocityY,jdbcType=VARCHAR},
+      </if>
+      <if test="velocityZ != null" >
+        #{velocityZ,jdbcType=VARCHAR},
+      </if>
+      <if test="satelliteCount != null" >
+        #{satelliteCount,jdbcType=VARCHAR},
+      </if>
+      <if test="flightTimeInSeconds != null" >
+        #{flightTimeInSeconds,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.UavRealExample" resultType="java.lang.Integer" >
+    select count(*) from uav_real
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update uav_real
+    <set >
+      <if test="record.realId != null" >
+        real_id = #{record.realId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yawValue != null" >
+        yaw_value = #{record.yawValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pitchValue != null" >
+        pitch_value = #{record.pitchValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rollValue != null" >
+        roll_value = #{record.rollValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.batterValue != null" >
+        batter_value = #{record.batterValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flyState != null" >
+        fly_state = #{record.flyState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isVideoOn != null" >
+        is_video_on = #{record.isVideoOn,jdbcType=BIT},
+      </if>
+      <if test="record.cYam != null" >
+        c_yam = #{record.cYam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cPitch != null" >
+        c_pitch = #{record.cPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cRoll != null" >
+        c_roll = #{record.cRoll,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camFov != null" >
+        cam_fov = #{record.camFov,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camNear != null" >
+        cam_near = #{record.camNear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camFar != null" >
+        cam_far = #{record.camFar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camAspectratio != null" >
+        cam_aspectratio = #{record.camAspectratio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uavId != null" >
+        uav_id = #{record.uavId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realDate != null" >
+        real_date = #{record.realDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.droneLocationLng != null" >
+        drone_location_lng = #{record.droneLocationLng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.droneLocationLat != null" >
+        drone_location_lat = #{record.droneLocationLat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.droneLocationArt != null" >
+        drone_location_art = #{record.droneLocationArt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.velocityX != null" >
+        velocity_x = #{record.velocityX,jdbcType=VARCHAR},
+      </if>
+      <if test="record.velocityY != null" >
+        velocity_y = #{record.velocityY,jdbcType=VARCHAR},
+      </if>
+      <if test="record.velocityZ != null" >
+        velocity_z = #{record.velocityZ,jdbcType=VARCHAR},
+      </if>
+      <if test="record.satelliteCount != null" >
+        satellite_count = #{record.satelliteCount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flightTimeInSeconds != null" >
+        flight_time_in_seconds = #{record.flightTimeInSeconds,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update uav_real
+    set real_id = #{record.realId,jdbcType=VARCHAR},
+      yaw_value = #{record.yawValue,jdbcType=VARCHAR},
+      pitch_value = #{record.pitchValue,jdbcType=VARCHAR},
+      roll_value = #{record.rollValue,jdbcType=VARCHAR},
+      batter_value = #{record.batterValue,jdbcType=VARCHAR},
+      fly_state = #{record.flyState,jdbcType=VARCHAR},
+      is_video_on = #{record.isVideoOn,jdbcType=BIT},
+      c_yam = #{record.cYam,jdbcType=VARCHAR},
+      c_pitch = #{record.cPitch,jdbcType=VARCHAR},
+      c_roll = #{record.cRoll,jdbcType=VARCHAR},
+      cam_fov = #{record.camFov,jdbcType=VARCHAR},
+      cam_near = #{record.camNear,jdbcType=VARCHAR},
+      cam_far = #{record.camFar,jdbcType=VARCHAR},
+      cam_aspectratio = #{record.camAspectratio,jdbcType=VARCHAR},
+      uav_id = #{record.uavId,jdbcType=VARCHAR},
+      real_date = #{record.realDate,jdbcType=VARCHAR},
+      drone_location_lng = #{record.droneLocationLng,jdbcType=VARCHAR},
+      drone_location_lat = #{record.droneLocationLat,jdbcType=VARCHAR},
+      drone_location_art = #{record.droneLocationArt,jdbcType=VARCHAR},
+      velocity_x = #{record.velocityX,jdbcType=VARCHAR},
+      velocity_y = #{record.velocityY,jdbcType=VARCHAR},
+      velocity_z = #{record.velocityZ,jdbcType=VARCHAR},
+      satellite_count = #{record.satelliteCount,jdbcType=VARCHAR},
+      flight_time_in_seconds = #{record.flightTimeInSeconds,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.UavReal" >
+    update uav_real
+    <set >
+      <if test="yawValue != null" >
+        yaw_value = #{yawValue,jdbcType=VARCHAR},
+      </if>
+      <if test="pitchValue != null" >
+        pitch_value = #{pitchValue,jdbcType=VARCHAR},
+      </if>
+      <if test="rollValue != null" >
+        roll_value = #{rollValue,jdbcType=VARCHAR},
+      </if>
+      <if test="batterValue != null" >
+        batter_value = #{batterValue,jdbcType=VARCHAR},
+      </if>
+      <if test="flyState != null" >
+        fly_state = #{flyState,jdbcType=VARCHAR},
+      </if>
+      <if test="isVideoOn != null" >
+        is_video_on = #{isVideoOn,jdbcType=BIT},
+      </if>
+      <if test="cYam != null" >
+        c_yam = #{cYam,jdbcType=VARCHAR},
+      </if>
+      <if test="cPitch != null" >
+        c_pitch = #{cPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="cRoll != null" >
+        c_roll = #{cRoll,jdbcType=VARCHAR},
+      </if>
+      <if test="camFov != null" >
+        cam_fov = #{camFov,jdbcType=VARCHAR},
+      </if>
+      <if test="camNear != null" >
+        cam_near = #{camNear,jdbcType=VARCHAR},
+      </if>
+      <if test="camFar != null" >
+        cam_far = #{camFar,jdbcType=VARCHAR},
+      </if>
+      <if test="camAspectratio != null" >
+        cam_aspectratio = #{camAspectratio,jdbcType=VARCHAR},
+      </if>
+      <if test="uavId != null" >
+        uav_id = #{uavId,jdbcType=VARCHAR},
+      </if>
+      <if test="realDate != null" >
+        real_date = #{realDate,jdbcType=VARCHAR},
+      </if>
+      <if test="droneLocationLng != null" >
+        drone_location_lng = #{droneLocationLng,jdbcType=VARCHAR},
+      </if>
+      <if test="droneLocationLat != null" >
+        drone_location_lat = #{droneLocationLat,jdbcType=VARCHAR},
+      </if>
+      <if test="droneLocationArt != null" >
+        drone_location_art = #{droneLocationArt,jdbcType=VARCHAR},
+      </if>
+      <if test="velocityX != null" >
+        velocity_x = #{velocityX,jdbcType=VARCHAR},
+      </if>
+      <if test="velocityY != null" >
+        velocity_y = #{velocityY,jdbcType=VARCHAR},
+      </if>
+      <if test="velocityZ != null" >
+        velocity_z = #{velocityZ,jdbcType=VARCHAR},
+      </if>
+      <if test="satelliteCount != null" >
+        satellite_count = #{satelliteCount,jdbcType=VARCHAR},
+      </if>
+      <if test="flightTimeInSeconds != null" >
+        flight_time_in_seconds = #{flightTimeInSeconds,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where real_id = #{realId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.UavReal" >
+    update uav_real
+    set yaw_value = #{yawValue,jdbcType=VARCHAR},
+      pitch_value = #{pitchValue,jdbcType=VARCHAR},
+      roll_value = #{rollValue,jdbcType=VARCHAR},
+      batter_value = #{batterValue,jdbcType=VARCHAR},
+      fly_state = #{flyState,jdbcType=VARCHAR},
+      is_video_on = #{isVideoOn,jdbcType=BIT},
+      c_yam = #{cYam,jdbcType=VARCHAR},
+      c_pitch = #{cPitch,jdbcType=VARCHAR},
+      c_roll = #{cRoll,jdbcType=VARCHAR},
+      cam_fov = #{camFov,jdbcType=VARCHAR},
+      cam_near = #{camNear,jdbcType=VARCHAR},
+      cam_far = #{camFar,jdbcType=VARCHAR},
+      cam_aspectratio = #{camAspectratio,jdbcType=VARCHAR},
+      uav_id = #{uavId,jdbcType=VARCHAR},
+      real_date = #{realDate,jdbcType=VARCHAR},
+      drone_location_lng = #{droneLocationLng,jdbcType=VARCHAR},
+      drone_location_lat = #{droneLocationLat,jdbcType=VARCHAR},
+      drone_location_art = #{droneLocationArt,jdbcType=VARCHAR},
+      velocity_x = #{velocityX,jdbcType=VARCHAR},
+      velocity_y = #{velocityY,jdbcType=VARCHAR},
+      velocity_z = #{velocityZ,jdbcType=VARCHAR},
+      satellite_count = #{satelliteCount,jdbcType=VARCHAR},
+      flight_time_in_seconds = #{flightTimeInSeconds,jdbcType=VARCHAR}
+    where real_id = #{realId,jdbcType=VARCHAR}
+  </update>
+</mapper>

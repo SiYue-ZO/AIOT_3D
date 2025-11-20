@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.FaceIdentityMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.FaceIdentity" >
+    <id column="face_id" property="faceId" jdbcType="VARCHAR" />
+    <result column="serial_number" property="serialNumber" jdbcType="VARCHAR" />
+    <result column="camera_id" property="cameraId" jdbcType="VARCHAR" />
+    <result column="img_id" property="imgId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="card_id" property="cardId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="repo_type" property="repoType" jdbcType="VARCHAR" />
+    <result column="capture_time" property="captureTime" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="id_card_name" property="idCardName" jdbcType="VARCHAR" />
+    <result column="id_card_gender" property="idCardGender" jdbcType="VARCHAR" />
+    <result column="id_card_national" property="idCardNational" jdbcType="VARCHAR" />
+    <result column="id_card_birthday" property="idCardBirthday" jdbcType="VARCHAR" />
+    <result column="id_card_address" property="idCardAddress" jdbcType="VARCHAR" />
+    <result column="id_card_id" property="idCardId" jdbcType="VARCHAR" />
+    <result column="id_card_maker" property="idCardMaker" jdbcType="VARCHAR" />
+    <result column="id_card_start_date" property="idCardStartDate" jdbcType="VARCHAR" />
+    <result column="id_card_end_date" property="idCardEndDate" jdbcType="VARCHAR" />
+    <result column="id_card_img" property="idCardImg" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="FaceIdentityVideoMap" type="com.city3d.dao.entry.FaceIdentity" >
+    <id column="face_id" property="faceId" jdbcType="VARCHAR" />
+    <result column="serial_number" property="serialNumber" jdbcType="VARCHAR" />
+    <result column="camera_id" property="cameraId" jdbcType="VARCHAR" />
+    <result column="img_id" property="imgId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="card_id" property="cardId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="repo_type" property="repoType" jdbcType="VARCHAR" />
+    <result column="capture_time" property="captureTime" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="id_card_name" property="idCardName" jdbcType="VARCHAR" />
+    <result column="id_card_gender" property="idCardGender" jdbcType="VARCHAR" />
+    <result column="id_card_national" property="idCardNational" jdbcType="VARCHAR" />
+    <result column="id_card_birthday" property="idCardBirthday" jdbcType="VARCHAR" />
+    <result column="id_card_address" property="idCardAddress" jdbcType="VARCHAR" />
+    <result column="id_card_id" property="idCardId" jdbcType="VARCHAR" />
+    <result column="id_card_maker" property="idCardMaker" jdbcType="VARCHAR" />
+    <result column="id_card_start_date" property="idCardStartDate" jdbcType="VARCHAR" />
+    <result column="id_card_end_date" property="idCardEndDate" jdbcType="VARCHAR" />
+    <result column="id_card_img" property="idCardImg" jdbcType="VARCHAR" />
+    <association property="video" javaType="com.city3d.dao.entry.Video">
+    	<id column="id" property="id" jdbcType="VARCHAR" />
+    	<result column="cam_add" property="camAdd" jdbcType="VARCHAR" />
+    	<result column="cam_url" property="camUrl" jdbcType="VARCHAR" />
+    	<result column="cam_type" property="camType" jdbcType="VARCHAR" />
+    	<result column="cam_position" property="camPosition" jdbcType="VARCHAR" />
+    	<result column="cam_pid" property="camPid" jdbcType="VARCHAR" />
+    	<result column="cam_isnode" property="camIsnode" jdbcType="BIT" />
+    	<result column="cam_holes" property="camHoles" jdbcType="VARCHAR" />
+    	<result column="cam_fov" property="camFov" jdbcType="VARCHAR" />
+    	<result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+    	<result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+    	<result column="cam_roll" property="camRoll" jdbcType="VARCHAR" />
+    	<result column="cam_near" property="camNear" jdbcType="VARCHAR" />
+    	<result column="cam_far" property="camFar" jdbcType="VARCHAR" />
+    	<result column="cam_aspectratio" property="camAspectratio" jdbcType="VARCHAR" />
+    	<result column="cam_rtsp" property="camRtsp" jdbcType="VARCHAR" />
+    	<result column="cam_port" property="camPort" jdbcType="VARCHAR" />
+    	<result column="mac_url" property="macUrl" jdbcType="VARCHAR" />
+    	<result column="is_indoor" property="isIndoor" jdbcType="VARCHAR" /> 
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    face_id, serial_number, camera_id, img_id, user_id, card_id, name, repo_type, capture_time, 
+    image, description, id_card_name, id_card_gender, id_card_national, id_card_birthday, 
+    id_card_address, id_card_id, id_card_maker, id_card_start_date, id_card_end_date, 
+    id_card_img
+  </sql>
+  <select id="getFaceIdentityAndVideoById" parameterType="java.lang.String" resultMap="FaceIdentityVideoMap" >
+    select * from face_identity as fi, video as v where fi.camera_id = v.mac_url and fi.face_id = #{faceId}
+  </select>
+  <select id="getFaceIdentityByRepoTypeandUserId" parameterType="com.city3d.dao.entry.FaceIdentity" resultMap="FaceIdentityVideoMap" >
+    select * from face_identity as fi, video as v where fi.camera_id = v.mac_url and fi.repo_type = #{repoType,jdbcType=VARCHAR} and fi.user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="batchDelete" parameterType="java.util.List" >
+    delete from face_identity where face_id in
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+    	#{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+</mapper>

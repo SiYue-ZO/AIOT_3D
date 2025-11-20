@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.AttributeMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Attribute" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="attr_name" property="attrName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="option" property="option" jdbcType="VARCHAR" />
+    <result column="normal_value" property="normalValue" jdbcType="VARCHAR" />
+    <result column="coverage_id" property="coverageId" jdbcType="VARCHAR" />
+    <result column="select_num" property="selectNum" jdbcType="VARCHAR" />
+    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="AttributeCoverageMap" type="com.city3d.dao.entry.Attribute" >
+  	<id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="attr_name" property="attrName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="option" property="option" jdbcType="VARCHAR" />
+    <result column="normal_value" property="normalValue" jdbcType="VARCHAR" />
+    <result column="coverage_id" property="coverageId" jdbcType="VARCHAR" />
+    <result column="select_num" property="selectNum" jdbcType="VARCHAR" />
+    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+    <association property="coverage" javaType="com.city3d.dao.entry.Coverage">
+	    <id column="id" property="id" jdbcType="VARCHAR" />
+    	<result column="name" property="name" jdbcType="VARCHAR" />
+    	<result column="color" property="color" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, attr_name, type, option, normal_value, coverage_id, select_num, order_num
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.AttributeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from attribute
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from attribute
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from attribute
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.AttributeExample" >
+    delete from attribute
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.Attribute" >
+    insert into attribute (id, attr_name, type, 
+      option, normal_value, coverage_id, 
+      select_num, order_num)
+    values (#{id,jdbcType=VARCHAR}, #{attrName,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{option,jdbcType=VARCHAR}, #{normalValue,jdbcType=VARCHAR}, #{coverageId,jdbcType=VARCHAR}, 
+      #{selectNum,jdbcType=VARCHAR}, #{orderNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.Attribute" >
+    insert into attribute
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="attrName != null" >
+        attr_name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="option != null" >
+        option,
+      </if>
+      <if test="normalValue != null" >
+        normal_value,
+      </if>
+      <if test="coverageId != null" >
+        coverage_id,
+      </if>
+      <if test="selectNum != null" >
+        select_num,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="attrName != null" >
+        #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="option != null" >
+        #{option,jdbcType=VARCHAR},
+      </if>
+      <if test="normalValue != null" >
+        #{normalValue,jdbcType=VARCHAR},
+      </if>
+      <if test="coverageId != null" >
+        #{coverageId,jdbcType=VARCHAR},
+      </if>
+      <if test="selectNum != null" >
+        #{selectNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.AttributeExample" resultType="java.lang.Integer" >
+    select count(*) from attribute
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update attribute
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attrName != null" >
+        attr_name = #{record.attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.option != null" >
+        option = #{record.option,jdbcType=VARCHAR},
+      </if>
+      <if test="record.normalValue != null" >
+        normal_value = #{record.normalValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coverageId != null" >
+        coverage_id = #{record.coverageId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selectNum != null" >
+        select_num = #{record.selectNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNum != null" >
+        order_num = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update attribute
+    set id = #{record.id,jdbcType=VARCHAR},
+      attr_name = #{record.attrName,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      option = #{record.option,jdbcType=VARCHAR},
+      normal_value = #{record.normalValue,jdbcType=VARCHAR},
+      coverage_id = #{record.coverageId,jdbcType=VARCHAR},
+      select_num = #{record.selectNum,jdbcType=VARCHAR},
+      order_num = #{record.orderNum,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.Attribute" >
+    update attribute
+    <set >
+      <if test="attrName != null" >
+        attr_name = #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="option != null" >
+        option = #{option,jdbcType=VARCHAR},
+      </if>
+      <if test="normalValue != null" >
+        normal_value = #{normalValue,jdbcType=VARCHAR},
+      </if>
+      <if test="coverageId != null" >
+        coverage_id = #{coverageId,jdbcType=VARCHAR},
+      </if>
+      <if test="selectNum != null" >
+        select_num = #{selectNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.Attribute" >
+    update attribute
+    set attr_name = #{attrName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      option = #{option,jdbcType=VARCHAR},
+      normal_value = #{normalValue,jdbcType=VARCHAR},
+      coverage_id = #{coverageId,jdbcType=VARCHAR},
+      select_num = #{selectNum,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getAttributeAll" resultMap="AttributeCoverageMap" >
+    select * from attribute as a left join coverage as c on a.coverage_id = c.id order by coverage_id,order_num
+  </select>
+</mapper>

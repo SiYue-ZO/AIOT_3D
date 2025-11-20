@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.UavRealMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.UavReal" >
+    <id column="real_id" property="realId" jdbcType="VARCHAR" />
+    <result column="yaw_value" property="yawValue" jdbcType="VARCHAR" />
+    <result column="pitch_value" property="pitchValue" jdbcType="VARCHAR" />
+    <result column="roll_value" property="rollValue" jdbcType="VARCHAR" />
+    <result column="batter_value" property="batterValue" jdbcType="VARCHAR" />
+    <result column="fly_state" property="flyState" jdbcType="VARCHAR" />
+    <result column="is_video_on" property="isVideoOn" jdbcType="BIT" />
+    <result column="c_yam" property="cYam" jdbcType="VARCHAR" />
+    <result column="c_pitch" property="cPitch" jdbcType="VARCHAR" />
+    <result column="c_roll" property="cRoll" jdbcType="VARCHAR" />
+    <result column="cam_fov" property="camFov" jdbcType="VARCHAR" />
+    <result column="cam_near" property="camNear" jdbcType="VARCHAR" />
+    <result column="cam_far" property="camFar" jdbcType="VARCHAR" />
+    <result column="cam_aspectratio" property="camAspectratio" jdbcType="VARCHAR" />
+    <result column="uav_id" property="uavId" jdbcType="VARCHAR" />
+    <result column="real_date" property="realDate" jdbcType="VARCHAR" />
+    <result column="drone_location_lng" property="droneLocationLng" jdbcType="VARCHAR" />
+    <result column="drone_location_lat" property="droneLocationLat" jdbcType="VARCHAR" />
+    <result column="drone_location_art" property="droneLocationArt" jdbcType="VARCHAR" />
+    <result column="velocity_x" property="velocityX" jdbcType="VARCHAR" />
+    <result column="velocity_y" property="velocityY" jdbcType="VARCHAR" />
+    <result column="velocity_z" property="velocityZ" jdbcType="VARCHAR" />
+    <result column="satellite_count" property="satelliteCount" jdbcType="VARCHAR" />
+    <result column="flight_time_in_seconds" property="flightTimeInSeconds" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    real_id, yaw_value, pitch_value, roll_value, batter_value, fly_state, is_video_on, 
+    c_yam, c_pitch, c_roll, cam_fov, cam_near, cam_far, cam_aspectratio, uav_id, real_date, 
+    drone_location_lng, drone_location_lat, drone_location_art, velocity_x, velocity_y, 
+    velocity_z, satellite_count, flight_time_in_seconds
+  </sql>
+  <select id="getUavPosByUavIds" resultMap="BaseResultMap" >
+    select * from uav_real where uav_id in 
+    <foreach collection="array" item="uavIds" index="index" open="(" close=")" separator=",">
+    #{uavIds}
+    </foreach>
+  </select>
+</mapper>

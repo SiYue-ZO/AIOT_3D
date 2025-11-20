@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.city3d.dao.mapper.datasource1.PipelineMapper">
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Pipeline">
+    <id column="pipe_id" jdbcType="VARCHAR" property="pipeId" />
+    <result column="pl_name" jdbcType="VARCHAR" property="plName" />
+    <result column="pl_line" jdbcType="VARCHAR" property="plLine" />
+    <result column="pl_out_diameter" jdbcType="VARCHAR" property="plOutDiameter" />
+    <result column="pl_in_diameter" jdbcType="VARCHAR" property="plInDiameter" />
+    <result column="pl_deep" jdbcType="VARCHAR" property="plDeep" />
+    <result column="pl_material" jdbcType="VARCHAR" property="plMaterial" />
+    <result column="pl_type" jdbcType="VARCHAR" property="plType" />
+    <result column="pl_slope" jdbcType="VARCHAR" property="plSlope" />
+    <result column="pl_roughness" jdbcType="VARCHAR" property="plRoughness" />
+    <result column="pl_direction" jdbcType="VARCHAR" property="plDirection" />
+    <result column="pl_pos" jdbcType="VARCHAR" property="plPos" />
+    <result column="pl_sort" jdbcType="VARCHAR" property="plSort" />
+    <result column="pl_deep_stop" jdbcType="VARCHAR" property="plDeepStop" />
+    <result column="pl_building_type" jdbcType="VARCHAR" property="plBuildingType" />
+    <result column="pl_carry" jdbcType="VARCHAR" property="plCarry" />
+    <result column="pl_state" jdbcType="VARCHAR" property="plState" />
+    <result column="pl_area" jdbcType="VARCHAR" property="plArea" />
+    <result column="pl_ditch_dep" jdbcType="VARCHAR" property="plDitchDep" />
+    <result column="pl_line_dep" jdbcType="VARCHAR" property="plLineDep" />
+    <result column="pl_survey_dep" jdbcType="VARCHAR" property="plSurveyDep" />
+    <result column="pl_survey_time" jdbcType="VARCHAR" property="plSurveyTime" />
+    <result column="pl_people_1" jdbcType="VARCHAR" property="plPeople1" />
+    <result column="pl_people_2" jdbcType="VARCHAR" property="plPeople2" />
+    <result column="pl_people_3" jdbcType="VARCHAR" property="plPeople3" />
+    <result column="pl_pid" jdbcType="VARCHAR" property="plPid" />
+    <result column="pl_well_type" jdbcType="VARCHAR" property="plWellType" />
+    <result column="pl_cover_type" jdbcType="VARCHAR" property="plCoverType" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    pipe_id, pl_name, pl_line, pl_out_diameter, pl_in_diameter, pl_deep, pl_material, 
+    pl_type, pl_slope, pl_roughness, pl_direction, pl_pos, pl_sort, pl_deep_stop, pl_building_type, 
+    pl_carry, pl_state, pl_area, pl_ditch_dep, pl_line_dep, pl_survey_dep, pl_survey_time, 
+    pl_people_1, pl_people_2, pl_people_3, pl_pid, pl_well_type, pl_cover_type
+  </sql>
+  <select id="selectByExample" parameterType="com.city3d.dao.entry.PipelineExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pipeline
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pipeline
+    where pipe_id = #{pipeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from pipeline
+    where pipe_id = #{pipeId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.PipelineExample">
+    delete from pipeline
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.Pipeline">
+    insert into pipeline (pipe_id, pl_name, pl_line, 
+      pl_out_diameter, pl_in_diameter, pl_deep, 
+      pl_material, pl_type, pl_slope, 
+      pl_roughness, pl_direction, pl_pos, 
+      pl_sort, pl_deep_stop, pl_building_type, 
+      pl_carry, pl_state, pl_area, 
+      pl_ditch_dep, pl_line_dep, pl_survey_dep, 
+      pl_survey_time, pl_people_1, pl_people_2, 
+      pl_people_3, pl_pid, pl_well_type, 
+      pl_cover_type)
+    values (#{pipeId,jdbcType=VARCHAR}, #{plName,jdbcType=VARCHAR}, #{plLine,jdbcType=VARCHAR}, 
+      #{plOutDiameter,jdbcType=VARCHAR}, #{plInDiameter,jdbcType=VARCHAR}, #{plDeep,jdbcType=VARCHAR}, 
+      #{plMaterial,jdbcType=VARCHAR}, #{plType,jdbcType=VARCHAR}, #{plSlope,jdbcType=VARCHAR}, 
+      #{plRoughness,jdbcType=VARCHAR}, #{plDirection,jdbcType=VARCHAR}, #{plPos,jdbcType=VARCHAR}, 
+      #{plSort,jdbcType=VARCHAR}, #{plDeepStop,jdbcType=VARCHAR}, #{plBuildingType,jdbcType=VARCHAR}, 
+      #{plCarry,jdbcType=VARCHAR}, #{plState,jdbcType=VARCHAR}, #{plArea,jdbcType=VARCHAR}, 
+      #{plDitchDep,jdbcType=VARCHAR}, #{plLineDep,jdbcType=VARCHAR}, #{plSurveyDep,jdbcType=VARCHAR}, 
+      #{plSurveyTime,jdbcType=VARCHAR}, #{plPeople1,jdbcType=VARCHAR}, #{plPeople2,jdbcType=VARCHAR}, 
+      #{plPeople3,jdbcType=VARCHAR}, #{plPid,jdbcType=VARCHAR}, #{plWellType,jdbcType=VARCHAR}, 
+      #{plCoverType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.Pipeline">
+    insert into pipeline
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pipeId != null">
+        pipe_id,
+      </if>
+      <if test="plName != null">
+        pl_name,
+      </if>
+      <if test="plLine != null">
+        pl_line,
+      </if>
+      <if test="plOutDiameter != null">
+        pl_out_diameter,
+      </if>
+      <if test="plInDiameter != null">
+        pl_in_diameter,
+      </if>
+      <if test="plDeep != null">
+        pl_deep,
+      </if>
+      <if test="plMaterial != null">
+        pl_material,
+      </if>
+      <if test="plType != null">
+        pl_type,
+      </if>
+      <if test="plSlope != null">
+        pl_slope,
+      </if>
+      <if test="plRoughness != null">
+        pl_roughness,
+      </if>
+      <if test="plDirection != null">
+        pl_direction,
+      </if>
+      <if test="plPos != null">
+        pl_pos,
+      </if>
+      <if test="plSort != null">
+        pl_sort,
+      </if>
+      <if test="plDeepStop != null">
+        pl_deep_stop,
+      </if>
+      <if test="plBuildingType != null">
+        pl_building_type,
+      </if>
+      <if test="plCarry != null">
+        pl_carry,
+      </if>
+      <if test="plState != null">
+        pl_state,
+      </if>
+      <if test="plArea != null">
+        pl_area,
+      </if>
+      <if test="plDitchDep != null">
+        pl_ditch_dep,
+      </if>
+      <if test="plLineDep != null">
+        pl_line_dep,
+      </if>
+      <if test="plSurveyDep != null">
+        pl_survey_dep,
+      </if>
+      <if test="plSurveyTime != null">
+        pl_survey_time,
+      </if>
+      <if test="plPeople1 != null">
+        pl_people_1,
+      </if>
+      <if test="plPeople2 != null">
+        pl_people_2,
+      </if>
+      <if test="plPeople3 != null">
+        pl_people_3,
+      </if>
+      <if test="plPid != null">
+        pl_pid,
+      </if>
+      <if test="plWellType != null">
+        pl_well_type,
+      </if>
+      <if test="plCoverType != null">
+        pl_cover_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pipeId != null">
+        #{pipeId,jdbcType=VARCHAR},
+      </if>
+      <if test="plName != null">
+        #{plName,jdbcType=VARCHAR},
+      </if>
+      <if test="plLine != null">
+        #{plLine,jdbcType=VARCHAR},
+      </if>
+      <if test="plOutDiameter != null">
+        #{plOutDiameter,jdbcType=VARCHAR},
+      </if>
+      <if test="plInDiameter != null">
+        #{plInDiameter,jdbcType=VARCHAR},
+      </if>
+      <if test="plDeep != null">
+        #{plDeep,jdbcType=VARCHAR},
+      </if>
+      <if test="plMaterial != null">
+        #{plMaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="plType != null">
+        #{plType,jdbcType=VARCHAR},
+      </if>
+      <if test="plSlope != null">
+        #{plSlope,jdbcType=VARCHAR},
+      </if>
+      <if test="plRoughness != null">
+        #{plRoughness,jdbcType=VARCHAR},
+      </if>
+      <if test="plDirection != null">
+        #{plDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="plPos != null">
+        #{plPos,jdbcType=VARCHAR},
+      </if>
+      <if test="plSort != null">
+        #{plSort,jdbcType=VARCHAR},
+      </if>
+      <if test="plDeepStop != null">
+        #{plDeepStop,jdbcType=VARCHAR},
+      </if>
+      <if test="plBuildingType != null">
+        #{plBuildingType,jdbcType=VARCHAR},
+      </if>
+      <if test="plCarry != null">
+        #{plCarry,jdbcType=VARCHAR},
+      </if>
+      <if test="plState != null">
+        #{plState,jdbcType=VARCHAR},
+      </if>
+      <if test="plArea != null">
+        #{plArea,jdbcType=VARCHAR},
+      </if>
+      <if test="plDitchDep != null">
+        #{plDitchDep,jdbcType=VARCHAR},
+      </if>
+      <if test="plLineDep != null">
+        #{plLineDep,jdbcType=VARCHAR},
+      </if>
+      <if test="plSurveyDep != null">
+        #{plSurveyDep,jdbcType=VARCHAR},
+      </if>
+      <if test="plSurveyTime != null">
+        #{plSurveyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="plPeople1 != null">
+        #{plPeople1,jdbcType=VARCHAR},
+      </if>
+      <if test="plPeople2 != null">
+        #{plPeople2,jdbcType=VARCHAR},
+      </if>
+      <if test="plPeople3 != null">
+        #{plPeople3,jdbcType=VARCHAR},
+      </if>
+      <if test="plPid != null">
+        #{plPid,jdbcType=VARCHAR},
+      </if>
+      <if test="plWellType != null">
+        #{plWellType,jdbcType=VARCHAR},
+      </if>
+      <if test="plCoverType != null">
+        #{plCoverType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.PipelineExample" resultType="java.lang.Long">
+    select count(*) from pipeline
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pipeline
+    <set>
+      <if test="record.pipeId != null">
+        pipe_id = #{record.pipeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plName != null">
+        pl_name = #{record.plName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plLine != null">
+        pl_line = #{record.plLine,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plOutDiameter != null">
+        pl_out_diameter = #{record.plOutDiameter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plInDiameter != null">
+        pl_in_diameter = #{record.plInDiameter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plDeep != null">
+        pl_deep = #{record.plDeep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plMaterial != null">
+        pl_material = #{record.plMaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plType != null">
+        pl_type = #{record.plType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plSlope != null">
+        pl_slope = #{record.plSlope,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plRoughness != null">
+        pl_roughness = #{record.plRoughness,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plDirection != null">
+        pl_direction = #{record.plDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plPos != null">
+        pl_pos = #{record.plPos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plSort != null">
+        pl_sort = #{record.plSort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plDeepStop != null">
+        pl_deep_stop = #{record.plDeepStop,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plBuildingType != null">
+        pl_building_type = #{record.plBuildingType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plCarry != null">
+        pl_carry = #{record.plCarry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plState != null">
+        pl_state = #{record.plState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plArea != null">
+        pl_area = #{record.plArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plDitchDep != null">
+        pl_ditch_dep = #{record.plDitchDep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plLineDep != null">
+        pl_line_dep = #{record.plLineDep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plSurveyDep != null">
+        pl_survey_dep = #{record.plSurveyDep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plSurveyTime != null">
+        pl_survey_time = #{record.plSurveyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plPeople1 != null">
+        pl_people_1 = #{record.plPeople1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plPeople2 != null">
+        pl_people_2 = #{record.plPeople2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plPeople3 != null">
+        pl_people_3 = #{record.plPeople3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plPid != null">
+        pl_pid = #{record.plPid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plWellType != null">
+        pl_well_type = #{record.plWellType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plCoverType != null">
+        pl_cover_type = #{record.plCoverType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pipeline
+    set pipe_id = #{record.pipeId,jdbcType=VARCHAR},
+      pl_name = #{record.plName,jdbcType=VARCHAR},
+      pl_line = #{record.plLine,jdbcType=VARCHAR},
+      pl_out_diameter = #{record.plOutDiameter,jdbcType=VARCHAR},
+      pl_in_diameter = #{record.plInDiameter,jdbcType=VARCHAR},
+      pl_deep = #{record.plDeep,jdbcType=VARCHAR},
+      pl_material = #{record.plMaterial,jdbcType=VARCHAR},
+      pl_type = #{record.plType,jdbcType=VARCHAR},
+      pl_slope = #{record.plSlope,jdbcType=VARCHAR},
+      pl_roughness = #{record.plRoughness,jdbcType=VARCHAR},
+      pl_direction = #{record.plDirection,jdbcType=VARCHAR},
+      pl_pos = #{record.plPos,jdbcType=VARCHAR},
+      pl_sort = #{record.plSort,jdbcType=VARCHAR},
+      pl_deep_stop = #{record.plDeepStop,jdbcType=VARCHAR},
+      pl_building_type = #{record.plBuildingType,jdbcType=VARCHAR},
+      pl_carry = #{record.plCarry,jdbcType=VARCHAR},
+      pl_state = #{record.plState,jdbcType=VARCHAR},
+      pl_area = #{record.plArea,jdbcType=VARCHAR},
+      pl_ditch_dep = #{record.plDitchDep,jdbcType=VARCHAR},
+      pl_line_dep = #{record.plLineDep,jdbcType=VARCHAR},
+      pl_survey_dep = #{record.plSurveyDep,jdbcType=VARCHAR},
+      pl_survey_time = #{record.plSurveyTime,jdbcType=VARCHAR},
+      pl_people_1 = #{record.plPeople1,jdbcType=VARCHAR},
+      pl_people_2 = #{record.plPeople2,jdbcType=VARCHAR},
+      pl_people_3 = #{record.plPeople3,jdbcType=VARCHAR},
+      pl_pid = #{record.plPid,jdbcType=VARCHAR},
+      pl_well_type = #{record.plWellType,jdbcType=VARCHAR},
+      pl_cover_type = #{record.plCoverType,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.Pipeline">
+    update pipeline
+    <set>
+      <if test="plName != null">
+        pl_name = #{plName,jdbcType=VARCHAR},
+      </if>
+      <if test="plLine != null">
+        pl_line = #{plLine,jdbcType=VARCHAR},
+      </if>
+      <if test="plOutDiameter != null">
+        pl_out_diameter = #{plOutDiameter,jdbcType=VARCHAR},
+      </if>
+      <if test="plInDiameter != null">
+        pl_in_diameter = #{plInDiameter,jdbcType=VARCHAR},
+      </if>
+      <if test="plDeep != null">
+        pl_deep = #{plDeep,jdbcType=VARCHAR},
+      </if>
+      <if test="plMaterial != null">
+        pl_material = #{plMaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="plType != null">
+        pl_type = #{plType,jdbcType=VARCHAR},
+      </if>
+      <if test="plSlope != null">
+        pl_slope = #{plSlope,jdbcType=VARCHAR},
+      </if>
+      <if test="plRoughness != null">
+        pl_roughness = #{plRoughness,jdbcType=VARCHAR},
+      </if>
+      <if test="plDirection != null">
+        pl_direction = #{plDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="plPos != null">
+        pl_pos = #{plPos,jdbcType=VARCHAR},
+      </if>
+      <if test="plSort != null">
+        pl_sort = #{plSort,jdbcType=VARCHAR},
+      </if>
+      <if test="plDeepStop != null">
+        pl_deep_stop = #{plDeepStop,jdbcType=VARCHAR},
+      </if>
+      <if test="plBuildingType != null">
+        pl_building_type = #{plBuildingType,jdbcType=VARCHAR},
+      </if>
+      <if test="plCarry != null">
+        pl_carry = #{plCarry,jdbcType=VARCHAR},
+      </if>
+      <if test="plState != null">
+        pl_state = #{plState,jdbcType=VARCHAR},
+      </if>
+      <if test="plArea != null">
+        pl_area = #{plArea,jdbcType=VARCHAR},
+      </if>
+      <if test="plDitchDep != null">
+        pl_ditch_dep = #{plDitchDep,jdbcType=VARCHAR},
+      </if>
+      <if test="plLineDep != null">
+        pl_line_dep = #{plLineDep,jdbcType=VARCHAR},
+      </if>
+      <if test="plSurveyDep != null">
+        pl_survey_dep = #{plSurveyDep,jdbcType=VARCHAR},
+      </if>
+      <if test="plSurveyTime != null">
+        pl_survey_time = #{plSurveyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="plPeople1 != null">
+        pl_people_1 = #{plPeople1,jdbcType=VARCHAR},
+      </if>
+      <if test="plPeople2 != null">
+        pl_people_2 = #{plPeople2,jdbcType=VARCHAR},
+      </if>
+      <if test="plPeople3 != null">
+        pl_people_3 = #{plPeople3,jdbcType=VARCHAR},
+      </if>
+      <if test="plPid != null">
+        pl_pid = #{plPid,jdbcType=VARCHAR},
+      </if>
+      <if test="plWellType != null">
+        pl_well_type = #{plWellType,jdbcType=VARCHAR},
+      </if>
+      <if test="plCoverType != null">
+        pl_cover_type = #{plCoverType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pipe_id = #{pipeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.Pipeline">
+    update pipeline
+    set pl_name = #{plName,jdbcType=VARCHAR},
+      pl_line = #{plLine,jdbcType=VARCHAR},
+      pl_out_diameter = #{plOutDiameter,jdbcType=VARCHAR},
+      pl_in_diameter = #{plInDiameter,jdbcType=VARCHAR},
+      pl_deep = #{plDeep,jdbcType=VARCHAR},
+      pl_material = #{plMaterial,jdbcType=VARCHAR},
+      pl_type = #{plType,jdbcType=VARCHAR},
+      pl_slope = #{plSlope,jdbcType=VARCHAR},
+      pl_roughness = #{plRoughness,jdbcType=VARCHAR},
+      pl_direction = #{plDirection,jdbcType=VARCHAR},
+      pl_pos = #{plPos,jdbcType=VARCHAR},
+      pl_sort = #{plSort,jdbcType=VARCHAR},
+      pl_deep_stop = #{plDeepStop,jdbcType=VARCHAR},
+      pl_building_type = #{plBuildingType,jdbcType=VARCHAR},
+      pl_carry = #{plCarry,jdbcType=VARCHAR},
+      pl_state = #{plState,jdbcType=VARCHAR},
+      pl_area = #{plArea,jdbcType=VARCHAR},
+      pl_ditch_dep = #{plDitchDep,jdbcType=VARCHAR},
+      pl_line_dep = #{plLineDep,jdbcType=VARCHAR},
+      pl_survey_dep = #{plSurveyDep,jdbcType=VARCHAR},
+      pl_survey_time = #{plSurveyTime,jdbcType=VARCHAR},
+      pl_people_1 = #{plPeople1,jdbcType=VARCHAR},
+      pl_people_2 = #{plPeople2,jdbcType=VARCHAR},
+      pl_people_3 = #{plPeople3,jdbcType=VARCHAR},
+      pl_pid = #{plPid,jdbcType=VARCHAR},
+      pl_well_type = #{plWellType,jdbcType=VARCHAR},
+      pl_cover_type = #{plCoverType,jdbcType=VARCHAR}
+    where pipe_id = #{pipeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

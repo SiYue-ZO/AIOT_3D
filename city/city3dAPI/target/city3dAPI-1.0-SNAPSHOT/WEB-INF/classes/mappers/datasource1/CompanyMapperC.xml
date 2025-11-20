@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.CompanyMapperC" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Company" >
+    <id column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="add_id" property="addId" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="approval_no" property="approvalNo" jdbcType="VARCHAR" />
+    <result column="auto_fire" property="autoFire" jdbcType="VARCHAR" />
+    <result column="building_height" property="buildingHeight" jdbcType="VARCHAR" />
+    <result column="building_storey" property="buildingStorey" jdbcType="VARCHAR" />
+    <result column="business_scope" property="businessScope" jdbcType="VARCHAR" />
+    <result column="cancel_company" property="cancelCompany" jdbcType="VARCHAR" />
+    <result column="cancel_date" property="cancelDate" jdbcType="VARCHAR" />
+    <result column="cancel_mark" property="cancelMark" jdbcType="VARCHAR" />
+    <result column="cancel_reason" property="cancelReason" jdbcType="VARCHAR" />
+    <result column="community" property="community" jdbcType="VARCHAR" />
+    <result column="company_type" property="companyType" jdbcType="VARCHAR" />
+    <result column="company_use" property="companyUse" jdbcType="VARCHAR" />
+    <result column="construction_area" property="constructionArea" jdbcType="VARCHAR" />
+    <result column="construction_manager_company" property="constructionManagerCompany" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="cover_area" property="coverArea" jdbcType="VARCHAR" />
+    <result column="economic_nature" property="economicNature" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="engage_count" property="engageCount" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="fire_level" property="fireLevel" jdbcType="VARCHAR" />
+    <result column="fire_manager" property="fireManager" jdbcType="VARCHAR" />
+    <result column="fire_mange" property="fireMange" jdbcType="VARCHAR" />
+    <result column="fixed_assets" property="fixedAssets" jdbcType="VARCHAR" />
+    <result column="geometry_info" property="geometryInfo" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="image_info" property="imageInfo" jdbcType="VARCHAR" />
+    <result column="industry_type" property="industryType" jdbcType="VARCHAR" />
+    <result column="is_save" property="isSave" jdbcType="VARCHAR" />
+    <result column="leader" property="leader" jdbcType="VARCHAR" />
+    <result column="legal_man" property="legalMan" jdbcType="VARCHAR" />
+    <result column="license_begin_date" property="licenseBeginDate" jdbcType="VARCHAR" />
+    <result column="license_no" property="licenseNo" jdbcType="VARCHAR" />
+    <result column="license_send_date" property="licenseSendDate" jdbcType="VARCHAR" />
+    <result column="main_business" property="mainBusiness" jdbcType="VARCHAR" />
+    <result column="main_manage_department" property="mainManageDepartment" jdbcType="VARCHAR" />
+    <result column="manage_department" property="manageDepartment" jdbcType="VARCHAR" />
+    <result column="manage_type" property="manageType" jdbcType="VARCHAR" />
+    <result column="manager_identity" property="managerIdentity" jdbcType="VARCHAR" />
+    <result column="manager_tel" property="managerTel" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="nine_small_type" property="nineSmallType" jdbcType="VARCHAR" />
+    <result column="open_date" property="openDate" jdbcType="VARCHAR" />
+    <result column="operate_mode" property="operateMode" jdbcType="VARCHAR" />
+    <result column="organization" property="organization" jdbcType="VARCHAR" />
+    <result column="post_no" property="postNo" jdbcType="VARCHAR" />
+    <result column="regist_address" property="registAddress" jdbcType="VARCHAR" />
+    <result column="regist_date" property="registDate" jdbcType="VARCHAR" />
+    <result column="regist_money" property="registMoney" jdbcType="VARCHAR" />
+    <result column="save_level" property="saveLevel" jdbcType="VARCHAR" />
+    <result column="save_man_identity" property="saveManIdentity" jdbcType="VARCHAR" />
+    <result column="save_man_name" property="saveManName" jdbcType="VARCHAR" />
+    <result column="save_man_tel" property="saveManTel" jdbcType="VARCHAR" />
+    <result column="save_type" property="saveType" jdbcType="VARCHAR" />
+    <result column="second_business" property="secondBusiness" jdbcType="VARCHAR" />
+    <result column="supervise_company_type" property="superviseCompanyType" jdbcType="VARCHAR" />
+    <result column="tax_no" property="taxNo" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="upper_company" property="upperCompany" jdbcType="VARCHAR" />
+    <result column="use_name" property="useName" jdbcType="VARCHAR" />
+    <result column="without_license" property="withoutLicense" jdbcType="VARCHAR" />
+    <association property="addressAddress" javaType="com.city3d.dao.entry.Address">
+	    <id column="add_id" property="addId" jdbcType="VARCHAR" />
+	    <result column="add_name" property="addName" jdbcType="VARCHAR" />
+	    <result column="poi" property="poi" jdbcType="VARCHAR" />
+	    <result column="cam_poi" property="camPoi" jdbcType="VARCHAR" />
+	    <result column="cam_heading" property="camHeading" jdbcType="VARCHAR" />
+	    <result column="cam_pitch" property="camPitch" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    company_id, add_id, address, approval_no, auto_fire, building_height, building_storey, 
+    business_scope, cancel_company, cancel_date, cancel_mark, cancel_reason, community, 
+    company_type, company_use, construction_area, construction_manager_company, contact, 
+    cover_area, economic_nature, email, engage_count, fax, fire_level, fire_manager, 
+    fire_mange, fixed_assets, geometry_info, identity, image_info, industry_type, is_save, 
+    leader, legal_man, license_begin_date, license_no, license_send_date, main_business, 
+    main_manage_department, manage_department, manage_type, manager_identity, manager_tel, 
+    name, nine_small_type, open_date, operate_mode, organization, post_no, regist_address, 
+    regist_date, regist_money, save_level, save_man_identity, save_man_name, save_man_tel, 
+    save_type, second_business, supervise_company_type, tax_no, tel, upper_company, use_name, 
+    without_license
+  </sql>
+  <select id="queryCompanyData" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.Company" >
+  	select c.*,a.* from company c left join address a on c.add_id = a.add_id
+  	where COALESCE(name,'') like concat('%',#{name},'%') 
+  	and COALESCE(organization,'') like concat('%',#{organization},'%') 
+  	and COALESCE(leader,'') like concat('%',#{leader},'%') 
+  	and COALESCE(legal_man,'') like concat('%',#{legalMan},'%') 
+  	and COALESCE(address,'') like concat('%',#{address},'%') 
+  	and COALESCE(industry_type,'') like concat('%',#{industryType},'%')
+  	and COALESCE(main_business,'') like concat('%',#{mainBusiness},'%')
+  	and COALESCE(second_business,'') like concat('%',#{mainBusiness},'%')
+  	order by c.name
+  </select>
+  <select id="selectCompanyById" resultMap="BaseResultMap">
+  	select c.*, a.* from company c left join address a on c.add_id = a.add_id where c.company_id = #{companyId}
+  </select>
+  <select id="getCompanyByAddId" resultMap="BaseResultMap">
+  	select c.*, a.* from company c left join address a on c.add_id = a.add_id where c.add_id = #{addId}
+  </select>
+  <select id="getCompanyByComName" resultMap="BaseResultMap">
+  	select c.*, a.* from company c left join address a on c.add_id = a.add_id where 
+  	c.community = #{community}
+  </select>
+  <delete id="batchDelete" parameterType="java.util.List" >
+    delete from company where company_id in
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+    	#{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+</mapper>

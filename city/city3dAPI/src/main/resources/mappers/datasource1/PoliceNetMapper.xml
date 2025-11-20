@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.PoliceNetMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.PoliceNet" >
+    <id column="net_id" property="netId" jdbcType="VARCHAR" />
+    <result column="net_name" property="netName" jdbcType="VARCHAR" />
+    <result column="net_dep" property="netDep" jdbcType="VARCHAR" />
+    <result column="net_polygen" property="netPolygen" jdbcType="VARCHAR" />
+    <result column="net_color" property="netColor" jdbcType="VARCHAR" />
+    <result column="net_center" property="netCenter" jdbcType="VARCHAR" />
+    <result column="net_time" property="netTime" jdbcType="VARCHAR" />
+    <result column="net_level" property="netLevel" jdbcType="VARCHAR" />
+    <result column="net_area" property="netArea" jdbcType="VARCHAR" />
+    <result column="net_people" property="netPeople" jdbcType="VARCHAR" />
+    <result column="net_key_people" property="netKeyPeople" jdbcType="VARCHAR" />
+    <result column="net_note" property="netNote" jdbcType="VARCHAR" />
+    <result column="net_duty_care" property="netDutyCare" jdbcType="VARCHAR" />
+    <result column="net_care_note" property="netCareNote" jdbcType="VARCHAR" />
+    <result column="net_duty_goods" property="netDutyGoods" jdbcType="VARCHAR" />
+    <result column="net_goods_note" property="netGoodsNote" jdbcType="VARCHAR" />
+    <result column="other_note" property="otherNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    net_id, net_name, net_dep, net_polygen, net_color, net_center, net_time, net_level, 
+    net_area, net_people, net_key_people, net_note, net_duty_care, net_care_note, net_duty_goods, 
+    net_goods_note, other_note
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.PoliceNetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from police_net
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from police_net
+    where net_id = #{netId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from police_net
+    where net_id = #{netId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.PoliceNetExample" >
+    delete from police_net
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.PoliceNet" >
+    insert into police_net (net_id, net_name, net_dep, 
+      net_polygen, net_color, net_center, 
+      net_time, net_level, net_area, 
+      net_people, net_key_people, net_note, 
+      net_duty_care, net_care_note, net_duty_goods, 
+      net_goods_note, other_note)
+    values (#{netId,jdbcType=VARCHAR}, #{netName,jdbcType=VARCHAR}, #{netDep,jdbcType=VARCHAR}, 
+      #{netPolygen,jdbcType=VARCHAR}, #{netColor,jdbcType=VARCHAR}, #{netCenter,jdbcType=VARCHAR}, 
+      #{netTime,jdbcType=VARCHAR}, #{netLevel,jdbcType=VARCHAR}, #{netArea,jdbcType=VARCHAR}, 
+      #{netPeople,jdbcType=VARCHAR}, #{netKeyPeople,jdbcType=VARCHAR}, #{netNote,jdbcType=VARCHAR}, 
+      #{netDutyCare,jdbcType=VARCHAR}, #{netCareNote,jdbcType=VARCHAR}, #{netDutyGoods,jdbcType=VARCHAR}, 
+      #{netGoodsNote,jdbcType=VARCHAR}, #{otherNote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.PoliceNet" >
+    insert into police_net
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="netId != null" >
+        net_id,
+      </if>
+      <if test="netName != null" >
+        net_name,
+      </if>
+      <if test="netDep != null" >
+        net_dep,
+      </if>
+      <if test="netPolygen != null" >
+        net_polygen,
+      </if>
+      <if test="netColor != null" >
+        net_color,
+      </if>
+      <if test="netCenter != null" >
+        net_center,
+      </if>
+      <if test="netTime != null" >
+        net_time,
+      </if>
+      <if test="netLevel != null" >
+        net_level,
+      </if>
+      <if test="netArea != null" >
+        net_area,
+      </if>
+      <if test="netPeople != null" >
+        net_people,
+      </if>
+      <if test="netKeyPeople != null" >
+        net_key_people,
+      </if>
+      <if test="netNote != null" >
+        net_note,
+      </if>
+      <if test="netDutyCare != null" >
+        net_duty_care,
+      </if>
+      <if test="netCareNote != null" >
+        net_care_note,
+      </if>
+      <if test="netDutyGoods != null" >
+        net_duty_goods,
+      </if>
+      <if test="netGoodsNote != null" >
+        net_goods_note,
+      </if>
+      <if test="otherNote != null" >
+        other_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="netId != null" >
+        #{netId,jdbcType=VARCHAR},
+      </if>
+      <if test="netName != null" >
+        #{netName,jdbcType=VARCHAR},
+      </if>
+      <if test="netDep != null" >
+        #{netDep,jdbcType=VARCHAR},
+      </if>
+      <if test="netPolygen != null" >
+        #{netPolygen,jdbcType=VARCHAR},
+      </if>
+      <if test="netColor != null" >
+        #{netColor,jdbcType=VARCHAR},
+      </if>
+      <if test="netCenter != null" >
+        #{netCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="netTime != null" >
+        #{netTime,jdbcType=VARCHAR},
+      </if>
+      <if test="netLevel != null" >
+        #{netLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="netArea != null" >
+        #{netArea,jdbcType=VARCHAR},
+      </if>
+      <if test="netPeople != null" >
+        #{netPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="netKeyPeople != null" >
+        #{netKeyPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="netNote != null" >
+        #{netNote,jdbcType=VARCHAR},
+      </if>
+      <if test="netDutyCare != null" >
+        #{netDutyCare,jdbcType=VARCHAR},
+      </if>
+      <if test="netCareNote != null" >
+        #{netCareNote,jdbcType=VARCHAR},
+      </if>
+      <if test="netDutyGoods != null" >
+        #{netDutyGoods,jdbcType=VARCHAR},
+      </if>
+      <if test="netGoodsNote != null" >
+        #{netGoodsNote,jdbcType=VARCHAR},
+      </if>
+      <if test="otherNote != null" >
+        #{otherNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.PoliceNetExample" resultType="java.lang.Integer" >
+    select count(*) from police_net
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update police_net
+    <set >
+      <if test="record.netId != null" >
+        net_id = #{record.netId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netName != null" >
+        net_name = #{record.netName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netDep != null" >
+        net_dep = #{record.netDep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netPolygen != null" >
+        net_polygen = #{record.netPolygen,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netColor != null" >
+        net_color = #{record.netColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netCenter != null" >
+        net_center = #{record.netCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netTime != null" >
+        net_time = #{record.netTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netLevel != null" >
+        net_level = #{record.netLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netArea != null" >
+        net_area = #{record.netArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netPeople != null" >
+        net_people = #{record.netPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netKeyPeople != null" >
+        net_key_people = #{record.netKeyPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netNote != null" >
+        net_note = #{record.netNote,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netDutyCare != null" >
+        net_duty_care = #{record.netDutyCare,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netCareNote != null" >
+        net_care_note = #{record.netCareNote,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netDutyGoods != null" >
+        net_duty_goods = #{record.netDutyGoods,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netGoodsNote != null" >
+        net_goods_note = #{record.netGoodsNote,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherNote != null" >
+        other_note = #{record.otherNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update police_net
+    set net_id = #{record.netId,jdbcType=VARCHAR},
+      net_name = #{record.netName,jdbcType=VARCHAR},
+      net_dep = #{record.netDep,jdbcType=VARCHAR},
+      net_polygen = #{record.netPolygen,jdbcType=VARCHAR},
+      net_color = #{record.netColor,jdbcType=VARCHAR},
+      net_center = #{record.netCenter,jdbcType=VARCHAR},
+      net_time = #{record.netTime,jdbcType=VARCHAR},
+      net_level = #{record.netLevel,jdbcType=VARCHAR},
+      net_area = #{record.netArea,jdbcType=VARCHAR},
+      net_people = #{record.netPeople,jdbcType=VARCHAR},
+      net_key_people = #{record.netKeyPeople,jdbcType=VARCHAR},
+      net_note = #{record.netNote,jdbcType=VARCHAR},
+      net_duty_care = #{record.netDutyCare,jdbcType=VARCHAR},
+      net_care_note = #{record.netCareNote,jdbcType=VARCHAR},
+      net_duty_goods = #{record.netDutyGoods,jdbcType=VARCHAR},
+      net_goods_note = #{record.netGoodsNote,jdbcType=VARCHAR},
+      other_note = #{record.otherNote,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.PoliceNet" >
+    update police_net
+    <set >
+      <if test="netName != null" >
+        net_name = #{netName,jdbcType=VARCHAR},
+      </if>
+      <if test="netDep != null" >
+        net_dep = #{netDep,jdbcType=VARCHAR},
+      </if>
+      <if test="netPolygen != null" >
+        net_polygen = #{netPolygen,jdbcType=VARCHAR},
+      </if>
+      <if test="netColor != null" >
+        net_color = #{netColor,jdbcType=VARCHAR},
+      </if>
+      <if test="netCenter != null" >
+        net_center = #{netCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="netTime != null" >
+        net_time = #{netTime,jdbcType=VARCHAR},
+      </if>
+      <if test="netLevel != null" >
+        net_level = #{netLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="netArea != null" >
+        net_area = #{netArea,jdbcType=VARCHAR},
+      </if>
+      <if test="netPeople != null" >
+        net_people = #{netPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="netKeyPeople != null" >
+        net_key_people = #{netKeyPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="netNote != null" >
+        net_note = #{netNote,jdbcType=VARCHAR},
+      </if>
+      <if test="netDutyCare != null" >
+        net_duty_care = #{netDutyCare,jdbcType=VARCHAR},
+      </if>
+      <if test="netCareNote != null" >
+        net_care_note = #{netCareNote,jdbcType=VARCHAR},
+      </if>
+      <if test="netDutyGoods != null" >
+        net_duty_goods = #{netDutyGoods,jdbcType=VARCHAR},
+      </if>
+      <if test="netGoodsNote != null" >
+        net_goods_note = #{netGoodsNote,jdbcType=VARCHAR},
+      </if>
+      <if test="otherNote != null" >
+        other_note = #{otherNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where net_id = #{netId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.PoliceNet" >
+    update police_net
+    set net_name = #{netName,jdbcType=VARCHAR},
+      net_dep = #{netDep,jdbcType=VARCHAR},
+      net_polygen = #{netPolygen,jdbcType=VARCHAR},
+      net_color = #{netColor,jdbcType=VARCHAR},
+      net_center = #{netCenter,jdbcType=VARCHAR},
+      net_time = #{netTime,jdbcType=VARCHAR},
+      net_level = #{netLevel,jdbcType=VARCHAR},
+      net_area = #{netArea,jdbcType=VARCHAR},
+      net_people = #{netPeople,jdbcType=VARCHAR},
+      net_key_people = #{netKeyPeople,jdbcType=VARCHAR},
+      net_note = #{netNote,jdbcType=VARCHAR},
+      net_duty_care = #{netDutyCare,jdbcType=VARCHAR},
+      net_care_note = #{netCareNote,jdbcType=VARCHAR},
+      net_duty_goods = #{netDutyGoods,jdbcType=VARCHAR},
+      net_goods_note = #{netGoodsNote,jdbcType=VARCHAR},
+      other_note = #{otherNote,jdbcType=VARCHAR}
+    where net_id = #{netId,jdbcType=VARCHAR}
+  </update>
+</mapper>

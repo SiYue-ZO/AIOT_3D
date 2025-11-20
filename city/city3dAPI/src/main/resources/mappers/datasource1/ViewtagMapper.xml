@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.city3d.dao.mapper.datasource1.ViewtagMapper" >
+  <resultMap id="BaseResultMap" type="com.city3d.dao.entry.Viewtag" >
+    <id column="tag_id" property="tagId" jdbcType="VARCHAR" />
+    <result column="tag_name" property="tagName" jdbcType="VARCHAR" />
+    <result column="tag_poi" property="tagPoi" jdbcType="VARCHAR" />
+    <result column="tag_heading" property="tagHeading" jdbcType="VARCHAR" />
+    <result column="tag_pitch" property="tagPitch" jdbcType="VARCHAR" />
+    <result column="tag_label_poi" property="tagLabelPoi" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    tag_id, tag_name, tag_poi, tag_heading, tag_pitch, tag_label_poi
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.city3d.dao.entry.ViewtagExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from viewtag
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from viewtag
+    where tag_id = #{tagId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from viewtag
+    where tag_id = #{tagId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.city3d.dao.entry.ViewtagExample" >
+    delete from viewtag
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.city3d.dao.entry.Viewtag" >
+    insert into viewtag (tag_id, tag_name, tag_poi, 
+      tag_heading, tag_pitch, tag_label_poi
+      )
+    values (#{tagId,jdbcType=VARCHAR}, #{tagName,jdbcType=VARCHAR}, #{tagPoi,jdbcType=VARCHAR}, 
+      #{tagHeading,jdbcType=VARCHAR}, #{tagPitch,jdbcType=VARCHAR}, #{tagLabelPoi,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.city3d.dao.entry.Viewtag" >
+    insert into viewtag
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tagId != null" >
+        tag_id,
+      </if>
+      <if test="tagName != null" >
+        tag_name,
+      </if>
+      <if test="tagPoi != null" >
+        tag_poi,
+      </if>
+      <if test="tagHeading != null" >
+        tag_heading,
+      </if>
+      <if test="tagPitch != null" >
+        tag_pitch,
+      </if>
+      <if test="tagLabelPoi != null" >
+        tag_label_poi,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tagId != null" >
+        #{tagId,jdbcType=VARCHAR},
+      </if>
+      <if test="tagName != null" >
+        #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagPoi != null" >
+        #{tagPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="tagHeading != null" >
+        #{tagHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="tagPitch != null" >
+        #{tagPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="tagLabelPoi != null" >
+        #{tagLabelPoi,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.city3d.dao.entry.ViewtagExample" resultType="java.lang.Integer" >
+    select count(*) from viewtag
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update viewtag
+    <set >
+      <if test="record.tagId != null" >
+        tag_id = #{record.tagId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tagName != null" >
+        tag_name = #{record.tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tagPoi != null" >
+        tag_poi = #{record.tagPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tagHeading != null" >
+        tag_heading = #{record.tagHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tagPitch != null" >
+        tag_pitch = #{record.tagPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tagLabelPoi != null" >
+        tag_label_poi = #{record.tagLabelPoi,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update viewtag
+    set tag_id = #{record.tagId,jdbcType=VARCHAR},
+      tag_name = #{record.tagName,jdbcType=VARCHAR},
+      tag_poi = #{record.tagPoi,jdbcType=VARCHAR},
+      tag_heading = #{record.tagHeading,jdbcType=VARCHAR},
+      tag_pitch = #{record.tagPitch,jdbcType=VARCHAR},
+      tag_label_poi = #{record.tagLabelPoi,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city3d.dao.entry.Viewtag" >
+    update viewtag
+    <set >
+      <if test="tagName != null" >
+        tag_name = #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagPoi != null" >
+        tag_poi = #{tagPoi,jdbcType=VARCHAR},
+      </if>
+      <if test="tagHeading != null" >
+        tag_heading = #{tagHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="tagPitch != null" >
+        tag_pitch = #{tagPitch,jdbcType=VARCHAR},
+      </if>
+      <if test="tagLabelPoi != null" >
+        tag_label_poi = #{tagLabelPoi,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tag_id = #{tagId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city3d.dao.entry.Viewtag" >
+    update viewtag
+    set tag_name = #{tagName,jdbcType=VARCHAR},
+      tag_poi = #{tagPoi,jdbcType=VARCHAR},
+      tag_heading = #{tagHeading,jdbcType=VARCHAR},
+      tag_pitch = #{tagPitch,jdbcType=VARCHAR},
+      tag_label_poi = #{tagLabelPoi,jdbcType=VARCHAR}
+    where tag_id = #{tagId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,26 @@
+server:
+  port: 8888
+spring:
+  datasource:
+    datasource1:
+      jdbc-url: jdbc:postgresql://localhost:5432/city3d
+      username: postgres
+      password: 123456
+      driver-class-name: org.postgresql.Driver
+    datasource2:
+      jdbc-url: jdbc:sqlserver://59.110.226.79:1433;DatabaseName=gps2012
+      username: car
+      password: gps2017
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    datasource3:
+      jdbc-url: jdbc:sqlserver://59.110.226.79:1433;DatabaseName=gps_hisData
+      username: car
+      password: gps2017
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  servlet:
+    multipart:
+      max-file-size: 100MB # 单个文件大小
+      max-request-size: 5000MB # 设置总上传的数据大小
+      enabled: true #开启
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
