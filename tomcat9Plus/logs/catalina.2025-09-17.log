@@ -1,0 +1,44 @@
+17-Sep-2025 20:40:12.716 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Server.服务器版本:        Apache Tomcat/9.0.21
+17-Sep-2025 20:40:12.720 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Server.构建:          Jun 4 2019 20:19:36 UTC
+17-Sep-2025 20:40:12.749 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.21.0
+17-Sep-2025 20:40:12.749 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows Server 2016
+17-Sep-2025 20:40:12.750 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log OS.版本:            10.0
+17-Sep-2025 20:40:12.750 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 结.造:          amd64
+17-Sep-2025 20:40:12.750 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Java 环境变量:             E:\tomcat9Plus\Java\jre8
+17-Sep-2025 20:40:12.750 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log JVM 版本:           1.8.0_211-b12
+17-Sep-2025 20:40:12.750 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log JVM.供应商:            Oracle Corporation
+17-Sep-2025 20:40:12.750 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         E:\tomcat9Plus
+17-Sep-2025 20:40:12.751 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         E:\tomcat9Plus
+17-Sep-2025 20:40:12.751 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=E:\tomcat9Plus\conf\logging.properties
+17-Sep-2025 20:40:12.751 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+17-Sep-2025 20:40:12.752 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+17-Sep-2025 20:40:12.752 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+17-Sep-2025 20:40:12.752 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xms2048m
+17-Sep-2025 20:40:12.752 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xmx2048m
+17-Sep-2025 20:40:12.753 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xss1024k
+17-Sep-2025 20:40:12.754 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.awt.headless=true
+17-Sep-2025 20:40:12.754 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+AggressiveOpts
+17-Sep-2025 20:40:12.754 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+UseBiasedLocking
+17-Sep-2025 20:40:12.754 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+17-Sep-2025 20:40:12.755 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=E:\tomcat9Plus
+17-Sep-2025 20:40:12.755 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=E:\tomcat9Plus
+17-Sep-2025 20:40:12.755 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=E:\tomcat9Plus\temp
+17-Sep-2025 20:40:12.756 信息 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+17-Sep-2025 20:40:12.756 信息 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+17-Sep-2025 20:40:12.757 信息 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+17-Sep-2025 20:40:12.762 信息 [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+17-Sep-2025 20:40:12.989 信息 [main] org.apache.coyote.AbstractProtocol.init 初始化协议处理器 ["http-apr-0.0.0.0-8888"]
+17-Sep-2025 20:40:13.007 信息 [main] org.apache.coyote.AbstractProtocol.init 初始化协议处理器 ["ajp-nio-127.0.0.1-8009"]
+17-Sep-2025 20:40:13.091 信息 [main] org.apache.catalina.startup.Catalina.load 服务器在[548]毫秒内初始化
+17-Sep-2025 20:40:13.115 信息 [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+17-Sep-2025 20:40:13.115 信息 [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.21]
+17-Sep-2025 20:40:13.128 信息 [main] org.apache.coyote.AbstractProtocol.start 开始协议处理句柄["http-apr-0.0.0.0-8888"]
+17-Sep-2025 20:40:13.135 信息 [main] org.apache.coyote.AbstractProtocol.start 开始协议处理句柄["ajp-nio-127.0.0.1-8009"]
+17-Sep-2025 20:40:13.146 信息 [main] org.apache.catalina.startup.Catalina.start Server startup in [53] milliseconds
+17-Sep-2025 20:44:39.610 信息 [Thread-4] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-apr-0.0.0.0-8888"]
+17-Sep-2025 20:44:39.654 信息 [Thread-4] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["ajp-nio-127.0.0.1-8009"]
+17-Sep-2025 20:44:39.661 信息 [Thread-4] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+17-Sep-2025 20:44:39.661 信息 [Thread-4] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-apr-0.0.0.0-8888"]
+17-Sep-2025 20:44:39.741 信息 [Thread-4] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["ajp-nio-127.0.0.1-8009"]
+17-Sep-2025 20:44:39.741 信息 [Thread-4] org.apache.coyote.AbstractProtocol.destroy 正在摧毁协议处理器 ["http-apr-0.0.0.0-8888"]
+17-Sep-2025 20:44:39.758 信息 [Thread-4] org.apache.coyote.AbstractProtocol.destroy 正在摧毁协议处理器 ["ajp-nio-127.0.0.1-8009"]
